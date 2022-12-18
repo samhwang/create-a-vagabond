@@ -7,8 +7,15 @@
   "regions": ["syd1"],
   "outputDirectory": "client/dist",
   "functions": {
-    "api/src/routes/*.ts": {
-      "maxDuration": 10
+    "api/src/routes/index.ts": {
+      "maxDuration": 10,
+      "excludeFiles": "vitest.config.ts"
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/api/trpc",
+      "destination": "/api/src/routes/index.ts"
+    }
+  ]
 }
