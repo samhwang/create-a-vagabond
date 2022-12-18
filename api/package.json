@@ -1,0 +1,17 @@
+{
+  "name": "quiz-api",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "lint": "eslint --cache .",
+    "lint:fix": "pnpm run lint --fix",
+    "prettier": "prettier --cache --write .",
+    "format": "pnpm run lint:fix && pnpm run prettier",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}
