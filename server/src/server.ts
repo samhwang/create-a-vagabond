@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 import * as dotenvExpand from 'dotenv-expand';
-import fastify from 'fastify';
+import fastify, { FastifyRequest, FastifyReply } from 'fastify';
 import { fastifyTRPCPlugin } from '@trpc/server/dist/adapters/fastify';
 import { appRouter } from './router';
 import { createContext } from './context';
@@ -8,14 +8,19 @@ import { createContext } from './context';
 const config = dotenv.config();
 dotenvExpand.expand(config);
 
-const server = fastify({
+const app = fastify({
   logger: true,
   maxParamLength: 5000,
 });
 
-server.register(fastifyTRPCPlugin, {
+app.register(fastifyTRPCPlugin, {
   prefix: '/trpc',
   trpcOptions: { router: appRouter, createContext },
 });
 
-export default server;
+export async function serverHandler(req: FastifyRequest, res: FastifyReply) {
+  await app.ready();
+  app.server.emit('request', req, res);
+}
+
+export default app;

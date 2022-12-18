@@ -5,17 +5,5 @@
   "framework": null,
   "installCommand": "pnpm install",
   "regions": ["syd1"],
-  "outputDirectory": "client/dist",
-  "functions": {
-    "api/src/routes/index.ts": {
-      "maxDuration": 10,
-      "excludeFiles": "vitest.config.ts"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/api/trpc",
-      "destination": "/api/src/routes/index.ts"
-    }
-  ]
+  "outputDirectory": "client/dist"
 }
