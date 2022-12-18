@@ -1,0 +1,47 @@
+{
+  "name": "quiz-client",
+  "version": "0.0.0",
+  "private": true,
+  "msw": {
+    "workerDirectory": "public"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "prebuild": "rimraf dist",
+    "build": "rimraf dist && vite build",
+    "preview": "vite preview",
+    "pretest": "rimraf coverage",
+    "typecheck": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "test:CI": "pnpm run test && pnpm run typecheck",
+    "lint": "eslint --cache .",
+    "lint:fix": "pnpm run lint --fix",
+    "prettier": "prettier --cache --write .",
+    "format": "pnpm run lint:fix && pnpm run prettier"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "web-vitals": "^3.1.0"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^8.19.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
+    "@types/testing-library__jest-dom": "^5.14.5",
+    "@vitejs/plugin-react": "^3.0.0",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jsdom": "^20.0.3",
+    "vite": "^4.0.0"
+  }
+}
