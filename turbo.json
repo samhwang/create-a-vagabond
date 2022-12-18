@@ -6,7 +6,7 @@
         "^build"
       ],
       "outputs": [
-        "build/**"
+        "dist/**"
       ]
     },
     "test": {
