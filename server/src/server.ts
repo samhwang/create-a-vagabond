@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import * as dotenvExpand from 'dotenv-expand';
 import fastify, { FastifyRequest, FastifyReply } from 'fastify';
-import { fastifyTRPCPlugin } from '@trpc/server/dist/adapters/fastify';
+import { fastifyTRPCPlugin } from '@trpc/server/adapters/fastify';
 import { appRouter } from './router';
 import { createContext } from './context';
 
@@ -14,7 +14,7 @@ const app = fastify({
 });
 
 app.register(fastifyTRPCPlugin, {
-  prefix: '/trpc',
+  prefix: '/api/trpc',
   trpcOptions: { router: appRouter, createContext },
 });
 
