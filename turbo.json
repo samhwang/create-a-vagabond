@@ -21,6 +21,9 @@
     },
     "typecheck": {
       "outputs": []
+    },
+    "dev": {
+      "outputs": []
     }
   }
 }
