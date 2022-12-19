@@ -4,6 +4,11 @@
   "private": true,
   "description": "Quiz Site",
   "license": "ISC",
+  "workspaces": [
+    "client",
+    "server",
+    "api"
+  ],
   "scripts": {
     "test": "turbo run test",
     "lint": "turbo run lint",
@@ -19,6 +24,7 @@
     "zod": "^3.20.2"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20221111.1",
     "@types/node": "^18.11.13",
     "@types/react": "^18.0.26",
     "@typescript-eslint/eslint-plugin": "^5.46.0",
