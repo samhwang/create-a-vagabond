@@ -5,11 +5,5 @@
   "framework": null,
   "installCommand": "pnpm install",
   "regions": ["syd1"],
-  "outputDirectory": "client/dist",
-  "rewrites": [
-    {
-      "source": "/api/trpc/(.*)",
-      "destination": "/api/[trpc].ts"
-    }
-  ]
+  "outputDirectory": "client/dist"
 }

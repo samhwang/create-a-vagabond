@@ -18,9 +18,13 @@ app.register(fastifyTRPCPlugin, {
   trpcOptions: { router: appRouter, createContext },
 });
 
-export async function serverHandler(req: FastifyRequest, res: FastifyReply) {
-  await app.ready();
-  app.server.emit('request', req, res);
+async function start() {
+  try {
+    await app.listen({ port: 3000 });
+  } catch (error) {
+    app.log.error(error);
+    process.exit(1);
+  }
 }
 
-export default app;
+start();
