@@ -12,8 +12,15 @@
     "build": "turbo run build",
     "dev": "turbo run dev"
   },
+  "dependencies": {
+    "@trpc/client": "^10.5.0",
+    "@trpc/server": "^10.5.0",
+    "react": "^18.2.0",
+    "zod": "^3.20.2"
+  },
   "devDependencies": {
     "@types/node": "^18.11.13",
+    "@types/react": "^18.0.26",
     "@typescript-eslint/eslint-plugin": "^5.46.0",
     "@typescript-eslint/parser": "^5.46.0",
     "@vitest/coverage-c8": "^0.25.7",
