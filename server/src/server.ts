@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 import * as dotenvExpand from 'dotenv-expand';
-import fastify, { FastifyRequest, FastifyReply } from 'fastify';
+import fastify from 'fastify';
 import { fastifyTRPCPlugin } from '@trpc/server/adapters/fastify';
 import { appRouter } from './router';
 import { createContext } from './context';
