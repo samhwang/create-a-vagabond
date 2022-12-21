@@ -1,9 +1,9 @@
 import { inferAsyncReturnType } from '@trpc/server';
-import { CreateFastifyContextOptions } from '@trpc/server/adapters/fastify';
+import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 
-export function createContext({ req, res }: CreateFastifyContextOptions) {
-  const user = { name: req.headers.username ?? 'anonymous' };
-  return { req, res, user };
+export function createContext({ req }: FetchCreateContextFnOptions) {
+  const user = { name: req.headers.get('username') ?? 'anonymous' };
+  return { req, user };
 }
 
 export type Context = inferAsyncReturnType<typeof createContext>;

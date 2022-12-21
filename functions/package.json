@@ -1,19 +1,17 @@
 {
-  "name": "quiz-server",
+  "name": "quiz-functions",
   "scripts": {
-    "test": "vitest run",
-    "test:watch": "vitest watch",
     "lint": "eslint --cache .",
     "lint:fix": "pnpm run lint --fix",
     "prettier": "prettier --cache --write .",
     "format": "pnpm run lint:fix && pnpm run prettier",
     "typecheck": "tsc"
   },
-  "devDependencies": {
-    "prisma": "^4.7.1"
-  },
   "dependencies": {
     "@trpc/server": "^10.6.0",
-    "zod": "^3.20.2"
+    "cloudflare-pages-plugin-trpc": "^0.1.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20221111.1"
   }
 }
