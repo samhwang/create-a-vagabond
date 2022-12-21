@@ -12,6 +12,11 @@ const react = useSwc ? reactSwc : reactBabel;
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      '/trpc': 'http://0.0.0.0:8788',
+    },
+  },
   test: {
     globals: true,
     environment: 'jsdom',
