@@ -11,7 +11,14 @@ const react = useSwc ? reactSwc : reactBabel;
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      jsxImportSource: '@emotion/react',
+      // babel: {
+      //   plugins: ['@emotion/babel-plugin'],
+      // },
+    }),
+  ],
   server: {
     proxy: {
       '/trpc': 'http://0.0.0.0:8788',
