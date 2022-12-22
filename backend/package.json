@@ -7,7 +7,8 @@
     "lint:fix": "pnpm run lint --fix",
     "prettier": "prettier --cache --write .",
     "format": "pnpm run lint:fix && pnpm run prettier",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "dev": "cd .. && wrangler pages dev client/dist"
   },
   "devDependencies": {
     "prisma": "^4.7.1"

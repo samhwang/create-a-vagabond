@@ -24,6 +24,10 @@
     },
     "dev": {
       "outputs": []
+    },
+    "quiz-backend#dev": {
+      "outputs": [],
+      "dependsOn": ["quiz-client#build"]
     }
   }
 }
