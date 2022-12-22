@@ -1,5 +1,5 @@
 {
-  "name": "quiz-server",
+  "name": "quiz-backend",
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest watch",
