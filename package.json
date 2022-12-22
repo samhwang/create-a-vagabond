@@ -4,11 +4,6 @@
   "private": true,
   "description": "Quiz Site",
   "license": "ISC",
-  "workspaces": [
-    "client",
-    "backend",
-    "functions"
-  ],
   "scripts": {
     "test": "turbo run test",
     "lint": "turbo run lint",

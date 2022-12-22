@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "@trpc/server": "^10.6.0",
-    "cloudflare-pages-plugin-trpc": "^0.1.2"
+    "cloudflare-pages-plugin-trpc": "^0.1.2",
+    "quiz-backend": "*"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20221111.1"
