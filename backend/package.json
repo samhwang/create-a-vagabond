@@ -11,7 +11,8 @@
     "wrangler:dev": "cd .. && wrangler pages dev client/dist",
     "dev": "pnpm run prisma:generate && pnpm run wrangler:dev",
     "prisma:migrate": "prisma migrate dev",
-    "prisma:generate": "prisma generate"
+    "prisma:generate": "prisma generate",
+    "prisma:generate:proxy": "prisma generate --data-proxy"
   },
   "devDependencies": {
     "prisma": "^4.8.0"
