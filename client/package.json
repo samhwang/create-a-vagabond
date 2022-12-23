@@ -7,7 +7,8 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "msw:init": "msw init public",
+    "dev": "pnpm run msw:init && vite",
     "prebuild": "rimraf dist",
     "build": "rimraf dist && vite build",
     "preview": "vite preview",
