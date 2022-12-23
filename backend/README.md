@@ -1,4 +1,4 @@
-# Quiz Client
+# Quiz Backend
 
 ## Scripts
 
@@ -6,5 +6,4 @@
 pnpm run dev
 pnpm run test
 pnpm run format
-pnpm run build
 ```
