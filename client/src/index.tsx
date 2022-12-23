@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './app';
 import reportWebVitals from './reportWebVitals';
-import './index.css';
+import './utils/twind';
 
 async function renderRoot() {
   if (import.meta.env.DEV) {
