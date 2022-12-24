@@ -1,0 +1,5 @@
+
+> quiz-client@0.0.0 dev /home/yuki/Desktop/personal/opensource/quiz-site/client
+> pnpm run msw:init && vite
+
+ ELIFECYCLE  Command failed.

@@ -1,7 +1,7 @@
 import { trpc } from '../providers/trpc';
 
 function IndexPage() {
-  const hello = trpc.helloWorld.useQuery('Sam');
+  const hello = trpc.user.me.useQuery();
 
   if (!hello.data) {
     return (
