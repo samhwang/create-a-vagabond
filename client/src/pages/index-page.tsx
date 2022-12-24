@@ -1,4 +1,4 @@
-import { trpc } from './utils/trpc';
+import { trpc } from '../providers/trpc';
 
 function IndexPage() {
   const hello = trpc.helloWorld.useQuery('Sam');
