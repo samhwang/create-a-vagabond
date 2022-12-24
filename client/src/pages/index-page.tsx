@@ -1,9 +1,9 @@
 import { trpc } from '../providers/trpc';
 
 function IndexPage() {
-  const hello = trpc.user.me.useQuery();
+  const { data: me } = trpc.user.me.useQuery();
 
-  if (!hello.data) {
+  if (!me) {
     return (
       <div className="flex justify-center">
         <p>Loading...</p>
@@ -13,7 +13,7 @@ function IndexPage() {
 
   return (
     <div className="flex justify-center">
-      <p>{hello.data}</p>
+      <p>{me}</p>
     </div>
   );
 }
