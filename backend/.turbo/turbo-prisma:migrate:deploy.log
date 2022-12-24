@@ -1,6 +1,0 @@
-
-> quiz-backend@ prisma:migrate:deploy /home/yuki/Desktop/personal/opensource/quiz-site/backend
-> dotenv -- bash -c 'DATABASE_URL=${MIGRATE_DATABASE_URL} prisma migrate deploy'
-
-sh: 1: dotenv: not found
- ELIFECYCLE  Command failed.
