@@ -7,7 +7,7 @@
   "scripts": {
     "test": "turbo run test",
     "lint": "turbo run lint",
-    "format": "turbo run format && prisma format",
+    "format": "turbo run format",
     "typecheck": "turbo run typecheck",
     "build": "turbo run build",
     "dev": "turbo run dev"

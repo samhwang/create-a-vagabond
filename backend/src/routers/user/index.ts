@@ -1,8 +1,6 @@
-import { t } from '../../builder'
-import { me } from './me'
+import { t } from '../../builder';
+import { me } from './me';
 
 export const userRouter = t.router({
-  user: t.mergeRouters(
-    me,
-  )
-})
+  user: t.mergeRouters(me),
+});

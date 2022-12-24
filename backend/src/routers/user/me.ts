@@ -1,8 +1,5 @@
-import { t } from '../../builder'
+import { t } from '../../builder';
 
 export const me = t.router({
-  me: t.procedure
-    .query(() => {
-      return 'me yeah'
-    })
-})
+  me: t.procedure.query(() => 'me yeah'),
+});
