@@ -33,11 +33,11 @@ This repo currently has 3 parts:
 
 - Copy an `.env` file out from `.env.sample`.
 - After creating a Neon Account, create a new project in the [Neon console](https://console.neon.tech).
-- Copy the connection string. This will be the `DATABASE_URL` in the `.env` file.
+- Copy the connection string. This will be the `MIGRATE_DATABASE_URL` in the `.env` file.
 - Create a second DB in the same project. The new connection string will be the `SHADOW_DATABASE_URL`.
-- Create a Proxy project in [Prisma console](https://cloud.prisma.io/projects), and link the `DATABASE_URL` into the
+- Create a Proxy project in [Prisma console](https://cloud.prisma.io/projects), and link the `MIGRATE_DATABASE_URL` into the
 project.
-- Create a connection string, this will be the `DATA_PROXY_URL`.
+- Create a connection string, this will be the `DATABASE_URL`.
 
 ### Install Scripts
 
