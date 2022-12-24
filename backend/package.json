@@ -12,8 +12,7 @@
     "dev": "pnpm run prisma:generate && pnpm run wrangler:dev",
     "prisma:migrate": "dotenv -- bash -c 'DATABASE_URL=${MIGRATE_DATABASE_URL} prisma migrate dev'",
     "prisma:migrate:deploy": "dotenv -- bash -c 'DATABASE_URL=${MIGRATE_DATABASE_URL} prisma migrate deploy'",
-    "prisma:generate": "prisma generate",
-    "prisma:generate:proxy": "prisma generate --data-proxy"
+    "prisma:generate": "prisma generate"
   },
   "devDependencies": {
     "prisma": "^4.8.0"
