@@ -28,6 +28,13 @@
     "quiz-backend#dev": {
       "outputs": [],
       "dependsOn": ["quiz-client#build"]
+    },
+    "quiz-backend#prisma:migrate:deploy": {
+      "outputs": []
+    },
+    "quiz-client#build": {
+      "outputs": [],
+      "dependsOn": ["quiz-backend#prisma:migrate:deploy"]
     }
   }
 }

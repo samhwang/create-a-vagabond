@@ -10,8 +10,8 @@
     "typecheck": "tsc",
     "wrangler:dev": "cd .. && wrangler pages dev client/dist",
     "dev": "pnpm run prisma:generate && pnpm run wrangler:dev",
-    "prisma:migrate": "DATABASE_URL=${MIGRATE_DATABASE_URL} prisma migrate dev",
-    "prisma:migrate:deploy": "DATABASE_URL=${MIGRATE_DATABASE_URL} prisma migrate deploy",
+    "prisma:migrate": "dotenv -- bash -c 'DATABASE_URL=${MIGRATE_DATABASE_URL} prisma migrate dev'",
+    "prisma:migrate:deploy": "dotenv -- bash -c 'DATABASE_URL=${MIGRATE_DATABASE_URL} prisma migrate deploy'",
     "prisma:generate": "prisma generate",
     "prisma:generate:proxy": "prisma generate --data-proxy"
   },
@@ -21,6 +21,9 @@
   "dependencies": {
     "@prisma/client": "^4.8.0",
     "@trpc/server": "^10.6.0",
+    "dotenv": "^16.0.3",
+    "dotenv-cli": "^6.0.0",
+    "dotenv-expand": "^10.0.0",
     "zod": "^3.20.2"
   }
 }
