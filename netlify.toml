@@ -1,0 +1,15 @@
+[build]
+  publish = "client/dist/"
+  command = "pnpm run build"
+
+[functions]
+  directory = "backend/src/functions/"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  autoLaunch = true
+  functionsPort = 8788

@@ -14,7 +14,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/trpc': 'http://0.0.0.0:8788',
+      '/.netlify/functions': 'http://0.0.0.0:8788',
     },
   },
   test: {

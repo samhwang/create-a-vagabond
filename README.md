@@ -6,8 +6,7 @@ This repo currently has 3 parts:
 
 - [`client`](./client/README.md) - Frontend React App bootstrapped with Vite.
 - [`backend`](./backend/README.md) - Backend logic: Database stuff and tRPC router creation goes here.
-  - This will then be served with CloudFlare Pages Function under `functions`.
-- Database: This project's database currently lives in Neon DB, and served to the edge with Prisma Data Proxy.
+- Database: This project's database currently lives in Neon DB.
 
 ---
 
@@ -17,13 +16,12 @@ This repo currently has 3 parts:
 
 - Node v16
   - PNPM v7
-- Wrangler CLI
+- Netlify CLI
 
 ### Accounts
 
-- [Cloudflare Pages](https://cloudflare.com) - For hosting the site
+- [Netlify](https://app.netlify.com) - For hosting the site
 - [Neon DB](https://neon.tech) - Serverless Postgres
-- [Prisma Data Platform](https://cloud.prisma.io) - Needed for the Data Proxy to use with Edge Runtime
 
 ---
 
@@ -31,13 +29,10 @@ This repo currently has 3 parts:
 
 ### Environment Variables
 
-- Copy an `.env` file out from `.env.sample`.
+- Copy an `backend/.env` file out from `backend/.env.sample`.
 - After creating a Neon Account, create a new project in the [Neon console](https://console.neon.tech).
-- Copy the connection string. This will be the `MIGRATE_DATABASE_URL` in the `.env` file.
+- Copy the connection string. This will be the `DATABASE_URL` in the `.env` file.
 - Create a second DB in the same project. The new connection string will be the `SHADOW_DATABASE_URL`.
-- Create a Proxy project in [Prisma console](https://cloud.prisma.io/projects), and link the `MIGRATE_DATABASE_URL` into the
-project.
-- Create a connection string, this will be the `DATABASE_URL`.
 
 ### Install Scripts
 

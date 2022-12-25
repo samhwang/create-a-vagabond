@@ -8,6 +8,11 @@ node_modules
 # Test Coverage
 coverage
 
+# Environment variables
 .env
 
+# Turbo repo cache
 .turbo
+
+# Local Netlify folder
+.netlify

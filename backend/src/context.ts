@@ -1,8 +1,8 @@
 import { inferAsyncReturnType } from '@trpc/server';
-import { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
+import { CreateFastifyContextOptions } from '@trpc/server/adapters/fastify';
 
-export function createContext({ req }: FetchCreateContextFnOptions) {
-  const user = { name: req.headers.get('username') ?? 'anonymous' };
+export function createContext({ req }: CreateFastifyContextOptions) {
+  const user = { name: req.headers.username ?? 'anonymous' };
   return { req, user };
 }
 

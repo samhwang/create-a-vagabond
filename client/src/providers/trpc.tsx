@@ -10,7 +10,7 @@ export const trpc = createTRPCReact<AppRouter>();
 const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
-      url: `/trpc`,
+      url: `/.netlify/functions/trpc`,
     }),
   ],
 });
