@@ -12,7 +12,8 @@
     "dev": "pnpm run prisma:generate && pnpm run netlify:dev",
     "prisma:migrate": "prisma migrate dev",
     "prisma:migrate:deploy": "prisma migrate deploy",
-    "prisma:generate": "prisma generate"
+    "prisma:generate": "prisma generate",
+    "prisma:studio": "prisma studio"
   },
   "devDependencies": {
     "prisma": "^4.8.0"

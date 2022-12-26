@@ -16,3 +16,6 @@ coverage
 
 # Local Netlify folder
 .netlify
+
+# Docker DB Cache
+db/data
