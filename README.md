@@ -48,6 +48,7 @@ This repo currently has 3 parts:
 
 ```shell
 pnpm install
+pnpm run init:client
 docker compose up -d db
 pnpm run dev
 ```
