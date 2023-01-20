@@ -1,14 +1,6 @@
 {
   "$schema": "https://turborepo.org/schema.json",
   "pipeline": {
-    "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "dist/**"
-      ]
-    },
     "test": {
       "dependsOn": [],
       "outputs": []
@@ -33,7 +25,7 @@
       "outputs": []
     },
     "quiz-client#build": {
-      "outputs": [],
+      "outputs": ["dist/**"],
       "dependsOn": ["quiz-backend#prisma:migrate:deploy"]
     }
   }
