@@ -1,1 +1,3 @@
-export const VagabondPage = () => <>Vagabond page</>
+export function VagabondPage() {
+  return <>Vagabond page</>;
+}

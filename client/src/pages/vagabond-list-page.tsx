@@ -1,1 +1,3 @@
-export const VagabondListPage = () => <>Vagabond list page</>
+export function VagabondListPage() {
+  return <>Vagabond list page</>;
+}

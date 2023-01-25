@@ -1,12 +1,12 @@
-import { useAtomValue } from 'jotai'
+import { useAtomValue } from 'jotai';
 import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
-import { jwtAtom } from '../providers/auth'
+import { jwtAtom } from '../providers/auth';
 
 import IndexPage from './index-page';
-import { LoginPage } from './login-page'
-import { RegisterPage } from './register-page'
-import { VagabondListPage } from './vagabond-list-page'
-import { VagabondPage } from './vagabond-page'
+import { LoginPage } from './login-page';
+import { RegisterPage } from './register-page';
+import { VagabondListPage } from './vagabond-list-page';
+import { VagabondPage } from './vagabond-page';
 
 export const router = createBrowserRouter([
   {
@@ -15,7 +15,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <IndexPage />
+        element: <IndexPage />,
       },
       {
         path: 'vagabond-list',
@@ -23,9 +23,9 @@ export const router = createBrowserRouter([
       },
       {
         path: 'vagabond-list/:id',
-        element: <VagabondPage />
-      }
-    ]
+        element: <VagabondPage />,
+      },
+    ],
   },
   {
     path: '/auth',
@@ -33,34 +33,34 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <LoginPage />
+        element: <LoginPage />,
       },
       {
         path: 'register',
-        element: <RegisterPage /> 
+        element: <RegisterPage />,
       },
-    ]
-  }
+    ],
+  },
 ]);
 
 function AuthRoot() {
-  const jwt = useAtomValue(jwtAtom)
+  const jwt = useAtomValue(jwtAtom);
 
-  if (jwt) return <Navigate to='/' />
+  if (jwt) return <Navigate to="/" />;
 
   return (
-    <div className='h-screen w-screen flex items-center justify-center'>
+    <div className="h-screen w-screen flex items-center justify-center">
       <Outlet />
     </div>
-  )
+  );
 }
 
 function AppRoot() {
-  const jwt = useAtomValue(jwtAtom)
+  const jwt = useAtomValue(jwtAtom);
 
-  if (!jwt) return <Navigate to='/auth' />
+  if (!jwt) return <Navigate to="/auth" />;
 
-  return <Outlet />
+  return <Outlet />;
 }
 
 // /auth
