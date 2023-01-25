@@ -1,5 +1,17 @@
 # Create a Vagabond
 
+## Description
+
+This project aims to provide a quick and simple way to generate a Vagabond for the [Root RPG](https://magpiegames.com/pages/root-rpg).
+Other than that, this project is not in any way, shape or form related to the original game itself. I just love the game!
+
+## Acknowledgements
+
+- [Kyle Ferrin](https://boardgamegeek.com/boardgameartist/65224/kyle-ferrin) and [Leder Games](https://ledergames.com/) - the creators of the board game [Root: A Game of Woodland Might and Right](https://ledergames.com/products/root-a-game-of-woodland-might-and-right).
+- [Magpie Games](https://magpiegames.com) - the creator of the [Root RPG](https://magpiegames.com/pages/root-rpg).
+
+---
+
 ## Parts
 
 This repo currently has 3 parts:
