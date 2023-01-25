@@ -17,16 +17,16 @@
     "dev": {
       "outputs": []
     },
-    "quiz-backend#dev": {
+    "vagabond-app-backend#dev": {
       "outputs": [],
-      "dependsOn": ["quiz-client#build"]
+      "dependsOn": ["vagabond-app-client#build"]
     },
-    "quiz-backend#prisma:migrate:deploy": {
+    "vagabond-app-backend#prisma:migrate:deploy": {
       "outputs": []
     },
-    "quiz-client#build": {
+    "vagabond-app-client#build": {
       "outputs": ["dist/**"],
-      "dependsOn": ["quiz-backend#prisma:migrate:deploy"]
+      "dependsOn": ["vagabond-app-backend#prisma:migrate:deploy"]
     }
   }
 }

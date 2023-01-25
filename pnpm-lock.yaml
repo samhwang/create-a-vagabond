@@ -108,12 +108,12 @@ importers:
       '@vitejs/plugin-react': ^3.0.0
       '@vitejs/plugin-react-swc': ^3.0.0
       jsdom: ^20.0.3
-      quiz-backend: '*'
       react: ^18.2.0
       react-dom: ^18.2.0
       react-error-boundary: ^3.1.4
       react-hook-form: ^7.41.0
       react-router-dom: ^6.6.0
+      vagabond-app-backend: '*'
       vite: ^4.0.0
       web-vitals: ^3.1.0
     dependencies:
@@ -128,12 +128,12 @@ importers:
       '@twind/preset-tailwind-forms': 1.0.5_ocv6o5u3pseeayyygyzocnnp3m
       '@twind/preset-typography': 1.0.5_@twind+core@1.1.1
       '@twind/with-react': 1.1.1_hxupdpgiqojrjoyxrlu4uimwie
-      quiz-backend: link:../backend
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-error-boundary: 3.1.4_react@18.2.0
       react-hook-form: 7.41.0_react@18.2.0
       react-router-dom: 6.6.0_biqbaboplfbrettd7655fr4n2y
+      vagabond-app-backend: link:../backend
       web-vitals: 3.1.0
     devDependencies:
       '@tanstack/react-query-devtools': 4.20.4_fu3ixcwltlssi3ozitelgaebme

@@ -1,8 +1,8 @@
 {
-  "name": "quiz-site",
+  "name": "@samhwang/create-a-vagabond-app",
   "version": "1.0.0",
   "private": true,
-  "description": "Quiz Site",
+  "description": "Create a Vagabond App",
   "license": "ISC",
   "scripts": {
     "init:client": "cd client && npx msw init public",
