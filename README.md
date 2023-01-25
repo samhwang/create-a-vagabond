@@ -1,5 +1,7 @@
 # Create a Vagabond
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/aa171ef2-cc08-4023-b732-81d4210e9af5/deploy-status)](https://app.netlify.com/sites/sam-create-a-vagabond/deploys)
+
 ## Description
 
 This project aims to provide a quick and simple way to generate a Vagabond for the [Root RPG](https://magpiegames.com/pages/root-rpg).
