@@ -22,4 +22,6 @@ model Vagabond {
   id     String @id @default(cuid())
   userId String
   user   User   @relation(fields: [userId], references: [id])
+
+  @@index([userId])
 }
