@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider, QueryErrorResetBoundary } from '@tanstack/react-query';
 import { createTRPCReact, httpBatchLink } from '@trpc/react-query';
-import type { AppRouter } from 'quiz-backend/src/router';
+import type { AppRouter } from 'vagabond-app-backend/src/router';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 import { Suspense, type ReactNode } from 'react';
