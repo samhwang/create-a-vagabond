@@ -6,7 +6,7 @@ This repo currently has 3 parts:
 
 - [`client`](./client/README.md) - Frontend React App bootstrapped with Vite.
 - [`backend`](./backend/README.md) - Backend logic: Database stuff and tRPC router creation goes here.
-- Database: This project's database currently lives in Neon DB.
+- Database: This project's database currently lives in PlanetScale.
   - Or locally, it can also be hosted in Docker.
 
 ---
@@ -23,7 +23,7 @@ This repo currently has 3 parts:
 ### Accounts
 
 - [Netlify](https://app.netlify.com) - For hosting the site
-- [Neon DB](https://neon.tech) - Serverless Postgres
+- [PlanetScale](https://app.planetscale.com) - Serverless MySQL
 
 ---
 
@@ -35,14 +35,12 @@ This repo currently has 3 parts:
 
 #### Running with Neon
 
-- After creating a Neon Account, create a new project in the [Neon console](https://console.neon.tech).
+- After creating a PlanetScale Account, create a new project in the [console](https://app.planetscale.com).
 - Copy the connection string. This will be the `DATABASE_URL` in the `.env` file.
-- Create a second DB in the same project. The new connection string will be the `SHADOW_DATABASE_URL`.
 
 #### Running with Docker
 
-- `DATABASE_URL` is `postgress://example:example@localhost:5432/quiz-db?pgbouncer=true`.
-- `SHADOW_DATABASE_URL` is blank.
+- `DATABASE_URL` is `mysql://root:root@localhost:3306/db`.
 
 ### Install Scripts
 
