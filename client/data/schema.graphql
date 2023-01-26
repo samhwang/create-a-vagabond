@@ -4,8 +4,17 @@ directive @specifiedBy(
   url: String!
 ) on SCALAR
 
+type Error {
+  message: String!
+}
+
 type Query {
-  hello: String
-  hi: String
+  hello(name: String): QueryHelloResult!
+}
+
+union QueryHelloResult = Error | QueryHelloSuccess
+
+type QueryHelloSuccess {
+  data: String!
 }
 
