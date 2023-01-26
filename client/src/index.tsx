@@ -6,7 +6,6 @@ import { RouterProvider } from 'react-router-dom';
 
 import { Provider as JotaiProvider } from 'jotai';
 
-import { TRPCProvider } from './providers/trpc';
 import { router } from './pages/_router';
 
 import reportWebVitals from './reportWebVitals';
@@ -20,9 +19,7 @@ async function renderRoot() {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <JotaiProvider>
-        <TRPCProvider>
-          <RouterProvider router={router} />
-        </TRPCProvider>
+        <RouterProvider router={router} />
       </JotaiProvider>
     </StrictMode>
   );
