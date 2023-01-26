@@ -6,5 +6,6 @@ directive @specifiedBy(
 
 type Query {
   hello: String
+  hi: String
 }
 

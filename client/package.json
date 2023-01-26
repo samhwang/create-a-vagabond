@@ -5,6 +5,13 @@
   "msw": {
     "workerDirectory": "public"
   },
+  "relay": {
+    "src": "./src",
+    "schema": "./data/schema.graphql",
+    "language": "typescript",
+    "eagerEsModules": true,
+    "exclude": ["**/node_modules/**", "**/__mocks__/**", "**/__generated__/**"]
+  },  
   "type": "module",
   "scripts": {
     "msw:init": "msw init public",
