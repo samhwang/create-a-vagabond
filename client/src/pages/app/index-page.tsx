@@ -1,6 +1,6 @@
 import { useSetAtom } from 'jotai';
-import { jwtAtom } from '../providers/auth';
-import { trpc } from '../providers/trpc';
+import { jwtAtom } from '../../providers/auth';
+import { trpc } from '../../providers/trpc';
 
 function IndexPage() {
   const { data: me } = trpc.user.me.useQuery();
