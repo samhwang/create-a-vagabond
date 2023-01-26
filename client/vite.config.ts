@@ -3,6 +3,7 @@
 import { defineConfig } from 'vite';
 import reactBabel from '@vitejs/plugin-react';
 import reactSwc from '@vitejs/plugin-react-swc';
+import relay from "vite-plugin-relay";
 
 // TOGGLE THIS IF YOU SEE STRANGE BEHAVIOR IN YOUR APP.
 // See README of plugin-react-swc: https://github.com/vitejs/vite-plugin-react-swc
@@ -11,12 +12,15 @@ const react = useSwc ? reactSwc : reactBabel;
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react({
-    plugins: [
-      ["@swc-jotai/debug-label", {}],
-      ["@swc-jotai/react-refresh", {}],
-    ]
-  })],
+  plugins: [
+    react({
+      plugins: [
+        ["@swc-jotai/debug-label", {}],
+        ["@swc-jotai/react-refresh", {}],
+      ]
+    }),
+    relay
+  ],
   server: {
     proxy: {
       '/.netlify/functions': 'http://0.0.0.0:8788',

@@ -9,6 +9,7 @@ import { Provider as JotaiProvider } from 'jotai';
 import { router } from './pages/_router';
 
 import reportWebVitals from './reportWebVitals';
+import { RelayProvider } from './providers/relay'
 
 async function renderRoot() {
   if (import.meta.env.DEV) {
@@ -19,7 +20,9 @@ async function renderRoot() {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <JotaiProvider>
-        <RouterProvider router={router} />
+        <RelayProvider>
+          <RouterProvider router={router} />
+        </RelayProvider>
       </JotaiProvider>
     </StrictMode>
   );
