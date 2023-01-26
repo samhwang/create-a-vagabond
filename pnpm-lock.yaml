@@ -95,6 +95,7 @@ importers:
       '@trpc/client': ^10.9.0
       '@trpc/react-query': ^10.9.0
       '@trpc/server': ^10.9.0
+      '@tw-classed/react': ^1.4.0
       '@twind/core': ^1.1.3
       '@twind/preset-autoprefix': ^1.0.7
       '@twind/preset-container-queries': ^1.0.7
@@ -122,6 +123,7 @@ importers:
       '@trpc/client': 10.9.0_@trpc+server@10.9.0
       '@trpc/react-query': 10.9.0_22wgxldzdfxutowffn2dykkd3i
       '@trpc/server': 10.9.0
+      '@tw-classed/react': 1.4.0_react@18.2.0
       '@twind/core': 1.1.3
       '@twind/preset-autoprefix': 1.0.7_@twind+core@1.1.3
       '@twind/preset-container-queries': 1.0.7_@twind+core@1.1.3
@@ -2140,6 +2142,19 @@ packages:
   /@tsconfig/node16/1.0.3:
     resolution: {integrity: sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==}
     dev: true
+
+  /@tw-classed/core/1.4.0:
+    resolution: {integrity: sha512-0D4+EREaHEZ5wfxoWNwe5tzpaUbac6xHYiuJGVgwuhCPzWP4H0IwxhW/3bU/SzvLZcwJsuQjZx72lxDnJUn1rw==}
+    dev: false
+
+  /@tw-classed/react/1.4.0_react@18.2.0:
+    resolution: {integrity: sha512-xoIRnh9jldJsgBxAn91E5NFAemZpoVESiUzMuV/H57ykJe7z+aIxmjmJ0bb5Dkn5cE5PUiORvOXIMk3457BdkA==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      '@tw-classed/core': 1.4.0
+      react: 18.2.0
+    dev: false
 
   /@twind/core/1.1.3:
     resolution: {integrity: sha512-/B/aNFerMb2IeyjSJy3SJxqVxhrT77gBDknLMiZqXIRr4vNJqiuhx7KqUSRzDCwUmyGuogkamz+aOLzN6MeSLw==}
