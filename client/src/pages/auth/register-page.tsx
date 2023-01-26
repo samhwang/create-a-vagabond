@@ -5,6 +5,7 @@ import { z } from 'zod'
 import { Button } from '../../components/Button'
 import { RHFTextField } from '../../components/RHF/RHFTextField'
 import { jwtAtom } from '../../providers/auth';
+import { zodResolver } from '@hookform/resolvers/zod'
 
 const RegisterInput = z.object({
   email: z.string().email(),
@@ -15,7 +16,9 @@ type RegisterInput = z.infer<typeof RegisterInput>
 export function RegisterPage() {
   const setJwt = useSetAtom(jwtAtom);
 
-  const { control, handleSubmit } = useForm<RegisterInput>();
+  const { control, handleSubmit } = useForm<RegisterInput>({
+    resolver: zodResolver(RegisterInput)
+  });
   const onSubmit: SubmitHandler<RegisterInput> = data => {
     setJwt('logged in!')
   }

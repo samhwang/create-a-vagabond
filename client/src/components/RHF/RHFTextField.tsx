@@ -17,8 +17,8 @@ export const RHFTextField = <T extends FieldValues>({ control, name, ...props }:
         <TextField
           {...field}
           {...props}
-          // error={Boolean(fieldState.error)}
-          // helperText={fieldState.error?.message}
+          error={Boolean(fieldState.error)}
+          helperText={fieldState.error?.message}
         />
       )}
     />

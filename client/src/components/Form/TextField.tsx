@@ -29,11 +29,12 @@ const LabelText = classed(
 
 const HelperText = classed(
   'div',
+  '-mt-1.5',
   {
     variants: {
       type: {
         helper: 'text-slate-500',
-        error: 'text-red-600',
+        error: 'text-red-400 text-sm',
       }
     },
     defaultVariants: {
