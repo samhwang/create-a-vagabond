@@ -1,6 +1,6 @@
 import { useSetAtom } from 'jotai';
 import { Link } from 'react-router-dom';
-import { jwtAtom } from '../providers/auth';
+import { jwtAtom } from '../../providers/auth';
 
 export function LoginPage() {
   const setJwt = useSetAtom(jwtAtom);
