@@ -25,7 +25,6 @@
     "@pothos/plugin-prisma": "^3.40.1",
     "@pothos/plugin-relay": "^3.33.1",
     "@prisma/client": "^4.9.0",
-    "@prisma/engines-version": "4.9.0-44.b29121153404aa8eda60ec38e41e477cc1c0ee66",
     "graphql": "^16.6.0",
     "graphql-yoga": "^3.3.0"
   }
