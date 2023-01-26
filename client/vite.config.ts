@@ -11,7 +11,12 @@ const react = useSwc ? reactSwc : reactBabel;
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react({
+    plugins: [
+      ["@swc-jotai/debug-label", {}],
+      ["@swc-jotai/react-refresh", {}],
+    ]
+  })],
   server: {
     proxy: {
       '/.netlify/functions': 'http://0.0.0.0:8788',

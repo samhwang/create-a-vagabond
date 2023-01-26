@@ -86,6 +86,8 @@ importers:
 
   client:
     specifiers:
+      '@swc-jotai/debug-label': ^0.0.6
+      '@swc-jotai/react-refresh': ^0.0.3
       '@tanstack/react-query': ^4.23.0
       '@tanstack/react-query-devtools': ^4.23.0
       '@testing-library/dom': ^8.20.0
@@ -142,6 +144,8 @@ importers:
       vagabond-app-backend: link:../backend
       web-vitals: 3.1.1
     devDependencies:
+      '@swc-jotai/debug-label': 0.0.6
+      '@swc-jotai/react-refresh': 0.0.3
       '@tanstack/react-query-devtools': 4.23.0_74ln4l2hialvxelty6zunzkpjm
       '@testing-library/dom': 8.20.0
       '@testing-library/jest-dom': 5.16.5
@@ -1879,6 +1883,14 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       escape-string-regexp: 5.0.0
+    dev: true
+
+  /@swc-jotai/debug-label/0.0.6:
+    resolution: {integrity: sha512-rLJ/SbxeLyGzekICG09wVVq+SlOeou6pKNBJS7S30XtZ9M8cSRvI9ygsLDM5NnN9Sde3WbQG+a24rEfyuTPP/A==}
+    dev: true
+
+  /@swc-jotai/react-refresh/0.0.3:
+    resolution: {integrity: sha512-bTW1XtnYmH6etH4flDE7sTEqaRnnN8n5iOhN0C9xtGoub8S65co9t2vUicLG/gIyrgL5/Xwsv5ExMNBbMV+FXQ==}
     dev: true
 
   /@swc/core-darwin-arm64/1.3.23:
