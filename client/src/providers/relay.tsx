@@ -12,7 +12,7 @@ import { ErrorBoundary } from 'react-error-boundary'
 
 const fetchQuery: FetchFunction = async (operation, variables, cacheConfig, uploadables) => {
   return fetch(
-    '/.netlify/functions/graphql  ',
+    '/.netlify/functions/graphql',
     {
       method: 'POST',
       headers: {
