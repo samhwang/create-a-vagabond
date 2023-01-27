@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3d07c3cc4331373bdd1c01b6772a18b4>>
+ * @generated SignedSource<<24f61f923ba6c14fc09158d4dc733c7a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,12 +11,15 @@
 import { ConcreteRequest, Query } from 'relay-runtime';
 export type indexPageQuery$variables = {};
 export type indexPageQuery$data = {
-  readonly hello: {
+  readonly me: {
     readonly __typename: "Error";
     readonly message: string;
   } | {
-    readonly __typename: "QueryHelloSuccess";
-    readonly data: string;
+    readonly __typename: "QueryMeSuccess";
+    readonly data: {
+      readonly email: string;
+      readonly id: string;
+    };
   } | {
     // This will never be '%other', but we need some
     // value in case none of the concrete values match.
@@ -32,16 +35,10 @@ const node: ConcreteRequest = (function(){
 var v0 = [
   {
     "alias": null,
-    "args": [
-      {
-        "kind": "Literal",
-        "name": "name",
-        "value": "You"
-      }
-    ],
+    "args": null,
     "concreteType": null,
     "kind": "LinkedField",
-    "name": "hello",
+    "name": "me",
     "plural": false,
     "selections": [
       {
@@ -57,12 +54,30 @@ var v0 = [
           {
             "alias": null,
             "args": null,
-            "kind": "ScalarField",
+            "concreteType": "User",
+            "kind": "LinkedField",
             "name": "data",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "id",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "email",
+                "storageKey": null
+              }
+            ],
             "storageKey": null
           }
         ],
-        "type": "QueryHelloSuccess",
+        "type": "QueryMeSuccess",
         "abstractKey": null
       },
       {
@@ -80,7 +95,7 @@ var v0 = [
         "abstractKey": null
       }
     ],
-    "storageKey": "hello(name:\"You\")"
+    "storageKey": null
   }
 ];
 return {
@@ -101,16 +116,16 @@ return {
     "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "d1a0235c9764d33213d76386070b77d7",
+    "cacheID": "9a5e0235640bff406c4cc48cb2865ab6",
     "id": null,
     "metadata": {},
     "name": "indexPageQuery",
     "operationKind": "query",
-    "text": "query indexPageQuery {\n  hello(name: \"You\") {\n    __typename\n    ... on QueryHelloSuccess {\n      data\n    }\n    ... on Error {\n      message\n    }\n  }\n}\n"
+    "text": "query indexPageQuery {\n  me {\n    __typename\n    ... on QueryMeSuccess {\n      data {\n        id\n        email\n      }\n    }\n    ... on Error {\n      message\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "c2287a444c6b9c0e26ebd6e34ad7534a";
+(node as any).hash = "e15c0bc3ffaf50f75e731dc23513d88f";
 
 export default node;

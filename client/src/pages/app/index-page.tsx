@@ -8,9 +8,14 @@ function IndexPage() {
   const data = useLazyLoadQuery<indexPageQuery>(
     graphql`
       query indexPageQuery {
-        hello(name: "You") {
+        me {
           __typename
-          ... on QueryHelloSuccess { data }
+          ... on QueryMeSuccess {
+            data {
+              id
+              email
+            }
+          }
           ... on Error { message }
         }
       }
@@ -21,12 +26,12 @@ function IndexPage() {
   return (
     <div className="flex justify-center">
       <div>
-        {data.hello.__typename === 'Error' && (
+        {data.me.__typename === 'Error' && (
           <p className='bg-red-400 text-white p-2 rounded'>
-            data.hello.message
+            {data.me.message}
           </p>
         )}
-        {data.hello.__typename === 'QueryHelloSuccess' && <p>data.hello.data</p>}
+        {data.me.__typename === 'QueryMeSuccess' && <p>{data.me.data.email}</p>}
         <button type="button" onClick={() => setJwt(undefined)}>
           logout
         </button>

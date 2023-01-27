@@ -1,4 +1,4 @@
-import { builder, prisma } from './builder'
+import { builder } from './builder'
 
 builder.objectType(Error, {
   name: 'Error',
@@ -7,49 +7,9 @@ builder.objectType(Error, {
   }),
 });
 
-builder.queryType({
-  fields: (t) => ({
-    hello: t.string({
-      errors: {
-        types: [Error],
-      },
-      args: {
-        name: t.arg.string(),
-      },
-      resolve: (parent, { name }) => {
-        if (name?.slice(0, 1) !== name?.slice(0, 1).toUpperCase()) {
-          throw new Error('name must be capitalized');
-        }
+builder.queryType()
 
-        return `hello, ${name || 'World'}`;
-      }
-    }),
-    me: t.prismaField({
-      type: 'User',
-      errors: { types: [Error] },
-      resolve: async () => {
-        return prisma.user.findFirstOrThrow()
-      }
-    })
-  }),
-});
-
-builder.prismaNode('User', {
-  id: { field: 'id' },
-  fields: t => ({
-    email: t.exposeString('email'),
-    vagabonds: t.relatedConnection(
-      'vagabonds',
-      { cursor: 'id' }
-    )
-  })
-})
-
-builder.prismaNode('Vagabond', {
-  id: { field: 'id' },
-  fields: t => ({
-    user: t.relation('user'),
-  })
-})
+import './types/User'
+import './types/Vagabond'
 
 export const schema = builder.toSchema();

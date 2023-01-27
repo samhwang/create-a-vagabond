@@ -8,13 +8,47 @@ type Error {
   message: String!
 }
 
-type Query {
-  hello(name: String): QueryHelloResult!
+interface Node {
+  id: ID!
 }
 
-union QueryHelloResult = Error | QueryHelloSuccess
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
 
-type QueryHelloSuccess {
-  data: String!
+type Query {
+  me: QueryMeResult!
+  node(id: ID!): Node
+  nodes(ids: [ID!]!): [Node]!
+}
+
+union QueryMeResult = Error | QueryMeSuccess
+
+type QueryMeSuccess {
+  data: User!
+}
+
+type User implements Node {
+  email: String!
+  id: ID!
+  vagabonds(after: String, before: String, first: Int, last: Int): UserVagabondsConnection!
+}
+
+type UserVagabondsConnection {
+  edges: [UserVagabondsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type UserVagabondsConnectionEdge {
+  cursor: String!
+  node: Vagabond!
+}
+
+type Vagabond implements Node {
+  id: ID!
+  user: User!
 }
 
