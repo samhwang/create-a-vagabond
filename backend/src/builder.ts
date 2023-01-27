@@ -4,18 +4,18 @@ import ErrorsPlugin from '@pothos/plugin-errors';
 
 import RelayPlugin from '@pothos/plugin-relay';
 
-// import PrismaPlugin from '@pothos/plugin-prisma';
-// import { PrismaClient } from '@prisma/client';
-// import type PrismaTypes from '@pothos/plugin-prisma/generated';
+import PrismaPlugin from '@pothos/plugin-prisma';
+import { PrismaClient } from '@prisma/client';
+import type PrismaTypes from '@pothos/plugin-prisma/generated';
 
-// const prisma = new PrismaClient({});
+export const prisma = new PrismaClient({});
 
-// type SchemaBuilderContext = {
-//   PrismaTypes: PrismaTypes
-// }
+type SchemaBuilderContext = {
+  PrismaTypes: PrismaTypes
+}
 
-export const builder = new SchemaBuilder({ // <SchemaBuilderContext>
-  plugins: [ErrorsPlugin, RelayPlugin], // PrismaPlugin
+export const builder = new SchemaBuilder<SchemaBuilderContext>({ 
+  plugins: [ErrorsPlugin, RelayPlugin, PrismaPlugin],
 
   errorOptions: {
     defaultTypes: [],
@@ -27,8 +27,8 @@ export const builder = new SchemaBuilder({ // <SchemaBuilderContext>
     cursorType: 'String',
   },
 
-  // prisma: {
-  //   client: prisma,
-  //   filterConnectionTotalCount: true,
-  // }
+  prisma: {
+    client: prisma,
+    filterConnectionTotalCount: true,
+  }
 });

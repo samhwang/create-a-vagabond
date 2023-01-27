@@ -1,4 +1,4 @@
-import { builder } from './builder'
+import { builder, prisma } from './builder'
 
 builder.objectType(Error, {
   name: 'Error',
@@ -24,25 +24,31 @@ builder.queryType({
         return `hello, ${name || 'World'}`;
       }
     }),
+    me: t.prismaField({
+      type: 'User',
+      resolve: async () => {
+        return prisma.user.findFirstOrThrow()
+      }
+    })
   }),
 });
 
-// builder.prismaObject('User', {
-//   fields: t => ({
-//     id: t.exposeID('id'),
-//     email: t.exposeString('email'),
-//     vagabonds: t.relatedConnection(
-//       'vagabonds',
-//       { cursor: 'id' }
-//     )
-//   })
-// })
+builder.prismaObject('User', {
+  fields: t => ({
+    id: t.exposeID('id'),
+    email: t.exposeString('email'),
+    vagabonds: t.relatedConnection(
+      'vagabonds',
+      { cursor: 'id' }
+    )
+  })
+})
 
-// builder.prismaObject('Vagabond', {
-//   fields: t => ({
-//     id: t.exposeID('id'),
-//     user: t.relation('user'),
-//   })
-// })
+builder.prismaObject('Vagabond', {
+  fields: t => ({
+    id: t.exposeID('id'),
+    user: t.relation('user'),
+  })
+})
 
 export const schema = builder.toSchema();
