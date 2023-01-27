@@ -26,6 +26,7 @@ builder.queryType({
     }),
     me: t.prismaField({
       type: 'User',
+      errors: { types: [Error] },
       resolve: async () => {
         return prisma.user.findFirstOrThrow()
       }
@@ -33,9 +34,9 @@ builder.queryType({
   }),
 });
 
-builder.prismaObject('User', {
+builder.prismaNode('User', {
+  id: { field: 'id' },
   fields: t => ({
-    id: t.exposeID('id'),
     email: t.exposeString('email'),
     vagabonds: t.relatedConnection(
       'vagabonds',
@@ -44,9 +45,9 @@ builder.prismaObject('User', {
   })
 })
 
-builder.prismaObject('Vagabond', {
+builder.prismaNode('Vagabond', {
+  id: { field: 'id' },
   fields: t => ({
-    id: t.exposeID('id'),
     user: t.relation('user'),
   })
 })
