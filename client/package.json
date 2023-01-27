@@ -11,11 +11,11 @@
     "language": "typescript",
     "eagerEsModules": true,
     "exclude": ["**/node_modules/**", "**/__mocks__/**", "**/__generated__/**"]
-  },  
+  },
   "type": "module",
   "scripts": {
     "msw:init": "msw init public",
-    "dev": "pnpm run msw:init && vite",
+    "dev": "npm run msw:init && vite",
     "prebuild": "rimraf dist",
     "build": "rimraf dist && vite build",
     "preview": "vite preview",
@@ -23,11 +23,11 @@
     "typecheck": "tsc",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "test:CI": "pnpm run test && pnpm run typecheck",
+    "test:CI": "npm run test && npm run typecheck",
     "lint": "eslint --cache .",
-    "lint:fix": "pnpm run lint --fix",
+    "lint:fix": "npm run lint --fix",
     "prettier": "prettier --cache --write .",
-    "format": "pnpm run lint:fix && pnpm run prettier",
+    "format": "npm run lint:fix && npm run prettier",
     "schema": "npx get-graphql-schema http://localhost:8788/.netlify/functions/graphql > ./data/schema.graphql",
     "relay": "relay-compiler"
   },

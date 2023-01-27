@@ -45,9 +45,9 @@ This repo currently has 3 parts:
 
 ### Environment Variables
 
-- Copy an `backend/.env` file out from `backend/.env.sample`.
+- Copy an `.env` file out from `.env.sample`. This will be used by both the Netlify CLI and Prisma.
 
-#### Running with Neon
+#### Running with PlanetScale
 
 - After creating a PlanetScale Account, create a new project in the [console](https://app.planetscale.com).
 - Copy the connection string. This will be the `DATABASE_URL` in the `.env` file.
@@ -59,8 +59,8 @@ This repo currently has 3 parts:
 ### Install Scripts
 
 ```shell
-pnpm install
-pnpm run init:client
+npm install
+npm run init:client
 docker compose up -d db
 pnpm run dev
 ```
