@@ -20,29 +20,23 @@ type PageInfo {
 }
 
 type Query {
-  me: QueryMeResult!
+  me: User!
   node(id: ID!): Node
   nodes(ids: [ID!]!): [Node]!
-}
-
-union QueryMeResult = Error | QueryMeSuccess
-
-type QueryMeSuccess {
-  data: User!
 }
 
 type User implements Node {
   email: String!
   id: ID!
-  vagabonds(after: String, before: String, first: Int, last: Int): UserVagabondsConnection!
+  vagabondConnection(after: String, before: String, first: Int, last: Int): UserVagabondConnection!
 }
 
-type UserVagabondsConnection {
-  edges: [UserVagabondsConnectionEdge]!
+type UserVagabondConnection {
+  edges: [UserVagabondConnectionEdge]!
   pageInfo: PageInfo!
 }
 
-type UserVagabondsConnectionEdge {
+type UserVagabondConnectionEdge {
   cursor: String!
   node: Vagabond!
 }

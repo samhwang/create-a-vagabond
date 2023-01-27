@@ -9,14 +9,8 @@ function IndexPage() {
     graphql`
       query indexPageQuery {
         me {
-          __typename
-          ... on QueryMeSuccess {
-            data {
-              id
-              email
-            }
-          }
-          ... on Error { message }
+          id
+          email
         }
       }
     `,
@@ -26,12 +20,7 @@ function IndexPage() {
   return (
     <div className="flex justify-center">
       <div>
-        {data.me.__typename === 'Error' && (
-          <p className='bg-red-400 text-white p-2 rounded'>
-            {data.me.message}
-          </p>
-        )}
-        {data.me.__typename === 'QueryMeSuccess' && <p>{data.me.data.email}</p>}
+      <p>{data.me.email}</p>
         <button type="button" onClick={() => setJwt(undefined)}>
           logout
         </button>
