@@ -10,7 +10,11 @@
     "schema": "./data/schema.graphql",
     "language": "typescript",
     "eagerEsModules": true,
-    "exclude": ["**/node_modules/**", "**/__mocks__/**", "**/__generated__/**"]
+    "exclude": [
+      "**/node_modules/**",
+      "**/__mocks__/**",
+      "**/__generated__/**"
+    ]
   },
   "type": "module",
   "scripts": {
@@ -54,6 +58,7 @@
     "react-relay": "^14.1.0",
     "react-router-dom": "^6.7.0",
     "relay-runtime": "^14.1.0",
+    "tailwind-merge": "^1.8.1",
     "web-vitals": "^3.1.1"
   },
   "devDependencies": {
