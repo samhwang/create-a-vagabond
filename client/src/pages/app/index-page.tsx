@@ -1,7 +1,7 @@
 import { useSetAtom } from 'jotai';
+import { graphql, useLazyLoadQuery } from 'react-relay';
 import { jwtAtom } from '../../providers/auth';
-import { graphql, useLazyLoadQuery } from 'react-relay'
-import { indexPageQuery } from './__generated__/indexPageQuery.graphql'
+import { indexPageQuery } from './__generated__/indexPageQuery.graphql';
 
 function IndexPage() {
   const setJwt = useSetAtom(jwtAtom);
@@ -15,12 +15,12 @@ function IndexPage() {
       }
     `,
     {}
-  )
-  
+  );
+
   return (
     <div className="flex justify-center">
       <div>
-      <p>{data.me.email}</p>
+        <p>{data.me.email}</p>
         <button type="button" onClick={() => setJwt(undefined)}>
           logout
         </button>

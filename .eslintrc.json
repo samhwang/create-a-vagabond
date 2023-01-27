@@ -12,10 +12,13 @@
   "rules": {
     "default-case": "off",
     "import/extensions": ["error", "never"],
-    "no-console": "off",
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-use-before-define": "off",
-    "no-use-before-define": ["error", "nofunc"],
+    "@typescript-eslint/no-shadow": "off",
+    "no-console": "off",
+    "no-use-before-define": "off",
+    "no-underscore-dangle": "off",
+    "arrow-body-style": "off",
     "import/no-extraneous-dependencies": "off",
     "import/prefer-default-export": "off"
   }

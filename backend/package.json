@@ -6,14 +6,15 @@
     "lint": "eslint --cache .",
     "lint:fix": "npm run lint --fix",
     "prettier": "prettier --cache --write .",
-    "format": "npm run lint:fix && npm run prettier && prisma format",
+    "format": "npm run lint:fix && npm run prettier && npm run prisma:format",
     "typecheck": "tsc",
     "netlify:dev": "cd .. && netlify functions:serve",
     "dev": "npm run prisma:generate && npm run netlify:dev",
     "prisma:migrate": "prisma migrate dev",
     "prisma:migrate:deploy": "prisma migrate deploy",
     "prisma:generate": "prisma generate",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "prisma:format": "prisma format"
   },
   "devDependencies": {
     "prisma": "^4.9.0"

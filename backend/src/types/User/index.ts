@@ -1,3 +1,3 @@
-import './model'
+import './model';
 
-import './me_query'
+import './me_query';

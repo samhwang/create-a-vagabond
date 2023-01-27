@@ -1,4 +1,7 @@
-import { builder } from './builder'
+import { builder } from './builder';
+
+import './types/User';
+import './types/Vagabond';
 
 builder.objectType(Error, {
   name: 'Error',
@@ -7,9 +10,6 @@ builder.objectType(Error, {
   }),
 });
 
-builder.queryType()
-
-import './types/User'
-import './types/Vagabond'
+builder.queryType();
 
 export const schema = builder.toSchema();

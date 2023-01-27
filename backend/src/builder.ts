@@ -11,10 +11,10 @@ import type PrismaTypes from '@pothos/plugin-prisma/generated';
 export const prisma = new PrismaClient({});
 
 type SchemaBuilderContext = {
-  PrismaTypes: PrismaTypes
-}
+  PrismaTypes: PrismaTypes;
+};
 
-export const builder = new SchemaBuilder<SchemaBuilderContext>({ 
+export const builder = new SchemaBuilder<SchemaBuilderContext>({
   plugins: [ErrorsPlugin, RelayPlugin, PrismaPlugin],
 
   errorOptions: {
@@ -30,5 +30,5 @@ export const builder = new SchemaBuilder<SchemaBuilderContext>({
   prisma: {
     client: prisma,
     filterConnectionTotalCount: true,
-  }
+  },
 });

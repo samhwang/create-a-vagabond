@@ -1,12 +1,12 @@
-import { Handler } from '@netlify/functions'
+import { Handler } from '@netlify/functions';
 
-import { createYoga } from 'graphql-yoga'
-import { schema } from '../schema'
+import { createYoga } from 'graphql-yoga';
+import { schema } from '../schema';
 
 const yoga = createYoga({
   schema,
-  graphqlEndpoint: '/.netlify/functions/graphql'
-})
+  graphqlEndpoint: '/.netlify/functions/graphql',
+});
 
 export const handler: Handler = async (event, context) => {
   const response = await yoga.fetch(
@@ -18,16 +18,16 @@ export const handler: Handler = async (event, context) => {
     },
     // Third parameter becomes your server context
     context
-  )
+  );
 
-  const headersObj: Record<string, string> = {}
+  const headersObj: Record<string, string> = {};
   response.headers.forEach((value, key) => {
-    headersObj[key] = value
-  })
+    headersObj[key] = value;
+  });
 
   return {
     statusCode: response.status,
     body: await response.text(),
     headers: headersObj,
-  }
-}
+  };
+};

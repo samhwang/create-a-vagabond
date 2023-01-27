@@ -1,4 +1,4 @@
-import { classed } from '@tw-classed/react'
+import { classed } from '@tw-classed/react';
 
 export const IconButton = classed(
   'button',
@@ -7,4 +7,4 @@ export const IconButton = classed(
   'inline-flex items-center justify-center',
   'bg-white	hover:bg-teal-300',
   'focus:outline-none focus:bg-teal-400'
-)
+);

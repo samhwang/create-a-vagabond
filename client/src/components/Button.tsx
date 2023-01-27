@@ -1,4 +1,4 @@
-import { classed } from '@tw-classed/react'
+import { classed } from '@tw-classed/react';
 
 export const Button = classed(
   'button',
@@ -6,4 +6,4 @@ export const Button = classed(
   'text-white font-bold',
   'py-2 px-4',
   'rounded'
-)
+);

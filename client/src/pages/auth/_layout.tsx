@@ -1,6 +1,6 @@
-import { useAtomValue } from 'jotai'
-import { Navigate, Outlet } from 'react-router-dom'
-import { jwtAtom } from '../../providers/auth'
+import { useAtomValue } from 'jotai';
+import { Navigate, Outlet } from 'react-router-dom';
+import { jwtAtom } from '../../providers/auth';
 
 export function AuthLayout() {
   const jwt = useAtomValue(jwtAtom);

@@ -1,13 +1,7 @@
-import { classed } from '@tw-classed/react'
-import { Content, Item } from '@radix-ui/react-dropdown-menu'
+import { classed } from '@tw-classed/react';
+import { Content, Item } from '@radix-ui/react-dropdown-menu';
 
-export const DropdownContent = classed(
-  Content,
-  'bg-white',
-  'p-1',
-  'rounded-md',
-  'shadow-lg'
-)
+export const DropdownContent = classed(Content, 'bg-white', 'p-1', 'rounded-md', 'shadow-lg');
 
 export const DropdownItem = classed(
   Item,
@@ -18,4 +12,4 @@ export const DropdownItem = classed(
   'outline-none	select-none',
   'hover:bg-teal-500 hover:text-white',
   'cursor-pointer'
-)
+);
