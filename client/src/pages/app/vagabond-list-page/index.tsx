@@ -1,4 +1,4 @@
-import { Container } from '@mui/system'
+import { Container } from '@mui/material'
 import { graphql, useLazyLoadQuery } from 'react-relay'
 import { VagabondList } from './VagabondList'
 import { vagabondListPageQuery } from './__generated__/vagabondListPageQuery.graphql'

@@ -1,9 +1,8 @@
 import { graphql, useFragment } from 'react-relay'
 import { useNavigate } from 'react-router-dom'
-import { ChevronRightIcon } from '@heroicons/react/20/solid'
-import { ListItem, ListItemAction, ListItemContainer, ListItemText, ListItemTextPrimary, ListItemTextSecondary } from '../../../components/List'
+import { IconButton, ListItem, ListItemSecondaryAction, ListItemText } from '@mui/material'
+import { ChevronRight } from '@mui/icons-material'
 import { VagabondListItem_vagabond$key } from './__generated__/VagabondListItem_vagabond.graphql'
-import { classed } from '@tw-classed/react'
 
 type VagabondListItemProps = {
   vagabond: VagabondListItem_vagabond$key
@@ -23,25 +22,16 @@ export const VagabondListItem: React.FC<VagabondListItemProps> = props => {
   )
 
   return (
-    <ListItemContainer>
-      <ListItem>
-        <ListItemText>
-          <ListItemTextPrimary>
-            {vagabond.name}
-          </ListItemTextPrimary>
-          <ListItemTextSecondary>
-            {vagabond.availablePoints} points left
-          </ListItemTextSecondary>
-        </ListItemText>
-        <ListItemAction onClick={() => navigate(vagabond.id)}>
-          <ClassedListIcon />
-        </ListItemAction>
-      </ListItem>
-    </ListItemContainer>
+    <ListItem>
+      <ListItemText
+        primary={vagabond.name}
+        secondary={`${vagabond.availablePoints} points left`}
+      />
+      <ListItemSecondaryAction>
+        <IconButton onClick={() => navigate(vagabond.id)}>
+          <ChevronRight />
+        </IconButton>
+      </ListItemSecondaryAction>
+    </ListItem>
   )
 }
-
-const ClassedListIcon = classed(
-  ChevronRightIcon,
-  'text-gray-500 hover:text-gray-800 dark:hover:text-white dark:text-gray-200'
-)

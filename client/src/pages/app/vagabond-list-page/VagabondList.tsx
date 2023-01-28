@@ -3,10 +3,11 @@ import { VagabondListPaginationQuery } from './__generated__/VagabondListPaginat
 import { VagabondList_user$key } from './__generated__/VagabondList_user.graphql'
 import { PlusIcon } from '@heroicons/react/20/solid'
 import { VagabondListItem } from './VagabondListItem'
-import { List, ListContainer, ListHeader, ListHeaderTitle } from '../../../components/List'
-import { Button } from '../../../components/Button'
+// import { List, ListContainer, ListHeader, ListHeaderTitle } from '../../../components/List'
 import * as Dialog from '@radix-ui/react-dialog';
 import { classed } from '@tw-classed/react'
+import { IconButton, List, ListSubheader, Paper, Typography } from '@mui/material'
+import { Add } from '@mui/icons-material'
 
 type VagabondListProps = {
   title?: string
@@ -38,41 +39,27 @@ export const VagabondList: React.FC<VagabondListProps> = props => {
   )
 
   return (
-    <ListContainer>
-      {props.title && (
-        <ListHeader className='flex'>
-          {props.title && (
-            <ListHeaderTitle>
+    <Paper elevation={5}>
+      <List
+        subheader={
+          <ListSubheader sx={{ display: 'flex', p: 2 }}>
+            <Typography variant='h6'>
               {props.title}
-            </ListHeaderTitle>
-          )}
-          <div className='grow' />
-          <Dialog.Root>
-            <Dialog.Trigger asChild>
-              <Button startIcon={<PlusIcon />} />
-            </Dialog.Trigger>
-            <Dialog.Portal>
-              <Dialog.Overlay />
-              <Dialog.Content>
-                <Dialog.Title>
-                  Add new Vagabond
-                </Dialog.Title>
-                <Dialog.Description>
-                  create a new character
-                </Dialog.Description>
-              </Dialog.Content>
-            </Dialog.Portal>
-          </Dialog.Root>
-        </ListHeader>
-      )}
-      <List>
+            </Typography>
+            <div style={{ flexGrow: 1 }} />
+            <IconButton>
+              <Add />
+            </IconButton>
+          </ListSubheader>
+        }
+      >
         {data.vagabondConnection.edges.map(edge => {
           if (!edge?.node) return null
 
           return <VagabondListItem vagabond={edge.node} />
         })}
       </List>
-    </ListContainer>
+    </Paper>
   )
 }
 

@@ -1,7 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import './providers/twind';
 import { RouterProvider } from 'react-router-dom';
 
 import { Provider as JotaiProvider } from 'jotai';
@@ -10,6 +9,7 @@ import { router } from './pages/_router';
 
 import reportWebVitals from './reportWebVitals';
 import { RelayProvider } from './providers/relay';
+import { ThemeProvider } from './providers/theme'
 
 async function renderRoot() {
   if (import.meta.env.DEV) {
@@ -19,11 +19,13 @@ async function renderRoot() {
 
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
-      <JotaiProvider>
-        <RelayProvider>
-          <RouterProvider router={router} />
-        </RelayProvider>
-      </JotaiProvider>
+      <ThemeProvider>
+        <JotaiProvider>
+          <RelayProvider>
+            <RouterProvider router={router} />
+          </RelayProvider>
+        </JotaiProvider>
+      </ThemeProvider>
     </StrictMode>
   );
 }

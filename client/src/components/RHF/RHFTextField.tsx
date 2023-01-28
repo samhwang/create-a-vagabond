@@ -1,10 +1,7 @@
-import { ComponentProps } from '@tw-classed/react'
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';
-import { TextFieldHelperText, TextFieldInput, TextFieldInputProps, TextFieldLabel, TextFieldRoot } from '../Form/TextField'
-// import { TextField, TextFieldProps } from '../Form/TextField';
+import { TextField, TextFieldProps } from '@mui/material'
 
-export type RHFTextFieldProps<T extends FieldValues> = Omit<TextFieldInputProps, 'name'> & {
-  label?: string
+export type RHFTextFieldProps<T extends FieldValues> = Omit<TextFieldProps, 'name' | 'helperText' | 'error'> & {
   name: Path<T>;
   control: Control<T>;
 };
@@ -12,7 +9,6 @@ export type RHFTextFieldProps<T extends FieldValues> = Omit<TextFieldInputProps,
 export function RHFTextField<T extends FieldValues>({
   control,
   name,
-  label,
   ...props
 }: RHFTextFieldProps<T>) {
   return (
@@ -20,23 +16,13 @@ export function RHFTextField<T extends FieldValues>({
       control={control}
       name={name}
       render={({ field, fieldState }) => (
-        <TextFieldRoot error={Boolean(fieldState.error)}>
-          {label && (
-            <TextFieldLabel>
-              {label}
-            </TextFieldLabel>
-          )}
-          <TextFieldInput
-            {...field}
-            {...props}
-            error={Boolean(fieldState.error)}
-          />
-          {fieldState.error && (
-            <TextFieldHelperText type='error'>
-              {fieldState.error.message}
-            </TextFieldHelperText>
-          )}
-        </TextFieldRoot>
+        <TextField
+          {...props}
+          {...field}
+          name={name}
+          helperText={fieldState.error?.message}
+          error={Boolean(fieldState.error)}
+        />
       )}
     />
   );
