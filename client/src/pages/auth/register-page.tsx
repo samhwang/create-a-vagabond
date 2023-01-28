@@ -24,7 +24,7 @@ export function RegisterPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="border-2 rounded border-slate-300 px-5 py-3">
+    <form onSubmit={handleSubmit(onSubmit)} className="border-2 bg-slate-100 rounded border-slate-300 px-5 py-3">
       <p className="text-2xl font-bold text-center">Create</p>
       <p className="text-md text-slate-500 text-center mb-2">your new account</p>
       <hr className="mb-4" />

@@ -24,13 +24,13 @@ export function LoginPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="border-2 rounded border-slate-300 px-5 py-3">
+    <form onSubmit={handleSubmit(onSubmit)} className="border-2 bg-slate-100 rounded border-slate-300 px-5 py-3">
       <p className="text-2xl font-bold text-center">Sign in</p>
       <p className="text-md text-slate-500 text-center mb-2">to your account</p>
       <hr className="mb-4" />
 
-      <RHFTextField control={control} label="email" name="email" className="mb-2" />
-      <RHFTextField control={control} label="password" name="password" type="password" className="mb-2" />
+      <RHFTextField control={control} label="email" name="email" RootProps={{ className: 'mb-8' }} />
+      <RHFTextField control={control} label="password" name="password" type="password" RootProps={{ className: 'mb-4' }} />
 
       <div className="mb-2">
         <Link to="register" className="underline">
@@ -38,9 +38,12 @@ export function LoginPage() {
         </Link>
       </div>
 
-      <Button type="submit" className="w-full">
-        login
-      </Button>
+      <div className='flex'>
+        <div className='grow' />
+        <Button type="submit">
+          login
+        </Button>
+      </div>
     </form>
   );
 }

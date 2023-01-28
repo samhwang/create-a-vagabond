@@ -37,7 +37,7 @@ function UserMenuAvatar() {
   return (
     <DropdownMenu.Trigger asChild>
       <IconButton>
-        <Avatar src={icon} RootProps={{ className: 'h-full w-auto p-0.5' }} />
+        <Avatar src={icon} RootProps={{ className: 'h-full w-auto' }} />
       </IconButton>
     </DropdownMenu.Trigger>
   );

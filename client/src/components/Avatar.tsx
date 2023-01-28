@@ -30,12 +30,17 @@ export function Avatar({ src, initial, RootProps, ImageProps, FallbackProps }: A
 const ClassedRoot = classed(
   Root,
   'inline-flex items-center justify-center align-middle',
-  'overflow-hidden	select-none',
+  'overflow-hidden select-none',
   'rounded-full',
   'w-8 h-8'
 );
 
-const ClassedImage = classed(Image, 'w-full h-full', 'rounded-full', 'object-cover');
+const ClassedImage = classed(Image,
+  'inline-block',
+  'w-full h-full',
+  'rounded-full',
+  'ring-2 ring-white'
+);
 
 const ClassedFallback = classed(
   Fallback,
