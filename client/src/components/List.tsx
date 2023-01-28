@@ -4,6 +4,10 @@ export const ListContainer = classed.div('container flex flex-col items-center j
 
 export const ListHeader = classed.div('w-full px-4 py-5 border-b sm:px-6')
 
+export const ListHeaderTitle = classed.h3('text-lg font-medium leading-6 text-gray-900 dark:text-white')
+
+export const ListHeaderSubtitle = classed.p('max-w-2xl mt-1 text-sm text-gray-500 dark:text-gray-200')
+
 export const List = classed.ul('flex flex-col divide-y divide w-full')
 
 export const ListItemContainer = classed.li('flex flex-row')
@@ -22,7 +26,10 @@ export const ListItemAction = classed.button('flex justify-end w-16 text-right')
 
 {/* 
   <ListContainer>
-    <ListHeader></ListHeader>
+    <ListHeader>
+      <ListHeaderTitle />
+      <ListHeaderSubTitle />
+    </ListHeader>
     <List>
       <ListItemContainer>
         <ListItem>

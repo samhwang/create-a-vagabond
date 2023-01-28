@@ -4,7 +4,7 @@ import { VagabondList_user$key } from './__generated__/VagabondList_user.graphql
 import { PlusIcon } from '@heroicons/react/20/solid'
 import { useNavigate } from 'react-router-dom'
 import { VagabondListItem } from './VagabondListItem'
-import { List, ListContainer, ListHeader } from '../../../components/List'
+import { List, ListContainer, ListHeader, ListHeaderTitle } from '../../../components/List'
 import { Button } from '../../../components/Button'
 
 type VagabondListProps = {
@@ -42,9 +42,9 @@ export const VagabondList: React.FC<VagabondListProps> = props => {
       {props.title && (
         <ListHeader className='flex'>
           {props.title && (
-            <h3 className='text-lg font-medium leading-6 text-gray-900 dark:text-white'>
+            <ListHeaderTitle>
               {props.title}
-            </h3>
+            </ListHeaderTitle>
           )}
           <div className='grow' />
           <Button startIcon={<PlusIcon />} />
