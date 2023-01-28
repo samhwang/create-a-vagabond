@@ -8,6 +8,16 @@ type Error {
   message: String!
 }
 
+type Mutation {
+  vagabondCreate(input: VagabondCreateInput!): MutationVagabondCreateResult!
+}
+
+union MutationVagabondCreateResult = Error | MutationVagabondCreateSuccess
+
+type MutationVagabondCreateSuccess {
+  data: VagabondCreatePayload!
+}
+
 interface Node {
   id: ID!
 }
@@ -42,7 +52,22 @@ type UserVagabondConnectionEdge {
 }
 
 type Vagabond implements Node {
+  availablePoints: Int!
+  charm: Int!
+  cunning: Int!
+  finesse: Int!
   id: ID!
+  luck: Int!
+  might: Int!
+  name: String!
   user: User!
+}
+
+input VagabondCreateInput {
+  name: String!
+}
+
+type VagabondCreatePayload {
+  vagabond: Vagabond!
 }
 
