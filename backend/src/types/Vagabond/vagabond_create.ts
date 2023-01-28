@@ -1,35 +1,35 @@
-import { builder, prisma } from '../../builder'
+import { builder, prisma } from '../../builder';
 
 builder.relayMutationField(
   'vagabondCreate',
   {
-    inputFields: t => ({
-      name: t.string({ required: true })
-    })
+    inputFields: (t) => ({
+      name: t.string({ required: true }),
+    }),
   },
   {
     errors: { types: [Error] },
     resolve: async (_, { input }) => {
-      const user = await prisma.user.findFirstOrThrow()
+      const user = await prisma.user.findFirstOrThrow();
 
       const vagabond = await prisma.vagabond.create({
         data: {
           name: input.name,
-          userId: user.id
-        }
-      })
+          userId: user.id,
+        },
+      });
 
       return {
-        vagabond
-      }
-    }
+        vagabond,
+      };
+    },
   },
   {
-    outputFields: t => ({
+    outputFields: (t) => ({
       vagabond: t.prismaField({
         type: 'Vagabond',
-        resolve: (_query, result) => result.vagabond
-      })
-    })
+        resolve: (_query, result) => result.vagabond,
+      }),
+    }),
   }
-)
+);

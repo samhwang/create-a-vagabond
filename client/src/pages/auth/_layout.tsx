@@ -1,4 +1,4 @@
-import { Container, styled } from '@mui/material'
+import { Container, styled } from '@mui/material';
 import { useAtomValue } from 'jotai';
 import { Navigate, Outlet } from 'react-router-dom';
 import { jwtAtom } from '../../providers/auth';
@@ -21,4 +21,4 @@ const CenteredContainer = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;

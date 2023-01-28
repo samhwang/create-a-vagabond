@@ -1,16 +1,16 @@
-import { graphql, useFragment } from 'react-relay'
-import { useNavigate } from 'react-router-dom'
-import { IconButton, ListItem, ListItemSecondaryAction, ListItemText } from '@mui/material'
-import { ChevronRight } from '@mui/icons-material'
-import { VagabondListItem_vagabond$key } from './__generated__/VagabondListItem_vagabond.graphql'
+import { graphql, useFragment } from 'react-relay';
+import { useNavigate } from 'react-router-dom';
+import { IconButton, ListItem, ListItemSecondaryAction, ListItemText } from '@mui/material';
+import { ChevronRight } from '@mui/icons-material';
+import { VagabondListItem_vagabond$key } from './__generated__/VagabondListItem_vagabond.graphql';
 
 type VagabondListItemProps = {
-  vagabond: VagabondListItem_vagabond$key
-}
+  vagabond: VagabondListItem_vagabond$key;
+};
 
-export const VagabondListItem: React.FC<VagabondListItemProps> = props => {
-  const navigate = useNavigate()
-  const vagabond = useFragment(
+export function VagabondListItem({ vagabond }: VagabondListItemProps) {
+  const navigate = useNavigate();
+  const vagabondFragment = useFragment(
     graphql`
       fragment VagabondListItem_vagabond on Vagabond {
         id
@@ -18,20 +18,17 @@ export const VagabondListItem: React.FC<VagabondListItemProps> = props => {
         availablePoints
       }
     `,
-    props.vagabond
-  )
+    vagabond
+  );
 
   return (
     <ListItem>
-      <ListItemText
-        primary={vagabond.name}
-        secondary={`${vagabond.availablePoints} points left`}
-      />
+      <ListItemText primary={vagabondFragment.name} secondary={`${vagabondFragment.availablePoints} points left`} />
       <ListItemSecondaryAction>
-        <IconButton onClick={() => navigate(vagabond.id)}>
+        <IconButton onClick={() => navigate(vagabondFragment.id)}>
           <ChevronRight />
         </IconButton>
       </ListItemSecondaryAction>
     </ListItem>
-  )
+  );
 }

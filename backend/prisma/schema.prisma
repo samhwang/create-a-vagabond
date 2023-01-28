@@ -28,9 +28,9 @@ enum Drive {
 }
 
 model Vagabond {
-  id              String @id @default(cuid())
-  name            String
-  
+  id   String @id @default(cuid())
+  name String
+
   charm           Int @default(0)
   cunning         Int @default(0)
   finesse         Int @default(0)

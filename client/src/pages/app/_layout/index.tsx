@@ -1,8 +1,8 @@
-import { AppBar, styled, Toolbar, Typography } from '@mui/material'
+import { AppBar, styled, Toolbar, Typography } from '@mui/material';
 import { useAtomValue } from 'jotai';
 import { Link, Navigate, Outlet } from 'react-router-dom';
 import { jwtAtom } from '../../../providers/auth';
-import { UserMenuButton } from './UserMenu'
+import { UserMenuButton } from './UserMenu';
 
 export function AppRoot() {
   const jwt = useAtomValue(jwtAtom);
@@ -10,10 +10,10 @@ export function AppRoot() {
 
   return (
     <>
-      <AppBar position='sticky'>
+      <AppBar position="sticky">
         <Toolbar>
           {/* @ts-ignore */}
-          <HomeTitle variant="h6" component={Link} to='/'>
+          <HomeTitle variant="h6" component={Link} to="/">
             Home
           </HomeTitle>
           <UserMenuButton />
@@ -28,4 +28,4 @@ const HomeTitle = styled(Typography)`
   flex-grow: 1;
   text-decoration: none;
   color: inherit;
-`
+`;

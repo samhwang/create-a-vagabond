@@ -9,7 +9,7 @@ import { router } from './pages/_router';
 
 import reportWebVitals from './reportWebVitals';
 import { RelayProvider } from './providers/relay';
-import { ThemeProvider } from './providers/theme'
+import { ThemeProvider } from './providers/theme';
 
 async function renderRoot() {
   if (import.meta.env.DEV) {

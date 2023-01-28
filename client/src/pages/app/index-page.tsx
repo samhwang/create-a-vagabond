@@ -1,8 +1,8 @@
 import { useSetAtom } from 'jotai';
 import { graphql, useLazyLoadQuery } from 'react-relay';
+import { PlusIcon } from '@heroicons/react/24/solid';
 import { jwtAtom } from '../../providers/auth';
 import { indexPageQuery } from './__generated__/indexPageQuery.graphql';
-import { PlusIcon } from '@heroicons/react/24/solid'
 
 function IndexPage() {
   const setJwt = useSetAtom(jwtAtom);
