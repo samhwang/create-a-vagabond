@@ -54,9 +54,7 @@ export const VagabondList: React.FC<VagabondListProps> = props => {
         {data.vagabondConnection.edges.map(edge => {
           if (!edge?.node) return null
 
-          return (
-            <VagabondListItem vagabond={edge.node} />
-          )
+          return <VagabondListItem vagabond={edge.node} />
         })}
       </List>
     </ListContainer>
