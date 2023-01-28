@@ -6,6 +6,7 @@ import { jwtAtom } from '../../providers/auth';
 import icon from '../../assets/icon.webp';
 import { DropdownContent, DropdownItem } from '../../components/Dropdown';
 import { IconButton } from '../../components/IconButton';
+import { Container } from '@mui/system'
 
 export function AppRoot() {
   const jwt = useAtomValue(jwtAtom);
@@ -26,9 +27,9 @@ export function AppRoot() {
         </DropdownMenu.Root>
       </header>
 
-      <main>
+      <Container maxWidth='sm'>
         <Outlet />
-      </main>
+      </Container>
     </div>
   );
 }
