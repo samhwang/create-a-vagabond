@@ -2,10 +2,11 @@ import { graphql, usePaginationFragment } from 'react-relay'
 import { VagabondListPaginationQuery } from './__generated__/VagabondListPaginationQuery.graphql'
 import { VagabondList_user$key } from './__generated__/VagabondList_user.graphql'
 import { PlusIcon } from '@heroicons/react/20/solid'
-import { useNavigate } from 'react-router-dom'
 import { VagabondListItem } from './VagabondListItem'
 import { List, ListContainer, ListHeader, ListHeaderTitle } from '../../../components/List'
 import { Button } from '../../../components/Button'
+import * as Dialog from '@radix-ui/react-dialog';
+import { classed } from '@tw-classed/react'
 
 type VagabondListProps = {
   title?: string
@@ -13,7 +14,6 @@ type VagabondListProps = {
 }
 
 export const VagabondList: React.FC<VagabondListProps> = props => {
-  const navigate = useNavigate()
   const { data } = usePaginationFragment<VagabondListPaginationQuery, VagabondList_user$key>(
     graphql`
       fragment VagabondList_user on User
@@ -47,7 +47,22 @@ export const VagabondList: React.FC<VagabondListProps> = props => {
             </ListHeaderTitle>
           )}
           <div className='grow' />
-          <Button startIcon={<PlusIcon />} />
+          <Dialog.Root>
+            <Dialog.Trigger asChild>
+              <Button startIcon={<PlusIcon />} />
+            </Dialog.Trigger>
+            <Dialog.Portal>
+              <Dialog.Overlay />
+              <Dialog.Content>
+                <Dialog.Title>
+                  Add new Vagabond
+                </Dialog.Title>
+                <Dialog.Description>
+                  create a new character
+                </Dialog.Description>
+              </Dialog.Content>
+            </Dialog.Portal>
+          </Dialog.Root>
         </ListHeader>
       )}
       <List>
@@ -60,3 +75,5 @@ export const VagabondList: React.FC<VagabondListProps> = props => {
     </ListContainer>
   )
 }
+
+const DialogOverlay = classed(Dialog.Overlay, 'fixed bg-slate-900')
