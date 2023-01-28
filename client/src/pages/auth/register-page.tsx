@@ -29,8 +29,8 @@ export function RegisterPage() {
       <p className="text-md text-slate-500 text-center mb-2">your new account</p>
       <hr className="mb-4" />
 
-      <RHFTextField control={control} label="email" name="email" className="mb-2" />
-      <RHFTextField control={control} label="password" name="password" type="password" className="mb-2" />
+      <RHFTextField control={control} label="email" name="email" />
+      <RHFTextField control={control} label="password" name="password" type="password" />
 
       <div className="mb-2">
         <Link to="/auth" className="underline">

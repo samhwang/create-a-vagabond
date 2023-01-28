@@ -29,8 +29,8 @@ export function LoginPage() {
       <p className="text-md text-slate-500 text-center mb-2">to your account</p>
       <hr className="mb-4" />
 
-      <RHFTextField control={control} label="email" name="email" RootProps={{ className: 'mb-8' }} />
-      <RHFTextField control={control} label="password" name="password" type="password" RootProps={{ className: 'mb-4' }} />
+      <RHFTextField control={control} label="email" name="email" />
+      <RHFTextField control={control} label="password" name="password" type="password" />
 
       <div className="mb-2">
         <Link to="register" className="underline">
