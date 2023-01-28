@@ -1,64 +1,47 @@
-import { classed } from '@tw-classed/react';
+import { classed, ComponentProps } from '@tw-classed/react'
 
-export type TextFieldProps = React.ComponentProps<'input'> & {
-  label?: string;
-  helperText?: string;
-  error?: boolean;
-  RootProps?: React.ComponentProps<'div'>
-};
-
-export function TextField({
-  label,
-  helperText,
-  error,
-  disabled,
-  RootProps,
-  ...props
-}: TextFieldProps) {
-  return (
-    <TextFieldRoot {...RootProps} disabled={disabled}>
-      {label && <LabelText>{label}</LabelText>}
-      <InputBase {...props} disabled={disabled} />
-      {helperText && <HelperText type={error ? 'error' : 'helper'}>{helperText}</HelperText>}
-    </TextFieldRoot>
-  );
-}
-
-const TextFieldRoot = classed(
-  'div',
+export const TextFieldRoot = classed.div(
   'relative',
   {
     variants: {
-      disabled: {
-        true: 'opacity-50 pointer-events-none'
+      error: {
+        true: 'mb-6'
       }
     }
   }
 )
 
-const LabelText = classed('div', 'text-gray-700');
+export const TextFieldLabel = classed.label('text-gray-700')
 
-const HelperText = classed(
-  'div',
-  'absolute -bottom-6',
-  'text-sm',
+export type TextFieldInputProps = ComponentProps<typeof TextFieldInput>
+export const TextFieldInput = classed.input(
+  'flex-1',
+  'w-full py-2 px-4',
+  'appearance-none',
+  'rounded-lg border-transparent border border-gray-300 shadow-sm',
+  'focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent',
+  'bg-white placeholder-gray-400',
+  'text-base text-gray-700',
+  {
+    variants: {
+      error: {
+        true: 'ring-2 !ring-red-500'
+      }
+    }
+  }
+)
+
+export const TextFieldHelperText = classed.p(
+  'absolute text-sm -bottom-6',
   {
     variants: {
       type: {
         helper: 'text-slate-500',
-        error: 'text-red-500 text-sm',
+        error: 'text-red-500',
       },
     },
     defaultVariants: {
-      type: 'helper',
-    },
+      type: 'helper'
+    }
   }
-);
-
-const InputBase = classed(
-  'input',
-  'flex-1',
-  'w-full py-2 px-4',
-  'rounded-lg border-transparent appearance-none border border-gray-300 focus:border-transparent',
-  'bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600'
-);
+)
