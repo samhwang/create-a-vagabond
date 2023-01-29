@@ -2,17 +2,17 @@ import { graphql, useFragment } from 'react-relay';
 import { useNavigate } from 'react-router-dom';
 import { Chip, Divider, IconButton, ListItem, ListItemSecondaryAction, ListItemText, Stack } from '@mui/material';
 import { ChevronRight } from '@mui/icons-material';
+import { useState } from 'react';
 import { VagabondListItem_vagabond$key } from './__generated__/VagabondListItem_vagabond.graphql';
-import { useState } from 'react'
-import { UpdateVagabondStatsDialog } from './UpdateVagabondStatsDialog'
+import { UpdateVagabondStatsDialog } from './UpdateVagabondStatsDialog';
 
 type VagabondListItemProps = {
   vagabond: VagabondListItem_vagabond$key;
 };
 
-export function VagabondListItem(props: VagabondListItemProps) {
+export function VagabondListItem({ vagabond }: VagabondListItemProps) {
   const navigate = useNavigate();
-  const vagabond = useFragment(
+  const vagabondData = useFragment(
     graphql`
       fragment VagabondListItem_vagabond on Vagabond {
         id
@@ -25,68 +25,51 @@ export function VagabondListItem(props: VagabondListItemProps) {
         might
       }
     `,
-    props.vagabond
+    vagabond
   );
 
   const currentStats = [
-    `CHA ${vagabond.charm}`,
-    `CUN ${vagabond.cunning}`,
-    `FIN ${vagabond.finesse}`,
-    `LUC ${vagabond.luck}`,
-    `MIG ${vagabond.might}`,
-  ].join(' ')
+    `CHA ${vagabondData.charm}`,
+    `CUN ${vagabondData.cunning}`,
+    `FIN ${vagabondData.finesse}`,
+    `LUC ${vagabondData.luck}`,
+    `MIG ${vagabondData.might}`,
+  ].join(' ');
 
   return (
     <>
       <ListItem>
         <ListItemText
           primary={
-            <Stack
-              direction='row'
-              spacing={1}
-              alignItems='center'
-            >
-              <span>{vagabond.name}</span>
-              <UpdateStatsChip
-                id={vagabond.id}
-                points={vagabond.availablePoints}
-              />
+            <Stack direction="row" spacing={1} alignItems="center">
+              <span>{vagabondData.name}</span>
+              <UpdateStatsChip id={vagabondData.id} points={vagabondData.availablePoints} />
             </Stack>
           }
           secondary={currentStats}
         />
         <ListItemSecondaryAction>
-          <IconButton onClick={() => navigate(vagabond.id)}>
+          <IconButton onClick={() => navigate(vagabondData.id)}>
             <ChevronRight />
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
-      <Divider variant='middle' />
+      <Divider variant="middle" />
     </>
   );
 }
 
 type UpdateStatsChipProps = {
-  id: string
-  points: number
-}
+  id: string;
+  points: number;
+};
 
-const UpdateStatsChip = ({ id, points }: UpdateStatsChipProps) => {
-  const [open, setOpen] = useState(false)
+function UpdateStatsChip({ id, points }: UpdateStatsChipProps) {
+  const [open, setOpen] = useState(false);
   return (
     <>
-      <Chip
-        label={points}
-        variant='outlined'
-        color='error'
-        onClick={() => setOpen(true)}
-      />
-      <UpdateVagabondStatsDialog
-        vagabondId={id}
-        availablePoints={points}
-        open={open}
-        onClose={() => setOpen(false)}
-      />
+      <Chip label={points} variant="outlined" color="error" onClick={() => setOpen(true)} />
+      <UpdateVagabondStatsDialog vagabondId={id} availablePoints={points} open={open} onClose={() => setOpen(false)} />
     </>
-  )
+  );
 }

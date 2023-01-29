@@ -6,7 +6,7 @@ import { VagabondInfoPage } from './app/vagabond-page';
 
 import { AuthLayout } from './auth/_layout';
 import { AppRoot } from './app/_layout';
-import { ClerkAuth } from "./auth/clerk-auth";
+import { ClerkAuth } from './auth/clerk-auth';
 
 export const router = createBrowserRouter([
   {
@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <ClerkAuth />,
-      }
+      },
     ],
   },
 ]);

@@ -25,11 +25,11 @@ builder.relayMutationField(
 
       const { charm, cunning, finesse, luck, might } = input;
 
-      const charmChanges = charm! - vagabond.charm
-      const cunningChanges = cunning! - vagabond.cunning
-      const finesseChanges = finesse! - vagabond.finesse
-      const luckChanges = luck! - vagabond.luck
-      const mightChanges = might! - vagabond.might
+      const charmChanges = charm! - vagabond.charm;
+      const cunningChanges = cunning! - vagabond.cunning;
+      const finesseChanges = finesse! - vagabond.finesse;
+      const luckChanges = luck! - vagabond.luck;
+      const mightChanges = might! - vagabond.might;
 
       const totalUsingPoints = charmChanges + cunningChanges + finesseChanges + luckChanges + mightChanges;
       if (totalUsingPoints > vagabond.availablePoints) {

@@ -1,5 +1,5 @@
 import { Handler } from '@netlify/functions';
-import { sessions } from '@clerk/clerk-sdk-node'
+import { sessions } from '@clerk/clerk-sdk-node';
 
 import { createYoga } from 'graphql-yoga';
 import { schema } from '../schema';
@@ -10,9 +10,9 @@ const yoga = createYoga({
 });
 
 export const handler: Handler = async (event, context) => {
-  const { sessionid, authorization } = event.headers
-  const clientToken = authorization?.replace('Bearer ', '')
-  const session = await getClerkSession(sessionid, clientToken)
+  const { sessionid, authorization } = event.headers;
+  const clientToken = authorization?.replace('Bearer ', '');
+  const session = await getClerkSession(sessionid, clientToken);
 
   const response = await yoga.fetch(
     event.rawUrl,
@@ -24,7 +24,7 @@ export const handler: Handler = async (event, context) => {
     // Third parameter becomes your server context
     {
       ...context,
-      session
+      session,
     }
   );
 
@@ -41,14 +41,12 @@ export const handler: Handler = async (event, context) => {
 };
 
 const getClerkSession = async (sessionId?: string, clientToken?: string) => {
-  if (!sessionId || !clientToken) return undefined
+  if (!sessionId || !clientToken) return undefined;
 
-  const session = await sessions
-    .verifySession(sessionId, clientToken)
-    .catch(error => {
-      console.log(error)
-      return undefined
-    })
+  const session = await sessions.verifySession(sessionId, clientToken).catch((error) => {
+    console.log(error);
+    return undefined;
+  });
 
-  return session
-}
+  return session;
+};

@@ -1,25 +1,27 @@
-import { useAuth } from '@clerk/clerk-react'
+import { useAuth } from '@clerk/clerk-react';
 import { AppBar, CircularProgress, styled, Toolbar, Typography } from '@mui/material';
-import { Suspense } from 'react'
-import { graphql, useLazyLoadQuery } from 'react-relay'
+import { Suspense } from 'react';
+import { graphql, useLazyLoadQuery } from 'react-relay';
 import { Link, Navigate, Outlet } from 'react-router-dom';
 import { UserMenuButton } from './UserMenu';
-import { LayoutQuery } from './__generated__/LayoutQuery.graphql'
+import { LayoutQuery } from './__generated__/LayoutQuery.graphql';
 
 export function AppRoot() {
-  const { isLoaded, isSignedIn } = useAuth()
+  const { isLoaded, isSignedIn } = useAuth();
   const data = useLazyLoadQuery<LayoutQuery>(
     graphql`
       query LayoutQuery {
         me {
-          profile { profileImage }
+          profile {
+            profileImage
+          }
         }
       }
     `,
     {}
-  )
+  );
 
-  if (!isLoaded) return <CircularProgress />
+  if (!isLoaded) return <CircularProgress />;
 
   if (!isSignedIn) return <Navigate to="/auth" />;
 
@@ -27,10 +29,14 @@ export function AppRoot() {
     <>
       <AppBar position="sticky">
         <Toolbar>
-          {/* @ts-ignore */}
-          <HomeTitle variant="h6" component={Link} to="/">
+          <Typography
+            variant="h6"
+            sx={{ flexGrow: 1, textDecoration: 'none', color: 'inherit' }}
+            component={Link}
+            to="/"
+          >
             Home
-          </HomeTitle>
+          </Typography>
           <UserMenuButton avatar={data.me.profile.profileImage} />
         </Toolbar>
       </AppBar>
@@ -40,9 +46,3 @@ export function AppRoot() {
     </>
   );
 }
-
-const HomeTitle = styled(Typography)`
-  flex-grow: 1;
-  text-decoration: none;
-  color: inherit;
-`;

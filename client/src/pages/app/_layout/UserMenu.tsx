@@ -1,11 +1,11 @@
 import { useState, type MouseEvent } from 'react';
 import { Avatar, IconButton, Menu, MenuItem } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '@clerk/clerk-react'
+import { useAuth } from '@clerk/clerk-react';
 
 type UserMenuButtonProps = {
-  avatar: string | null
-}
+  avatar: string | null;
+};
 
 export function UserMenuButton({ avatar }: UserMenuButtonProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -17,10 +17,7 @@ export function UserMenuButton({ avatar }: UserMenuButtonProps) {
       <IconButton onClick={onOpenMenu}>
         <Avatar src={avatar || undefined} />
       </IconButton>
-      <UserMenu
-        anchorEl={anchorEl}
-        onClose={onCloseMenu}
-      />
+      <UserMenu anchorEl={anchorEl} onClose={onCloseMenu} />
     </>
   );
 }
@@ -31,13 +28,13 @@ type UserMenuProps = {
 };
 
 export function UserMenu({ anchorEl, onClose }: UserMenuProps) {
-  const { signOut } = useAuth()
-  const navigate = useNavigate()
+  const { signOut } = useAuth();
+  const navigate = useNavigate();
   const onSignout = () => {
     signOut(() => {
-      navigate('/auth')
-    })
-  }
+      navigate('/auth');
+    });
+  };
 
   return (
     <Menu
@@ -50,9 +47,7 @@ export function UserMenu({ anchorEl, onClose }: UserMenuProps) {
       <MenuItem onClick={onClose} component={Link} to="vagabond-list">
         Your Vagabonds
       </MenuItem>
-      <MenuItem onClick={onSignout}>
-        Log Out
-      </MenuItem>
+      <MenuItem onClick={onSignout}>Log Out</MenuItem>
     </Menu>
   );
 }

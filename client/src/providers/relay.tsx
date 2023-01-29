@@ -1,24 +1,24 @@
 import { Environment, Network, RecordSource, Store, FetchFunction } from 'relay-runtime';
-import Clerk from '@clerk/clerk-js'
+import Clerk from '@clerk/clerk-js';
 
 import { RelayEnvironmentProvider } from 'react-relay';
 import { Suspense, ReactNode } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 const clerkPublicKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
-const clerk = new Clerk(clerkPublicKey)
+const clerk = new Clerk(clerkPublicKey);
 
 const fetchQuery: FetchFunction = async (operation, variables, cacheConfig, uploadables) => {
-  await clerk.load()
-  const sessionId = clerk.session?.id
-  const jwt = localStorage.getItem('clerk-db-jwt')
+  await clerk.load();
+  const sessionId = clerk.session?.id;
+  const jwt = localStorage.getItem('clerk-db-jwt');
 
   return fetch('/.netlify/functions/graphql', {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
       ...(sessionId ? { sessionId } : {}),
-      ...(jwt ? { authorization: `Bearer ${jwt}` } : {})
+      ...(jwt ? { authorization: `Bearer ${jwt}` } : {}),
     },
     body: JSON.stringify({
       query: operation.text,
