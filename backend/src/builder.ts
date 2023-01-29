@@ -2,6 +2,8 @@ import SchemaBuilder from '@pothos/core';
 
 import ErrorsPlugin from '@pothos/plugin-errors';
 
+import SimpleObjectsPlugin from '@pothos/plugin-simple-objects';
+
 import RelayPlugin from '@pothos/plugin-relay';
 
 import PrismaPlugin from '@pothos/plugin-prisma';
@@ -20,7 +22,7 @@ type SchemaBuilderContext = {
 };
 
 export const builder = new SchemaBuilder<SchemaBuilderContext>({
-  plugins: [ErrorsPlugin, RelayPlugin, PrismaPlugin],
+  plugins: [ErrorsPlugin, SimpleObjectsPlugin, RelayPlugin, PrismaPlugin],
 
   errorOptions: {
     defaultTypes: [],

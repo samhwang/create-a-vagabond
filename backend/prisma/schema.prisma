@@ -14,15 +14,9 @@ datasource db {
 }
 
 model User {
-  id           String     @id
-  email        String     @unique
-  username     String
-  firstName    String
-  lastName     String
-  profileImage String
-  createdAt    DateTime   @default(now())
-  uppdatedAt   DateTime   @updatedAt
-  vagabonds    Vagabond[]
+  id        String     @id
+  createdAt DateTime   @default(now())
+  vagabonds Vagabond[]
 }
 
 model Vagabond {
