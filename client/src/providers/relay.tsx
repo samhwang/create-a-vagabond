@@ -2,7 +2,7 @@ import { Environment, Network, RecordSource, Store, FetchFunction } from 'relay-
 import Clerk from '@clerk/clerk-js'
 
 import { RelayEnvironmentProvider } from 'react-relay';
-import React, { Suspense } from 'react';
+import { Suspense, ReactNode } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 const clerkPublicKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -35,7 +35,7 @@ const environment = new Environment({
   store,
 });
 
-export function RelayProvider({ children }: { children: React.ReactNode }) {
+export function RelayProvider({ children }: { children: ReactNode }) {
   return (
     <RelayEnvironmentProvider environment={environment}>
       <Suspense>
