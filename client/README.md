@@ -1,4 +1,4 @@
-# Quiz Client
+# Create a Vagabond Client
 
 ## Scripts
 
