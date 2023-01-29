@@ -1,12 +1,14 @@
-import { AppBar, styled, Toolbar, Typography } from '@mui/material';
-import { useAtomValue } from 'jotai';
+import { useAuth } from '@clerk/clerk-react'
+import { AppBar, CircularProgress, styled, Toolbar, Typography } from '@mui/material';
 import { Link, Navigate, Outlet } from 'react-router-dom';
-import { jwtAtom } from '../../../providers/auth';
 import { UserMenuButton } from './UserMenu';
 
 export function AppRoot() {
-  const jwt = useAtomValue(jwtAtom);
-  if (!jwt) return <Navigate to="/auth" />;
+  const { isLoaded, isSignedIn } = useAuth()
+
+  if (!isLoaded) return <CircularProgress />
+
+  if (!isSignedIn) return <Navigate to="/auth" />;
 
   return (
     <>

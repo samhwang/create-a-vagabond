@@ -1,9 +1,8 @@
 import { useState, type MouseEvent } from 'react';
-import { useSetAtom } from 'jotai';
 import { Avatar, IconButton, Menu, MenuItem } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { jwtAtom } from '../../../providers/auth';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import icon from '../../../assets/icon.webp';
+import { useAuth } from '@clerk/clerk-react'
 
 export function UserMenuButton() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -26,7 +25,13 @@ type UserMenuProps = {
 };
 
 export function UserMenu({ anchorEl, onClose }: UserMenuProps) {
-  const setJwt = useSetAtom(jwtAtom);
+  const { signOut } = useAuth()
+  const navigate = useNavigate()
+  const onSignout = () => {
+    signOut(() => {
+      navigate('/auth')
+    })
+  }
 
   return (
     <Menu
@@ -39,7 +44,9 @@ export function UserMenu({ anchorEl, onClose }: UserMenuProps) {
       <MenuItem onClick={onClose} component={Link} to="vagabond-list">
         Your Vagabonds
       </MenuItem>
-      <MenuItem onClick={() => setJwt(undefined)}>Log Out</MenuItem>
+      <MenuItem onClick={onSignout}>
+        Log Out
+      </MenuItem>
     </Menu>
   );
 }

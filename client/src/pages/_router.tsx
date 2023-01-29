@@ -5,8 +5,6 @@ import { VagabondListPage } from './app/vagabond-list-page';
 import { VagabondInfoPage } from './app/vagabond-page';
 
 import { AuthLayout } from './auth/_layout';
-import { LoginPage } from './auth/login-page';
-import { RegisterPage } from './auth/register-page';
 import { AppRoot } from './app/_layout';
 import { ClerkAuth } from "./auth/clerk-auth";
 
@@ -35,14 +33,6 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <LoginPage />,
-      },
-      {
-        path: 'register',
-        element: <RegisterPage />,
-      },
-      {
-        path: 'clerk',
         element: <ClerkAuth />,
       }
     ],

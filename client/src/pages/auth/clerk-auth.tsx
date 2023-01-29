@@ -4,6 +4,7 @@ import {
   SignedIn,
   SignedOut,
   RedirectToSignIn,
+  useAuth
 } from "@clerk/clerk-react";
 
 export function ClerkAuth() {

@@ -1,12 +1,13 @@
-import { Container, styled } from '@mui/material';
-import { useAtomValue } from 'jotai';
+import { useAuth } from '@clerk/clerk-react'
+import { CircularProgress, Container, styled } from '@mui/material';
 import { Navigate, Outlet } from 'react-router-dom';
-import { jwtAtom } from '../../providers/auth';
 
 export function AuthLayout() {
-  const jwt = useAtomValue(jwtAtom);
+  const { isLoaded, isSignedIn } = useAuth()
 
-  if (jwt) return <Navigate to="/" />;
+  if (!isLoaded) return <CircularProgress />
+
+  if (isSignedIn) return <Navigate to="/" />;
 
   return (
     <CenteredContainer>

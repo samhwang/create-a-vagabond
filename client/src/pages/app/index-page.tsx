@@ -1,10 +1,7 @@
-import { useSetAtom } from 'jotai';
 import { graphql, useLazyLoadQuery } from 'react-relay';
-import { jwtAtom } from '../../providers/auth';
 import { indexPageQuery } from './__generated__/indexPageQuery.graphql';
 
 function IndexPage() {
-  const setJwt = useSetAtom(jwtAtom);
   const data = useLazyLoadQuery<indexPageQuery>(
     graphql`
       query indexPageQuery {
