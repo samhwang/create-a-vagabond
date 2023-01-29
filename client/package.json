@@ -36,6 +36,7 @@
     "relay": "relay-compiler"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^4.9.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fontsource/roboto": "^4.5.8",

@@ -20,6 +20,7 @@
     "prisma": "^4.9.0"
   },
   "dependencies": {
+    "@clerk/clerk-sdk-node": "^4.6.4",
     "@netlify/functions": "^1.4.0",
     "@pothos/core": "^3.24.0",
     "@pothos/plugin-errors": "^3.10.0",

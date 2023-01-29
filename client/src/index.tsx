@@ -5,6 +5,8 @@ import { RouterProvider } from 'react-router-dom';
 
 import { Provider as JotaiProvider } from 'jotai';
 
+import { AuthProvider } from './providers/auth';
+
 import { router } from './pages/_router';
 
 import reportWebVitals from './reportWebVitals';
@@ -20,11 +22,13 @@ async function renderRoot() {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <ThemeProvider>
-        <JotaiProvider>
-          <RelayProvider>
-            <RouterProvider router={router} />
-          </RelayProvider>
-        </JotaiProvider>
+        <AuthProvider>
+          <JotaiProvider>
+            <RelayProvider>
+              <RouterProvider router={router} />
+            </RelayProvider>
+          </JotaiProvider>
+        </AuthProvider>
       </ThemeProvider>
     </StrictMode>
   );
