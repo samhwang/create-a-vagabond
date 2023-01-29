@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5a1b7ee949088921e5428826cbdc6dc4>>
+ * @generated SignedSource<<c53c98af14613ea6751c321b95fcd41c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,12 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type VagabondListItem_vagabond$data = {
   readonly availablePoints: number;
+  readonly charm: number;
+  readonly cunning: number;
+  readonly finesse: number;
   readonly id: string;
+  readonly luck: number;
+  readonly might: number;
   readonly name: string;
   readonly " $fragmentType": "VagabondListItem_vagabond";
 };
@@ -47,12 +52,47 @@ const node: ReaderFragment = {
       "kind": "ScalarField",
       "name": "availablePoints",
       "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "charm",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "cunning",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "finesse",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "luck",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "might",
+      "storageKey": null
     }
   ],
   "type": "Vagabond",
   "abstractKey": null
 };
 
-(node as any).hash = "8be37d1d3180461ce5e651a0151397b0";
+(node as any).hash = "d7fba1fbcaad2d46bdc2c0ccd40fc5b2";
 
 export default node;

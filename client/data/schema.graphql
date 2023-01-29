@@ -10,12 +10,19 @@ type Error {
 
 type Mutation {
   vagabondCreate(input: VagabondCreateInput!): MutationVagabondCreateResult!
+  vagabondUpdateStats(input: VagabondUpdateStatsInput!): MutationVagabondUpdateStatsResult!
 }
 
 union MutationVagabondCreateResult = Error | MutationVagabondCreateSuccess
 
 type MutationVagabondCreateSuccess {
   data: VagabondCreatePayload!
+}
+
+union MutationVagabondUpdateStatsResult = Error | MutationVagabondUpdateStatsSuccess
+
+type MutationVagabondUpdateStatsSuccess {
+  data: VagabondUpdateStatsPayload!
 }
 
 interface Node {
@@ -76,6 +83,19 @@ input VagabondCreateInput {
 }
 
 type VagabondCreatePayload {
+  vagabond: Vagabond!
+}
+
+input VagabondUpdateStatsInput {
+  charm: Int = 0
+  cunning: Int = 0
+  finesse: Int = 0
+  luck: Int = 0
+  might: Int = 0
+  vagabondId: ID!
+}
+
+type VagabondUpdateStatsPayload {
   vagabond: Vagabond!
 }
 

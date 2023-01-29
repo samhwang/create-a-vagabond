@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4c01a1896689dfdce0964ca97245722c>>
+ * @generated SignedSource<<10bef02a6515445c3696739723c8659c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,22 +10,25 @@
 
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type VagabondCreateInput = {
-  name: string;
+export type VagabondUpdateStatsInput = {
+  charm?: number | null;
+  cunning?: number | null;
+  finesse?: number | null;
+  luck?: number | null;
+  might?: number | null;
+  vagabondId: string;
 };
-export type CreateVagabondDialogMutation$variables = {
-  connections: ReadonlyArray<string>;
-  input: VagabondCreateInput;
+export type UpdateVagabondStatsDialogMutation$variables = {
+  input: VagabondUpdateStatsInput;
 };
-export type CreateVagabondDialogMutation$data = {
-  readonly vagabondCreate: {
+export type UpdateVagabondStatsDialogMutation$data = {
+  readonly vagabondUpdateStats: {
     readonly __typename: "Error";
     readonly message: string;
   } | {
-    readonly __typename: "MutationVagabondCreateSuccess";
+    readonly __typename: "MutationVagabondUpdateStatsSuccess";
     readonly data: {
       readonly vagabond: {
-        readonly name: string;
         readonly " $fragmentSpreads": FragmentRefs<"VagabondListItem_vagabond">;
       };
     };
@@ -35,18 +38,13 @@ export type CreateVagabondDialogMutation$data = {
     readonly __typename: "%other";
   };
 };
-export type CreateVagabondDialogMutation = {
-  response: CreateVagabondDialogMutation$data;
-  variables: CreateVagabondDialogMutation$variables;
+export type UpdateVagabondStatsDialogMutation = {
+  response: UpdateVagabondStatsDialogMutation$data;
+  variables: UpdateVagabondStatsDialogMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
 var v0 = [
-  {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "connections"
-  },
   {
     "defaultValue": null,
     "kind": "LocalArgument",
@@ -80,27 +78,20 @@ v3 = {
   ],
   "type": "Error",
   "abstractKey": null
-},
-v4 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "name",
-  "storageKey": null
 };
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "CreateVagabondDialogMutation",
+    "name": "UpdateVagabondStatsDialogMutation",
     "selections": [
       {
         "alias": null,
         "args": (v1/*: any*/),
         "concreteType": null,
         "kind": "LinkedField",
-        "name": "vagabondCreate",
+        "name": "vagabondUpdateStats",
         "plural": false,
         "selections": [
           (v2/*: any*/),
@@ -111,7 +102,7 @@ return {
               {
                 "alias": null,
                 "args": null,
-                "concreteType": "VagabondCreatePayload",
+                "concreteType": "VagabondUpdateStatsPayload",
                 "kind": "LinkedField",
                 "name": "data",
                 "plural": false,
@@ -124,7 +115,6 @@ return {
                     "name": "vagabond",
                     "plural": false,
                     "selections": [
-                      (v4/*: any*/),
                       {
                         "args": null,
                         "kind": "FragmentSpread",
@@ -137,7 +127,7 @@ return {
                 "storageKey": null
               }
             ],
-            "type": "MutationVagabondCreateSuccess",
+            "type": "MutationVagabondUpdateStatsSuccess",
             "abstractKey": null
           }
         ],
@@ -151,14 +141,14 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "CreateVagabondDialogMutation",
+    "name": "UpdateVagabondStatsDialogMutation",
     "selections": [
       {
         "alias": null,
         "args": (v1/*: any*/),
         "concreteType": null,
         "kind": "LinkedField",
-        "name": "vagabondCreate",
+        "name": "vagabondUpdateStats",
         "plural": false,
         "selections": [
           (v2/*: any*/),
@@ -169,7 +159,7 @@ return {
               {
                 "alias": null,
                 "args": null,
-                "concreteType": "VagabondCreatePayload",
+                "concreteType": "VagabondUpdateStatsPayload",
                 "kind": "LinkedField",
                 "name": "data",
                 "plural": false,
@@ -182,12 +172,18 @@ return {
                     "name": "vagabond",
                     "plural": false,
                     "selections": [
-                      (v4/*: any*/),
                       {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
                         "name": "id",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "name",
                         "storageKey": null
                       },
                       {
@@ -234,33 +230,12 @@ return {
                       }
                     ],
                     "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "filters": null,
-                    "handle": "appendNode",
-                    "key": "",
-                    "kind": "LinkedHandle",
-                    "name": "vagabond",
-                    "handleArgs": [
-                      {
-                        "kind": "Variable",
-                        "name": "connections",
-                        "variableName": "connections"
-                      },
-                      {
-                        "kind": "Literal",
-                        "name": "edgeTypeName",
-                        "value": "UserVagabondConnectionEdge"
-                      }
-                    ]
                   }
                 ],
                 "storageKey": null
               }
             ],
-            "type": "MutationVagabondCreateSuccess",
+            "type": "MutationVagabondUpdateStatsSuccess",
             "abstractKey": null
           }
         ],
@@ -269,16 +244,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "d1bab46526088ca462f5df1955251c97",
+    "cacheID": "08066a38465efccb21b67d427817c547",
     "id": null,
     "metadata": {},
-    "name": "CreateVagabondDialogMutation",
+    "name": "UpdateVagabondStatsDialogMutation",
     "operationKind": "mutation",
-    "text": "mutation CreateVagabondDialogMutation(\n  $input: VagabondCreateInput!\n) {\n  vagabondCreate(input: $input) {\n    __typename\n    ... on Error {\n      message\n    }\n    ... on MutationVagabondCreateSuccess {\n      data {\n        vagabond {\n          name\n          ...VagabondListItem_vagabond\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  availablePoints\n  charm\n  cunning\n  finesse\n  luck\n  might\n}\n"
+    "text": "mutation UpdateVagabondStatsDialogMutation(\n  $input: VagabondUpdateStatsInput!\n) {\n  vagabondUpdateStats(input: $input) {\n    __typename\n    ... on Error {\n      message\n    }\n    ... on MutationVagabondUpdateStatsSuccess {\n      data {\n        vagabond {\n          ...VagabondListItem_vagabond\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  availablePoints\n  charm\n  cunning\n  finesse\n  luck\n  might\n}\n"
   }
 };
 })();
 
-(node as any).hash = "c7058a82ba29ec1fe9c06dcabdd24010";
+(node as any).hash = "613857ddacaa8e6cd4b8235ac3e81345";
 
 export default node;

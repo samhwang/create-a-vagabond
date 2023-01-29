@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<74dfdce81883ab29cdc343cdbf64cdf8>>
+ * @generated SignedSource<<e4a1bd689d0b12fc54e571da2430cb2b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -172,6 +172,41 @@ return {
                             "name": "availablePoints",
                             "storageKey": null
                           },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "charm",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "cunning",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "finesse",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "luck",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "might",
+                            "storageKey": null
+                          },
                           (v2/*: any*/)
                         ],
                         "storageKey": null
@@ -245,12 +280,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "7d33d7c3dff71e426977f61855cff46f",
+    "cacheID": "9b8ba5f85146c946c182f505c594e5da",
     "id": null,
     "metadata": {},
     "name": "VagabondListPaginationQuery",
     "operationKind": "query",
-    "text": "query VagabondListPaginationQuery(\n  $count: Int = 10\n  $cursor: String\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...VagabondList_user_1G22uz\n    id\n  }\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  availablePoints\n}\n\nfragment VagabondList_user_1G22uz on User {\n  vagabondConnection(first: $count, after: $cursor) {\n    edges {\n      node {\n        ...VagabondListItem_vagabond\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n"
+    "text": "query VagabondListPaginationQuery(\n  $count: Int = 10\n  $cursor: String\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...VagabondList_user_1G22uz\n    id\n  }\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  availablePoints\n  charm\n  cunning\n  finesse\n  luck\n  might\n}\n\nfragment VagabondList_user_1G22uz on User {\n  vagabondConnection(first: $count, after: $cursor) {\n    edges {\n      node {\n        ...VagabondListItem_vagabond\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n"
   }
 };
 })();

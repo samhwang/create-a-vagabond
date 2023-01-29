@@ -24,7 +24,14 @@ builder.relayMutationField(
       });
 
       const { charm, cunning, finesse, luck, might } = input;
-      const totalUsingPoints = charm! + cunning! + finesse! + luck! + might!;
+
+      const charmChanges = charm! - vagabond.charm
+      const cunningChanges = cunning! - vagabond.cunning
+      const finesseChanges = finesse! - vagabond.finesse
+      const luckChanges = luck! - vagabond.luck
+      const mightChanges = might! - vagabond.might
+
+      const totalUsingPoints = charmChanges + cunningChanges + finesseChanges + luckChanges + mightChanges;
       if (totalUsingPoints > vagabond.availablePoints) {
         throw new Error('Using more than availables');
       }
@@ -32,11 +39,12 @@ builder.relayMutationField(
       const updatedVagabond = await prisma.vagabond.update({
         where: { id: input.vagabondId.id },
         data: {
-          charm: { increment: charm! },
-          cunning: { increment: cunning! },
-          finesse: { increment: finesse! },
-          luck: { increment: luck! },
-          might: { increment: might! },
+          charm: charm!,
+          cunning: cunning!,
+          finesse: finesse!,
+          luck: luck!,
+          might: might!,
+          availablePoints: { decrement: totalUsingPoints },
         },
       });
 
