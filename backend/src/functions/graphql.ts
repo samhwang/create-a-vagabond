@@ -12,14 +12,7 @@ const yoga = createYoga({
 export const handler: Handler = async (event, context) => {
   const { sessionid, authorization } = event.headers
   const clientToken = authorization?.replace('Bearer ', '')
-  const session = clientToken && sessionid
-    ? await sessions
-      .verifySession(sessionid, clientToken)
-      .catch(error => {
-        console.log(error)
-        return undefined
-      })
-    : undefined
+  const session = await getClerkSession(sessionid, clientToken)
 
   const response = await yoga.fetch(
     event.rawUrl,
@@ -46,3 +39,16 @@ export const handler: Handler = async (event, context) => {
     headers: headersObj,
   };
 };
+
+const getClerkSession = async (sessionId?: string, clientToken?: string) => {
+  if (!sessionId || !clientToken) return undefined
+
+  const session = await sessions
+    .verifySession(sessionId, clientToken)
+    .catch(error => {
+      console.log(error)
+      return undefined
+    })
+
+  return session
+}
