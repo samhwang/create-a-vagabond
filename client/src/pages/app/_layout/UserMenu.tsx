@@ -1,10 +1,13 @@
 import { useState, type MouseEvent } from 'react';
 import { Avatar, IconButton, Menu, MenuItem } from '@mui/material';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
-import icon from '../../../assets/icon.webp';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@clerk/clerk-react'
 
-export function UserMenuButton() {
+type UserMenuButtonProps = {
+  avatar: string | null
+}
+
+export function UserMenuButton({ avatar }: UserMenuButtonProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const onOpenMenu = (event: MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget);
   const onCloseMenu = () => setAnchorEl(null);
@@ -12,9 +15,12 @@ export function UserMenuButton() {
   return (
     <>
       <IconButton onClick={onOpenMenu}>
-        <Avatar src={icon} />
+        <Avatar src={avatar || undefined} />
       </IconButton>
-      <UserMenu anchorEl={anchorEl} onClose={onCloseMenu} />
+      <UserMenu
+        anchorEl={anchorEl}
+        onClose={onCloseMenu}
+      />
     </>
   );
 }

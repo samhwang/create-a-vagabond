@@ -3,8 +3,6 @@ import { createRoot } from 'react-dom/client';
 
 import { RouterProvider } from 'react-router-dom';
 
-import { Provider as JotaiProvider } from 'jotai';
-
 import { AuthProvider } from './providers/auth';
 
 import { router } from './pages/_router';
@@ -23,11 +21,9 @@ async function renderRoot() {
     <StrictMode>
       <ThemeProvider>
         <AuthProvider>
-          <JotaiProvider>
-            <RelayProvider>
-              <RouterProvider router={router} />
-            </RelayProvider>
-          </JotaiProvider>
+          <RelayProvider>
+            <RouterProvider router={router} />
+          </RelayProvider>
         </AuthProvider>
       </ThemeProvider>
     </StrictMode>

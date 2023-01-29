@@ -2,7 +2,6 @@
 
 import { defineConfig } from 'vite';
 import reactBabel from '@vitejs/plugin-react';
-import jotaiBabel from 'jotai/babel/preset';
 import reactSwc from '@vitejs/plugin-react-swc';
 import relay from 'vite-plugin-relay';
 
@@ -13,17 +12,12 @@ const react = (useSwc: boolean) => {
   if (!useSwc) {
     return reactBabel({
       babel: {
-        presets: [jotaiBabel],
+        presets: [],
       },
     });
   }
 
-  return reactSwc({
-    plugins: [
-      ['@swc-jotai/debug-label', {}],
-      ['@swc-jotai/react-refresh', {}],
-    ],
-  });
+  return reactSwc({});
 };
 
 // https://vitejs.dev/config/
