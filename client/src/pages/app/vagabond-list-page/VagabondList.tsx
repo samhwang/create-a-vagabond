@@ -1,9 +1,9 @@
-import { graphql, usePaginationFragment } from 'react-relay';
-import { IconButton, List, ListSubheader, Paper, Typography } from '@mui/material';
-import { Add } from '@mui/icons-material';
-import { VagabondListPaginationQuery } from './__generated__/VagabondListPaginationQuery.graphql';
-import { VagabondList_user$key } from './__generated__/VagabondList_user.graphql';
-import { VagabondListItem } from './VagabondListItem';
+import { graphql, usePaginationFragment } from 'react-relay'
+import { VagabondListPaginationQuery } from './__generated__/VagabondListPaginationQuery.graphql'
+import { VagabondList_user$key } from './__generated__/VagabondList_user.graphql'
+import { VagabondListItem } from './VagabondListItem'
+import { IconButton, List, ListSubheader, Paper, Typography } from '@mui/material'
+import { Add } from '@mui/icons-material'
 
 type VagabondListProps = {
   title?: string;
