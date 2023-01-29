@@ -14,32 +14,28 @@ datasource db {
 }
 
 model User {
-  id        String     @id @default(cuid())
-  email     String
-  createdAt DateTime
-  vagabonds Vagabond[]
-}
-
-enum Drive {
-  JUSTICE
-  PRINCIPLES
-  LOYALTY
-  AMBITION
+  id           String     @id
+  email        String     @unique
+  username     String
+  firstName    String
+  lastName     String
+  profileImage String
+  createdAt    DateTime   @default(now())
+  uppdatedAt   DateTime   @updatedAt
+  vagabonds    Vagabond[]
 }
 
 model Vagabond {
-  id   String @id @default(cuid())
-  name String
-
-  charm           Int @default(0)
-  cunning         Int @default(0)
-  finesse         Int @default(0)
-  luck            Int @default(0)
-  might           Int @default(0)
-  availablePoints Int @default(5)
-
-  user   User   @relation(fields: [userId], references: [id])
-  userId String
+  id              String @id @default(cuid())
+  name            String
+  charm           Int    @default(0)
+  cunning         Int    @default(0)
+  finesse         Int    @default(0)
+  luck            Int    @default(0)
+  might           Int    @default(0)
+  availablePoints Int    @default(5)
+  userId          String
+  user            User   @relation(fields: [userId], references: [id])
 
   @@index([userId])
 }
