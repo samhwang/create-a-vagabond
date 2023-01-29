@@ -17,7 +17,7 @@ export function VagabondListPage() {
   );
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 2 }}>
+    <Container maxWidth="xs" sx={{ mt: 2 }}>
       <VagabondList user={data.me} title="Your vagabonds" />
     </Container>
   );

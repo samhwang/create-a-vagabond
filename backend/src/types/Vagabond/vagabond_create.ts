@@ -9,13 +9,13 @@ builder.relayMutationField(
   },
   {
     errors: { types: [Error] },
-    resolve: async (_, { input }) => {
-      const user = await prisma.user.findFirstOrThrow();
+    resolve: async (_, { input }, ctx) => {
+      if (!ctx.session?.userId) throw new Error('Please login!')
 
       const vagabond = await prisma.vagabond.create({
         data: {
           name: input.name,
-          userId: user.id,
+          userId: ctx.session.userId,
         },
       });
 

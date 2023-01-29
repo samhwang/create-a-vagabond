@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ee5e721538a6cbfb24a45954cfbd297d>>
+ * @generated SignedSource<<74dfdce81883ab29cdc343cdbf64cdf8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -210,6 +210,18 @@ return {
                       }
                     ],
                     "storageKey": null
+                  },
+                  {
+                    "kind": "ClientExtension",
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "__id",
+                        "storageKey": null
+                      }
+                    ]
                   }
                 ],
                 "storageKey": null
@@ -243,6 +255,6 @@ return {
 };
 })();
 
-(node as any).hash = "065c68fd162620df7effdf347c2eca9c";
+(node as any).hash = "b50d7f193925a4c074f0f0ebe4d13138";
 
 export default node;

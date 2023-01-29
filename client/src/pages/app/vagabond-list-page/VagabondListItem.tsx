@@ -1,6 +1,6 @@
 import { graphql, useFragment } from 'react-relay';
 import { useNavigate } from 'react-router-dom';
-import { IconButton, ListItem, ListItemSecondaryAction, ListItemText } from '@mui/material';
+import { Divider, IconButton, ListItem, ListItemSecondaryAction, ListItemText } from '@mui/material';
 import { ChevronRight } from '@mui/icons-material';
 import { VagabondListItem_vagabond$key } from './__generated__/VagabondListItem_vagabond.graphql';
 
@@ -22,13 +22,16 @@ export function VagabondListItem({ vagabond }: VagabondListItemProps) {
   );
 
   return (
-    <ListItem>
-      <ListItemText primary={vagabondFragment.name} secondary={`${vagabondFragment.availablePoints} points left`} />
-      <ListItemSecondaryAction>
-        <IconButton onClick={() => navigate(vagabondFragment.id)}>
-          <ChevronRight />
-        </IconButton>
-      </ListItemSecondaryAction>
-    </ListItem>
+    <>
+      <ListItem>
+        <ListItemText primary={vagabondFragment.name} secondary={`${vagabondFragment.availablePoints} points left`} />
+        <ListItemSecondaryAction>
+          <IconButton onClick={() => navigate(vagabondFragment.id)}>
+            <ChevronRight />
+          </IconButton>
+        </ListItemSecondaryAction>
+      </ListItem>
+      <Divider variant='middle' />
+    </>
   );
 }

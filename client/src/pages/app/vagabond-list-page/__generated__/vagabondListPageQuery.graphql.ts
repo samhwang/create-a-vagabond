@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7f4f0224a9b2a7c758a1d7d6398f4ace>>
+ * @generated SignedSource<<4d839647570bf0759cd7e7362f064170>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -163,6 +163,18 @@ return {
                   }
                 ],
                 "storageKey": null
+              },
+              {
+                "kind": "ClientExtension",
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "__id",
+                    "storageKey": null
+                  }
+                ]
               }
             ],
             "storageKey": "vagabondConnection(first:10)"

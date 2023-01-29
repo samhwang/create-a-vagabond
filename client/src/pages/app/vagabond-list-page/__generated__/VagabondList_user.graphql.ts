@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c8c8ce116eb752a77f52362e3443352b>>
+ * @generated SignedSource<<d765dc06c04a6b844c8a6e5e4275eb59>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,6 +13,7 @@ import { FragmentRefs } from "relay-runtime";
 export type VagabondList_user$data = {
   readonly id: string;
   readonly vagabondConnection: {
+    readonly __id: string;
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly " $fragmentSpreads": FragmentRefs<"VagabondListItem_vagabond">;
@@ -146,6 +147,18 @@ return {
             }
           ],
           "storageKey": null
+        },
+        {
+          "kind": "ClientExtension",
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "__id",
+              "storageKey": null
+            }
+          ]
         }
       ],
       "storageKey": null
@@ -163,6 +176,6 @@ return {
 };
 })();
 
-(node as any).hash = "065c68fd162620df7effdf347c2eca9c";
+(node as any).hash = "b50d7f193925a4c074f0f0ebe4d13138";
 
 export default node;
