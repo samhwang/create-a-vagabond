@@ -14,7 +14,9 @@ builder.relayMutationField(
   },
   {
     errors: { types: [Error] },
-    resolve: async (_, { input }) => {
+    resolve: async (_, { input }, ctx) => {
+      if (!ctx.session) throw new Error('Please login!')
+
       if (input.vagabondId.typename !== 'Vagabond') {
         throw new Error('ID is wrong');
       }
@@ -22,6 +24,10 @@ builder.relayMutationField(
       const vagabond = await prisma.vagabond.findUniqueOrThrow({
         where: { id: input.vagabondId.id },
       });
+
+      if (vagabond.userId !== ctx.session.userId) {
+        throw new Error(`${vagabond.name} is not your Vagabond`)
+      }
 
       const { charm, cunning, finesse, luck, might } = input;
 
