@@ -1,6 +1,6 @@
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';
 import { IconButton, InputAdornment, TextField, TextFieldProps } from '@mui/material';
-import { Add, Remove } from '@mui/icons-material'
+import { Add, Remove } from '@mui/icons-material';
 
 export type RHFQuantityFieldProps<T extends FieldValues> = Omit<
   TextFieldProps,
@@ -10,7 +10,14 @@ export type RHFQuantityFieldProps<T extends FieldValues> = Omit<
   control: Control<T>;
 };
 
-export function RHFQuantityField<T extends FieldValues>({ control, name, disabled, inputProps, InputProps, ...props }: RHFQuantityFieldProps<T>) {
+export function RHFQuantityField<T extends FieldValues>({
+  control,
+  name,
+  disabled,
+  inputProps,
+  InputProps,
+  ...props
+}: RHFQuantityFieldProps<T>) {
   return (
     <Controller
       control={control}
@@ -31,26 +38,20 @@ export function RHFQuantityField<T extends FieldValues>({ control, name, disable
             sx: {
               textAlign: 'center',
               ...inputProps?.sx,
-            }
+            },
           }}
           InputProps={{
             ...InputProps,
             startAdornment: (
               <InputAdornment position="start">
-                <IconButton
-                  disabled={disabled}
-                  onClick={() => field.onChange(field.value - 1)}
-                >
+                <IconButton disabled={disabled} onClick={() => field.onChange(field.value - 1)}>
                   <Remove />
                 </IconButton>
               </InputAdornment>
             ),
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton
-                  disabled={disabled}
-                  onClick={() => field.onChange(field.value + 1)}
-                >
+                <IconButton disabled={disabled} onClick={() => field.onChange(field.value + 1)}>
                   <Add />
                 </IconButton>
               </InputAdornment>

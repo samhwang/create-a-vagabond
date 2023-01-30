@@ -1,11 +1,11 @@
 import { StrictMode } from 'react';
-import './providers/i18n';
 import { createRoot } from 'react-dom/client';
-import { ThemeProvider } from './providers/theme';
+import { RouterProvider } from 'react-router-dom';
 import { SnackbarProvider } from 'notistack';
+import { ThemeProvider } from './providers/theme';
 import { AuthProvider } from './providers/auth';
 import { RelayProvider } from './providers/relay';
-import { RouterProvider } from 'react-router-dom';
+import './providers/i18n';
 import { router } from './pages/_router';
 import reportWebVitals from './reportWebVitals';
 

@@ -7,6 +7,7 @@
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
     "react/jsx-props-no-spreading": "off",
+    "react/jsx-no-duplicate-props": [2, { "ignoreCase": false }],
     "no-use-before-define": "off"
   }
 }

@@ -2,7 +2,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, Typog
 import { useSnackbar } from 'notistack';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { graphql, useFragment, useMutation } from 'react-relay';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import { RHFQuantityField } from '../../../components/RHF/RHFQuantityField';
 import {
   UpdateVagabondStatsDialogMutation,
@@ -94,15 +94,12 @@ export function UpdateVagabondStatsDialog({ open, onClose, vagabondFragment }: U
         <DialogTitle>Update stats</DialogTitle>
         <DialogContent>
           <Stack spacing={2}>
-            <Typography textAlign='right'>
-              {t("points", { count: vagabond.availablePoints })} left
-            </Typography>
+            <Typography textAlign="right">{t('points', { count: vagabond.availablePoints })} left</Typography>
             <RHFQuantityField sx={{ mt: 1 }} control={control} name="charm" label="Charm" />
             <RHFQuantityField control={control} name="cunning" label="Cunning" />
             <RHFQuantityField control={control} name="finesse" label="Finesse" />
             <RHFQuantityField control={control} name="luck" label="LucK" />
-            <RHFQuantityField control={control} name="might" label="Might"
-            />
+            <RHFQuantityField control={control} name="might" label="Might" />
           </Stack>
         </DialogContent>
         <DialogActions>
