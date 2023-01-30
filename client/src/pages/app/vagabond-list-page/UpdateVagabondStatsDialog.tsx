@@ -2,7 +2,8 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, Typog
 import { useSnackbar } from 'notistack';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { graphql, useFragment, useMutation } from 'react-relay';
-import { RHFNumberField } from '../../../components/RHF/RHFNumberField';
+import { useTranslation } from 'react-i18next'
+import { RHFQuantityField } from '../../../components/RHF/RHFQuantityField';
 import {
   UpdateVagabondStatsDialogMutation,
   VagabondUpdateStatsInput,
@@ -16,6 +17,7 @@ type UpdateVagabondStatsDialogProps = {
 };
 
 export function UpdateVagabondStatsDialog({ open, onClose, vagabondFragment }: UpdateVagabondStatsDialogProps) {
+  const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
 
   const vagabond = useFragment(
@@ -92,12 +94,15 @@ export function UpdateVagabondStatsDialog({ open, onClose, vagabondFragment }: U
         <DialogTitle>Update stats</DialogTitle>
         <DialogContent>
           <Stack spacing={2}>
-            <Typography>{vagabond.availablePoints} points available</Typography>
-            <RHFNumberField sx={{ mt: 1 }} control={control} name="charm" label="Charm" />
-            <RHFNumberField control={control} name="cunning" label="Cunning" />
-            <RHFNumberField control={control} name="finesse" label="Finesse" />
-            <RHFNumberField control={control} name="luck" label="LucK" />
-            <RHFNumberField control={control} name="might" label="Might" />
+            <Typography textAlign='right'>
+              {t("points", { count: vagabond.availablePoints })} left
+            </Typography>
+            <RHFQuantityField sx={{ mt: 1 }} control={control} name="charm" label="Charm" />
+            <RHFQuantityField control={control} name="cunning" label="Cunning" />
+            <RHFQuantityField control={control} name="finesse" label="Finesse" />
+            <RHFQuantityField control={control} name="luck" label="LucK" />
+            <RHFQuantityField control={control} name="might" label="Might"
+            />
           </Stack>
         </DialogContent>
         <DialogActions>
