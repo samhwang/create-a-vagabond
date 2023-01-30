@@ -1,12 +1,13 @@
 import { builder } from '../../builder';
 import { users } from '@clerk/clerk-sdk-node'
 import { User, UserType } from './model'
+import { GraphQLError } from 'graphql'
 
 builder.queryField('me', (t) =>
   t.field({
     type: UserType,
     resolve: async (_root, _args, ctx) => {
-      if (!ctx.session) throw new Error('Please login!')
+      if (!ctx.session) throw new GraphQLError('Please login!')
 
       const clerkUser = await users.getUser(ctx.session.userId)
       return new User(
