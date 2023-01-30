@@ -1,6 +1,6 @@
-import { graphql } from 'relay-runtime'
-import { readFragment } from 'relay-runtime/lib/store/ResolverFragments'
-import type { VagabondUsedPointsResolver$key } from './__generated__/VagabondUsedPointsResolver.graphql'
+import { graphql } from 'relay-runtime';
+import { readFragment } from 'relay-runtime/lib/store/ResolverFragments';
+import type { VagabondUsedPointsResolver$key } from './__generated__/VagabondUsedPointsResolver.graphql';
 
 /**
  * @RelayResolver
@@ -23,7 +23,7 @@ export default function vagabondUsedPointsResolver(ref: VagabondUsedPointsResolv
       }
     `,
     ref
-  )
+  );
 
-  return vagabond.charm + vagabond.cunning + vagabond.finesse + vagabond.luck + vagabond.might
+  return vagabond.charm + vagabond.cunning + vagabond.finesse + vagabond.luck + vagabond.might;
 }

@@ -7,19 +7,15 @@ import {
   UpdateVagabondStatsDialogMutation,
   VagabondUpdateStatsInput,
 } from './__generated__/UpdateVagabondStatsDialogMutation.graphql';
-import { UpdateVagabondStatsDialog_vagabond$key } from './__generated__/UpdateVagabondStatsDialog_vagabond.graphql'
+import { UpdateVagabondStatsDialog_vagabond$key } from './__generated__/UpdateVagabondStatsDialog_vagabond.graphql';
 
 type UpdateVagabondStatsDialogProps = {
   open: boolean;
   onClose: () => void;
-  vagabondFragment: UpdateVagabondStatsDialog_vagabond$key
+  vagabondFragment: UpdateVagabondStatsDialog_vagabond$key;
 };
 
-export function UpdateVagabondStatsDialog({
-  open,
-  onClose,
-  vagabondFragment
-}: UpdateVagabondStatsDialogProps) {
+export function UpdateVagabondStatsDialog({ open, onClose, vagabondFragment }: UpdateVagabondStatsDialogProps) {
   const { enqueueSnackbar } = useSnackbar();
 
   const vagabond = useFragment(
@@ -35,7 +31,7 @@ export function UpdateVagabondStatsDialog({
       }
     `,
     vagabondFragment
-  )
+  );
 
   const [updateStats, isOnFly] = useMutation<UpdateVagabondStatsDialogMutation>(graphql`
     mutation UpdateVagabondStatsDialogMutation($input: VagabondUpdateStatsInput!) {

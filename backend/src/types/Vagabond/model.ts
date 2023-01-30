@@ -1,6 +1,6 @@
+import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection';
 import { builder, prisma } from '../../builder';
-import { UserType } from '../User/model'
-import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection'
+import { UserType } from '../User/model';
 
 const VagabondType = builder.prismaNode('Vagabond', {
   id: { field: 'id' },
@@ -15,21 +15,23 @@ const VagabondType = builder.prismaNode('Vagabond', {
   }),
 });
 
-builder.objectField(UserType, 'vagabondConnection', t => t.connection(
-  {
+builder.objectField(UserType, 'vagabondConnection', (t) =>
+  t.connection({
     type: VagabondType,
     resolve: async (user, { first, last, before, after }) => {
       const connection = await findManyCursorConnection(
-        args => prisma.vagabond.findMany({
-          ...args,
-          where: { userId: user.id }
-        }),
-        () => prisma.vagabond.count({
-          where: { userId: user.id }
-        }),
+        (args) =>
+          prisma.vagabond.findMany({
+            ...args,
+            where: { userId: user.id },
+          }),
+        () =>
+          prisma.vagabond.count({
+            where: { userId: user.id },
+          }),
         { first, after, last, before }
-      )
-      return connection
-    }
-  }
-))
+      );
+      return connection;
+    },
+  })
+);

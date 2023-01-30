@@ -5,7 +5,7 @@ import { ChevronRight } from '@mui/icons-material';
 import { useState } from 'react';
 import { VagabondListItem_vagabond$key } from './__generated__/VagabondListItem_vagabond.graphql';
 import { UpdateVagabondStatsDialog } from './UpdateVagabondStatsDialog';
-import { UpdateVagabondStatsDialog_vagabond$key } from './__generated__/UpdateVagabondStatsDialog_vagabond.graphql'
+import { UpdateVagabondStatsDialog_vagabond$key } from './__generated__/UpdateVagabondStatsDialog_vagabond.graphql';
 
 type VagabondListItemProps = {
   vagabondFragment: VagabondListItem_vagabond$key;
@@ -18,7 +18,7 @@ export function VagabondListItem({ vagabondFragment }: VagabondListItemProps) {
       fragment VagabondListItem_vagabond on Vagabond {
         id
         name
-        
+
         charm
         cunning
         finesse
@@ -46,10 +46,7 @@ export function VagabondListItem({ vagabondFragment }: VagabondListItemProps) {
           primary={
             <Stack direction="row" spacing={1} alignItems="center">
               <span>{vagabond.name}</span>
-              <UpdateStatsChip
-                points={vagabond.availablePoints}
-                vagabondFragment={vagabond}
-              />
+              <UpdateStatsChip points={vagabond.availablePoints} vagabondFragment={vagabond} />
             </Stack>
           }
           secondary={currentStats}
@@ -67,7 +64,7 @@ export function VagabondListItem({ vagabondFragment }: VagabondListItemProps) {
 
 type UpdateStatsChipProps = {
   points: number;
-  vagabondFragment: UpdateVagabondStatsDialog_vagabond$key
+  vagabondFragment: UpdateVagabondStatsDialog_vagabond$key;
 };
 
 function UpdateStatsChip({ points, vagabondFragment }: UpdateStatsChipProps) {
@@ -75,11 +72,7 @@ function UpdateStatsChip({ points, vagabondFragment }: UpdateStatsChipProps) {
   return (
     <>
       <Chip label={points} variant="outlined" color="error" onClick={() => setOpen(true)} />
-      <UpdateVagabondStatsDialog
-        open={open}
-        onClose={() => setOpen(false)}
-        vagabondFragment={vagabondFragment}
-      />
+      <UpdateVagabondStatsDialog open={open} onClose={() => setOpen(false)} vagabondFragment={vagabondFragment} />
     </>
   );
 }

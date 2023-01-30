@@ -15,7 +15,7 @@ builder.relayMutationField(
   {
     errors: { types: [Error] },
     resolve: async (_, { input }, ctx) => {
-      if (!ctx.session) throw new Error('Please login!')
+      if (!ctx.session) throw new Error('Please login!');
 
       if (input.vagabondId.typename !== 'Vagabond') {
         throw new Error('ID is wrong');
@@ -26,7 +26,7 @@ builder.relayMutationField(
       });
 
       if (vagabond.userId !== ctx.session.userId) {
-        throw new Error(`${vagabond.name} is not your Vagabond`)
+        throw new Error(`${vagabond.name} is not your Vagabond`);
       }
 
       const { charm, cunning, finesse, luck, might } = input;
