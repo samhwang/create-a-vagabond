@@ -12,9 +12,7 @@ export function AppRoot() {
     graphql`
       query LayoutQuery {
         me {
-          profile {
-            profileImage
-          }
+          profileImage
         }
       }
     `,
@@ -37,7 +35,7 @@ export function AppRoot() {
           >
             Home
           </Typography>
-          <UserMenuButton avatar={data.me.profile.profileImage} />
+          <UserMenuButton avatar={data.me.profileImage} />
         </Toolbar>
       </AppBar>
       <Suspense fallback={<CircularProgress />}>

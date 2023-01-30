@@ -7,9 +7,7 @@ function IndexPage() {
       query indexPageQuery {
         me {
           id
-          profile {
-            email
-          }
+          email
         }
       }
     `,
@@ -19,7 +17,7 @@ function IndexPage() {
   return (
     <div className="flex justify-center">
       <div>
-        <p>{data.me.profile.email}</p>
+        <p>{data.me.email}</p>
       </div>
     </div>
   );

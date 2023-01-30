@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f9e329b38f7cf1e2af57e1b86d23bd3e>>
+ * @generated SignedSource<<c53a3d577eccdc2ed838341c602f5285>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,9 +12,7 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 export type LayoutQuery$variables = {};
 export type LayoutQuery$data = {
   readonly me: {
-    readonly profile: {
-      readonly profileImage: string | null;
-    };
+    readonly profileImage: string;
   };
 };
 export type LayoutQuery = {
@@ -26,19 +24,8 @@ const node: ConcreteRequest = (function(){
 var v0 = {
   "alias": null,
   "args": null,
-  "concreteType": "UserProfile",
-  "kind": "LinkedField",
-  "name": "profile",
-  "plural": false,
-  "selections": [
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "profileImage",
-      "storageKey": null
-    }
-  ],
+  "kind": "ScalarField",
+  "name": "profileImage",
   "storageKey": null
 };
 return {
@@ -92,16 +79,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "39848490fa8ab6d80d94e81ceb878642",
+    "cacheID": "90648bb9e590a6cce059088f9840bbab",
     "id": null,
     "metadata": {},
     "name": "LayoutQuery",
     "operationKind": "query",
-    "text": "query LayoutQuery {\n  me {\n    profile {\n      profileImage\n    }\n    id\n  }\n}\n"
+    "text": "query LayoutQuery {\n  me {\n    profileImage\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "0e32cd717abb22f6cd52256de684b559";
+(node as any).hash = "9fb6a1525b7f3f7a419bd635e11c72f1";
 
 export default node;

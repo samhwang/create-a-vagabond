@@ -43,17 +43,13 @@ type Query {
 }
 
 type User implements Node {
-  id: ID!
-  profile: UserProfile!
-  vagabondConnection(after: String, before: String, first: Int, last: Int): UserVagabondConnection!
-}
-
-type UserProfile {
   email: String!
   firstName: String
+  id: ID!
   lastName: String
-  profileImage: String
+  profileImage: String!
   username: String
+  vagabondConnection(after: String, before: String, first: Int, last: Int): UserVagabondConnection!
 }
 
 type UserVagabondConnection {

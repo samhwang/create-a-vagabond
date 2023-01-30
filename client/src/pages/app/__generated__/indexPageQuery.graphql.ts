@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9434f58d7da0f2ff8e520f1dc81628a9>>
+ * @generated SignedSource<<0d242d028768ce327de712357e2e294b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,10 +12,8 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 export type indexPageQuery$variables = {};
 export type indexPageQuery$data = {
   readonly me: {
+    readonly email: string;
     readonly id: string;
-    readonly profile: {
-      readonly email: string;
-    };
   };
 };
 export type indexPageQuery = {
@@ -43,19 +41,8 @@ var v0 = [
       {
         "alias": null,
         "args": null,
-        "concreteType": "UserProfile",
-        "kind": "LinkedField",
-        "name": "profile",
-        "plural": false,
-        "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "email",
-            "storageKey": null
-          }
-        ],
+        "kind": "ScalarField",
+        "name": "email",
         "storageKey": null
       }
     ],
@@ -80,16 +67,16 @@ return {
     "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "749f5965fccd1c42e0bb8b3f3cd46918",
+    "cacheID": "0687e004dd773e14fcfb7c3fc6a65adf",
     "id": null,
     "metadata": {},
     "name": "indexPageQuery",
     "operationKind": "query",
-    "text": "query indexPageQuery {\n  me {\n    id\n    profile {\n      email\n    }\n  }\n}\n"
+    "text": "query indexPageQuery {\n  me {\n    id\n    email\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "4053608b484b9a345b740d337d6676cd";
+(node as any).hash = "6444907175497abba26c2232e2c59b04";
 
 export default node;

@@ -13,12 +13,6 @@ datasource db {
   relationMode = "prisma"
 }
 
-model User {
-  id        String     @id
-  createdAt DateTime   @default(now())
-  vagabonds Vagabond[]
-}
-
 model Vagabond {
   id              String @id @default(cuid())
   name            String
@@ -29,7 +23,6 @@ model Vagabond {
   might           Int    @default(0)
   availablePoints Int    @default(5)
   userId          String
-  user            User   @relation(fields: [userId], references: [id])
 
   @@index([userId])
 }
