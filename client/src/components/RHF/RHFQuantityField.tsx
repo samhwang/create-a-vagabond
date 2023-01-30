@@ -10,7 +10,7 @@ export type RHFQuantityFieldProps<T extends FieldValues> = Omit<
   control: Control<T>;
 };
 
-export function RHFQuantityField<T extends FieldValues>({ control, name, disabled, ...props }: RHFQuantityFieldProps<T>) {
+export function RHFQuantityField<T extends FieldValues>({ control, name, disabled, inputProps, InputProps, ...props }: RHFQuantityFieldProps<T>) {
   return (
     <Controller
       control={control}
@@ -27,9 +27,14 @@ export function RHFQuantityField<T extends FieldValues>({ control, name, disable
           onChange={(event) => field.onChange(parseInt(event.target.value, 10))}
           disabled
           inputProps={{
-            sx: { textAlign: 'center' }
+            ...inputProps,
+            sx: {
+              textAlign: 'center',
+              ...inputProps?.sx,
+            }
           }}
           InputProps={{
+            ...InputProps,
             startAdornment: (
               <InputAdornment position="start">
                 <IconButton
