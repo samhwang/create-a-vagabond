@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6a1505a761ec7916cb0e4fe0f4f59cf3>>
+ * @generated SignedSource<<16a6ec180742ac33cd9f5481c8c67a5a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -116,13 +116,6 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "availablePoints",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
                         "name": "charm",
                         "storageKey": null
                       },
@@ -152,6 +145,13 @@ return {
                         "args": null,
                         "kind": "ScalarField",
                         "name": "might",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "availablePoints",
                         "storageKey": null
                       },
                       {
@@ -229,12 +229,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "772bcead4f618aa30c1bade8fbedde37",
+    "cacheID": "f9b4e1a98ea8a34621435c7f6193d15b",
     "id": null,
     "metadata": {},
     "name": "vagabondListPageQuery",
     "operationKind": "query",
-    "text": "query vagabondListPageQuery {\n  me {\n    id\n    ...VagabondList_user\n  }\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  availablePoints\n  charm\n  cunning\n  finesse\n  luck\n  might\n}\n\nfragment VagabondList_user on User {\n  vagabondConnection(first: 10) {\n    edges {\n      node {\n        ...VagabondListItem_vagabond\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n"
+    "text": "query vagabondListPageQuery {\n  me {\n    id\n    ...VagabondList_user\n  }\n}\n\nfragment UpdateVagabondStatsDialog_vagabond on Vagabond {\n  id\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n  ...UpdateVagabondStatsDialog_vagabond\n}\n\nfragment VagabondList_user on User {\n  vagabondConnection(first: 10) {\n    edges {\n      node {\n        ...VagabondListItem_vagabond\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n"
   }
 };
 })();

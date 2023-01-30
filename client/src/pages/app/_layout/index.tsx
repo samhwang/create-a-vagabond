@@ -1,5 +1,5 @@
 import { useAuth } from '@clerk/clerk-react';
-import { AppBar, CircularProgress, styled, Toolbar, Typography } from '@mui/material';
+import { AppBar, CircularProgress, Toolbar, Typography } from '@mui/material';
 import { Suspense } from 'react';
 import { graphql, useLazyLoadQuery } from 'react-relay';
 import { Link, Navigate, Outlet } from 'react-router-dom';

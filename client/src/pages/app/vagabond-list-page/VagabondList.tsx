@@ -44,7 +44,7 @@ export function VagabondList({ user, title }: VagabondListProps) {
       >
         {data.vagabondConnection.edges.map((edge) => {
           if (!edge?.node) return null;
-          return <VagabondListItem vagabond={edge.node} />;
+          return <VagabondListItem vagabondFragment={edge.node} />;
         })}
       </List>
     </Paper>

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<10bef02a6515445c3696739723c8659c>>
+ * @generated SignedSource<<f375cf212e061d443c30d7223ddd81bf>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -190,13 +190,6 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "availablePoints",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
                         "name": "charm",
                         "storageKey": null
                       },
@@ -227,6 +220,13 @@ return {
                         "kind": "ScalarField",
                         "name": "might",
                         "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "availablePoints",
+                        "storageKey": null
                       }
                     ],
                     "storageKey": null
@@ -244,12 +244,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "08066a38465efccb21b67d427817c547",
+    "cacheID": "281ec6b03269b1c75c2aa6d413799244",
     "id": null,
     "metadata": {},
     "name": "UpdateVagabondStatsDialogMutation",
     "operationKind": "mutation",
-    "text": "mutation UpdateVagabondStatsDialogMutation(\n  $input: VagabondUpdateStatsInput!\n) {\n  vagabondUpdateStats(input: $input) {\n    __typename\n    ... on Error {\n      message\n    }\n    ... on MutationVagabondUpdateStatsSuccess {\n      data {\n        vagabond {\n          ...VagabondListItem_vagabond\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  availablePoints\n  charm\n  cunning\n  finesse\n  luck\n  might\n}\n"
+    "text": "mutation UpdateVagabondStatsDialogMutation(\n  $input: VagabondUpdateStatsInput!\n) {\n  vagabondUpdateStats(input: $input) {\n    __typename\n    ... on Error {\n      message\n    }\n    ... on MutationVagabondUpdateStatsSuccess {\n      data {\n        vagabond {\n          ...VagabondListItem_vagabond\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment UpdateVagabondStatsDialog_vagabond on Vagabond {\n  id\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n  ...UpdateVagabondStatsDialog_vagabond\n}\n"
   }
 };
 })();

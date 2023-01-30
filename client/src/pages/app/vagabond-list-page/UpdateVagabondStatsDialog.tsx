@@ -1,28 +1,41 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, Typography } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { graphql, useMutation } from 'react-relay';
+import { graphql, useFragment, useMutation } from 'react-relay';
 import { RHFNumberField } from '../../../components/RHF/RHFNumberField';
-import { RHFTextField } from '../../../components/RHF/RHFTextField';
 import {
   UpdateVagabondStatsDialogMutation,
   VagabondUpdateStatsInput,
 } from './__generated__/UpdateVagabondStatsDialogMutation.graphql';
+import { UpdateVagabondStatsDialog_vagabond$key } from './__generated__/UpdateVagabondStatsDialog_vagabond.graphql'
 
 type UpdateVagabondStatsDialogProps = {
   open: boolean;
   onClose: () => void;
-  vagabondId: string;
-  availablePoints: number;
+  vagabondFragment: UpdateVagabondStatsDialog_vagabond$key
 };
 
 export function UpdateVagabondStatsDialog({
   open,
   onClose,
-  vagabondId,
-  availablePoints,
+  vagabondFragment
 }: UpdateVagabondStatsDialogProps) {
   const { enqueueSnackbar } = useSnackbar();
+
+  const vagabond = useFragment(
+    graphql`
+      fragment UpdateVagabondStatsDialog_vagabond on Vagabond {
+        id
+        charm
+        cunning
+        finesse
+        luck
+        might
+        availablePoints
+      }
+    `,
+    vagabondFragment
+  )
 
   const [updateStats, isOnFly] = useMutation<UpdateVagabondStatsDialogMutation>(graphql`
     mutation UpdateVagabondStatsDialogMutation($input: VagabondUpdateStatsInput!) {
@@ -44,12 +57,12 @@ export function UpdateVagabondStatsDialog({
 
   const { control, handleSubmit } = useForm<VagabondUpdateStatsInput>({
     defaultValues: {
-      charm: 0,
-      cunning: 0,
-      finesse: 0,
-      luck: 0,
-      might: 0,
-      vagabondId,
+      charm: vagabond.charm,
+      cunning: vagabond.cunning,
+      finesse: vagabond.finesse,
+      luck: vagabond.luck,
+      might: vagabond.might,
+      vagabondId: vagabond.id,
     },
   });
 
@@ -83,7 +96,7 @@ export function UpdateVagabondStatsDialog({
         <DialogTitle>Update stats</DialogTitle>
         <DialogContent>
           <Stack spacing={2}>
-            <Typography>{availablePoints} points available</Typography>
+            <Typography>{vagabond.availablePoints} points available</Typography>
             <RHFNumberField sx={{ mt: 1 }} control={control} name="charm" label="Charm" />
             <RHFNumberField control={control} name="cunning" label="Cunning" />
             <RHFNumberField control={control} name="finesse" label="Finesse" />

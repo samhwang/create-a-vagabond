@@ -1,9 +1,11 @@
-import { Environment, Network, RecordSource, Store, FetchFunction } from 'relay-runtime';
+import { Environment, Network, RecordSource, Store, FetchFunction, RelayFeatureFlags } from 'relay-runtime';
 import Clerk from '@clerk/clerk-js';
 
 import { RelayEnvironmentProvider } from 'react-relay';
 import { Suspense, ReactNode } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
+
+RelayFeatureFlags.ENABLE_RELAY_RESOLVERS = true
 
 const clerkPublicKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 const clerk = new Clerk(clerkPublicKey);

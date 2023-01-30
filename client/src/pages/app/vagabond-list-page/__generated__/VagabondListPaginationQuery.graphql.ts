@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e4a1bd689d0b12fc54e571da2430cb2b>>
+ * @generated SignedSource<<5810f9400ec0ce156b9afb6bb1463000>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -169,13 +169,6 @@ return {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
-                            "name": "availablePoints",
-                            "storageKey": null
-                          },
-                          {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
                             "name": "charm",
                             "storageKey": null
                           },
@@ -205,6 +198,13 @@ return {
                             "args": null,
                             "kind": "ScalarField",
                             "name": "might",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "availablePoints",
                             "storageKey": null
                           },
                           (v2/*: any*/)
@@ -280,12 +280,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "9b8ba5f85146c946c182f505c594e5da",
+    "cacheID": "5c4053d14f9969b8b05cf6bb43aa971a",
     "id": null,
     "metadata": {},
     "name": "VagabondListPaginationQuery",
     "operationKind": "query",
-    "text": "query VagabondListPaginationQuery(\n  $count: Int = 10\n  $cursor: String\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...VagabondList_user_1G22uz\n    id\n  }\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  availablePoints\n  charm\n  cunning\n  finesse\n  luck\n  might\n}\n\nfragment VagabondList_user_1G22uz on User {\n  vagabondConnection(first: $count, after: $cursor) {\n    edges {\n      node {\n        ...VagabondListItem_vagabond\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n"
+    "text": "query VagabondListPaginationQuery(\n  $count: Int = 10\n  $cursor: String\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...VagabondList_user_1G22uz\n    id\n  }\n}\n\nfragment UpdateVagabondStatsDialog_vagabond on Vagabond {\n  id\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n  ...UpdateVagabondStatsDialog_vagabond\n}\n\nfragment VagabondList_user_1G22uz on User {\n  vagabondConnection(first: $count, after: $cursor) {\n    edges {\n      node {\n        ...VagabondListItem_vagabond\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n"
   }
 };
 })();

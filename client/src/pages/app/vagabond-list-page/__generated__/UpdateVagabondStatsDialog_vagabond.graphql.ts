@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<cb302fe14428e1ac965d0e91a0136405>>
+ * @generated SignedSource<<06f42e0ff1eebb0dbdeee38ed3c4307e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,7 +10,7 @@
 
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type VagabondListItem_vagabond$data = {
+export type UpdateVagabondStatsDialog_vagabond$data = {
   readonly availablePoints: number;
   readonly charm: number;
   readonly cunning: number;
@@ -18,33 +18,24 @@ export type VagabondListItem_vagabond$data = {
   readonly id: string;
   readonly luck: number;
   readonly might: number;
-  readonly name: string;
-  readonly " $fragmentSpreads": FragmentRefs<"UpdateVagabondStatsDialog_vagabond">;
-  readonly " $fragmentType": "VagabondListItem_vagabond";
+  readonly " $fragmentType": "UpdateVagabondStatsDialog_vagabond";
 };
-export type VagabondListItem_vagabond$key = {
-  readonly " $data"?: VagabondListItem_vagabond$data;
-  readonly " $fragmentSpreads": FragmentRefs<"VagabondListItem_vagabond">;
+export type UpdateVagabondStatsDialog_vagabond$key = {
+  readonly " $data"?: UpdateVagabondStatsDialog_vagabond$data;
+  readonly " $fragmentSpreads": FragmentRefs<"UpdateVagabondStatsDialog_vagabond">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "VagabondListItem_vagabond",
+  "name": "UpdateVagabondStatsDialog_vagabond",
   "selections": [
     {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
       "name": "id",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "name",
       "storageKey": null
     },
     {
@@ -88,17 +79,12 @@ const node: ReaderFragment = {
       "kind": "ScalarField",
       "name": "availablePoints",
       "storageKey": null
-    },
-    {
-      "args": null,
-      "kind": "FragmentSpread",
-      "name": "UpdateVagabondStatsDialog_vagabond"
     }
   ],
   "type": "Vagabond",
   "abstractKey": null
 };
 
-(node as any).hash = "f21fcc6dd9b6339772267972ed0eba1f";
+(node as any).hash = "2c74da79a7baeb008c54ce16b7394326";
 
 export default node;
