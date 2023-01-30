@@ -5,4 +5,4 @@ coverage
 public/mockServiceWorker.js
 
 # Genereated by Vite during dev
-vite.config.ts.timestamp-*.mjs
+vite.config.ts.timestamp-**
