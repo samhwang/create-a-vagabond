@@ -1,18 +1,16 @@
-import { users } from '@clerk/clerk-sdk-node';
+import clerk from '@clerk/clerk-sdk-node';
 import { builder } from '../../builder';
 
-export class User {
-  constructor(
-    readonly id: string,
-    readonly email: string,
-    readonly profileImage: string,
-    readonly username?: string,
-    readonly firstName?: string,
-    readonly lastName?: string
-  ) {}
+type User = {
+  id: string
+  email: string
+  profileImage: string
+  username?: string
+  firstName?: string
+  lastName?: string
 }
 
-export const UserType = builder.node(User, {
+export const UserType: PothosSchemaTypes.ObjectRef<User, User> = builder.node('User' as any, {
   id: { resolve: (user) => user.id },
   name: 'User',
   fields: (t) => ({
@@ -23,23 +21,15 @@ export const UserType = builder.node(User, {
     profileImage: t.exposeString('profileImage'),
   }),
   loadOne: async (id) => {
-    const clerkUser = await users.getUser(id);
-    // return {
-    //   id,
-    //   email: clerkUser.emailAddresses[0].emailAddress,
-    //   profileImage: clerkUser.profileImageUrl,
-    //   username: clerkUser.username,
-    //   firstName: clerkUser.firstName,
-    //   lastName: clerkUser.lastName,
-    // }
-    return new User(
+    const clerkUser = await clerk.users.getUser(id);
+    return {
       id,
-      clerkUser.emailAddresses[0].emailAddress,
-      clerkUser.profileImageUrl,
-      clerkUser.username || undefined,
-      clerkUser.firstName || undefined,
-      clerkUser.lastName || undefined
-    );
+      email: clerkUser.emailAddresses[0].emailAddress,
+      profileImage: clerkUser.profileImageUrl,
+      username: clerkUser.username || undefined,
+      firstName: clerkUser.firstName || undefined,
+      lastName: clerkUser.lastName || undefined,
+    }
   },
 });
 
@@ -47,7 +37,7 @@ builder.prismaObjectField('Vagabond', 'user', (t) =>
   t.field({
     type: UserType,
     resolve: async (vagabond) => {
-      const clerkUser = await users.getUser(vagabond.userId);
+      const clerkUser = await clerk.users.getUser(vagabond.userId);
       return {
         id: vagabond.userId,
         email: clerkUser.emailAddresses[0].emailAddress,
