@@ -2,13 +2,13 @@ import clerk from '@clerk/clerk-sdk-node';
 import { builder } from '../../builder';
 
 type User = {
-  id: string
-  email: string
-  profileImage: string
-  username?: string
-  firstName?: string
-  lastName?: string
-}
+  id: string;
+  email: string;
+  profileImage: string;
+  username?: string;
+  firstName?: string;
+  lastName?: string;
+};
 
 export const UserType: PothosSchemaTypes.ObjectRef<User, User> = builder.node('User' as any, {
   id: { resolve: (user) => user.id },
@@ -29,7 +29,7 @@ export const UserType: PothosSchemaTypes.ObjectRef<User, User> = builder.node('U
       username: clerkUser.username || undefined,
       firstName: clerkUser.firstName || undefined,
       lastName: clerkUser.lastName || undefined,
-    }
+    };
   },
 });
 

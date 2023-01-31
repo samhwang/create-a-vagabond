@@ -13,17 +13,17 @@ const clerk = new Clerk(clerkPublicKey);
 const fetchQuery: FetchFunction = async (operation, variables, cacheConfig, uploadables) => {
   await clerk.load();
   if (!clerk.session) {
-    clerk.openSignIn()
-    return
+    clerk.openSignIn();
+    return;
   }
 
-  const session_id = clerk.session.id;
+  const sessionId = clerk.session.id;
   const jwt = localStorage.getItem('clerk-db-jwt');
   return fetch('/.netlify/functions/graphql', {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
-      session_id,
+      session_id: sessionId,
       ...(jwt ? { authorization: `Bearer ${jwt}` } : {}),
     },
     body: JSON.stringify({

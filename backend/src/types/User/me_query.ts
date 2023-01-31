@@ -17,7 +17,7 @@ builder.queryField('me', (t) =>
         username: clerkUser.username || undefined,
         firstName: clerkUser.firstName || undefined,
         lastName: clerkUser.lastName || undefined,
-      }
+      };
     },
   })
 );
