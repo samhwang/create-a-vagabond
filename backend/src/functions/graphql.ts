@@ -10,9 +10,9 @@ const yoga = createYoga({
 });
 
 export const handler: Handler = async (event, context) => {
-  const { sessionid, authorization } = event.headers;
+  const { session_id, authorization } = event.headers;
   const clientToken = authorization?.replace('Bearer ', '');
-  const session = await getClerkSession(sessionid, clientToken);
+  const session = await getClerkSession(session_id, clientToken);
 
   const response = await yoga.fetch(
     event.rawUrl,

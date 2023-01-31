@@ -24,6 +24,14 @@ export const UserType = builder.node(User, {
   }),
   loadOne: async (id) => {
     const clerkUser = await users.getUser(id);
+    // return {
+    //   id,
+    //   email: clerkUser.emailAddresses[0].emailAddress,
+    //   profileImage: clerkUser.profileImageUrl,
+    //   username: clerkUser.username,
+    //   firstName: clerkUser.firstName,
+    //   lastName: clerkUser.lastName,
+    // }
     return new User(
       id,
       clerkUser.emailAddresses[0].emailAddress,
