@@ -1,3 +1,3 @@
-import './model'
+import './model';
 
-import './query_vagabondClassConnection'
+import './query_vagabondClassConnection';

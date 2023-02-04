@@ -1,9 +1,9 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 const seedClasses = async () => {
-  await prisma.vagabondClass.deleteMany({})
+  await prisma.vagabondClass.deleteMany({});
 
   const seeded = await prisma.vagabondClass.createMany({
     data: [
@@ -115,9 +115,9 @@ const seedClasses = async () => {
         startingRoguishFeats: ['pick_lock', 'sleight_of_hand'],
         startingWeaponSkills: ['harry', 'improvise', 'quick_shot', 'vicious_strike'],
       },
-    ]
-  })
-  console.log(`There are ${seeded.count} classes are created`)
-}
+    ],
+  });
+  console.log(`There are ${seeded.count} classes are created`);
+};
 
-seedClasses()
+seedClasses();

@@ -1,18 +1,18 @@
-import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, Stack } from '@mui/material';
+import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, Stack } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
-import { graphql, useFragment, useMutation, useRefetchableFragment } from 'react-relay';
+import { graphql, useFragment, useMutation } from 'react-relay';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Suspense, useEffect } from 'react';
 import { RHFTextField } from '../../../../components/RHF/RHFTextField';
 import {
   CreateVagabondDialogMutation,
   VagabondCreateInput,
 } from './__generated__/CreateVagabondDialogMutation.graphql';
-import { VagabondClassSelect } from './VagabondClassSelect'
-import { CreateVagabondDialog_query$key } from './__generated__/CreateVagabondDialog_query.graphql'
-import { Suspense, useEffect } from 'react'
-import { ClassSpecificFields } from './ClassSpecificFields'
+import { VagabondClassSelect } from './VagabondClassSelect';
+import { CreateVagabondDialog_query$key } from './__generated__/CreateVagabondDialog_query.graphql';
+import { ClassSpecificFields } from './ClassSpecificFields';
 
 const CreateVagabondInputSchema = z.object({
   name: z.string(),
@@ -31,7 +31,7 @@ type CreateVagabondDialogProps = {
   onClose: () => void;
   connectionIds: string[];
 
-  queryRef: CreateVagabondDialog_query$key
+  queryRef: CreateVagabondDialog_query$key;
 };
 
 export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }: CreateVagabondDialogProps) {
@@ -43,7 +43,7 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
       }
     `,
     queryRef
-  )
+  );
 
   const { enqueueSnackbar } = useSnackbar();
   const [createVagabond, isOnFly] = useMutation<CreateVagabondDialogMutation>(graphql`
@@ -68,14 +68,14 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
   const methods = useForm<VagabondCreateInput>({
     resolver: zodResolver(CreateVagabondInputSchema),
     defaultValues: {
-      drives: []
-    }
+      drives: [],
+    },
   });
-  const selectedClassId = methods.watch('class')
+  const selectedClassId = methods.watch('class');
 
   useEffect(() => {
-    methods.reset({ drives: [] })
-  }, [open])
+    methods.reset({ drives: [] });
+  }, [open, methods]);
 
   const onSubmit: SubmitHandler<VagabondCreateInput> = (data) => {
     createVagabond({
@@ -96,7 +96,7 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
 
         if (response.vagabondCreate.__typename === 'MutationVagabondCreateSuccess') {
           enqueueSnackbar(`${response.vagabondCreate.data.vagabond.name} is created`, { variant: 'success' });
-          methods.reset({})
+          methods.reset({});
           onClose();
         }
       },
@@ -109,33 +109,23 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <DialogTitle>Create new Vagabond</DialogTitle>
           <DialogContent>
-            <Stack direction='column' spacing={2}>
-              <RHFTextField
-                control={methods.control}
-                name="name"
-                label="Name"
-                disabled={isOnFly}
-                sx={{ mt: 1 }}
-              />
+            <Stack direction="column" spacing={2}>
+              <RHFTextField control={methods.control} name="name" label="Name" disabled={isOnFly} sx={{ mt: 1 }} />
               <VagabondClassSelect
                 control={methods.control}
-                name='class'
-                label='Class'
+                name="class"
+                label="Class"
                 disabled={isOnFly}
                 queryRef={query}
               />
               <Suspense
                 fallback={
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <CircularProgress />
+                    <CircularProgress />
                   </div>
                 }
               >
-                <ClassSpecificFields
-                  control={methods.control}
-                  queryRef={query}
-                  selectedClassId={selectedClassId}
-                />
+                <ClassSpecificFields control={methods.control} queryRef={query} selectedClassId={selectedClassId} />
               </Suspense>
             </Stack>
           </DialogContent>

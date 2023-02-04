@@ -1,25 +1,23 @@
-import { FieldValues, useController } from 'react-hook-form'
-import { RHFQuantityField, RHFQuantityFieldProps } from './RHFQuantityField'
+import { FieldValues, useController } from 'react-hook-form';
+import { RHFQuantityField, RHFQuantityFieldProps } from './RHFQuantityField';
 
-type RHFStatFieldProps<T extends FieldValues> =
-  & Omit<RHFQuantityFieldProps<T>, 'downDisabled' | 'upDisabled'>
-  & {
-    startingPoint: number
-    maxPoint?: number
-    hasPointLeft: boolean
-  }
+type RHFStatFieldProps<T extends FieldValues> = Omit<RHFQuantityFieldProps<T>, 'downDisabled' | 'upDisabled'> & {
+  startingPoint: number;
+  maxPoint?: number;
+  hasPointLeft: boolean;
+};
 
-export const RHFStatField = <T extends FieldValues>({
+export function RHFStatField<T extends FieldValues>({
   startingPoint,
   maxPoint = 2,
   hasPointLeft,
   ...props
-}: RHFStatFieldProps<T>) => {
+}: RHFStatFieldProps<T>) {
   const { field } = useController({
     control: props.control,
-    name: props.name
-  })
-  const currentPoint = field.value
+    name: props.name,
+  });
+  const currentPoint = field.value;
 
   return (
     <RHFQuantityField
@@ -27,5 +25,5 @@ export const RHFStatField = <T extends FieldValues>({
       downDisabled={currentPoint <= startingPoint}
       upDisabled={currentPoint >= maxPoint || !hasPointLeft}
     />
-  )
+  );
 }
