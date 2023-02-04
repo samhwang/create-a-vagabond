@@ -14,10 +14,12 @@
     "prisma:migrate:deploy": "prisma db push",
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
-    "prisma:format": "prisma format"
+    "prisma:format": "prisma format",
+    "seed": "npx ts-node -O '{\"module\": \"commonjs\"}' ./prisma/seed.ts"
   },
   "devDependencies": {
-    "prisma": "^4.9.0"
+    "prisma": "^4.9.0",
+    "ts-node": "^10.9.1"
   },
   "dependencies": {
     "@clerk/clerk-sdk-node": "^4.6.4",

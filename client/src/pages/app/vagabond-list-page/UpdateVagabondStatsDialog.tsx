@@ -9,6 +9,8 @@ import {
   VagabondUpdateStatsInput,
 } from './__generated__/UpdateVagabondStatsDialogMutation.graphql';
 import { UpdateVagabondStatsDialog_vagabond$key } from './__generated__/UpdateVagabondStatsDialog_vagabond.graphql';
+import { watch } from 'fs'
+import { useEffect } from 'react'
 
 type UpdateVagabondStatsDialogProps = {
   open: boolean;
@@ -53,7 +55,7 @@ export function UpdateVagabondStatsDialog({ open, onClose, vagabondFragment }: U
     }
   `);
 
-  const { control, handleSubmit } = useForm<VagabondUpdateStatsInput>({
+  const { control, handleSubmit, watch, reset } = useForm<VagabondUpdateStatsInput>({
     defaultValues: {
       charm: vagabond.charm,
       cunning: vagabond.cunning,
@@ -63,6 +65,18 @@ export function UpdateVagabondStatsDialog({ open, onClose, vagabondFragment }: U
       vagabondId: vagabond.id,
     },
   });
+  useEffect(() => {
+    reset()
+  }, [open])
+  
+  const [charm, cunning, finesse, luck, might] = watch(['charm', 'cunning', 'finesse', 'luck', 'might'])
+  const usedPoints = charm! - vagabond.charm
+    + cunning! - vagabond.cunning
+    + finesse! - vagabond.finesse
+    + luck! - vagabond.luck
+    + might! - vagabond.might
+  const pointLeft = vagabond.availablePoints - usedPoints
+  const ableToAddMore = pointLeft > 0
 
   const onSubmit: SubmitHandler<VagabondUpdateStatsInput> = (data) => {
     console.log(data);
@@ -88,23 +102,65 @@ export function UpdateVagabondStatsDialog({ open, onClose, vagabondFragment }: U
     });
   };
 
+  console.log({
+    pointLeft,
+    upDisabled: pointLeft > 0
+  })
+
   return (
     <Dialog open={open} onClose={onClose}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogTitle>Update stats</DialogTitle>
         <DialogContent>
           <Stack spacing={2}>
-            <Typography textAlign="right">{t('points', { count: vagabond.availablePoints })} left</Typography>
-            <RHFQuantityField sx={{ mt: 1 }} control={control} name="charm" label="Charm" />
-            <RHFQuantityField control={control} name="cunning" label="Cunning" />
-            <RHFQuantityField control={control} name="finesse" label="Finesse" />
-            <RHFQuantityField control={control} name="luck" label="LucK" />
-            <RHFQuantityField control={control} name="might" label="Might" />
+            <Typography textAlign="right">{t('points', { count: pointLeft })} left</Typography>
+            <RHFQuantityField
+              sx={{ mt: 1 }}
+              control={control}
+              name="charm"
+              label="Charm"
+              downHide
+              upDisabled={!ableToAddMore}
+            />
+            <RHFQuantityField
+              control={control}
+              name="cunning"
+              label="Cunning"
+              downHide
+              upDisabled={!ableToAddMore}
+            />
+            <RHFQuantityField
+              control={control}
+              name="finesse"
+              label="Finesse"
+              downHide
+              upDisabled={!ableToAddMore}
+            />
+            <RHFQuantityField
+              control={control}
+              name="luck"
+              label="LucK"
+              downHide
+              upDisabled={!ableToAddMore}
+            />
+            <RHFQuantityField
+              control={control}
+              name="might"
+              label="Might"
+              downHide
+              upDisabled={!ableToAddMore}
+            />
           </Stack>
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose} disabled={isOnFly}>
             Close
+          </Button>
+          <Button
+            variant='contained'
+            onClick={() => reset()}
+          >
+            Reset
           </Button>
           <Button variant="contained" type="submit" disabled={isOnFly}>
             Update

@@ -1,18 +1,29 @@
 import { useState } from 'react';
-import { graphql, usePaginationFragment } from 'react-relay';
+import { graphql, useFragment, usePaginationFragment } from 'react-relay';
 import { IconButton, List, ListSubheader, Paper, Typography } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import { VagabondListPaginationQuery } from './__generated__/VagabondListPaginationQuery.graphql';
 import { VagabondList_user$key } from './__generated__/VagabondList_user.graphql';
 import { VagabondListItem } from './VagabondListItem';
 import { CreateVagabondDialog } from './CreateVagabondDialog';
+import { VagabondList_query$key } from './__generated__/VagabondList_query.graphql'
 
 type VagabondListProps = {
   title?: string;
-  user: VagabondList_user$key;
+  userRef: VagabondList_user$key;
+  queryRef: VagabondList_query$key
 };
 
-export function VagabondList({ user, title }: VagabondListProps) {
+export function VagabondList({ title, userRef, queryRef }: VagabondListProps) {
+  const query = useFragment(
+    graphql`
+      fragment VagabondList_query on Query {
+        ...CreateVagabondDialog_query
+      }
+    `,
+    queryRef
+  )
+
   const { data } = usePaginationFragment<VagabondListPaginationQuery, VagabondList_user$key>(
     graphql`
       fragment VagabondList_user on User
@@ -28,7 +39,7 @@ export function VagabondList({ user, title }: VagabondListProps) {
         }
       }
     `,
-    user
+    userRef
   );
 
   return (
@@ -38,7 +49,10 @@ export function VagabondList({ user, title }: VagabondListProps) {
           <ListSubheader sx={{ display: 'flex', p: 2 }}>
             <Typography variant="h6">{title}</Typography>
             <div style={{ flexGrow: 1 }} />
-            <CreateVagabondDialogButton connectionIds={[data.vagabondConnection.__id]} />
+            <CreateVagabondDialogButton
+              connectionIds={[data.vagabondConnection.__id]}
+              queryRef={query}
+            />
           </ListSubheader>
         }
       >
@@ -51,14 +65,24 @@ export function VagabondList({ user, title }: VagabondListProps) {
   );
 }
 
-function CreateVagabondDialogButton({ connectionIds }: { connectionIds: string[] }) {
+type CreateVagabondDialogButtonProps = {
+  connectionIds: string[]
+  queryRef: any
+}
+
+function CreateVagabondDialogButton({ connectionIds, queryRef }: CreateVagabondDialogButtonProps) {
   const [open, setOpen] = useState(false);
   return (
     <>
       <IconButton onClick={() => setOpen(true)}>
         <Add />
       </IconButton>
-      <CreateVagabondDialog connectionIds={connectionIds} open={open} onClose={() => setOpen(false)} />
+      <CreateVagabondDialog
+        open={open}
+        onClose={() => setOpen(false)}
+        connectionIds={connectionIds}
+        queryRef={queryRef}
+      />
     </>
   );
 }

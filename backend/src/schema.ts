@@ -1,8 +1,5 @@
 import { builder } from './builder';
 
-import './types/User';
-import './types/Vagabond';
-
 builder.objectType(Error, {
   name: 'Error',
   fields: (t) => ({
@@ -12,5 +9,9 @@ builder.objectType(Error, {
 
 builder.queryType();
 builder.mutationType();
+
+import './types/User';
+import './types/Vagabond';
+import './types/VagabondClass';
 
 export const schema = builder.toSchema();

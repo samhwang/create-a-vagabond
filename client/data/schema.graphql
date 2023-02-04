@@ -40,6 +40,17 @@ type Query {
   me: User!
   node(id: ID!): Node
   nodes(ids: [ID!]!): [Node]!
+  vagabondClassConnection(after: String, before: String, first: Int, last: Int): QueryVagabondClassConnection!
+}
+
+type QueryVagabondClassConnection {
+  edges: [QueryVagabondClassConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryVagabondClassConnectionEdge {
+  cursor: String!
+  node: VagabondClass!
 }
 
 type User implements Node {
@@ -65,6 +76,7 @@ type UserVagabondConnectionEdge {
 type Vagabond implements Node {
   availablePoints: Int!
   charm: Int!
+  class: VagabondClass!
   cunning: Int!
   finesse: Int!
   id: ID!
@@ -74,8 +86,30 @@ type Vagabond implements Node {
   user: User!
 }
 
-input VagabondCreateInput {
+type VagabondClass implements Node {
+  drives: [String!]!
+  id: ID!
   name: String!
+  natures: [String!]!
+  startingCharm: Int!
+  startingCunning: Int!
+  startingFinesse: Int!
+  startingLuck: Int!
+  startingMight: Int!
+  startingRoguishFeats: [String!]!
+  startingWeaponSkills: [String!]!
+}
+
+input VagabondCreateInput {
+  charm: Int!
+  class: ID!
+  cunning: Int!
+  drives: [String!]!
+  finesse: Int!
+  luck: Int!
+  might: Int!
+  name: String!
+  nature: String!
 }
 
 type VagabondCreatePayload {

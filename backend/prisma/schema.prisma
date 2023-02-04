@@ -13,16 +13,41 @@ datasource db {
   relationMode = "prisma"
 }
 
+model VagabondClass {
+  id                   String @id @default(cuid())
+  name                 String
+  natures              Json // string[]
+  drives               Json // string[]
+  startingCharm        Int
+  startingCunning      Int
+  startingFinesse      Int
+  startingLuck         Int
+  startingMight        Int
+  startingRoguishFeats Json // string[]
+  startingWeaponSkills Json // string[]
+
+  vagabond Vagabond[]
+}
+
 model Vagabond {
-  id              String @id @default(cuid())
-  name            String
+  id String @id @default(cuid())
+
+  name String
+
+  class           VagabondClass @relation(fields: [vagabondClassId], references: [id])
+  vagabondClassId String
+
+  nature String
+  drives Json // string[]
+
   charm           Int    @default(0)
   cunning         Int    @default(0)
   finesse         Int    @default(0)
   luck            Int    @default(0)
   might           Int    @default(0)
-  availablePoints Int    @default(5)
+  availablePoints Int    @default(0)
   userId          String
 
   @@index([userId])
+  @@index([vagabondClassId])
 }

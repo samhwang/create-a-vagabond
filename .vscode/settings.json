@@ -5,5 +5,8 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": false
   },
-  "testing.automaticallyOpenPeekView": "never"
+  "testing.automaticallyOpenPeekView": "never",
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  }
 }

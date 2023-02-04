@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<bf483ad0302c7b5f9df109acf98ab1fe>>
+ * @generated SignedSource<<ab0fc2921fc0a79f34b44e2c5d365529>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,15 @@
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type VagabondCreateInput = {
+  charm: number;
+  class: string;
+  cunning: number;
+  drives: ReadonlyArray<string>;
+  finesse: number;
+  luck: number;
+  might: number;
   name: string;
+  nature: string;
 };
 export type CreateVagabondDialogMutation$variables = {
   connections: ReadonlyArray<string>;

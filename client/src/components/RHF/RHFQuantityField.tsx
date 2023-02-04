@@ -8,12 +8,18 @@ export type RHFQuantityFieldProps<T extends FieldValues> = Omit<
 > & {
   name: Path<T>;
   control: Control<T>;
+  downDisabled?: boolean
+  downHide?: boolean
+  upDisabled?: boolean
 };
 
 export function RHFQuantityField<T extends FieldValues>({
   control,
   name,
   disabled,
+  downDisabled,
+  downHide,
+  upDisabled,
   inputProps,
   InputProps,
   ...props
@@ -44,14 +50,22 @@ export function RHFQuantityField<T extends FieldValues>({
             ...InputProps,
             startAdornment: (
               <InputAdornment position="start">
-                <IconButton disabled={disabled} onClick={() => field.onChange(field.value - 1)}>
-                  <Remove />
-                </IconButton>
+                {!downHide && (
+                  <IconButton
+                    disabled={disabled || downDisabled}
+                    onClick={() => field.onChange(field.value - 1)}
+                  >
+                    <Remove />
+                  </IconButton>
+                )}
               </InputAdornment>
             ),
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton disabled={disabled} onClick={() => field.onChange(field.value + 1)}>
+                <IconButton
+                  disabled={disabled || upDisabled}
+                  onClick={() => field.onChange(field.value + 1)}
+                >
                   <Add />
                 </IconButton>
               </InputAdornment>
