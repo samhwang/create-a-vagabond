@@ -29,6 +29,31 @@ model VagabondClass {
   vagabond Vagabond[]
 }
 
+model Nature {
+  id          String     @id @default(cuid())
+  name        String
+  description String
+  Vagabond    Vagabond[]
+}
+
+model Drive {
+  id          String @id @default(cuid())
+  name        String
+  description String
+}
+
+model Reputation {
+  id         String   @id @default(cuid())
+  vagabondId String
+  vagabond   Vagabond @relation(fields: [vagabondId], references: [id])
+  faction    String   @default("Denizens")
+  score      Int      @default(0)
+  prestige   Int      @default(0)
+  notoriety  Int      @default(0)
+
+  @@index([vagabondId])
+}
+
 model Vagabond {
   id String @id @default(cuid())
 
@@ -47,6 +72,8 @@ model Vagabond {
   might           Int    @default(0)
   availablePoints Int    @default(0)
   userId          String
+
+  Reputation Reputation[]
 
   @@index([userId])
   @@index([vagabondClassId])

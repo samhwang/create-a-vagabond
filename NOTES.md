@@ -12,10 +12,12 @@ pscale connect createvagabondapp dev-sam --port 3309
 [X] Nature
   diff by class
   pick one
+  CAN BE CHANGED AFTER ADVANCEMENTS
 
 [X] Drives
   diff by class
   choose 2
+  CAN BE CHANGED AFTER ADVANCEMENTS
 
 [ ] Reputation
   5 x faction with value [-3, 3] and ticks (in sheet)
@@ -42,7 +44,7 @@ pscale connect createvagabondapp dev-sam --port 3309
 
 [ ] Moves
   diff by class
-  when create choose 3 
+  when create choose 3
 
 [ ] Equipment
   when create
