@@ -9,9 +9,6 @@ builder.prismaNode('VagabondClass', {
     startingFinesse: t.exposeInt('startingFinesse'),
     startingLuck: t.exposeInt('startingLuck'),
     startingMight: t.exposeInt('startingMight'),
-    natures: t.stringList({
-      resolve: (vc) => vc.natures as string[],
-    }),
     drives: t.stringList({
       resolve: (vc) => vc.drives as string[],
     }),

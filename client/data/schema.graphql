@@ -25,6 +25,12 @@ type MutationVagabondUpdateStatsSuccess {
   data: VagabondUpdateStatsPayload!
 }
 
+type Nature implements Node {
+  description: String!
+  id: ID!
+  name: String!
+}
+
 interface Node {
   id: ID!
 }
@@ -105,10 +111,10 @@ type Vagabond implements Node {
 }
 
 type VagabondClass implements Node {
+  classNatureConnection(after: String, before: String, first: Int, last: Int): VagabondClassClassNatureConnection!
   drives: [String!]!
   id: ID!
   name: String!
-  natures: [String!]!
   startingCharm: Int!
   startingCunning: Int!
   startingFinesse: Int!
@@ -116,6 +122,16 @@ type VagabondClass implements Node {
   startingMight: Int!
   startingRoguishFeats(after: String, before: String, first: Int, last: Int): VagabondClassStartingRoguishFeatsConnection!
   startingWeaponSkills: [String!]!
+}
+
+type VagabondClassClassNatureConnection {
+  edges: [VagabondClassClassNatureConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondClassClassNatureConnectionEdge {
+  cursor: String!
+  node: Nature!
 }
 
 type VagabondClassStartingRoguishFeatsConnection {

@@ -13,6 +13,7 @@ builder.mutationType();
 import './types/User';
 import './types/Vagabond';
 import './types/VagabondClass';
+import './types/Nature';
 import './types/RoguishFeat';
 
 export const schema = builder.toSchema();

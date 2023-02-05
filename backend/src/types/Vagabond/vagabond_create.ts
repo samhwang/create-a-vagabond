@@ -6,7 +6,7 @@ builder.relayMutationField(
     inputFields: (t) => ({
       name: t.string({ required: true }),
       class: t.globalID({ required: true }),
-      nature: t.string({ required: true }),
+      nature: t.globalID({ required: true }),
       drives: t.stringList({ required: true }),
       roguishFeats: t.globalIDList({ required: true }),
       // stats
@@ -47,8 +47,8 @@ builder.relayMutationField(
 
       const featIds = input.roguishFeats.map(feat => feat.id)
       const startingFeatIds = vagabondClass.startingRoguishFeats.map(feat => feat.id)
-      featIds.forEach(featId => {
-        if (startingFeatIds.includes(featId)) throw new Error('Selected feats must include class starting feats')
+      startingFeatIds.forEach(startingFeatId => {
+        if (!featIds.includes(startingFeatId)) throw new Error('Selected feats must include class starting feats')
       })
 
       const vagabond = await prisma.vagabond.create({
@@ -56,13 +56,15 @@ builder.relayMutationField(
           name: input.name,
           userId: ctx.session.userId,
           vagabondClassId: input.class.id,
-          nature: input.nature,
-          drives: input.drives,
+
           charm: input.charm,
           cunning: input.cunning,
           finesse: input.finesse,
           luck: input.luck,
           might: input.might,
+
+          natureId: input.nature.id,
+          drives: input.drives,
           roguishFeats: { connect: featIds.map(id => ({ id })) },
         },
       });
