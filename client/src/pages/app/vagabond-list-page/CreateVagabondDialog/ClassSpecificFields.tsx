@@ -130,15 +130,16 @@ export const ClassSpecificFields = ({
           hasPointLeft={Boolean(pointLeft)}
         />
         <Stack direction='row' spacing={2}>
-          <CarryWeightInfoFields />
+          <RHFTextField
+            control={control}
+            name='value'
+            label='Value'
+            disabled
+            inputProps={{ sx: { textAlign: 'center' } }}
+          />
+          <BurdenedInfoField />
+          <MaxInfoField />
         </Stack>
-        <RHFTextField
-          control={control}
-          name='value'
-          label='Value'
-          disabled
-          inputProps={{ sx: { textAlign: 'center' } }}
-        />
       </Stack>
     </Stack>
   )
@@ -184,17 +185,32 @@ const useDefaultValue = (vagabondClassRef?: ClassSpecificFields_useDefaultValue_
   }, [vagabondClass, setValue]);
 };
 
-const CarryWeightInfoFields = () => {
+const BurdenedInfoField = () => {
   const { watch } = useFormContext<VagabondCreateInput>()
   const might = watch('might')
-
   const burdened = might + 4
-  const max = burdened * 2
 
   return (
-    <>
-      <TextField label='Burdened' disabled value={burdened} />
-      <TextField label='Max' disabled value={max} />
-    </>
+    <TextField
+      label='Burdened'
+      disabled
+      value={burdened}
+      inputProps={{ sx: { textAlign: 'center' } }}
+    />
+  )
+}
+
+const MaxInfoField = () => {
+  const { watch } = useFormContext<VagabondCreateInput>()
+  const might = watch('might')
+  const max = (might + 4) * 2
+
+  return (
+    <TextField
+      label='Max'
+      disabled
+      value={max}
+      inputProps={{ sx: { textAlign: 'center' } }}
+    />
   )
 }
