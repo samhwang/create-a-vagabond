@@ -42,7 +42,7 @@ pscale connect createvagabondapp dev-sam --port 3309
     other can be pick later with progressing
   // (weapon can has it own moves)
 
-[ ] Moves
+[ ] Class Moves
   diff by class
   when create choose 3
 
@@ -52,3 +52,10 @@ pscale connect createvagabondapp dev-sam --port 3309
     Carying: number (total weight of items)
     Burdened: some sort of tired... limit (Might + 4)
     Max: max carry weight (Burdened * 2)
+
+Moves
+  basic moves
+  class moves
+  weapon moves
+  travel moves
+  reputation moves
