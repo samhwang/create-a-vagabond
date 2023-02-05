@@ -46,12 +46,12 @@ pscale connect createvagabondapp dev-sam --port 3309
   diff by class
   when create choose 3
 
-[ ] Equipment
+[X] Equipment
   when create
     [X] class starting value [money]
-    [ ] Carying: number (total weight of items)
-    [ ] Burdened: some sort of tired... limit (Might + 4)
-    [ ] Max: max carry weight (Burdened * 2)
+    [X] Carying: number (total weight of items)
+    [X] Burdened: some sort of tired... limit (Might + 4)
+    [X] Max: max carry weight (Burdened * 2)
 
 Moves
   basic moves

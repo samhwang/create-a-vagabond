@@ -6,7 +6,7 @@ import { ClassSpecificFields_useDefaultValue_class$key } from './__generated__/C
 import { useEffect } from 'react'
 import { Control, useFormContext } from 'react-hook-form'
 import { graphql, useFragment, useRefetchableFragment } from 'react-relay'
-import { Stack } from '@mui/material'
+import { Stack, TextField } from '@mui/material'
 
 import { RHFStatField } from '../../../../components/RHF/RHFStatField'
 import { useStartingPointLeft } from './useStartingPointLeft'
@@ -94,13 +94,6 @@ export const ClassSpecificFields = ({
         />
       </Stack>
       <Stack direction='column' spacing={2} minWidth={250}>
-        <RHFTextField
-          control={control}
-          name='value'
-          label='Value'
-          disabled
-          inputProps={{ sx: { textAlign: 'center' } }}
-        />
         <RHFStatField
           control={control}
           name='charm'
@@ -135,6 +128,16 @@ export const ClassSpecificFields = ({
           label='Might'
           startingPoint={query.node.startingMight!}
           hasPointLeft={Boolean(pointLeft)}
+        />
+        <Stack direction='row' spacing={2}>
+          <CarryWeightInfoFields />
+        </Stack>
+        <RHFTextField
+          control={control}
+          name='value'
+          label='Value'
+          disabled
+          inputProps={{ sx: { textAlign: 'center' } }}
         />
       </Stack>
     </Stack>
@@ -180,3 +183,18 @@ const useDefaultValue = (vagabondClassRef?: ClassSpecificFields_useDefaultValue_
     }
   }, [vagabondClass, setValue]);
 };
+
+const CarryWeightInfoFields = () => {
+  const { watch } = useFormContext<VagabondCreateInput>()
+  const might = watch('might')
+
+  const burdened = might + 4
+  const max = burdened * 2
+
+  return (
+    <>
+      <TextField label='Burdened' disabled value={burdened} />
+      <TextField label='Max' disabled value={max} />
+    </>
+  )
+}
