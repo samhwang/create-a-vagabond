@@ -22,6 +22,7 @@ const CreateVagabondInputSchema = z.object({
   roguishFeats: z.array(z.string()),
   weaponSkill: z.string(),
 
+  value: z.number(),
   charm: z.number().max(2),
   cunning: z.number().max(2),
   finesse: z.number().max(2),

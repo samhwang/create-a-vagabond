@@ -9,6 +9,7 @@ builder.prismaNode('VagabondClass', {
     startingFinesse: t.exposeInt('startingFinesse'),
     startingLuck: t.exposeInt('startingLuck'),
     startingMight: t.exposeInt('startingMight'),
+    startingValue: t.exposeInt('startingValue'),
   }),
 });
 

@@ -14,6 +14,7 @@ import { NatureSelect } from './NatureSelect'
 import { DrivesSelect } from './DrivesSelect'
 import { RoguishFeatSelect } from './RoguishFeatSelect'
 import { WeaponSkillSelect } from './WeaponSkillSelect'
+import { RHFTextField } from '../../../../components/RHF/RHFTextField'
 
 type ClassSpecificFieldsProps = {
   control: Control<VagabondCreateInput, any>
@@ -93,6 +94,13 @@ export const ClassSpecificFields = ({
         />
       </Stack>
       <Stack direction='column' spacing={2} minWidth={250}>
+        <RHFTextField
+          control={control}
+          name='value'
+          label='Value'
+          disabled
+          inputProps={{ sx: { textAlign: 'center' } }}
+        />
         <RHFStatField
           control={control}
           name='charm'
@@ -146,6 +154,7 @@ const useDefaultValue = (vagabondClassRef?: ClassSpecificFields_useDefaultValue_
         startingFinesse
         startingLuck
         startingMight
+        startingValue
       }
     `,
     vagabondClassRef!
@@ -161,6 +170,7 @@ const useDefaultValue = (vagabondClassRef?: ClassSpecificFields_useDefaultValue_
       // setValue('nature', '')
       setValue('drives', [])
       setValue('roguishFeats', startingFeatsIds)
+      setValue('value', vagabondClass.startingValue)
 
       setValue('charm', vagabondClass.startingCharm!)
       setValue('cunning', vagabondClass.startingCunning!)

@@ -6,6 +6,7 @@ builder.relayMutationField(
     inputFields: (t) => ({
       name: t.string({ required: true }),
       class: t.globalID({ required: true }),
+      value: t.int({ required: true }),
       nature: t.globalID({ required: true }),
       drives: t.globalIDList({ required: true }),
       roguishFeats: t.globalIDList({ required: true }),
@@ -56,6 +57,7 @@ builder.relayMutationField(
           userId: ctx.session.userId,
           vagabondClassId: input.class.id,
 
+          value: input.value,
           charm: input.charm,
           cunning: input.cunning,
           finesse: input.finesse,

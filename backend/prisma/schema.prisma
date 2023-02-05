@@ -21,6 +21,7 @@ model VagabondClass {
   startingFinesse Int
   startingLuck    Int
   startingMight   Int
+  startingValue   Int
 
   natures      Nature[]
   drives       Drive[]
@@ -38,6 +39,7 @@ model Vagabond {
   vagabondClassId String
 
   name            String
+  value           Int
   charm           Int    @default(0)
   cunning         Int    @default(0)
   finesse         Int    @default(0)

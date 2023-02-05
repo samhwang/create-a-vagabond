@@ -340,6 +340,7 @@ const seedData = async () => {
       startingFinesse: 0,
       startingLuck: 0,
       startingMight: -1,
+      startingValue: 9,
       natures: {
         connect: [
           { id: 'extrovert' },
@@ -377,6 +378,7 @@ const seedData = async () => {
       startingFinesse: 0,
       startingLuck: -1,
       startingMight: 2,
+      startingValue: 10,
       natures: {
         connect: [
           { id: 'defender' },
@@ -409,6 +411,7 @@ const seedData = async () => {
       startingFinesse: 2,
       startingLuck: 1,
       startingMight: 0,
+      startingValue: 9,
       natures: {
         connect: [
           { id: 'dutiful' },
@@ -446,6 +449,7 @@ const seedData = async () => {
       startingFinesse: 1,
       startingLuck: 0,
       startingMight: 1,
+      startingValue: 9,
       natures: {
         connect: [
           { id: 'loner' },
@@ -483,6 +487,7 @@ const seedData = async () => {
       startingFinesse: 0,
       startingLuck: -1,
       startingMight: 2,
+      startingValue: 11,
       natures: {
         connect: [
           { id: 'survivor' },
@@ -515,6 +520,7 @@ const seedData = async () => {
       startingFinesse: 0,
       startingLuck: 2,
       startingMight: 0,
+      startingValue: 8,
       natures: {
         connect: [
           { id: 'arsonist' },
@@ -553,6 +559,7 @@ const seedData = async () => {
       startingFinesse: 2,
       startingLuck: 1,
       startingMight: 1,
+      startingValue: 6,
       natures: {
         connect: [
           { id: 'kleptomaniac' },
@@ -585,6 +592,7 @@ const seedData = async () => {
       startingFinesse: 1,
       startingLuck: 0,
       startingMight: 0,
+      startingValue: 8,
       natures: {
         connect: [
           { id: 'perfectionist' },
@@ -623,6 +631,7 @@ const seedData = async () => {
       startingFinesse: -1,
       startingLuck: 0,
       startingMight: 0,
+      startingValue: 9,
       natures: {
         connect: [
           { id: 'glutton' },

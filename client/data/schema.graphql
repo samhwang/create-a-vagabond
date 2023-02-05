@@ -127,6 +127,7 @@ type VagabondClass implements Node {
   startingFinesse: Int!
   startingLuck: Int!
   startingMight: Int!
+  startingValue: Int!
   weaponSkillConnection(after: String, before: String, first: Int, last: Int): VagabondClassWeaponSkillConnection!
 }
 
@@ -181,6 +182,7 @@ input VagabondCreateInput {
   name: String!
   nature: ID!
   roguishFeats: [ID!]!
+  value: Int!
   weaponSkill: ID!
 }
 

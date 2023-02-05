@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e987be65b21d87498676386a17197e85>>
+ * @generated SignedSource<<23fae500b4dd7bfa037802e4e586c84a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -24,6 +24,7 @@ export type ClassSpecificFields_useDefaultValue_class$data = {
   readonly startingFinesse: number;
   readonly startingLuck: number;
   readonly startingMight: number;
+  readonly startingValue: number;
   readonly " $fragmentType": "ClassSpecificFields_useDefaultValue_class";
 };
 export type ClassSpecificFields_useDefaultValue_class$key = {
@@ -114,6 +115,13 @@ return {
       "kind": "ScalarField",
       "name": "startingMight",
       "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "startingValue",
+      "storageKey": null
     }
   ],
   "type": "VagabondClass",
@@ -121,6 +129,6 @@ return {
 };
 })();
 
-(node as any).hash = "e6e6daa767ba4e6e5cf17edcf473e53c";
+(node as any).hash = "594ed6873255f737c288458dbcfb51c0";
 
 export default node;
