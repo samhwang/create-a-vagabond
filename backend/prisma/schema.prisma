@@ -85,7 +85,10 @@ model Vagabond {
   userId          String
 
   Reputation Reputation[]
+  Nature     Nature?      @relation(fields: [natureId], references: [id])
+  natureId   String?
 
+  @@index([natureId])
   @@index([userId])
   @@index([vagabondClassId])
 }
