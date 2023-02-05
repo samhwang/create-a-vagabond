@@ -7,7 +7,7 @@ builder.relayMutationField(
       name: t.string({ required: true }),
       class: t.globalID({ required: true }),
       nature: t.globalID({ required: true }),
-      drives: t.stringList({ required: true }),
+      drives: t.globalIDList({ required: true }),
       roguishFeats: t.globalIDList({ required: true }),
       // stats
       charm: t.int({ required: true }),
@@ -22,8 +22,6 @@ builder.relayMutationField(
     resolve: async (_, { input }, ctx) => {
       if (!ctx.session?.userId) throw new Error('Please login!');
 
-      if (input.drives.length !== 2) throw new Error('Pick 2 drives')
-
       if (input.drives.length !== 2) throw new Error('Pick 2 drives');
 
       if (input.charm > 2) throw new Error('Charm cannot be more than 2');
@@ -35,7 +33,7 @@ builder.relayMutationField(
       const vagabondClass = await prisma.vagabondClass.findUnique({
         where: { id: input.class.id },
         include: {
-          startingRoguishFeats: true
+          roguishFeats: true
         }
       })
       if (!vagabondClass) throw new Error(`Class ${input.class.id} is not existed`)
@@ -46,7 +44,7 @@ builder.relayMutationField(
       if (input.might < vagabondClass.startingMight) throw new Error('Stats cannot be lower than starting point')
 
       const featIds = input.roguishFeats.map(feat => feat.id)
-      const startingFeatIds = vagabondClass.startingRoguishFeats.map(feat => feat.id)
+      const startingFeatIds = vagabondClass.roguishFeats.map(feat => feat.id)
       startingFeatIds.forEach(startingFeatId => {
         if (!featIds.includes(startingFeatId)) throw new Error('Selected feats must include class starting feats')
       })
@@ -64,7 +62,7 @@ builder.relayMutationField(
           might: input.might,
 
           natureId: input.nature.id,
-          drives: input.drives,
+          drives: { connect: input.drives.map(({ id }) => ({ id })) },
           roguishFeats: { connect: featIds.map(id => ({ id })) },
         },
       });

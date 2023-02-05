@@ -9,10 +9,10 @@ type NatureSelectProps = RHFTextFieldProps<VagabondCreateInput> & {
 };
 
 export function NatureSelect({ vagabondClassRef, ...props }: NatureSelectProps) {
-  const { classNatureConnection } = useFragment(
+  const { natureConnection } = useFragment(
     graphql`
       fragment NatureSelect_class on VagabondClass {
-        classNatureConnection(first: 50) {
+        natureConnection(first: 50) {
           edges {
             node {
               id
@@ -27,7 +27,7 @@ export function NatureSelect({ vagabondClassRef, ...props }: NatureSelectProps) 
 
   return (
     <RHFTextField {...props} select>
-      {classNatureConnection.edges.map(edge => {
+      {natureConnection.edges.map(edge => {
         if (!edge?.node) return null
 
         return (

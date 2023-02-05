@@ -1,6 +1,6 @@
 import { builder } from '../../builder'
 
-builder.prismaNode('Nature', {
+builder.prismaNode('Drive', {
   id: { field: 'id' },
   fields: t => ({
     name: t.exposeString('name'),
@@ -10,9 +10,9 @@ builder.prismaNode('Nature', {
 
 builder.prismaObjectField(
   'VagabondClass',
-  'natureConnection',
+  'driveConnection',
   t => t.relatedConnection(
-    'natures',
+    'drives',
     { cursor: 'id' },
   )
 )

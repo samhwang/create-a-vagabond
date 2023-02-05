@@ -14,6 +14,7 @@ import './types/User';
 import './types/Vagabond';
 import './types/VagabondClass';
 import './types/Nature';
+import './types/Drive';
 import './types/RoguishFeat';
 
 export const schema = builder.toSchema();

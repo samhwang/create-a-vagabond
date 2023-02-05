@@ -13,9 +13,9 @@ builder.prismaNode('RoguishFeat', {
 
 builder.prismaObjectField(
   'VagabondClass',
-  'startingRoguishFeats',
+  'roguishFeatConnection',
   t => t.relatedConnection(
-    'startingRoguishFeats',
+    'roguishFeats',
     { cursor: 'id' },
   )
 )

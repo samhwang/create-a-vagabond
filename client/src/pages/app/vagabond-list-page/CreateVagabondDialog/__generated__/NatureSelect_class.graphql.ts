@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ffcd7b65eed67992b400e8287edff242>>
+ * @generated SignedSource<<047ea98367c612897e149d7e527e28dd>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type NatureSelect_class$data = {
-  readonly classNatureConnection: {
+  readonly natureConnection: {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly id: string;
@@ -41,15 +41,15 @@ const node: ReaderFragment = {
           "value": 50
         }
       ],
-      "concreteType": "VagabondClassClassNatureConnection",
+      "concreteType": "VagabondClassNatureConnection",
       "kind": "LinkedField",
-      "name": "classNatureConnection",
+      "name": "natureConnection",
       "plural": false,
       "selections": [
         {
           "alias": null,
           "args": null,
-          "concreteType": "VagabondClassClassNatureConnectionEdge",
+          "concreteType": "VagabondClassNatureConnectionEdge",
           "kind": "LinkedField",
           "name": "edges",
           "plural": true,
@@ -83,13 +83,13 @@ const node: ReaderFragment = {
           "storageKey": null
         }
       ],
-      "storageKey": "classNatureConnection(first:50)"
+      "storageKey": "natureConnection(first:50)"
     }
   ],
   "type": "VagabondClass",
   "abstractKey": null
 };
 
-(node as any).hash = "14b36a38b89f789c66b1fafb56807cf5";
+(node as any).hash = "6e0b906e7fac1c08e4f37d167e2c8f42";
 
 export default node;

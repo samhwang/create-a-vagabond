@@ -28,10 +28,10 @@ export const RoguishFeatSelect = ({ queryRef, vagabondClassRef, ...props }: Rogu
     queryRef
   )
 
-  const { startingRoguishFeats } = useFragment(
+  const { roguishFeatConnection: startingRoguishFeatConnection } = useFragment(
     graphql`
       fragment RoguishFeatSelect_class on VagabondClass {
-        startingRoguishFeats {
+        roguishFeatConnection {
           edges {
             node {
               id
@@ -42,7 +42,7 @@ export const RoguishFeatSelect = ({ queryRef, vagabondClassRef, ...props }: Rogu
     `,
     vagabondClassRef
   )
-  const startingFeatsIds = startingRoguishFeats.edges
+  const startingFeatsIds = startingRoguishFeatConnection.edges
     .filter(edge => Boolean(edge?.node))
     .map(edge => edge!.node.id)
 

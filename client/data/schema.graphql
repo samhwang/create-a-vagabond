@@ -4,6 +4,12 @@ directive @specifiedBy(
   url: String!
 ) on SCALAR
 
+type Drive implements Node {
+  description: String!
+  id: ID!
+  name: String!
+}
+
 type Error {
   message: String!
 }
@@ -111,35 +117,45 @@ type Vagabond implements Node {
 }
 
 type VagabondClass implements Node {
-  classNatureConnection(after: String, before: String, first: Int, last: Int): VagabondClassClassNatureConnection!
-  drives: [String!]!
+  driveConnection(after: String, before: String, first: Int, last: Int): VagabondClassDriveConnection!
   id: ID!
   name: String!
+  natureConnection(after: String, before: String, first: Int, last: Int): VagabondClassNatureConnection!
+  roguishFeatConnection(after: String, before: String, first: Int, last: Int): VagabondClassRoguishFeatConnection!
   startingCharm: Int!
   startingCunning: Int!
   startingFinesse: Int!
   startingLuck: Int!
   startingMight: Int!
-  startingRoguishFeats(after: String, before: String, first: Int, last: Int): VagabondClassStartingRoguishFeatsConnection!
   startingWeaponSkills: [String!]!
 }
 
-type VagabondClassClassNatureConnection {
-  edges: [VagabondClassClassNatureConnectionEdge]!
+type VagabondClassDriveConnection {
+  edges: [VagabondClassDriveConnectionEdge]!
   pageInfo: PageInfo!
 }
 
-type VagabondClassClassNatureConnectionEdge {
+type VagabondClassDriveConnectionEdge {
+  cursor: String!
+  node: Drive!
+}
+
+type VagabondClassNatureConnection {
+  edges: [VagabondClassNatureConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondClassNatureConnectionEdge {
   cursor: String!
   node: Nature!
 }
 
-type VagabondClassStartingRoguishFeatsConnection {
-  edges: [VagabondClassStartingRoguishFeatsConnectionEdge]!
+type VagabondClassRoguishFeatConnection {
+  edges: [VagabondClassRoguishFeatConnectionEdge]!
   pageInfo: PageInfo!
 }
 
-type VagabondClassStartingRoguishFeatsConnectionEdge {
+type VagabondClassRoguishFeatConnectionEdge {
   cursor: String!
   node: RoguishFeat!
 }
@@ -148,12 +164,12 @@ input VagabondCreateInput {
   charm: Int!
   class: ID!
   cunning: Int!
-  drives: [String!]!
+  drives: [ID!]!
   finesse: Int!
   luck: Int!
   might: Int!
   name: String!
-  nature: String!
+  nature: ID!
   roguishFeats: [ID!]!
 }
 

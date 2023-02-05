@@ -132,7 +132,7 @@ const useDefaultValue = (vagabondClassRef?: ClassSpecificFields_useDefaultValue_
     graphql`
       fragment ClassSpecificFields_useDefaultValue_class on VagabondClass {
         id
-        startingRoguishFeats { edges { node { id } } }
+        roguishFeatConnection { edges { node { id } } }
         startingCharm
         startingCunning
         startingFinesse
@@ -143,7 +143,7 @@ const useDefaultValue = (vagabondClassRef?: ClassSpecificFields_useDefaultValue_
     vagabondClassRef!
   );
 
-  const startingFeatsIds = vagabondClass?.startingRoguishFeats.edges
+  const startingFeatsIds = vagabondClass?.roguishFeatConnection.edges
     .filter(edge => Boolean(edge?.node))
     .map(edge => edge!.node.id)
 

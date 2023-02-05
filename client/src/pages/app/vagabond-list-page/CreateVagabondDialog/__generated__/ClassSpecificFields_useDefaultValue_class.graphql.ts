@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8232fe169aab076c95d304155e7f83d7>>
+ * @generated SignedSource<<e987be65b21d87498676386a17197e85>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,18 +12,18 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type ClassSpecificFields_useDefaultValue_class$data = {
   readonly id: string;
-  readonly startingCharm: number;
-  readonly startingCunning: number;
-  readonly startingFinesse: number;
-  readonly startingLuck: number;
-  readonly startingMight: number;
-  readonly startingRoguishFeats: {
+  readonly roguishFeatConnection: {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly id: string;
       };
     } | null>;
   };
+  readonly startingCharm: number;
+  readonly startingCunning: number;
+  readonly startingFinesse: number;
+  readonly startingLuck: number;
+  readonly startingMight: number;
   readonly " $fragmentType": "ClassSpecificFields_useDefaultValue_class";
 };
 export type ClassSpecificFields_useDefaultValue_class$key = {
@@ -49,15 +49,15 @@ return {
     {
       "alias": null,
       "args": null,
-      "concreteType": "VagabondClassStartingRoguishFeatsConnection",
+      "concreteType": "VagabondClassRoguishFeatConnection",
       "kind": "LinkedField",
-      "name": "startingRoguishFeats",
+      "name": "roguishFeatConnection",
       "plural": false,
       "selections": [
         {
           "alias": null,
           "args": null,
-          "concreteType": "VagabondClassStartingRoguishFeatsConnectionEdge",
+          "concreteType": "VagabondClassRoguishFeatConnectionEdge",
           "kind": "LinkedField",
           "name": "edges",
           "plural": true,
@@ -121,6 +121,6 @@ return {
 };
 })();
 
-(node as any).hash = "488b5b63f8f08cedf5d2977a8d57f4a4";
+(node as any).hash = "e6e6daa767ba4e6e5cf17edcf473e53c";
 
 export default node;

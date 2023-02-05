@@ -23,17 +23,17 @@ model RoguishFeat {
 }
 
 model VagabondClass {
-  id              String   @id
+  id              String @id
   name            String
-  natures         Nature[]
-  drives          Json // string[]
   startingCharm   Int
   startingCunning Int
   startingFinesse Int
   startingLuck    Int
   startingMight   Int
 
-  startingRoguishFeats RoguishFeat[]
+  natures              Nature[]
+  drives               Drive[]
+  roguishFeats         RoguishFeat[]
   startingWeaponSkills Json // string[]
 
   vagabond Vagabond[]
@@ -48,10 +48,11 @@ model Nature {
 }
 
 model Drive {
-  id          String @id
-  name        String
-  description String
-  // vagabond    Vagabond[]
+  id            String          @id
+  name          String
+  description   String
+  vagabond      Vagabond[]
+  vagabondClass VagabondClass[]
 }
 
 model Reputation {
@@ -84,11 +85,10 @@ model Vagabond {
 
   reputation Reputation[]
 
-  roguishFeats RoguishFeat[]
   nature       Nature?       @relation(fields: [natureId], references: [id])
   natureId     String?
-  // drives       Drive[]
-  drives       Json
+  drives       Drive[]
+  roguishFeats RoguishFeat[]
 
   @@index([natureId])
   @@index([userId])

@@ -108,7 +108,85 @@ const seedData = async () => {
   ]})
   console.log(`There are ${seededNatures.count} natures are created`)
 
-  // drives
+  await prisma.drive.deleteMany({})
+  const seededDrives = await prisma.drive.createMany({ data: [
+    {
+      id: 'ambition',
+      name: 'Ambition',
+      description: 'Advance when you increase your reputation with any faction.',
+    },
+    {
+      id: 'clean_paws',
+      name: 'Clean Paws',
+      description: 'Advance when you accomplish an illicit, criminal goal while maintaining a believable veneer of innocence.',
+    },
+    {
+      id: 'principles',
+      name: 'Principles',
+      description: 'Advance when you express or embody your moral principles at great cost to yourself or your allies.',
+    },
+    {
+      id: 'justice',
+      name: 'Justice',
+      description: 'Advance when you achieve justice for someone wronged by a powerful, wealthy, or high-status individual.',
+    },
+    {
+      id: 'loyalty',
+      name: 'Loyalty',
+      description: `You're loyal to someone; name them. Advance when you obey their order at a great cost to yourself.`,
+    },
+    {
+      id: 'protection',
+      name: 'Protection',
+      description: 'Name your ward. Advance when you protect them from significant danger, or when time passes and your ward is safe.',
+    },
+    {
+      id: 'crime',
+      name: 'Crime',
+      description: 'Advance when you illicitly score a significant prize or pull off an illegal caper against impressive odds.',
+    },
+    {
+      id: 'discovery',
+      name: 'Discovery',
+      description: 'Advance when you encounter a new wonder or ruin in the forests.',
+    },
+    {
+      id: 'infamy',
+      name: 'Infamy',
+      description: 'Advance when you decrease your reputation with any faction.',
+    },
+    {
+      id: 'wanderlust',
+      name: 'Wanderlust',
+      description: 'Advance when you finish a journey to a clearing.',
+    },
+    {
+      id: 'freedom',
+      name: 'Freedom',
+      description: 'Advance when you free a group of denizens from oppression.',
+    },
+    {
+      id: 'revenge',
+      name: 'Revenge',
+      description: 'Name your foe. Advance when you cause significant harm to them or their interests.',
+    },
+    {
+      id: 'thrills',
+      name: 'Thrills',
+      description: 'Advance when you escape from certain death or incarceration.',
+    },
+    {
+      id: 'chaos',
+      name: 'Chaos',
+      description: 'Advance when you topple a tyrannical or dangerously overbearing figure or order.',
+    },
+    {
+      id: 'greed',
+      name: 'Greed',
+      description: 'Advance when you secure a serious payday or treasure.',
+    },
+  ]})
+  console.log(`There are ${seededDrives.count} drives are created`)
 
   await prisma.roguishFeat.deleteMany({})
   const seededRoguishFeats = await prisma.roguishFeat.createMany({ data: [
@@ -179,14 +257,21 @@ const seedData = async () => {
       startingFinesse: 0,
       startingLuck: 0,
       startingMight: -1,
-      drives: ['ambition', 'clean_paws', 'principles', 'justice'],
       natures: {
         connect: [
           { id: 'extrovert' },
           { id: 'peacemaker' },
         ]
       },
-      startingRoguishFeats: {
+      drives: {
+        connect: [
+          { id: 'ambition' },
+          { id: 'clean_paws' },
+          { id: 'principles' },
+          { id: 'justice' },
+        ]
+      },
+      roguishFeats: {
         connect: [
           { id: 'counterfeit' },
           { id: 'sleight_of_hand' },
@@ -202,21 +287,26 @@ const seedData = async () => {
       startingFinesse: 0,
       startingLuck: -1,
       startingMight: 2,
-
       natures: {
         connect: [
           { id: 'defender' },
           { id: 'punisher' },
         ]
       },
-      drives: ['justice', 'principles', 'loyalty', 'protection'],
-      startingRoguishFeats: {},
+      drives: {
+        connect: [
+          { id: 'justice' },
+          { id: 'principles' },
+          { id: 'loyalty' },
+          { id: 'protection' },
+        ]
+      },
+      roguishFeats: {},
       startingWeaponSkills: ['cleave', 'disarm', 'parry', 'storm_a_group'],
     }}),
     prisma.vagabondClass.create({ data: {
       id: 'harrier',
       name: 'harrier',
-      drives: ['crime', 'discovery', 'infamy', 'wanderlust'],
       startingCharm: 0,
       startingCunning: -1,
       startingFinesse: 2,
@@ -228,7 +318,15 @@ const seedData = async () => {
           { id: 'competitive' },
         ]
       },
-      startingRoguishFeats: {
+      drives: {
+        connect: [
+          { id: 'crime' },
+          { id: 'discovery' },
+          { id: 'infamy' },
+          { id: 'wanderlust' },
+        ]
+      },
+      roguishFeats: {
         connect: [
           { id: 'acrobatics' },
           { id: 'sneak' },
@@ -239,7 +337,6 @@ const seedData = async () => {
     prisma.vagabondClass.create({ data: {
       id: 'ranger',
       name: 'ranger',
-      drives: ['discovery', 'freedom', 'revenge', 'protection'],
       startingCharm: -1,
       startingCunning: 1,
       startingFinesse: 1,
@@ -251,7 +348,15 @@ const seedData = async () => {
           { id: 'cynic' },
         ]
       },
-      startingRoguishFeats: {
+      drives: {
+        connect: [
+          { id: 'discovery' },
+          { id: 'freedom' },
+          { id: 'revenge' },
+          { id: 'protection' },
+        ]
+      },
+      roguishFeats: {
         connect: [
           { id: 'hide' },
           { id: 'sneak' },
@@ -262,7 +367,6 @@ const seedData = async () => {
     prisma.vagabondClass.create({ data: {
       id: 'ronin',
       name: 'ronin',
-      drives: ['principles', 'revenge', 'thrills', 'wanderlust'],
       startingCharm: 0,
       startingCunning: 1,
       startingFinesse: 0,
@@ -274,13 +378,20 @@ const seedData = async () => {
           { id: 'pilgrim' },
         ]
       },
-      startingRoguishFeats: { connect: { id: 'blindside' } },
+      drives: {
+        connect: [
+          { id: 'principles' },
+          { id: 'revenge' },
+          { id: 'thrills' },
+          { id: 'wanderlust' },
+        ]
+      },
+      roguishFeats: { connect: { id: 'blindside' } },
       startingWeaponSkills: ['cleave', 'harry', 'storm_a_group', 'vicous_strike'],
     }}),
     prisma.vagabondClass.create({ data: {
       id: 'scoundrel',
       name: 'scoundrel',
-      drives: ['chaos', 'thrills', 'crime', 'infamy'],
       startingCharm: 1,
       startingCunning: -1,
       startingFinesse: 0,
@@ -292,7 +403,15 @@ const seedData = async () => {
           { id: 'combative' },
         ]
       },
-      startingRoguishFeats: {
+      drives: {
+        connect: [
+          { id: 'chaos' },
+          { id: 'thrills' },
+          { id: 'crime' },
+          { id: 'infamy' },
+        ]
+      },
+      roguishFeats: {
         connect: [
           { id: 'acrobatics' },
           { id: 'hide' },
@@ -304,7 +423,6 @@ const seedData = async () => {
     prisma.vagabondClass.create({ data: {
       id: 'thief',
       name: 'thief',
-      drives: ['freedom', 'greed', 'ambition', 'thrills'],
       startingCharm: 0,
       startingCunning: 0,
       startingFinesse: 2,
@@ -316,13 +434,20 @@ const seedData = async () => {
           { id: 'rebellious' },
         ]
       },
-      startingRoguishFeats: {},
+      drives: {
+        connect: [
+          { id: 'freedom' },
+          { id: 'greed' },
+          { id: 'ambition' },
+          { id: 'thrills' },
+        ]
+      },
+      roguishFeats: {},
       startingWeaponSkills: ['confuse_senses', 'improvise', 'parry', 'trick_shot'],
     }}),
     prisma.vagabondClass.create({ data: {
       id: 'tinker',
       name: 'tinker',
-      drives: ['greed', 'ambition', 'revenge', 'protection'],
       startingCharm: -1,
       startingCunning: 2,
       startingFinesse: 1,
@@ -334,7 +459,15 @@ const seedData = async () => {
           { id: 'radical' },
         ]
       },
-      startingRoguishFeats: {
+      drives: {
+        connect: [
+          { id: 'greed' },
+          { id: 'ambition' },
+          { id: 'revenge' },
+          { id: 'protection' },
+        ]
+      },
+      roguishFeats: {
         connect: [
           { id: 'counterfeit' },
           { id: 'disable_device' },
@@ -346,7 +479,6 @@ const seedData = async () => {
     prisma.vagabondClass.create({ data: {
       id: 'vagrant',
       name: 'vagrant',
-      drives: ['chaos', 'thrills', 'clean_paws', 'wanderlust'],
       startingCharm: 2,
       startingCunning: 1,
       startingFinesse: -1,
@@ -358,7 +490,15 @@ const seedData = async () => {
           { id: 'hustler' },
         ]
       },
-      startingRoguishFeats: {
+      drives: {
+        connect: [
+          { id: 'chaos' },
+          { id: 'thrills' },
+          { id: 'clean_paws' },
+          { id: 'wanderlust' },
+        ]
+      },
+      roguishFeats: {
         connect: [
           { id: 'pick_lock' },
           { id: 'sleight_of_hand' },

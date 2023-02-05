@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<434987fba678fe6f62b46d959c16f163>>
+ * @generated SignedSource<<9888ed3c17a0a0f7fe875074d091d5fb>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -176,15 +176,15 @@ return {
               {
                 "alias": null,
                 "args": null,
-                "concreteType": "VagabondClassStartingRoguishFeatsConnection",
+                "concreteType": "VagabondClassRoguishFeatConnection",
                 "kind": "LinkedField",
-                "name": "startingRoguishFeats",
+                "name": "roguishFeatConnection",
                 "plural": false,
                 "selections": [
                   {
                     "alias": null,
                     "args": null,
-                    "concreteType": "VagabondClassStartingRoguishFeatsConnectionEdge",
+                    "concreteType": "VagabondClassRoguishFeatConnectionEdge",
                     "kind": "LinkedField",
                     "name": "edges",
                     "plural": true,
@@ -210,15 +210,15 @@ return {
               {
                 "alias": null,
                 "args": (v1/*: any*/),
-                "concreteType": "VagabondClassClassNatureConnection",
+                "concreteType": "VagabondClassNatureConnection",
                 "kind": "LinkedField",
-                "name": "classNatureConnection",
+                "name": "natureConnection",
                 "plural": false,
                 "selections": [
                   {
                     "alias": null,
                     "args": null,
-                    "concreteType": "VagabondClassClassNatureConnectionEdge",
+                    "concreteType": "VagabondClassNatureConnectionEdge",
                     "kind": "LinkedField",
                     "name": "edges",
                     "plural": true,
@@ -237,14 +237,39 @@ return {
                     "storageKey": null
                   }
                 ],
-                "storageKey": "classNatureConnection(first:50)"
+                "storageKey": "natureConnection(first:50)"
               },
               {
                 "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "drives",
-                "storageKey": null
+                "args": (v1/*: any*/),
+                "concreteType": "VagabondClassDriveConnection",
+                "kind": "LinkedField",
+                "name": "driveConnection",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "VagabondClassDriveConnectionEdge",
+                    "kind": "LinkedField",
+                    "name": "edges",
+                    "plural": true,
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "Drive",
+                        "kind": "LinkedField",
+                        "name": "node",
+                        "plural": false,
+                        "selections": (v3/*: any*/),
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": "driveConnection(first:50)"
               }
             ],
             "type": "VagabondClass",
@@ -256,12 +281,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "1d79efd60bb9df6be19a006a3ed6acb8",
+    "cacheID": "23667bf0cb92454120bdc3c1fcf01311",
     "id": null,
     "metadata": {},
     "name": "ClassSpecificFieldsRefetchQuery",
     "operationKind": "query",
-    "text": "query ClassSpecificFieldsRefetchQuery(\n  $selectedClassId: ID = \"\"\n) {\n  ...ClassSpecificFields_query_2Y8a5A\n}\n\nfragment ClassSpecificFields_query_2Y8a5A on Query {\n  ...RoguishFeatSelect_query\n  node(id: $selectedClassId) {\n    __typename\n    ... on VagabondClass {\n      startingCharm\n      startingCunning\n      startingFinesse\n      startingLuck\n      startingMight\n      ...ClassSpecificFields_useDefaultValue_class\n      ...useStartingPointLeft_class\n      ...NatureSelect_class\n      ...DrivesSelect_class\n      ...RoguishFeatSelect_class\n    }\n    id\n  }\n}\n\nfragment ClassSpecificFields_useDefaultValue_class on VagabondClass {\n  id\n  startingRoguishFeats {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n}\n\nfragment DrivesSelect_class on VagabondClass {\n  drives\n}\n\nfragment NatureSelect_class on VagabondClass {\n  classNatureConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment RoguishFeatSelect_class on VagabondClass {\n  startingRoguishFeats {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n}\n\nfragment RoguishFeatSelect_query on Query {\n  roguishFeatConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment useStartingPointLeft_class on VagabondClass {\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n}\n"
+    "text": "query ClassSpecificFieldsRefetchQuery(\n  $selectedClassId: ID = \"\"\n) {\n  ...ClassSpecificFields_query_2Y8a5A\n}\n\nfragment ClassSpecificFields_query_2Y8a5A on Query {\n  ...RoguishFeatSelect_query\n  node(id: $selectedClassId) {\n    __typename\n    ... on VagabondClass {\n      startingCharm\n      startingCunning\n      startingFinesse\n      startingLuck\n      startingMight\n      ...ClassSpecificFields_useDefaultValue_class\n      ...useStartingPointLeft_class\n      ...NatureSelect_class\n      ...DrivesSelect_class\n      ...RoguishFeatSelect_class\n    }\n    id\n  }\n}\n\nfragment ClassSpecificFields_useDefaultValue_class on VagabondClass {\n  id\n  roguishFeatConnection {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n}\n\nfragment DrivesSelect_class on VagabondClass {\n  driveConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment NatureSelect_class on VagabondClass {\n  natureConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment RoguishFeatSelect_class on VagabondClass {\n  roguishFeatConnection {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n}\n\nfragment RoguishFeatSelect_query on Query {\n  roguishFeatConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment useStartingPointLeft_class on VagabondClass {\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n}\n"
   }
 };
 })();

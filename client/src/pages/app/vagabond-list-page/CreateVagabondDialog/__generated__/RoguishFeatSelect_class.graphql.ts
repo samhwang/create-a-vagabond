@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5b4299e8ac6ae03070240a26057af890>>
+ * @generated SignedSource<<adce624ad574951e44b30e8e14dd77a6>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type RoguishFeatSelect_class$data = {
-  readonly startingRoguishFeats: {
+  readonly roguishFeatConnection: {
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly id: string;
@@ -34,15 +34,15 @@ const node: ReaderFragment = {
     {
       "alias": null,
       "args": null,
-      "concreteType": "VagabondClassStartingRoguishFeatsConnection",
+      "concreteType": "VagabondClassRoguishFeatConnection",
       "kind": "LinkedField",
-      "name": "startingRoguishFeats",
+      "name": "roguishFeatConnection",
       "plural": false,
       "selections": [
         {
           "alias": null,
           "args": null,
-          "concreteType": "VagabondClassStartingRoguishFeatsConnectionEdge",
+          "concreteType": "VagabondClassRoguishFeatConnectionEdge",
           "kind": "LinkedField",
           "name": "edges",
           "plural": true,
@@ -76,6 +76,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "d7c1f3303a766cac8d3f8c5ee7bd147a";
+(node as any).hash = "3ed7ea961074b3dadee9704bc5d95cbb";
 
 export default node;

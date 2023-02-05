@@ -77,7 +77,10 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
   const selectedClassId = methods.watch('class');
 
   useEffect(() => {
-    methods.reset()
+    methods.reset({
+      drives: [],
+      roguishFeats: [],
+    })
   }, [open])
 
   const onSubmit: SubmitHandler<VagabondCreateInput> = (data) => {

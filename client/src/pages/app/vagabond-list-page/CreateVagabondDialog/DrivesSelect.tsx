@@ -8,10 +8,17 @@ type DrivesSelectProps = RHFTextFieldProps<VagabondCreateInput> & {
   vagabondClassRef: DrivesSelect_class$key;
 };
 export function DrivesSelect({ vagabondClassRef, ...props }: DrivesSelectProps) {
-  const { drives } = useFragment(
+  const { driveConnection } = useFragment(
     graphql`
       fragment DrivesSelect_class on VagabondClass {
-        drives
+        driveConnection(first: 50) {
+          edges {
+            node {
+              id
+              name
+            }
+          }
+        }
       }
     `,
     vagabondClassRef
@@ -19,11 +26,15 @@ export function DrivesSelect({ vagabondClassRef, ...props }: DrivesSelectProps) 
 
   return (
     <RHFTextField {...props} select SelectProps={{ multiple: true }}>
-      {drives.map((drive) => (
-        <MenuItem key={drive} value={drive}>
-          {drive}
-        </MenuItem>
-      ))}
+      {driveConnection.edges.map(edge => {
+        if (!edge?.node) return null
+
+        return (
+          <MenuItem key={edge.node.id} value={edge.node.id}>
+            {edge.node.name}
+          </MenuItem>
+        )
+      })}
     </RHFTextField>
   );
 }
