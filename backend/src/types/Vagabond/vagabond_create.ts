@@ -9,6 +9,7 @@ builder.relayMutationField(
       nature: t.globalID({ required: true }),
       drives: t.globalIDList({ required: true }),
       roguishFeats: t.globalIDList({ required: true }),
+      weaponSkill: t.globalID({ required: true }),
       // stats
       charm: t.int({ required: true }),
       cunning: t.int({ required: true }),
@@ -64,6 +65,7 @@ builder.relayMutationField(
           natureId: input.nature.id,
           drives: { connect: input.drives.map(({ id }) => ({ id })) },
           roguishFeats: { connect: featIds.map(id => ({ id })) },
+          weaponSkills: { connect: { id: input.weaponSkill.id } }
         },
       });
 

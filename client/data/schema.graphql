@@ -127,7 +127,7 @@ type VagabondClass implements Node {
   startingFinesse: Int!
   startingLuck: Int!
   startingMight: Int!
-  startingWeaponSkills: [String!]!
+  weaponSkillConnection(after: String, before: String, first: Int, last: Int): VagabondClassWeaponSkillConnection!
 }
 
 type VagabondClassDriveConnection {
@@ -160,6 +160,16 @@ type VagabondClassRoguishFeatConnectionEdge {
   node: RoguishFeat!
 }
 
+type VagabondClassWeaponSkillConnection {
+  edges: [VagabondClassWeaponSkillConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondClassWeaponSkillConnectionEdge {
+  cursor: String!
+  node: WeaponSkill!
+}
+
 input VagabondCreateInput {
   charm: Int!
   class: ID!
@@ -171,6 +181,7 @@ input VagabondCreateInput {
   name: String!
   nature: ID!
   roguishFeats: [ID!]!
+  weaponSkill: ID!
 }
 
 type VagabondCreatePayload {
@@ -188,5 +199,17 @@ input VagabondUpdateStatsInput {
 
 type VagabondUpdateStatsPayload {
   vagabond: Vagabond!
+}
+
+type WeaponSkill implements Node {
+  description: String!
+  id: ID!
+  name: String!
+  type: WeaponSkillType!
+}
+
+enum WeaponSkillType {
+  NORMAL
+  SPECIAL
 }
 

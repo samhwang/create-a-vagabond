@@ -35,7 +35,7 @@ pscale connect createvagabondapp dev-sam --port 3309
   each class with 2
   choose extra 1
 
-[ ] Weapon Skills
+[X] Weapon Skills
   list same
   when created
     choose 1 in the bold one(diff by class)

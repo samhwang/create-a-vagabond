@@ -16,5 +16,6 @@ import './types/VagabondClass';
 import './types/Nature';
 import './types/Drive';
 import './types/RoguishFeat';
+import './types/WeaponSkill';
 
 export const schema = builder.toSchema();

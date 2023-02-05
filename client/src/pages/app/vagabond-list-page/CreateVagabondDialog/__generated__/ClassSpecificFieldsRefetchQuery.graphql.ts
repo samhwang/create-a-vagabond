@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9888ed3c17a0a0f7fe875074d091d5fb>>
+ * @generated SignedSource<<e8d36cb970c03bba03d10bd0ee3533db>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -270,6 +270,38 @@ return {
                   }
                 ],
                 "storageKey": "driveConnection(first:50)"
+              },
+              {
+                "alias": null,
+                "args": (v1/*: any*/),
+                "concreteType": "VagabondClassWeaponSkillConnection",
+                "kind": "LinkedField",
+                "name": "weaponSkillConnection",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "VagabondClassWeaponSkillConnectionEdge",
+                    "kind": "LinkedField",
+                    "name": "edges",
+                    "plural": true,
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "WeaponSkill",
+                        "kind": "LinkedField",
+                        "name": "node",
+                        "plural": false,
+                        "selections": (v3/*: any*/),
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": "weaponSkillConnection(first:50)"
               }
             ],
             "type": "VagabondClass",
@@ -281,16 +313,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "23667bf0cb92454120bdc3c1fcf01311",
+    "cacheID": "13608eec38cd3138f456b0f03c35870d",
     "id": null,
     "metadata": {},
     "name": "ClassSpecificFieldsRefetchQuery",
     "operationKind": "query",
-    "text": "query ClassSpecificFieldsRefetchQuery(\n  $selectedClassId: ID = \"\"\n) {\n  ...ClassSpecificFields_query_2Y8a5A\n}\n\nfragment ClassSpecificFields_query_2Y8a5A on Query {\n  ...RoguishFeatSelect_query\n  node(id: $selectedClassId) {\n    __typename\n    ... on VagabondClass {\n      startingCharm\n      startingCunning\n      startingFinesse\n      startingLuck\n      startingMight\n      ...ClassSpecificFields_useDefaultValue_class\n      ...useStartingPointLeft_class\n      ...NatureSelect_class\n      ...DrivesSelect_class\n      ...RoguishFeatSelect_class\n    }\n    id\n  }\n}\n\nfragment ClassSpecificFields_useDefaultValue_class on VagabondClass {\n  id\n  roguishFeatConnection {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n}\n\nfragment DrivesSelect_class on VagabondClass {\n  driveConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment NatureSelect_class on VagabondClass {\n  natureConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment RoguishFeatSelect_class on VagabondClass {\n  roguishFeatConnection {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n}\n\nfragment RoguishFeatSelect_query on Query {\n  roguishFeatConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment useStartingPointLeft_class on VagabondClass {\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n}\n"
+    "text": "query ClassSpecificFieldsRefetchQuery(\n  $selectedClassId: ID = \"\"\n) {\n  ...ClassSpecificFields_query_2Y8a5A\n}\n\nfragment ClassSpecificFields_query_2Y8a5A on Query {\n  ...RoguishFeatSelect_query\n  node(id: $selectedClassId) {\n    __typename\n    ... on VagabondClass {\n      startingCharm\n      startingCunning\n      startingFinesse\n      startingLuck\n      startingMight\n      ...ClassSpecificFields_useDefaultValue_class\n      ...useStartingPointLeft_class\n      ...NatureSelect_class\n      ...DrivesSelect_class\n      ...RoguishFeatSelect_class\n      ...WeaponSkillSelect_class\n    }\n    id\n  }\n}\n\nfragment ClassSpecificFields_useDefaultValue_class on VagabondClass {\n  id\n  roguishFeatConnection {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n}\n\nfragment DrivesSelect_class on VagabondClass {\n  driveConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment NatureSelect_class on VagabondClass {\n  natureConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment RoguishFeatSelect_class on VagabondClass {\n  roguishFeatConnection {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n}\n\nfragment RoguishFeatSelect_query on Query {\n  roguishFeatConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment WeaponSkillSelect_class on VagabondClass {\n  weaponSkillConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment useStartingPointLeft_class on VagabondClass {\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n}\n"
   }
 };
 })();
 
-(node as any).hash = "7a86d3945e3ad2c574c23554c3929535";
+(node as any).hash = "ea7b6cc03c11b834625122635eb523ca";
 
 export default node;

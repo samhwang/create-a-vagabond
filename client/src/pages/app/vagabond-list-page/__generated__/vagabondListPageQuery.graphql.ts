@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f154902234034628c52fe5a66a0ac413>>
+ * @generated SignedSource<<ea800be83cb99b07baa83fd3c6afc2dc>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -477,6 +477,38 @@ return {
                   }
                 ],
                 "storageKey": "driveConnection(first:50)"
+              },
+              {
+                "alias": null,
+                "args": (v6/*: any*/),
+                "concreteType": "VagabondClassWeaponSkillConnection",
+                "kind": "LinkedField",
+                "name": "weaponSkillConnection",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "VagabondClassWeaponSkillConnectionEdge",
+                    "kind": "LinkedField",
+                    "name": "edges",
+                    "plural": true,
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "WeaponSkill",
+                        "kind": "LinkedField",
+                        "name": "node",
+                        "plural": false,
+                        "selections": (v7/*: any*/),
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": "weaponSkillConnection(first:50)"
               }
             ],
             "type": "VagabondClass",
@@ -488,12 +520,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "210eec0ca11162907d5a6a29498516fe",
+    "cacheID": "549e51dbe68faf76ac933900696fdb68",
     "id": null,
     "metadata": {},
     "name": "vagabondListPageQuery",
     "operationKind": "query",
-    "text": "query vagabondListPageQuery {\n  me {\n    id\n    ...VagabondList_user\n  }\n  ...VagabondList_query\n}\n\nfragment ClassSpecificFields_query on Query {\n  ...RoguishFeatSelect_query\n  node(id: \"\") {\n    __typename\n    ... on VagabondClass {\n      startingCharm\n      startingCunning\n      startingFinesse\n      startingLuck\n      startingMight\n      ...ClassSpecificFields_useDefaultValue_class\n      ...useStartingPointLeft_class\n      ...NatureSelect_class\n      ...DrivesSelect_class\n      ...RoguishFeatSelect_class\n    }\n    id\n  }\n}\n\nfragment ClassSpecificFields_useDefaultValue_class on VagabondClass {\n  id\n  roguishFeatConnection {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n}\n\nfragment CreateVagabondDialog_query on Query {\n  ...VagabondClassSelect_query\n  ...ClassSpecificFields_query\n}\n\nfragment DrivesSelect_class on VagabondClass {\n  driveConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment NatureSelect_class on VagabondClass {\n  natureConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment RoguishFeatSelect_class on VagabondClass {\n  roguishFeatConnection {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n}\n\nfragment RoguishFeatSelect_query on Query {\n  roguishFeatConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment UpdateVagabondStatsDialog_vagabond on Vagabond {\n  id\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n}\n\nfragment VagabondClassSelect_query on Query {\n  vagabondClassConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n  ...UpdateVagabondStatsDialog_vagabond\n}\n\nfragment VagabondList_query on Query {\n  ...CreateVagabondDialog_query\n}\n\nfragment VagabondList_user on User {\n  vagabondConnection(first: 10) {\n    edges {\n      node {\n        ...VagabondListItem_vagabond\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment useStartingPointLeft_class on VagabondClass {\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n}\n"
+    "text": "query vagabondListPageQuery {\n  me {\n    id\n    ...VagabondList_user\n  }\n  ...VagabondList_query\n}\n\nfragment ClassSpecificFields_query on Query {\n  ...RoguishFeatSelect_query\n  node(id: \"\") {\n    __typename\n    ... on VagabondClass {\n      startingCharm\n      startingCunning\n      startingFinesse\n      startingLuck\n      startingMight\n      ...ClassSpecificFields_useDefaultValue_class\n      ...useStartingPointLeft_class\n      ...NatureSelect_class\n      ...DrivesSelect_class\n      ...RoguishFeatSelect_class\n      ...WeaponSkillSelect_class\n    }\n    id\n  }\n}\n\nfragment ClassSpecificFields_useDefaultValue_class on VagabondClass {\n  id\n  roguishFeatConnection {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n}\n\nfragment CreateVagabondDialog_query on Query {\n  ...VagabondClassSelect_query\n  ...ClassSpecificFields_query\n}\n\nfragment DrivesSelect_class on VagabondClass {\n  driveConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment NatureSelect_class on VagabondClass {\n  natureConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment RoguishFeatSelect_class on VagabondClass {\n  roguishFeatConnection {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n}\n\nfragment RoguishFeatSelect_query on Query {\n  roguishFeatConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment UpdateVagabondStatsDialog_vagabond on Vagabond {\n  id\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n}\n\nfragment VagabondClassSelect_query on Query {\n  vagabondClassConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n  ...UpdateVagabondStatsDialog_vagabond\n}\n\nfragment VagabondList_query on Query {\n  ...CreateVagabondDialog_query\n}\n\nfragment VagabondList_user on User {\n  vagabondConnection(first: 10) {\n    edges {\n      node {\n        ...VagabondListItem_vagabond\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n\nfragment WeaponSkillSelect_class on VagabondClass {\n  weaponSkillConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment useStartingPointLeft_class on VagabondClass {\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n}\n"
   }
 };
 })();

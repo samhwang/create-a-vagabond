@@ -13,15 +13,6 @@ datasource db {
   relationMode = "prisma"
 }
 
-model RoguishFeat {
-  id              String          @id
-  name            String
-  description     String
-  risks           Json // string[]
-  vagabondClasses VagabondClass[]
-  vagabonds       Vagabond[]
-}
-
 model VagabondClass {
   id              String @id
   name            String
@@ -31,12 +22,40 @@ model VagabondClass {
   startingLuck    Int
   startingMight   Int
 
-  natures              Nature[]
-  drives               Drive[]
-  roguishFeats         RoguishFeat[]
-  startingWeaponSkills Json // string[]
+  natures      Nature[]
+  drives       Drive[]
+  roguishFeats RoguishFeat[]
+  weaponSkills WeaponSkill[]
 
   vagabond Vagabond[]
+}
+
+model Vagabond {
+  id String @id @default(cuid())
+
+  userId          String
+  class           VagabondClass @relation(fields: [vagabondClassId], references: [id])
+  vagabondClassId String
+
+  name            String
+  charm           Int    @default(0)
+  cunning         Int    @default(0)
+  finesse         Int    @default(0)
+  luck            Int    @default(0)
+  might           Int    @default(0)
+  availablePoints Int    @default(0)
+
+  reputation Reputation[]
+
+  nature       Nature?       @relation(fields: [natureId], references: [id])
+  natureId     String?
+  drives       Drive[]
+  roguishFeats RoguishFeat[]
+  weaponSkills WeaponSkill[]
+
+  @@index([userId])
+  @@index([natureId])
+  @@index([vagabondClassId])
 }
 
 model Nature {
@@ -55,6 +74,15 @@ model Drive {
   vagabondClass VagabondClass[]
 }
 
+model RoguishFeat {
+  id              String          @id
+  name            String
+  description     String
+  risks           Json // string[]
+  vagabondClasses VagabondClass[]
+  vagabonds       Vagabond[]
+}
+
 model Reputation {
   id         String   @id @default(cuid())
   vagabondId String
@@ -67,30 +95,16 @@ model Reputation {
   @@index([vagabondId])
 }
 
-model Vagabond {
-  id String @id @default(cuid())
+enum WeaponSkillType {
+  NORMAL
+  SPECIAL
+}
 
-  name String
-
-  class           VagabondClass @relation(fields: [vagabondClassId], references: [id])
-  vagabondClassId String
-
-  charm           Int    @default(0)
-  cunning         Int    @default(0)
-  finesse         Int    @default(0)
-  luck            Int    @default(0)
-  might           Int    @default(0)
-  availablePoints Int    @default(0)
-  userId          String
-
-  reputation Reputation[]
-
-  nature       Nature?       @relation(fields: [natureId], references: [id])
-  natureId     String?
-  drives       Drive[]
-  roguishFeats RoguishFeat[]
-
-  @@index([natureId])
-  @@index([userId])
-  @@index([vagabondClassId])
+model WeaponSkill {
+  id            String          @id
+  name          String
+  type          WeaponSkillType @default(NORMAL)
+  description   String          @db.MediumText
+  vagabondClass VagabondClass[]
+  vagabond      Vagabond[]
 }

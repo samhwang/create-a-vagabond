@@ -13,6 +13,7 @@ import { useStartingPointLeft } from './useStartingPointLeft'
 import { NatureSelect } from './NatureSelect'
 import { DrivesSelect } from './DrivesSelect'
 import { RoguishFeatSelect } from './RoguishFeatSelect'
+import { WeaponSkillSelect } from './WeaponSkillSelect'
 
 type ClassSpecificFieldsProps = {
   control: Control<VagabondCreateInput, any>
@@ -44,6 +45,7 @@ export const ClassSpecificFields = ({
             ...NatureSelect_class
             ...DrivesSelect_class
             ...RoguishFeatSelect_class
+            ...WeaponSkillSelect_class
           }
         }
       }
@@ -81,6 +83,12 @@ export const ClassSpecificFields = ({
           name='roguishFeats'
           label='Roguish Feats'
           queryRef={query}
+          vagabondClassRef={query.node}
+        />
+        <WeaponSkillSelect
+          control={control}
+          name='weaponSkill'
+          label='Weapond Skill'
           vagabondClassRef={query.node}
         />
       </Stack>
