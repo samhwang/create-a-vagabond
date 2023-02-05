@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ab0fc2921fc0a79f34b44e2c5d365529>>
+ * @generated SignedSource<<5716d5fcf7ccbdae37e1b27cfd676046>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -20,6 +20,7 @@ export type VagabondCreateInput = {
   might: number;
   name: string;
   nature: string;
+  roguishFeats: ReadonlyArray<string>;
 };
 export type CreateVagabondDialogMutation$variables = {
   connections: ReadonlyArray<string>;

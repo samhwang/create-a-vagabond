@@ -1,9 +1,9 @@
-import { builder, prisma } from '../../builder';
+import { builder, prisma } from '../../builder'
 
-builder.queryField('vagabondClassConnection', (t) =>
-  t.prismaConnection({
+builder.queryField('vagabondClassConnection', t => t.prismaConnection(
+  {
     type: 'VagabondClass',
     cursor: 'id',
-    resolve: (query) => prisma.vagabondClass.findMany(query),
-  })
-);
+    resolve: query => prisma.vagabondClass.findMany(query)
+  }
+))

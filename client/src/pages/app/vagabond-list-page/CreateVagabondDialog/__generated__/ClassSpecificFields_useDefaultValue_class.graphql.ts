@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1171bd638059aefd172dfc9c82f482c7>>
+ * @generated SignedSource<<8232fe169aab076c95d304155e7f83d7>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,6 +17,13 @@ export type ClassSpecificFields_useDefaultValue_class$data = {
   readonly startingFinesse: number;
   readonly startingLuck: number;
   readonly startingMight: number;
+  readonly startingRoguishFeats: {
+    readonly edges: ReadonlyArray<{
+      readonly node: {
+        readonly id: string;
+      };
+    } | null>;
+  };
   readonly " $fragmentType": "ClassSpecificFields_useDefaultValue_class";
 };
 export type ClassSpecificFields_useDefaultValue_class$key = {
@@ -24,17 +31,53 @@ export type ClassSpecificFields_useDefaultValue_class$key = {
   readonly " $fragmentSpreads": FragmentRefs<"ClassSpecificFields_useDefaultValue_class">;
 };
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
   "name": "ClassSpecificFields_useDefaultValue_class",
   "selections": [
+    (v0/*: any*/),
     {
       "alias": null,
       "args": null,
-      "kind": "ScalarField",
-      "name": "id",
+      "concreteType": "VagabondClassStartingRoguishFeatsConnection",
+      "kind": "LinkedField",
+      "name": "startingRoguishFeats",
+      "plural": false,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "VagabondClassStartingRoguishFeatsConnectionEdge",
+          "kind": "LinkedField",
+          "name": "edges",
+          "plural": true,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "concreteType": "RoguishFeat",
+              "kind": "LinkedField",
+              "name": "node",
+              "plural": false,
+              "selections": [
+                (v0/*: any*/)
+              ],
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
+        }
+      ],
       "storageKey": null
     },
     {
@@ -76,7 +119,8 @@ const node: ReaderFragment = {
   "type": "VagabondClass",
   "abstractKey": null
 };
+})();
 
-(node as any).hash = "0fdeb871f29235f5802286cce8d0b440";
+(node as any).hash = "488b5b63f8f08cedf5d2977a8d57f4a4";
 
 export default node;

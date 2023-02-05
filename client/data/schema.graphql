@@ -40,7 +40,18 @@ type Query {
   me: User!
   node(id: ID!): Node
   nodes(ids: [ID!]!): [Node]!
+  roguishFeatConnection(after: String, before: String, first: Int, last: Int): QueryRoguishFeatConnection!
   vagabondClassConnection(after: String, before: String, first: Int, last: Int): QueryVagabondClassConnection!
+}
+
+type QueryRoguishFeatConnection {
+  edges: [QueryRoguishFeatConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryRoguishFeatConnectionEdge {
+  cursor: String!
+  node: RoguishFeat!
 }
 
 type QueryVagabondClassConnection {
@@ -51,6 +62,13 @@ type QueryVagabondClassConnection {
 type QueryVagabondClassConnectionEdge {
   cursor: String!
   node: VagabondClass!
+}
+
+type RoguishFeat implements Node {
+  description: String!
+  id: ID!
+  name: String!
+  risks: [String!]!
 }
 
 type User implements Node {
@@ -96,8 +114,18 @@ type VagabondClass implements Node {
   startingFinesse: Int!
   startingLuck: Int!
   startingMight: Int!
-  startingRoguishFeats: [String!]!
+  startingRoguishFeats(after: String, before: String, first: Int, last: Int): VagabondClassStartingRoguishFeatsConnection!
   startingWeaponSkills: [String!]!
+}
+
+type VagabondClassStartingRoguishFeatsConnection {
+  edges: [VagabondClassStartingRoguishFeatsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondClassStartingRoguishFeatsConnectionEdge {
+  cursor: String!
+  node: RoguishFeat!
 }
 
 input VagabondCreateInput {
@@ -110,6 +138,7 @@ input VagabondCreateInput {
   might: Int!
   name: String!
   nature: String!
+  roguishFeats: [ID!]!
 }
 
 type VagabondCreatePayload {

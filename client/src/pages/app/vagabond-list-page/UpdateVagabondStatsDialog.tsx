@@ -107,11 +107,6 @@ export function UpdateVagabondStatsDialog({ open, onClose, vagabondFragment }: U
     });
   };
 
-  console.log({
-    pointLeft,
-    upDisabled: pointLeft > 0,
-  });
-
   return (
     <Dialog open={open} onClose={onClose}>
       <form onSubmit={handleSubmit(onSubmit)}>

@@ -30,7 +30,7 @@ pscale connect createvagabondapp dev-sam --port 3309
   when create + 1
   max value 2
 
-[ ] Roguish Feats
+[X] Roguish Feats
   list same
   each class with 2
   choose extra 1

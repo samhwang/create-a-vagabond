@@ -15,9 +15,6 @@ builder.prismaNode('VagabondClass', {
     drives: t.stringList({
       resolve: (vc) => vc.drives as string[],
     }),
-    startingRoguishFeats: t.stringList({
-      resolve: (vc) => vc.startingRoguishFeats as string[],
-    }),
     startingWeaponSkills: t.stringList({
       resolve: (vc) => vc.startingWeaponSkills as string[],
     }),

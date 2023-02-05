@@ -19,6 +19,8 @@ const CreateVagabondInputSchema = z.object({
   class: z.string(),
   nature: z.string(),
   drives: z.array(z.string()).length(2),
+  roguishFeats: z.array(z.string()),
+
   charm: z.number().max(2),
   cunning: z.number().max(2),
   finesse: z.number().max(2),
@@ -69,13 +71,14 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
     resolver: zodResolver(CreateVagabondInputSchema),
     defaultValues: {
       drives: [],
-    },
+      roguishFeats: [],
+    }
   });
   const selectedClassId = methods.watch('class');
 
   useEffect(() => {
-    methods.reset({ drives: [] });
-  }, [open, methods]);
+    methods.reset()
+  }, [open])
 
   const onSubmit: SubmitHandler<VagabondCreateInput> = (data) => {
     createVagabond({
@@ -104,7 +107,13 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
   };
 
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      PaperProps={{
+        sx: { minWidth: 600 }
+      }}
+    >
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <DialogTitle>Create new Vagabond</DialogTitle>

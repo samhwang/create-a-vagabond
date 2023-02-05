@@ -1,30 +1,37 @@
-import { useEffect } from 'react';
-import { Control, useFormContext } from 'react-hook-form';
-import { graphql, useFragment, useRefetchableFragment } from 'react-relay';
-import { ClassSpecificFieldsRefetchQuery } from './__generated__/ClassSpecificFieldsRefetchQuery.graphql';
-import { ClassSpecificFields_query$key } from './__generated__/ClassSpecificFields_query.graphql';
-import { VagabondCreateInput } from './__generated__/CreateVagabondDialogMutation.graphql';
-import { RHFStatField } from '../../../../components/RHF/RHFStatField';
-import { ClassSpecificFields_useDefaultValue_class$key } from './__generated__/ClassSpecificFields_useDefaultValue_class.graphql';
-import { NatureSelect } from './NatureSelect';
-import { DrivesSelect } from './DrivesSelect';
-import { useStartingPointLeft } from './useStartingPointLeft';
+import { ClassSpecificFieldsRefetchQuery } from './__generated__/ClassSpecificFieldsRefetchQuery.graphql'
+import { ClassSpecificFields_query$key } from './__generated__/ClassSpecificFields_query.graphql'
+import { VagabondCreateInput } from './__generated__/CreateVagabondDialogMutation.graphql'
+import { ClassSpecificFields_useDefaultValue_class$key } from './__generated__/ClassSpecificFields_useDefaultValue_class.graphql'
+
+import { useEffect } from 'react'
+import { Control, useFormContext } from 'react-hook-form'
+import { graphql, useFragment, useRefetchableFragment } from 'react-relay'
+import { Stack } from '@mui/material'
+
+import { RHFStatField } from '../../../../components/RHF/RHFStatField'
+import { useStartingPointLeft } from './useStartingPointLeft'
+import { NatureSelect } from './NatureSelect'
+import { DrivesSelect } from './DrivesSelect'
+import { RoguishFeatSelect } from './RoguishFeatSelect'
 
 type ClassSpecificFieldsProps = {
-  control: Control<VagabondCreateInput>;
-  selectedClassId?: string;
-  queryRef: ClassSpecificFields_query$key;
-};
-
-export function ClassSpecificFields({ control, queryRef, selectedClassId }: ClassSpecificFieldsProps) {
-  const [selectedClass, refetchSelectedClass] = useRefetchableFragment<
-    ClassSpecificFieldsRefetchQuery,
-    ClassSpecificFields_query$key
-  >(
+  control: Control<VagabondCreateInput, any>
+  selectedClassId?: string
+  queryRef: ClassSpecificFields_query$key
+}
+ 
+export const ClassSpecificFields = ({
+  control,
+  queryRef,
+  selectedClassId,
+}: ClassSpecificFieldsProps) => {
+  const [query, refetch] = useRefetchableFragment<ClassSpecificFieldsRefetchQuery, ClassSpecificFields_query$key>(
     graphql`
       fragment ClassSpecificFields_query on Query
       @argumentDefinitions(selectedClassId: { type: "ID", defaultValue: "" })
-      @refetchable(queryName: "ClassSpecificFieldsRefetchQuery") {
+      @refetchable(queryName: "ClassSpecificFieldsRefetchQuery")
+      {
+        ...RoguishFeatSelect_query
         node(id: $selectedClassId) {
           ... on VagabondClass {
             startingCharm
@@ -36,6 +43,7 @@ export function ClassSpecificFields({ control, queryRef, selectedClassId }: Clas
             ...useStartingPointLeft_class
             ...NatureSelect_class
             ...DrivesSelect_class
+            ...RoguishFeatSelect_class
           }
         }
       }
@@ -45,55 +53,76 @@ export function ClassSpecificFields({ control, queryRef, selectedClassId }: Clas
 
   // on selected id change, refetch
   useEffect(() => {
-    if (selectedClassId) refetchSelectedClass({ selectedClassId });
-  }, [selectedClassId, refetchSelectedClass]);
+    if (selectedClassId) refetch({ selectedClassId })
+  }, [selectedClassId])
 
-  useDefaultValue(selectedClass.node);
-  const pointLeft = useStartingPointLeft(selectedClass.node);
+  useDefaultValue(query.node)
+  const pointLeft = useStartingPointLeft(query.node)
 
-  if (!selectedClass.node) return null;
+  if (!query.node) return <></>
 
   return (
-    <>
-      <NatureSelect control={control} name="nature" label="Nature" vagabondClassRef={selectedClass.node} />
-      <DrivesSelect control={control} name="drives" label="Drives" vagabondClassRef={selectedClass.node} />
-      <RHFStatField
-        control={control}
-        name="charm"
-        label="Charm"
-        startingPoint={selectedClass.node.startingCharm!}
-        hasPointLeft={Boolean(pointLeft)}
-      />
-      <RHFStatField
-        control={control}
-        name="cunning"
-        label="Cunning"
-        startingPoint={selectedClass.node.startingCunning!}
-        hasPointLeft={Boolean(pointLeft)}
-      />
-      <RHFStatField
-        control={control}
-        name="finesse"
-        label="Finesse"
-        startingPoint={selectedClass.node.startingFinesse!}
-        hasPointLeft={Boolean(pointLeft)}
-      />
-      <RHFStatField
-        control={control}
-        name="luck"
-        label="Luck"
-        startingPoint={selectedClass.node.startingLuck!}
-        hasPointLeft={Boolean(pointLeft)}
-      />
-      <RHFStatField
-        control={control}
-        name="might"
-        label="Might"
-        startingPoint={selectedClass.node.startingMight!}
-        hasPointLeft={Boolean(pointLeft)}
-      />
-    </>
-  );
+    <Stack direction='row' spacing={2}>
+      <Stack direction='column' spacing={2} minWidth={250}>
+        <NatureSelect
+          control={control}
+          name='nature'
+          label='Nature'
+          vagabondClassRef={query.node}
+        />
+        <DrivesSelect
+          control={control}
+          name='drives'
+          label='Drives'
+          vagabondClassRef={query.node}
+        />
+        <RoguishFeatSelect
+          control={control}
+          name='roguishFeats'
+          label='Roguish Feats'
+          queryRef={query}
+          vagabondClassRef={query.node}
+        />
+      </Stack>
+      <Stack direction='column' spacing={2} minWidth={250}>
+        <RHFStatField
+          control={control}
+          name='charm'
+          label='Charm'
+          startingPoint={query.node.startingCharm!}
+          hasPointLeft={Boolean(pointLeft)}
+        />
+        <RHFStatField
+          control={control}
+          name='cunning'
+          label='Cunning'
+          startingPoint={query.node.startingCunning!}
+          hasPointLeft={Boolean(pointLeft)}
+        />
+        <RHFStatField
+          control={control}
+          name='finesse'
+          label='Finesse'
+          startingPoint={query.node.startingFinesse!}
+          hasPointLeft={Boolean(pointLeft)}
+        />
+        <RHFStatField
+          control={control}
+          name='luck'
+          label='Luck'
+          startingPoint={query.node.startingLuck!}
+          hasPointLeft={Boolean(pointLeft)}
+        />
+        <RHFStatField
+          control={control}
+          name='might'
+          label='Might'
+          startingPoint={query.node.startingMight!}
+          hasPointLeft={Boolean(pointLeft)}
+        />
+      </Stack>
+    </Stack>
+  )
 }
 
 // on class changed, update the default value for dependent fields
@@ -103,6 +132,7 @@ const useDefaultValue = (vagabondClassRef?: ClassSpecificFields_useDefaultValue_
     graphql`
       fragment ClassSpecificFields_useDefaultValue_class on VagabondClass {
         id
+        startingRoguishFeats { edges { node { id } } }
         startingCharm
         startingCunning
         startingFinesse
@@ -113,16 +143,22 @@ const useDefaultValue = (vagabondClassRef?: ClassSpecificFields_useDefaultValue_
     vagabondClassRef!
   );
 
+  const startingFeatsIds = vagabondClass?.startingRoguishFeats.edges
+    .filter(edge => Boolean(edge?.node))
+    .map(edge => edge!.node.id)
+
   useEffect(() => {
     if (vagabondClass) {
       // TODO: find out why this specific one not works
       // setValue('nature', '')
-      setValue('drives', []);
-      setValue('charm', vagabondClass.startingCharm!);
-      setValue('cunning', vagabondClass.startingCunning!);
-      setValue('finesse', vagabondClass.startingFinesse!);
-      setValue('luck', vagabondClass.startingLuck!);
-      setValue('might', vagabondClass.startingMight!);
+      setValue('drives', [])
+      setValue('roguishFeats', startingFeatsIds)
+
+      setValue('charm', vagabondClass.startingCharm!)
+      setValue('cunning', vagabondClass.startingCunning!)
+      setValue('finesse', vagabondClass.startingFinesse!)
+      setValue('luck', vagabondClass.startingLuck!)
+      setValue('might', vagabondClass.startingMight!)
     }
   }, [vagabondClass, setValue]);
 };

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b59c5dfdede8b441bc059c0bf9b75a48>>
+ * @generated SignedSource<<5c78bc7514ff96cb7fe02c380391c551>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,8 +17,9 @@ export type ClassSpecificFields_query$data = {
     readonly startingFinesse?: number;
     readonly startingLuck?: number;
     readonly startingMight?: number;
-    readonly " $fragmentSpreads": FragmentRefs<"ClassSpecificFields_useDefaultValue_class" | "DrivesSelect_class" | "NatureSelect_class" | "useStartingPointLeft_class">;
+    readonly " $fragmentSpreads": FragmentRefs<"ClassSpecificFields_useDefaultValue_class" | "DrivesSelect_class" | "NatureSelect_class" | "RoguishFeatSelect_class" | "useStartingPointLeft_class">;
   } | null;
+  readonly " $fragmentSpreads": FragmentRefs<"RoguishFeatSelect_query">;
   readonly " $fragmentType": "ClassSpecificFields_query";
 };
 export type ClassSpecificFields_query$key = {
@@ -46,6 +47,11 @@ const node: ReaderFragment = {
   },
   "name": "ClassSpecificFields_query",
   "selections": [
+    {
+      "args": null,
+      "kind": "FragmentSpread",
+      "name": "RoguishFeatSelect_query"
+    },
     {
       "alias": null,
       "args": [
@@ -117,6 +123,11 @@ const node: ReaderFragment = {
               "args": null,
               "kind": "FragmentSpread",
               "name": "DrivesSelect_class"
+            },
+            {
+              "args": null,
+              "kind": "FragmentSpread",
+              "name": "RoguishFeatSelect_class"
             }
           ],
           "type": "VagabondClass",
@@ -130,6 +141,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "9f1ed2ab0dc215d35cbc2ff6bae14ff4";
+(node as any).hash = "7a86d3945e3ad2c574c23554c3929535";
 
 export default node;
