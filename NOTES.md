@@ -42,9 +42,11 @@ pscale connect createvagabondapp dev-sam --port 3309
     other can be pick later with progressing
   // (weapon can has it own moves)
 
-[ ] Class Moves
+[-] Class Moves
   diff by class
   when create choose 3
+  always start with 3 moves
+  tinker start with 2 default move(choose 1) --> still 3 in total
 
 [X] Vagabond Equipment's stats
   when create

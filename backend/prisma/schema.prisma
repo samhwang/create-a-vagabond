@@ -27,6 +27,7 @@ model VagabondClass {
   drives       Drive[]
   roguishFeats RoguishFeat[]
   weaponSkills WeaponSkill[]
+  classMoves   ClassMove[]
 
   vagabond Vagabond[]
 }
@@ -55,6 +56,7 @@ model Vagabond {
   drives       Drive[]
   roguishFeats RoguishFeat[]
   weaponSkills WeaponSkill[]
+  classMoves   ClassMove[]
 
   @@index([userId])
   @@index([natureId])
@@ -108,6 +110,14 @@ model WeaponSkill {
   name          String
   type          WeaponSkillType @default(NORMAL)
   description   String          @db.MediumText
+  vagabondClass VagabondClass[]
+  vagabond      Vagabond[]
+}
+
+model ClassMove {
+  id            String          @id
+  name          String
+  description   String          @db.Text
   vagabondClass VagabondClass[]
   vagabond      Vagabond[]
 }
