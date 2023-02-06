@@ -16,3 +16,12 @@ builder.prismaObjectField(
     { cursor: 'id' },
   )
 )
+
+builder.prismaObjectField(
+  'Vagabond',
+  'classMoveConnection',
+  t => t.relatedConnection(
+    'classMoves',
+    { cursor: 'id' }
+  )
+)

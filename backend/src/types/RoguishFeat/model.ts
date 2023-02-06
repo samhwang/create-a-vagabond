@@ -19,3 +19,12 @@ builder.prismaObjectField(
     { cursor: 'id' },
   )
 )
+
+builder.prismaObjectField(
+  'Vagabond',
+  'roguishFeatConnection',
+  t => t.relatedConnection(
+    'roguishFeats',
+    { cursor: 'id' },
+  )
+)

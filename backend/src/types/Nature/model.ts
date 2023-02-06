@@ -16,3 +16,9 @@ builder.prismaObjectField(
     { cursor: 'id' },
   )
 )
+
+builder.prismaObjectField(
+  'Vagabond',
+  'nature',
+  t => t.relation('nature')
+)

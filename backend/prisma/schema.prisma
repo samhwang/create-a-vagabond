@@ -39,15 +39,19 @@ model Vagabond {
   class           VagabondClass @relation(fields: [vagabondClassId], references: [id])
   vagabondClassId String
 
-  name            String
+  name     String
+  species  String
+  details  String
+  demeanor String
+
   value           Int
-  carrying        Int    @default(0)
-  charm           Int    @default(0)
-  cunning         Int    @default(0)
-  finesse         Int    @default(0)
-  luck            Int    @default(0)
-  might           Int    @default(0)
-  availablePoints Int    @default(0)
+  carrying        Int @default(0)
+  charm           Int @default(0)
+  cunning         Int @default(0)
+  finesse         Int @default(0)
+  luck            Int @default(0)
+  might           Int @default(0)
+  availablePoints Int @default(0)
 
   reputation Reputation[]
 

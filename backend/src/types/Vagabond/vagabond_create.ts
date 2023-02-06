@@ -6,6 +6,9 @@ builder.relayMutationField(
     inputFields: (t) => ({
       name: t.string({ required: true }),
       class: t.globalID({ required: true }),
+      species: t.string({ required: true }),
+      details: t.string({ required: true }),
+      demeanor: t.string({ required: true }),
       value: t.int({ required: true }),
       nature: t.globalID({ required: true }),
       drives: t.globalIDList({ required: true }),
@@ -61,6 +64,10 @@ builder.relayMutationField(
           userId: ctx.session.userId,
           vagabondClassId: input.class.id,
 
+          species: input.species,
+          details: input.details,
+          demeanor: input.demeanor,
+
           value: input.value,
           charm: input.charm,
           cunning: input.cunning,
@@ -70,8 +77,8 @@ builder.relayMutationField(
 
           natureId: input.nature.id,
           drives: { connect: input.drives.map(({ id }) => ({ id })) },
-          roguishFeats: { connect: featIds.map(id => ({ id })) },
           classMoves: { connect: input.classMoves.map(({ id }) => ({ id })) },
+          roguishFeats: { connect: featIds.map(id => ({ id })) },
           weaponSkills: { connect: { id: input.weaponSkill.id } }
         },
       });

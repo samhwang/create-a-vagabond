@@ -50,9 +50,9 @@ character creation
       [X] Burdened: some sort of tired... limit (Might + 4)
       [X] Max: max carry weight (Burdened * 2)
 
-  [ ] Species
-  [ ] Details
-  [ ] Demeanor
+  [X] Species
+  [X] Details
+  [X] Demeanor
   [ ] Background
     Where do you call home?
     Why are you a vagabond?
