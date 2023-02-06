@@ -1,6 +1,6 @@
-import { Box, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Stack, Typography } from '@mui/material';
+import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, Stack } from '@mui/material';
 import { useSnackbar } from 'notistack';
-import { FormProvider, SubmitHandler, useFieldArray, useForm, useFormContext } from 'react-hook-form';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { graphql, useFragment, useMutation } from 'react-relay';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -14,7 +14,7 @@ import { VagabondClassSelect } from './VagabondClassSelect';
 import { CreateVagabondDialog_query$key } from './__generated__/CreateVagabondDialog_query.graphql';
 import { ClassSpecificFields } from './ClassSpecificFields';
 import { BackgroundFields } from './BackgroundFields'
-import { Add, Cancel, Remove } from '@mui/icons-material'
+import { ConnectionsField } from './ConnectionsField'
 
 const CreateVagabondInputSchema = z.object({
   name: z.string(),
@@ -196,54 +196,3 @@ const Loader = () => (
     <CircularProgress />
   </div>
 )
-
-const ConnectionsField = () => {
-  const { control } = useFormContext<VagabondCreateInput>()
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: 'connections',
-  })
-
-  useEffect(() => {
-    append({ type: '', to: '', notes: '' })
-
-    return () => {
-      remove(0)
-    }
-  }, [])
-
-  return (
-    <>
-      <Box display='flex'>
-        <Typography variant='h6' flexGrow={1}>
-          Connections
-        </Typography>
-        <IconButton onClick={() => append({ type: '', to: '', notes: '' })}>
-          <Add />
-        </IconButton>
-      </Box>
-      {fields.map((field, index) => (
-        <Stack key={field.id} direction='row' spacing={2}>
-          <IconButton onClick={() => remove(index)}>
-            <Cancel />
-          </IconButton>
-          <RHFTextField
-            control={control}
-            name={`connections.${index}.type`}
-            label='Connection Type'
-          />
-          <RHFTextField
-            control={control}
-            name={`connections.${index}.to`}
-            label='Connection To'
-          />
-          <RHFTextField
-            control={control}
-            name={`connections.${index}.notes`}
-            label='Connection Notes'
-          />
-        </Stack>
-      ))}
-    </>
-  )
-}
