@@ -53,14 +53,14 @@ character creation
   [X] Species
   [X] Details
   [X] Demeanor
-  [ ] Background
+  [-] Background
     Where do you call home?
     Why are you a vagabond?
     Whom have you left behind?
     Which faction have you served the most?
     With which faction have you earned a special enmity?
-  [ ] Connections
-    ...depends on class
+  [-] Connections
+    connectionConnection
   [ ] Reputation
     5 x faction with value [-3, 3] and ticks (in sheet)  
 

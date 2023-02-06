@@ -39,10 +39,14 @@ model Vagabond {
   class           VagabondClass @relation(fields: [vagabondClassId], references: [id])
   vagabondClassId String
 
-  name     String
-  species  String
-  details  String
-  demeanor String
+  name                  String
+  species               String
+  details               String
+  demeanor              String
+  background_home       String
+  background_vagabond   String
+  background_leftBehind String
+  connections           VagabondConnection[]
 
   value           Int
   carrying        Int @default(0)
@@ -81,6 +85,17 @@ model Drive {
   description   String
   vagabond      Vagabond[]
   vagabondClass VagabondClass[]
+}
+
+model VagabondConnection {
+  id         String    @id
+  type       String
+  to         String
+  notes      String
+  vagabond   Vagabond? @relation(fields: [vagabondId], references: [id], onDelete: Cascade)
+  vagabondId String?
+
+  @@index([vagabondId])
 }
 
 model RoguishFeat {
