@@ -47,6 +47,7 @@ model Vagabond {
   background_vagabond   String
   background_leftBehind String
   connections           VagabondConnection[]
+  reputations           Reputation[]
 
   value           Int
   carrying        Int @default(0)
@@ -56,8 +57,6 @@ model Vagabond {
   luck            Int @default(0)
   might           Int @default(0)
   availablePoints Int @default(0)
-
-  reputation Reputation[]
 
   nature       Nature?       @relation(fields: [natureId], references: [id])
   natureId     String?
@@ -88,10 +87,10 @@ model Drive {
 }
 
 model VagabondConnection {
-  id         String    @id
+  id         String    @id @default(cuid())
   type       String
-  to         String
   notes      String
+  to         String // other vagabond
   vagabond   Vagabond? @relation(fields: [vagabondId], references: [id], onDelete: Cascade)
   vagabondId String?
 
@@ -110,7 +109,7 @@ model RoguishFeat {
 model Reputation {
   id         String   @id @default(cuid())
   vagabondId String
-  vagabond   Vagabond @relation(fields: [vagabondId], references: [id])
+  vagabond   Vagabond @relation(fields: [vagabondId], references: [id], onDelete: Cascade)
   faction    String   @default("Denizens")
   score      Int      @default(0)
   prestige   Int      @default(0)

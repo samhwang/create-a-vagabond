@@ -119,6 +119,7 @@ type Vagabond implements Node {
   charm: Int!
   class: VagabondClass!
   classMoveConnection(after: String, before: String, first: Int, last: Int): VagabondClassMoveConnection!
+  connectionConnection(after: String, before: String, first: Int, last: Int): VagabondConnectionConnection!
   cunning: Int!
   demeanor: String!
   details: String!
@@ -213,6 +214,29 @@ type VagabondClassWeaponSkillConnectionEdge {
   node: WeaponSkill!
 }
 
+type VagabondConnection implements Node {
+  id: ID!
+  notes: String!
+  to: String!
+  type: String!
+}
+
+type VagabondConnectionConnection {
+  edges: [VagabondConnectionConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondConnectionConnectionEdge {
+  cursor: String!
+  node: VagabondConnection!
+}
+
+input VagabondCreateConnectionCreateInput {
+  notes: String!
+  to: String!
+  type: String!
+}
+
 input VagabondCreateInput {
   background_home: String!
   background_leftBehind: String!
@@ -220,6 +244,7 @@ input VagabondCreateInput {
   charm: Int!
   class: ID!
   classMoves: [ID!]!
+  connections: [VagabondCreateConnectionCreateInput!]
   cunning: Int!
   demeanor: String!
   details: String!

@@ -1,6 +1,6 @@
-import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, Stack } from '@mui/material';
+import { Box, Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Stack, Typography } from '@mui/material';
 import { useSnackbar } from 'notistack';
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { FormProvider, SubmitHandler, useFieldArray, useForm, useFormContext } from 'react-hook-form';
 import { graphql, useFragment, useMutation } from 'react-relay';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -14,6 +14,7 @@ import { VagabondClassSelect } from './VagabondClassSelect';
 import { CreateVagabondDialog_query$key } from './__generated__/CreateVagabondDialog_query.graphql';
 import { ClassSpecificFields } from './ClassSpecificFields';
 import { BackgroundFields } from './BackgroundFields'
+import { Add, Cancel, Remove } from '@mui/icons-material'
 
 const CreateVagabondInputSchema = z.object({
   name: z.string(),
@@ -39,6 +40,12 @@ const CreateVagabondInputSchema = z.object({
   finesse: z.number().max(2),
   luck: z.number().max(2),
   might: z.number().max(2),
+
+  connections: z.array(z.object({
+    type: z.string(),
+    to: z.string(),
+    notes: z.string(),
+  }))
 });
 
 type CreateVagabondDialogProps = {
@@ -167,6 +174,7 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
               <Suspense fallback={<Loader />}>
                 <ClassSpecificFields queryRef={query} />
               </Suspense>
+              <ConnectionsField />
             </Stack>
           </DialogContent>
           <DialogActions>
@@ -188,3 +196,54 @@ const Loader = () => (
     <CircularProgress />
   </div>
 )
+
+const ConnectionsField = () => {
+  const { control } = useFormContext<VagabondCreateInput>()
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'connections',
+  })
+
+  useEffect(() => {
+    append({ type: '', to: '', notes: '' })
+
+    return () => {
+      remove(0)
+    }
+  }, [])
+
+  return (
+    <>
+      <Box display='flex'>
+        <Typography variant='h6' flexGrow={1}>
+          Connections
+        </Typography>
+        <IconButton onClick={() => append({ type: '', to: '', notes: '' })}>
+          <Add />
+        </IconButton>
+      </Box>
+      {fields.map((field, index) => (
+        <Stack key={field.id} direction='row' spacing={2}>
+          <IconButton onClick={() => remove(index)}>
+            <Cancel />
+          </IconButton>
+          <RHFTextField
+            control={control}
+            name={`connections.${index}.type`}
+            label='Connection Type'
+          />
+          <RHFTextField
+            control={control}
+            name={`connections.${index}.to`}
+            label='Connection To'
+          />
+          <RHFTextField
+            control={control}
+            name={`connections.${index}.notes`}
+            label='Connection Notes'
+          />
+        </Stack>
+      ))}
+    </>
+  )
+}

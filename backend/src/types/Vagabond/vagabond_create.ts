@@ -1,5 +1,13 @@
 import { builder, prisma } from '../../builder';
 
+const VagabondCreateConnectionCreateInput = builder.inputType('VagabondCreateConnectionCreateInput', {
+  fields: t => ({
+    type: t.string({ required: true }),
+    notes: t.string({ required: true }),
+    to: t.string({ required: true }),
+  })
+})
+
 builder.relayMutationField(
   'vagabondCreate',
   {
@@ -13,6 +21,9 @@ builder.relayMutationField(
       background_home: t.string({ required: true }),
       background_vagabond: t.string({ required: true }),
       background_leftBehind: t.string({ required: true }),
+      connections: t.field({
+        type: [VagabondCreateConnectionCreateInput],
+      }),
 
       value: t.int({ required: true }),
       nature: t.globalID({ required: true }),
@@ -84,7 +95,13 @@ builder.relayMutationField(
           drives: { connect: input.drives.map(({ id }) => ({ id })) },
           classMoves: { connect: input.classMoves.map(({ id }) => ({ id })) },
           roguishFeats: { connect: featIds.map(id => ({ id })) },
-          weaponSkills: { connect: { id: input.weaponSkill.id } }
+          weaponSkills: { connect: { id: input.weaponSkill.id } },
+          connections: input.connections ? {
+            createMany: {
+              data: input.connections,
+              skipDuplicates: true,
+            }
+          } : undefined
         },
       });
 

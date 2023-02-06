@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<004051e9b8f0287deb37aa4b775cd2dd>>
+ * @generated SignedSource<<e1cc1305146ae3ac0ffd2c35cd3d5577>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,6 +17,7 @@ export type VagabondCreateInput = {
   charm: number;
   class: string;
   classMoves: ReadonlyArray<string>;
+  connections?: ReadonlyArray<VagabondCreateConnectionCreateInput> | null;
   cunning: number;
   demeanor: string;
   details: string;
@@ -30,6 +31,11 @@ export type VagabondCreateInput = {
   species: string;
   value: number;
   weaponSkill: string;
+};
+export type VagabondCreateConnectionCreateInput = {
+  notes: string;
+  to: string;
+  type: string;
 };
 export type CreateVagabondDialogMutation$variables = {
   connections: ReadonlyArray<string>;
