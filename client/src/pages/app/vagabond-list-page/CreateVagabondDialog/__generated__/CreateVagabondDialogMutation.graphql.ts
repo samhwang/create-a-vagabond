@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f7f35d9f1161e0b47b4464f1a06380e9>>
+ * @generated SignedSource<<3d55a4ed2a4395ecfcf5cfacb3c0e2c3>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,6 +15,8 @@ export type VagabondCreateInput = {
   class: string;
   classMoves: ReadonlyArray<string>;
   cunning: number;
+  demeanor: string;
+  details: string;
   drives: ReadonlyArray<string>;
   finesse: number;
   luck: number;
@@ -22,6 +24,7 @@ export type VagabondCreateInput = {
   name: string;
   nature: string;
   roguishFeats: ReadonlyArray<string>;
+  species: string;
   value: number;
   weaponSkill: string;
 };

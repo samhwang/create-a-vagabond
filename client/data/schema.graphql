@@ -115,15 +115,23 @@ type Vagabond implements Node {
   carrying: Int!
   charm: Int!
   class: VagabondClass!
+  classMoveConnection(after: String, before: String, first: Int, last: Int): VagabondClassMoveConnection!
   cunning: Int!
+  demeanor: String!
+  details: String!
+  driveConnection(after: String, before: String, first: Int, last: Int): VagabondDriveConnection!
   finesse: Int!
   id: ID!
   luck: Int!
   max: Int!
   might: Int!
   name: String!
+  nature: Nature!
+  roguishFeatConnection(after: String, before: String, first: Int, last: Int): VagabondRoguishFeatConnection!
+  species: String!
   user: User!
   value: Int!
+  weaponSkillConnection(after: String, before: String, first: Int, last: Int): VagabondWeaponSkillConnection!
 }
 
 type VagabondClass implements Node {
@@ -162,6 +170,16 @@ type VagabondClassDriveConnectionEdge {
   node: Drive!
 }
 
+type VagabondClassMoveConnection {
+  edges: [VagabondClassMoveConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondClassMoveConnectionEdge {
+  cursor: String!
+  node: ClassMove!
+}
+
 type VagabondClassNatureConnection {
   edges: [VagabondClassNatureConnectionEdge]!
   pageInfo: PageInfo!
@@ -197,6 +215,8 @@ input VagabondCreateInput {
   class: ID!
   classMoves: [ID!]!
   cunning: Int!
+  demeanor: String!
+  details: String!
   drives: [ID!]!
   finesse: Int!
   luck: Int!
@@ -204,12 +224,33 @@ input VagabondCreateInput {
   name: String!
   nature: ID!
   roguishFeats: [ID!]!
+  species: String!
   value: Int!
   weaponSkill: ID!
 }
 
 type VagabondCreatePayload {
   vagabond: Vagabond!
+}
+
+type VagabondDriveConnection {
+  edges: [VagabondDriveConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondDriveConnectionEdge {
+  cursor: String!
+  node: Drive!
+}
+
+type VagabondRoguishFeatConnection {
+  edges: [VagabondRoguishFeatConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondRoguishFeatConnectionEdge {
+  cursor: String!
+  node: RoguishFeat!
 }
 
 input VagabondUpdateStatsInput {
@@ -223,6 +264,16 @@ input VagabondUpdateStatsInput {
 
 type VagabondUpdateStatsPayload {
   vagabond: Vagabond!
+}
+
+type VagabondWeaponSkillConnection {
+  edges: [VagabondWeaponSkillConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondWeaponSkillConnectionEdge {
+  cursor: String!
+  node: WeaponSkill!
 }
 
 type WeaponSkill implements Node {

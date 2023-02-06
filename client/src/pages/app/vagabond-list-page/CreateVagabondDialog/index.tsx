@@ -17,6 +17,11 @@ import { ClassSpecificFields } from './ClassSpecificFields';
 const CreateVagabondInputSchema = z.object({
   name: z.string(),
   class: z.string(),
+  
+  species: z.string(),
+  details: z.string(),
+  demeanor: z.string(),
+
   nature: z.string(),
   drives: z.array(z.string()).length(2),
   classMoves: z.array(z.string()).length(3),
@@ -127,14 +132,53 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
           <DialogTitle>Create new Vagabond</DialogTitle>
           <DialogContent>
             <Stack direction="column" spacing={2}>
-              <RHFTextField control={methods.control} name="name" label="Name" disabled={isOnFly} sx={{ mt: 1 }} />
-              <VagabondClassSelect
+              <RHFTextField
                 control={methods.control}
-                name="class"
-                label="Class"
+                name="name"
+                label="Name"
                 disabled={isOnFly}
-                queryRef={query}
+                sx={{ mt: 1 }}
               />
+              
+              <Stack direction='row' spacing={2}>
+                <VagabondClassSelect
+                  control={methods.control}
+                  name="class"
+                  label="Class"
+                  disabled={isOnFly}
+                  queryRef={query}
+                  fullWidth
+                />
+                <RHFTextField
+                  control={methods.control}
+                  name='species'
+                  label='Species'
+                  disabled={isOnFly}
+                  fullWidth
+                />
+              </Stack>
+              <Stack direction='row' spacing={2}>
+                <RHFTextField
+                  control={methods.control}
+                  name='details'
+                  label='Details'
+                  disabled={isOnFly}
+                  multiline
+                  rows={5}
+                  maxRows={5}
+                  fullWidth
+                />
+                <RHFTextField
+                  control={methods.control}
+                  name='demeanor'
+                  label='Demeanor'
+                  disabled={isOnFly}
+                  multiline
+                  rows={5}
+                  maxRows={5}
+                  fullWidth
+                />
+              </Stack>
               <Suspense
                 fallback={
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -142,7 +186,11 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
                   </div>
                 }
               >
-                <ClassSpecificFields control={methods.control} queryRef={query} selectedClassId={selectedClassId} />
+                <ClassSpecificFields
+                  control={methods.control}
+                  queryRef={query}
+                  selectedClassId={selectedClassId}
+                />
               </Suspense>
             </Stack>
           </DialogContent>
