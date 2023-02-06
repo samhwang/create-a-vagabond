@@ -53,7 +53,7 @@ character creation
   [X] Species
   [X] Details
   [X] Demeanor
-  [-] Background
+  [X] Background
     Where do you call home?
     Why are you a vagabond?
     Whom have you left behind?
