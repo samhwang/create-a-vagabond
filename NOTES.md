@@ -5,56 +5,66 @@
 
 pscale connect createvagabondapp dev-sam --port 3309
 
-[X] Name
+character creation
+  [X] Name
 
-[X] Class
+  [X] Class
 
-[X] Nature
-  diff by class
-  pick one
-  CAN BE CHANGED AFTER ADVANCEMENTS
+  [X] Nature
+    diff by class
+    pick one
+    CAN BE CHANGED AFTER ADVANCEMENTS
 
-[X] Drives
-  diff by class
-  choose 2
-  CAN BE CHANGED AFTER ADVANCEMENTS
+  [X] Drives
+    diff by class
+    choose 2
+    CAN BE CHANGED AFTER ADVANCEMENTS
 
-[ ] Reputation
-  5 x faction with value [-3, 3] and ticks (in sheet)
+  [X] Stats
+    each class with diff default
+    when create + 1
+    max value 2
 
-[ ] Connections
-  ...
+  [X] Roguish Feats
+    list same
+    each class with 2
+    choose extra 1
 
-[X] Stats
-  each class with diff default
-  when create + 1
-  max value 2
+  [X] Weapon Skills
+    list same
+    when created
+      choose 1 in the bold one(diff by class)
+      other can be pick later with progressing
+    // (weapon can has it own moves)
 
-[X] Roguish Feats
-  list same
-  each class with 2
-  choose extra 1
+  [X] Class Moves
+    diff by class
+    when create choose 3
+    always start with 3 moves
+    tinker start with 2 default move(choose 1) --> still 3 in total
 
-[X] Weapon Skills
-  list same
-  when created
-    choose 1 in the bold one(diff by class)
-    other can be pick later with progressing
-  // (weapon can has it own moves)
+  [X] Vagabond Equipment's stats
+    when create
+      [X] class starting value [money]
+      [X] Carying: number (total weight of items)
+      [X] Burdened: some sort of tired... limit (Might + 4)
+      [X] Max: max carry weight (Burdened * 2)
 
-[X] Class Moves
-  diff by class
-  when create choose 3
-  always start with 3 moves
-  tinker start with 2 default move(choose 1) --> still 3 in total
+  [ ] Species
+  [ ] Details
+  [ ] Demeanor
+  [ ] Background
+    Where do you call home?
+    Why are you a vagabond?
+    Whom have you left behind?
+    Which faction have you served the most?
+    With which faction have you earned a special enmity?
+  [ ] Connections
+    ...depends on class
+  [ ] Reputation
+    5 x faction with value [-3, 3] and ticks (in sheet)  
 
-[X] Vagabond Equipment's stats
-  when create
-    [X] class starting value [money]
-    [X] Carying: number (total weight of items)
-    [X] Burdened: some sort of tired... limit (Might + 4)
-    [X] Max: max carry weight (Burdened * 2)
-
+///
 [ ] Equipment
   weight
   weapon skills
