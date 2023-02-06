@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3d55a4ed2a4395ecfcf5cfacb3c0e2c3>>
+ * @generated SignedSource<<004051e9b8f0287deb37aa4b775cd2dd>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,6 +11,9 @@
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type VagabondCreateInput = {
+  background_home: string;
+  background_leftBehind: string;
+  background_vagabond: string;
   charm: number;
   class: string;
   classMoves: ReadonlyArray<string>;

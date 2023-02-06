@@ -4,7 +4,7 @@ import { VagabondCreateInput } from './__generated__/CreateVagabondDialogMutatio
 import { ClassSpecificFields_useDefaultValue_class$key } from './__generated__/ClassSpecificFields_useDefaultValue_class.graphql'
 
 import { useEffect } from 'react'
-import { Control, useFormContext } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import { graphql, useFragment, useRefetchableFragment } from 'react-relay'
 import { Stack, TextField } from '@mui/material'
 
@@ -18,16 +18,15 @@ import { RHFTextField } from '../../../../components/RHF/RHFTextField'
 import { ClassMoveSelect } from './ClassMoveSelect'
 
 type ClassSpecificFieldsProps = {
-  control: Control<VagabondCreateInput, any>
-  selectedClassId?: string
   queryRef: ClassSpecificFields_query$key
 }
  
 export const ClassSpecificFields = ({
-  control,
   queryRef,
-  selectedClassId,
 }: ClassSpecificFieldsProps) => {
+  const { control, watch } = useFormContext<VagabondCreateInput>()
+  const selectedClassId = watch('class');
+
   const [query, refetch] = useRefetchableFragment<ClassSpecificFieldsRefetchQuery, ClassSpecificFields_query$key>(
     graphql`
       fragment ClassSpecificFields_query on Query
@@ -68,7 +67,7 @@ export const ClassSpecificFields = ({
 
   return (
     <Stack direction='row' spacing={2}>
-      <Stack direction='column' spacing={2} minWidth={250}>
+      <Stack direction='column' spacing={2} minWidth={430}>
         <NatureSelect
           control={control}
           name='nature'
@@ -101,7 +100,7 @@ export const ClassSpecificFields = ({
           vagabondClassRef={query.node}
         />
       </Stack>
-      <Stack direction='column' spacing={2} minWidth={250}>
+      <Stack direction='column' spacing={2}>
         <RHFStatField
           control={control}
           name='charm'

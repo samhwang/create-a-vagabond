@@ -6,9 +6,14 @@ builder.relayMutationField(
     inputFields: (t) => ({
       name: t.string({ required: true }),
       class: t.globalID({ required: true }),
+      
       species: t.string({ required: true }),
       details: t.string({ required: true }),
       demeanor: t.string({ required: true }),
+      background_home: t.string({ required: true }),
+      background_vagabond: t.string({ required: true }),
+      background_leftBehind: t.string({ required: true }),
+
       value: t.int({ required: true }),
       nature: t.globalID({ required: true }),
       drives: t.globalIDList({ required: true }),
@@ -39,9 +44,7 @@ builder.relayMutationField(
 
       const vagabondClass = await prisma.vagabondClass.findUnique({
         where: { id: input.class.id },
-        include: {
-          roguishFeats: true
-        }
+        include: { roguishFeats: true },
       })
       if (!vagabondClass) throw new Error(`Class ${input.class.id} is not existed`)
       if (input.charm < vagabondClass.startingCharm) throw new Error('Stats cannot be lower than starting point')
@@ -56,8 +59,6 @@ builder.relayMutationField(
         if (!featIds.includes(startingFeatId)) throw new Error('Selected feats must include class starting feats')
       })
 
-
-
       const vagabond = await prisma.vagabond.create({
         data: {
           name: input.name,
@@ -67,6 +68,10 @@ builder.relayMutationField(
           species: input.species,
           details: input.details,
           demeanor: input.demeanor,
+
+          background_home: input.background_home,
+          background_vagabond: input.background_vagabond,
+          background_leftBehind: input.background_leftBehind,
 
           value: input.value,
           charm: input.charm,

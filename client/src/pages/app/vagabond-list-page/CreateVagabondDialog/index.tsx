@@ -13,6 +13,7 @@ import {
 import { VagabondClassSelect } from './VagabondClassSelect';
 import { CreateVagabondDialog_query$key } from './__generated__/CreateVagabondDialog_query.graphql';
 import { ClassSpecificFields } from './ClassSpecificFields';
+import { BackgroundFields } from './BackgroundFields'
 
 const CreateVagabondInputSchema = z.object({
   name: z.string(),
@@ -21,6 +22,10 @@ const CreateVagabondInputSchema = z.object({
   species: z.string(),
   details: z.string(),
   demeanor: z.string(),
+
+  background_home: z.string(),
+  background_vagabond: z.string(),
+  background_leftBehind: z.string(),
 
   nature: z.string(),
   drives: z.array(z.string()).length(2),
@@ -83,7 +88,7 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
       roguishFeats: [],
     }
   });
-  const selectedClassId = methods.watch('class');
+  
 
   useEffect(() => {
     methods.reset({
@@ -124,23 +129,22 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
       open={open}
       onClose={onClose}
       PaperProps={{
-        sx: { minWidth: 600 }
+        sx: { minWidth: 700 }
       }}
     >
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <DialogTitle>Create new Vagabond</DialogTitle>
           <DialogContent>
-            <Stack direction="column" spacing={2}>
-              <RHFTextField
-                control={methods.control}
-                name="name"
-                label="Name"
-                disabled={isOnFly}
-                sx={{ mt: 1 }}
-              />
-              
+            <Stack direction="column" spacing={2} sx={{ mt: 1 }}>
               <Stack direction='row' spacing={2}>
+                <RHFTextField
+                  control={methods.control}
+                  name="name"
+                  label="Name"
+                  disabled={isOnFly}
+                  fullWidth
+                />
                 <VagabondClassSelect
                   control={methods.control}
                   name="class"
@@ -153,44 +157,15 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
                   control={methods.control}
                   name='species'
                   label='Species'
+                  placeholder='fox, mouse, rabbit, bird, badger,'
+                  InputLabelProps={{ shrink: true }}
                   disabled={isOnFly}
                   fullWidth
                 />
               </Stack>
-              <Stack direction='row' spacing={2}>
-                <RHFTextField
-                  control={methods.control}
-                  name='details'
-                  label='Details'
-                  disabled={isOnFly}
-                  multiline
-                  rows={5}
-                  maxRows={5}
-                  fullWidth
-                />
-                <RHFTextField
-                  control={methods.control}
-                  name='demeanor'
-                  label='Demeanor'
-                  disabled={isOnFly}
-                  multiline
-                  rows={5}
-                  maxRows={5}
-                  fullWidth
-                />
-              </Stack>
-              <Suspense
-                fallback={
-                  <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <CircularProgress />
-                  </div>
-                }
-              >
-                <ClassSpecificFields
-                  control={methods.control}
-                  queryRef={query}
-                  selectedClassId={selectedClassId}
-                />
+              <BackgroundFields />
+              <Suspense fallback={<Loader />}>
+                <ClassSpecificFields queryRef={query} />
               </Suspense>
             </Stack>
           </DialogContent>
@@ -207,3 +182,9 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
     </Dialog>
   );
 }
+
+const Loader = () => (
+  <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <CircularProgress />
+  </div>
+)

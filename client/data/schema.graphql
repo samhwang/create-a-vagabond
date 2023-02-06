@@ -111,6 +111,9 @@ type UserVagabondConnectionEdge {
 
 type Vagabond implements Node {
   availablePoints: Int!
+  background_home: String!
+  background_leftBehind: String!
+  background_vagabond: String!
   burdened: Int!
   carrying: Int!
   charm: Int!
@@ -211,6 +214,9 @@ type VagabondClassWeaponSkillConnectionEdge {
 }
 
 input VagabondCreateInput {
+  background_home: String!
+  background_leftBehind: String!
+  background_vagabond: String!
   charm: Int!
   class: ID!
   classMoves: [ID!]!
