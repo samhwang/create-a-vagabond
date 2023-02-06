@@ -15,6 +15,7 @@ import { DrivesSelect } from './DrivesSelect'
 import { RoguishFeatSelect } from './RoguishFeatSelect'
 import { WeaponSkillSelect } from './WeaponSkillSelect'
 import { RHFTextField } from '../../../../components/RHF/RHFTextField'
+import { ClassMoveSelect } from './ClassMoveSelect'
 
 type ClassSpecificFieldsProps = {
   control: Control<VagabondCreateInput, any>
@@ -45,6 +46,7 @@ export const ClassSpecificFields = ({
             ...useStartingPointLeft_class
             ...NatureSelect_class
             ...DrivesSelect_class
+            ...ClassMoveSelect_class
             ...RoguishFeatSelect_class
             ...WeaponSkillSelect_class
           }
@@ -77,6 +79,12 @@ export const ClassSpecificFields = ({
           control={control}
           name='drives'
           label='Drives'
+          vagabondClassRef={query.node}
+        />
+        <ClassMoveSelect
+          control={control}
+          name='classMoves'
+          label='Moves'
           vagabondClassRef={query.node}
         />
         <RoguishFeatSelect

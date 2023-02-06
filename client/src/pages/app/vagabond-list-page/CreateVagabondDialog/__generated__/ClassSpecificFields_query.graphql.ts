@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f6c665a854a05e7fb4d880f23ec706e9>>
+ * @generated SignedSource<<95b9a36f80450ee0814930542589c849>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -17,7 +17,7 @@ export type ClassSpecificFields_query$data = {
     readonly startingFinesse?: number;
     readonly startingLuck?: number;
     readonly startingMight?: number;
-    readonly " $fragmentSpreads": FragmentRefs<"ClassSpecificFields_useDefaultValue_class" | "DrivesSelect_class" | "NatureSelect_class" | "RoguishFeatSelect_class" | "WeaponSkillSelect_class" | "useStartingPointLeft_class">;
+    readonly " $fragmentSpreads": FragmentRefs<"ClassMoveSelect_class" | "ClassSpecificFields_useDefaultValue_class" | "DrivesSelect_class" | "NatureSelect_class" | "RoguishFeatSelect_class" | "WeaponSkillSelect_class" | "useStartingPointLeft_class">;
   } | null;
   readonly " $fragmentSpreads": FragmentRefs<"RoguishFeatSelect_query">;
   readonly " $fragmentType": "ClassSpecificFields_query";
@@ -127,6 +127,11 @@ const node: ReaderFragment = {
             {
               "args": null,
               "kind": "FragmentSpread",
+              "name": "ClassMoveSelect_class"
+            },
+            {
+              "args": null,
+              "kind": "FragmentSpread",
               "name": "RoguishFeatSelect_class"
             },
             {
@@ -146,6 +151,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "ea7b6cc03c11b834625122635eb523ca";
+(node as any).hash = "b43d5494039ef4080f1b97e2685ec86c";
 
 export default node;

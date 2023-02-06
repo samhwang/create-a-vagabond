@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<416ff15ad07ec998ba949195daa78a30>>
+ * @generated SignedSource<<f7f35d9f1161e0b47b4464f1a06380e9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,6 +13,7 @@ import { FragmentRefs } from "relay-runtime";
 export type VagabondCreateInput = {
   charm: number;
   class: string;
+  classMoves: ReadonlyArray<string>;
   cunning: number;
   drives: ReadonlyArray<string>;
   finesse: number;

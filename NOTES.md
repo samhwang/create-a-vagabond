@@ -42,7 +42,7 @@ pscale connect createvagabondapp dev-sam --port 3309
     other can be pick later with progressing
   // (weapon can has it own moves)
 
-[-] Class Moves
+[X] Class Moves
   diff by class
   when create choose 3
   always start with 3 moves

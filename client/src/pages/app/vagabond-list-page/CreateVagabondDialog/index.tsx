@@ -19,6 +19,7 @@ const CreateVagabondInputSchema = z.object({
   class: z.string(),
   nature: z.string(),
   drives: z.array(z.string()).length(2),
+  classMoves: z.array(z.string()).length(3),
   roguishFeats: z.array(z.string()),
   weaponSkill: z.string(),
 
@@ -73,6 +74,7 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
     resolver: zodResolver(CreateVagabondInputSchema),
     defaultValues: {
       drives: [],
+      classMoves: [],
       roguishFeats: [],
     }
   });
@@ -81,6 +83,7 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
   useEffect(() => {
     methods.reset({
       drives: [],
+      classMoves: [],
       roguishFeats: [],
     })
   }, [open])

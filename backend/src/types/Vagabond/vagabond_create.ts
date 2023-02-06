@@ -9,6 +9,7 @@ builder.relayMutationField(
       value: t.int({ required: true }),
       nature: t.globalID({ required: true }),
       drives: t.globalIDList({ required: true }),
+      classMoves: t.globalIDList({ required: true }),
       roguishFeats: t.globalIDList({ required: true }),
       weaponSkill: t.globalID({ required: true }),
       // stats
@@ -25,6 +26,7 @@ builder.relayMutationField(
       if (!ctx.session?.userId) throw new Error('Please login!');
 
       if (input.drives.length !== 2) throw new Error('Pick 2 drives');
+      if (input.classMoves.length !== 3) throw new Error('Pick 3 class moves')
 
       if (input.charm > 2) throw new Error('Charm cannot be more than 2');
       if (input.cunning > 2) throw new Error('Cunning cannot be more than 2');
@@ -51,6 +53,8 @@ builder.relayMutationField(
         if (!featIds.includes(startingFeatId)) throw new Error('Selected feats must include class starting feats')
       })
 
+
+
       const vagabond = await prisma.vagabond.create({
         data: {
           name: input.name,
@@ -67,6 +71,7 @@ builder.relayMutationField(
           natureId: input.nature.id,
           drives: { connect: input.drives.map(({ id }) => ({ id })) },
           roguishFeats: { connect: featIds.map(id => ({ id })) },
+          classMoves: { connect: input.classMoves.map(({ id }) => ({ id })) },
           weaponSkills: { connect: { id: input.weaponSkill.id } }
         },
       });

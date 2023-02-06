@@ -17,5 +17,6 @@ import './types/Nature';
 import './types/Drive';
 import './types/RoguishFeat';
 import './types/WeaponSkill';
+import './types/ClassMove';
 
 export const schema = builder.toSchema();

@@ -4,6 +4,12 @@ directive @specifiedBy(
   url: String!
 ) on SCALAR
 
+type ClassMove implements Node {
+  description: String!
+  id: ID!
+  name: String!
+}
+
 type Drive implements Node {
   description: String!
   id: ID!
@@ -105,18 +111,23 @@ type UserVagabondConnectionEdge {
 
 type Vagabond implements Node {
   availablePoints: Int!
+  burdened: Int!
+  carrying: Int!
   charm: Int!
   class: VagabondClass!
   cunning: Int!
   finesse: Int!
   id: ID!
   luck: Int!
+  max: Int!
   might: Int!
   name: String!
   user: User!
+  value: Int!
 }
 
 type VagabondClass implements Node {
+  classMoveConnection(after: String, before: String, first: Int, last: Int): VagabondClassClassMoveConnection!
   driveConnection(after: String, before: String, first: Int, last: Int): VagabondClassDriveConnection!
   id: ID!
   name: String!
@@ -129,6 +140,16 @@ type VagabondClass implements Node {
   startingMight: Int!
   startingValue: Int!
   weaponSkillConnection(after: String, before: String, first: Int, last: Int): VagabondClassWeaponSkillConnection!
+}
+
+type VagabondClassClassMoveConnection {
+  edges: [VagabondClassClassMoveConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondClassClassMoveConnectionEdge {
+  cursor: String!
+  node: ClassMove!
 }
 
 type VagabondClassDriveConnection {
@@ -174,6 +195,7 @@ type VagabondClassWeaponSkillConnectionEdge {
 input VagabondCreateInput {
   charm: Int!
   class: ID!
+  classMoves: [ID!]!
   cunning: Int!
   drives: [ID!]!
   finesse: Int!
