@@ -40,7 +40,7 @@ export const handler: Handler = async (event, context) => {
   };
 };
 
-const getClerkSession = async (sessionId?: string, clientToken?: string) => {
+async function getClerkSession(sessionId?: string, clientToken?: string) {
   if (!sessionId || !clientToken) return undefined;
 
   const session = await sessions.verifySession(sessionId, clientToken).catch((error) => {
@@ -49,4 +49,4 @@ const getClerkSession = async (sessionId?: string, clientToken?: string) => {
   });
 
   return session;
-};
+}

@@ -13,13 +13,13 @@ import {
 import { VagabondClassSelect } from './VagabondClassSelect';
 import { CreateVagabondDialog_query$key } from './__generated__/CreateVagabondDialog_query.graphql';
 import { ClassSpecificFields } from './ClassSpecificFields';
-import { BackgroundFields } from './BackgroundFields'
-import { ConnectionsField } from './ConnectionsField'
+import { BackgroundFields } from './BackgroundFields';
+import { ConnectionsField } from './ConnectionsField';
 
 const CreateVagabondInputSchema = z.object({
   name: z.string(),
   class: z.string(),
-  
+
   species: z.string(),
   details: z.string(),
   demeanor: z.string(),
@@ -41,11 +41,13 @@ const CreateVagabondInputSchema = z.object({
   luck: z.number().max(2),
   might: z.number().max(2),
 
-  connections: z.array(z.object({
-    type: z.string(),
-    to: z.string(),
-    notes: z.string(),
-  }))
+  connections: z.array(
+    z.object({
+      type: z.string(),
+      to: z.string(),
+      notes: z.string(),
+    })
+  ),
 });
 
 type CreateVagabondDialogProps = {
@@ -93,17 +95,16 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
       drives: [],
       classMoves: [],
       roguishFeats: [],
-    }
+    },
   });
-  
 
   useEffect(() => {
     methods.reset({
       drives: [],
       classMoves: [],
       roguishFeats: [],
-    })
-  }, [open])
+    });
+  }, [open, methods]);
 
   const onSubmit: SubmitHandler<VagabondCreateInput> = (data) => {
     createVagabond({
@@ -136,7 +137,7 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
       open={open}
       onClose={onClose}
       PaperProps={{
-        sx: { minWidth: 700 }
+        sx: { minWidth: 700 },
       }}
     >
       <FormProvider {...methods}>
@@ -144,14 +145,8 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
           <DialogTitle>Create new Vagabond</DialogTitle>
           <DialogContent>
             <Stack direction="column" spacing={2} sx={{ mt: 1 }}>
-              <Stack direction='row' spacing={2}>
-                <RHFTextField
-                  control={methods.control}
-                  name="name"
-                  label="Name"
-                  disabled={isOnFly}
-                  fullWidth
-                />
+              <Stack direction="row" spacing={2}>
+                <RHFTextField control={methods.control} name="name" label="Name" disabled={isOnFly} fullWidth />
                 <VagabondClassSelect
                   control={methods.control}
                   name="class"
@@ -162,9 +157,9 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
                 />
                 <RHFTextField
                   control={methods.control}
-                  name='species'
-                  label='Species'
-                  placeholder='fox, mouse, rabbit, bird, badger,'
+                  name="species"
+                  label="Species"
+                  placeholder="fox, mouse, rabbit, bird, badger,"
                   InputLabelProps={{ shrink: true }}
                   disabled={isOnFly}
                   fullWidth
@@ -191,8 +186,10 @@ export function CreateVagabondDialog({ connectionIds, open, onClose, queryRef }:
   );
 }
 
-const Loader = () => (
-  <div style={{ display: 'flex', justifyContent: 'center' }}>
-    <CircularProgress />
-  </div>
-)
+function Loader() {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <CircularProgress />
+    </div>
+  );
+}

@@ -18,6 +18,6 @@ import './types/Drive';
 import './types/RoguishFeat';
 import './types/WeaponSkill';
 import './types/ClassMove';
-import './types/VagabondConnection'
+import './types/VagabondConnection';
 
 export const schema = builder.toSchema();

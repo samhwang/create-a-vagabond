@@ -1,15 +1,16 @@
-import { Nature, PrismaClient } from '@prisma/client'
+import { Nature, PrismaClient } from '@prisma/client';
 
-export const natureSeeding = async (prisma: PrismaClient) => {
-  await prisma.nature.deleteMany({})
-  return prisma.nature.createMany({ data: natures })
+export async function natureSeeding(prisma: PrismaClient) {
+  await prisma.nature.deleteMany({});
+  return prisma.nature.createMany({ data: NATURES });
 }
 
-export const natures: Nature[] = [
+export const NATURES: Nature[] = [
   {
     id: 'extrovert',
     name: 'Extrovert',
-    description: 'Clear your exhaustion track when you share a moment of real warmth, friendship, or enjoyment with someone.',
+    description:
+      'Clear your exhaustion track when you share a moment of real warmth, friendship, or enjoyment with someone.',
   },
   {
     id: 'peacemaker',
@@ -25,7 +26,8 @@ export const natures: Nature[] = [
   {
     id: 'punisher',
     name: 'Punisher',
-    description: 'Clear your exhaustion track when you tell a powerful or dangerous villain to their face that you will punish them.',
+    description:
+      'Clear your exhaustion track when you tell a powerful or dangerous villain to their face that you will punish them.',
   },
 
   {
@@ -42,12 +44,14 @@ export const natures: Nature[] = [
   {
     id: 'loner',
     name: 'Loner',
-    description: 'Clear your exhaustion track when you enter a dangerous situation alone, without backup or assistance.',
+    description:
+      'Clear your exhaustion track when you enter a dangerous situation alone, without backup or assistance.',
   },
   {
     id: 'cynic',
     name: 'Cynic',
-    description: 'Clear your exhaustion track when you openly and directly ask dangerous questions about an accepted "truth".',
+    description:
+      'Clear your exhaustion track when you openly and directly ask dangerous questions about an accepted "truth".',
   },
 
   {
@@ -64,7 +68,8 @@ export const natures: Nature[] = [
   {
     id: 'arsonist',
     name: 'Arsonist',
-    description: 'Clear your exhaustion track when you use needlessly destructive or damaging methods to solve a problem.',
+    description:
+      'Clear your exhaustion track when you use needlessly destructive or damaging methods to solve a problem.',
   },
   {
     id: 'combative',
@@ -104,4 +109,4 @@ export const natures: Nature[] = [
     name: 'Hustler',
     description: 'Clear your exhaustion track when you try to spring a con on a powerful or dangerous mark.',
   },
-]
+];

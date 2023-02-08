@@ -1,3 +1,3 @@
-import './model'
+import './model';
 
-import './query_roguishFeatConnection'
+import './query_roguishFeatConnection';

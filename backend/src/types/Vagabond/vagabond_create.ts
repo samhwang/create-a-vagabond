@@ -1,12 +1,12 @@
 import { builder, prisma } from '../../builder';
 
 const VagabondCreateConnectionCreateInput = builder.inputType('VagabondCreateConnectionCreateInput', {
-  fields: t => ({
+  fields: (t) => ({
     type: t.string({ required: true }),
     notes: t.string({ required: true }),
     to: t.string({ required: true }),
-  })
-})
+  }),
+});
 
 builder.relayMutationField(
   'vagabondCreate',
@@ -14,7 +14,7 @@ builder.relayMutationField(
     inputFields: (t) => ({
       name: t.string({ required: true }),
       class: t.globalID({ required: true }),
-      
+
       species: t.string({ required: true }),
       details: t.string({ required: true }),
       demeanor: t.string({ required: true }),
@@ -45,7 +45,7 @@ builder.relayMutationField(
       if (!ctx.session?.userId) throw new Error('Please login!');
 
       if (input.drives.length !== 2) throw new Error('Pick 2 drives');
-      if (input.classMoves.length !== 3) throw new Error('Pick 3 class moves')
+      if (input.classMoves.length !== 3) throw new Error('Pick 3 class moves');
 
       if (input.charm > 2) throw new Error('Charm cannot be more than 2');
       if (input.cunning > 2) throw new Error('Cunning cannot be more than 2');
@@ -56,19 +56,19 @@ builder.relayMutationField(
       const vagabondClass = await prisma.vagabondClass.findUnique({
         where: { id: input.class.id },
         include: { roguishFeats: true },
-      })
-      if (!vagabondClass) throw new Error(`Class ${input.class.id} is not existed`)
-      if (input.charm < vagabondClass.startingCharm) throw new Error('Stats cannot be lower than starting point')
-      if (input.cunning < vagabondClass.startingCunning) throw new Error('Stats cannot be lower than starting point')
-      if (input.finesse < vagabondClass.startingFinesse) throw new Error('Stats cannot be lower than starting point')
-      if (input.luck < vagabondClass.startingLuck) throw new Error('Stats cannot be lower than starting point')
-      if (input.might < vagabondClass.startingMight) throw new Error('Stats cannot be lower than starting point')
+      });
+      if (!vagabondClass) throw new Error(`Class ${input.class.id} is not existed`);
+      if (input.charm < vagabondClass.startingCharm) throw new Error('Stats cannot be lower than starting point');
+      if (input.cunning < vagabondClass.startingCunning) throw new Error('Stats cannot be lower than starting point');
+      if (input.finesse < vagabondClass.startingFinesse) throw new Error('Stats cannot be lower than starting point');
+      if (input.luck < vagabondClass.startingLuck) throw new Error('Stats cannot be lower than starting point');
+      if (input.might < vagabondClass.startingMight) throw new Error('Stats cannot be lower than starting point');
 
-      const featIds = input.roguishFeats.map(feat => feat.id)
-      const startingFeatIds = vagabondClass.roguishFeats.map(feat => feat.id)
-      startingFeatIds.forEach(startingFeatId => {
-        if (!featIds.includes(startingFeatId)) throw new Error('Selected feats must include class starting feats')
-      })
+      const featIds = input.roguishFeats.map((feat) => feat.id);
+      const startingFeatIds = vagabondClass.roguishFeats.map((feat) => feat.id);
+      startingFeatIds.forEach((startingFeatId) => {
+        if (!featIds.includes(startingFeatId)) throw new Error('Selected feats must include class starting feats');
+      });
 
       const vagabond = await prisma.vagabond.create({
         data: {
@@ -94,14 +94,16 @@ builder.relayMutationField(
           natureId: input.nature.id,
           drives: { connect: input.drives.map(({ id }) => ({ id })) },
           classMoves: { connect: input.classMoves.map(({ id }) => ({ id })) },
-          roguishFeats: { connect: featIds.map(id => ({ id })) },
+          roguishFeats: { connect: featIds.map((id) => ({ id })) },
           weaponSkills: { connect: { id: input.weaponSkill.id } },
-          connections: input.connections ? {
-            createMany: {
-              data: input.connections,
-              skipDuplicates: true,
-            }
-          } : undefined
+          connections: input.connections
+            ? {
+                createMany: {
+                  data: input.connections,
+                  skipDuplicates: true,
+                },
+              }
+            : undefined,
         },
       });
 

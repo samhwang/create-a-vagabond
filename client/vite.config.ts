@@ -8,7 +8,7 @@ import relay from 'vite-plugin-relay';
 // TOGGLE THIS IF YOU SEE STRANGE BEHAVIOR IN YOUR APP.
 // See README of plugin-react-swc: https://github.com/vitejs/vite-plugin-react-swc
 const useSwc = true;
-const react = (useSwc: boolean) => {
+function react(useSwc: boolean) {
   if (!useSwc) {
     return reactBabel({
       babel: {
@@ -18,7 +18,7 @@ const react = (useSwc: boolean) => {
   }
 
   return reactSwc({});
-};
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({

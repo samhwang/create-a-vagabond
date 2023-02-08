@@ -1,20 +1,20 @@
-import { PrismaClient, RoguishFeat as PrismaRoguishFeat } from '@prisma/client'
+import { PrismaClient, RoguishFeat as PrismaRoguishFeat } from '@prisma/client';
 
 export const roguishFeatSeeding = async (prisma: PrismaClient) => {
-  await prisma.roguishFeat.deleteMany({})
-  return prisma.roguishFeat.createMany({ data: roguishFeats })
-}
+  await prisma.roguishFeat.deleteMany({});
+  return prisma.roguishFeat.createMany({ data: ROGUISH_FEATS });
+};
 
 type RoguishFeat = Omit<PrismaRoguishFeat, 'risks'> & {
-  risks: string[]
-}
+  risks: string[];
+};
 
-export const roguishFeats: RoguishFeat[] = [
+export const ROGUISH_FEATS: RoguishFeat[] = [
   {
     id: 'acrobatics',
     name: 'Acrobatics',
     description: 'Adeptly climbing, vaulting, jumping',
-    risks: ['Break something', 'detection', 'plunge into danger']
+    risks: ['Break something', 'detection', 'plunge into danger'],
   },
   {
     id: 'blindside',
@@ -64,4 +64,4 @@ export const roguishFeats: RoguishFeat[] = [
     description: 'Get into or out of places without being seen',
     risks: ['Break something', 'draw unwanted attention', 'plunge into danger'],
   },
-]
+];

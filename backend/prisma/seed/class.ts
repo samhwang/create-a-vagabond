@@ -1,30 +1,32 @@
-import { VagabondClass as PrismaVagabondClass, PrismaClient } from '@prisma/client'
+import { VagabondClass as PrismaVagabondClass, PrismaClient } from '@prisma/client';
 
-export const classSeeding = async (prisma: PrismaClient) => {
-  await prisma.vagabondClass.deleteMany({})
-  const promises = classes.map(vagabondClass => prisma.vagabondClass.create({
-    data: {
-      ...vagabondClass,
-      natures: { connect: vagabondClass.natures.map(id => ({ id })) },
-      drives: { connect: vagabondClass.drives.map(id => ({ id })) },
-      roguishFeats: { connect: vagabondClass.roguishFeats.map(id => ({ id })) },
-      weaponSkills: { connect: vagabondClass.weaponSkills.map(id => ({ id })) },
-      classMoves: { connect: vagabondClass.classMoves.map(id => ({ id })) },
-    }
-  }))
+export async function classSeeding(prisma: PrismaClient) {
+  await prisma.vagabondClass.deleteMany({});
+  const promises = CLASSES.map((vagabondClass) =>
+    prisma.vagabondClass.create({
+      data: {
+        ...vagabondClass,
+        natures: { connect: vagabondClass.natures.map((id) => ({ id })) },
+        drives: { connect: vagabondClass.drives.map((id) => ({ id })) },
+        roguishFeats: { connect: vagabondClass.roguishFeats.map((id) => ({ id })) },
+        weaponSkills: { connect: vagabondClass.weaponSkills.map((id) => ({ id })) },
+        classMoves: { connect: vagabondClass.classMoves.map((id) => ({ id })) },
+      },
+    })
+  );
 
-  return Promise.all(promises)
+  return Promise.all(promises);
 }
 
 type VagabondClass = PrismaVagabondClass & {
-  natures: string[]
-  drives: string[]
-  roguishFeats: string[]
-  weaponSkills: string[]
-  classMoves: string[]
-}
+  natures: string[];
+  drives: string[];
+  roguishFeats: string[];
+  weaponSkills: string[];
+  classMoves: string[];
+};
 
-export const classes: VagabondClass[] = [
+export const CLASSES: VagabondClass[] = [
   {
     id: 'adventurer',
     name: 'adventurer',
@@ -38,7 +40,14 @@ export const classes: VagabondClass[] = [
     drives: ['ambition', 'clean_paws', 'principles', 'justice'],
     roguishFeats: ['counterfeit', 'sleight_of_hand'],
     weaponSkills: ['disarm', 'harry_a_group', 'improvise_weapon', 'parry'],
-    classMoves: ['sterling_reputation', 'subduing_strikes', 'talon_on_the_pulse', 'orator', 'well_read', 'fast_friends'],
+    classMoves: [
+      'sterling_reputation',
+      'subduing_strikes',
+      'talon_on_the_pulse',
+      'orator',
+      'well_read',
+      'fast_friends',
+    ],
   },
   {
     id: 'arbiter',
@@ -53,7 +62,7 @@ export const classes: VagabondClass[] = [
     drives: ['justice', 'principles', 'loyalty', 'protection'],
     roguishFeats: [],
     weaponSkills: ['cleave', 'disarm', 'parry', 'storm_a_group'],
-    classMoves: ['brute', 'carry_a_big_stick', 'crash_and_smash', 'hardy', 'strong_draw', 'guardian']
+    classMoves: ['brute', 'carry_a_big_stick', 'crash_and_smash', 'hardy', 'strong_draw', 'guardian'],
   },
   {
     id: 'harrier',
@@ -68,7 +77,14 @@ export const classes: VagabondClass[] = [
     drives: ['crime', 'discovery', 'infamy', 'wanderlust'],
     roguishFeats: ['acrobatics', 'sneak'],
     weaponSkills: ['disarm', 'harry_a_group', 'quick_shot', 'trick_shot'],
-    classMoves: ['cross_country', 'fleet_of_foot_and_hand', 'dont_shoot_the_messenger', 'parkour', 'traveler_extraordinaire', 'smugglers_path']
+    classMoves: [
+      'cross_country',
+      'fleet_of_foot_and_hand',
+      'dont_shoot_the_messenger',
+      'parkour',
+      'traveler_extraordinaire',
+      'smugglers_path',
+    ],
   },
   {
     id: 'ranger',
@@ -83,7 +99,7 @@ export const classes: VagabondClass[] = [
     drives: ['discovery', 'freedom', 'revenge', 'protection'],
     roguishFeats: ['hide', 'sneak'],
     weaponSkills: ['cleave', 'disarm', 'harry_a_group', 'vicious_strike'],
-    classMoves: ['silent_paws', 'slip_away', 'poisons_and_antidotes', 'forager', 'threatening_visage', 'dirty_fighter']
+    classMoves: ['silent_paws', 'slip_away', 'poisons_and_antidotes', 'forager', 'threatening_visage', 'dirty_fighter'],
   },
   {
     id: 'ronin',
@@ -98,7 +114,14 @@ export const classes: VagabondClass[] = [
     drives: ['principles', 'revenge', 'thrills', 'wanderlust'],
     roguishFeats: ['blindside'],
     weaponSkills: ['cleave', 'harry_a_group', 'storm_a_group', 'vicious_strike'],
-    classMoves: ['always_armed', 'knowing_a_lords_will', 'well_mannered', 'fealty', 'the_rules_of_war', 'always_watching']
+    classMoves: [
+      'always_armed',
+      'knowing_a_lords_will',
+      'well_mannered',
+      'fealty',
+      'the_rules_of_war',
+      'always_watching',
+    ],
   },
   {
     id: 'scoundrel',
@@ -113,7 +136,14 @@ export const classes: VagabondClass[] = [
     drives: ['chaos', 'thrills', 'crime', 'infamy'],
     roguishFeats: ['acrobatics', 'hide', 'sneak'],
     weaponSkills: ['confuse_senses', 'improvise_weapon', 'quick_shot', 'vicious_strike'],
-    classMoves: ['arsonist', 'create_to_destroy', 'its_a_distraction!', 'daredevil', 'danger_mask', 'better_lucky_than_good']
+    classMoves: [
+      'arsonist',
+      'create_to_destroy',
+      'its_a_distraction!',
+      'daredevil',
+      'danger_mask',
+      'better_lucky_than_good',
+    ],
   },
   {
     id: 'thief',
@@ -128,7 +158,14 @@ export const classes: VagabondClass[] = [
     drives: ['freedom', 'greed', 'ambition', 'thrills'],
     roguishFeats: [],
     weaponSkills: ['confuse_senses', 'improvise_weapon', 'parry', 'trick_shot'],
-    classMoves: ['breaking_and_entering', 'disappear_into_the_dark', 'rope_a_dope', 'small_hands', 'master_thief', 'nose_for_gold']
+    classMoves: [
+      'breaking_and_entering',
+      'disappear_into_the_dark',
+      'rope_a_dope',
+      'small_hands',
+      'master_thief',
+      'nose_for_gold',
+    ],
   },
   {
     id: 'tinker',
@@ -143,7 +180,7 @@ export const classes: VagabondClass[] = [
     drives: ['greed', 'ambition', 'revenge', 'protection'],
     roguishFeats: ['counterfeit', 'disable_device', 'pick_lock'],
     weaponSkills: ['cleave', 'harry_a_group', 'improvise_weapon', 'trick_shot'],
-    classMoves: ['toolbox', 'repair', 'big_pockets', 'jury_rig', 'nimble_mind', 'dismantle']
+    classMoves: ['toolbox', 'repair', 'big_pockets', 'jury_rig', 'nimble_mind', 'dismantle'],
   },
   {
     id: 'vagrant',
@@ -158,6 +195,6 @@ export const classes: VagabondClass[] = [
     drives: ['chaos', 'thrills', 'clean_paws', 'wanderlust'],
     roguishFeats: ['pick_lock', 'sleight_of_hand'],
     weaponSkills: ['harry_a_group', 'improvise_weapon', 'quick_shot', 'vicious_strike'],
-    classMoves: ['instigator', 'pleasant_facade', 'desperate_smile', 'charm_offensive', 'lets_play', 'pocket_sand']
-  }
-]
+    classMoves: ['instigator', 'pleasant_facade', 'desperate_smile', 'charm_offensive', 'lets_play', 'pocket_sand'],
+  },
+];

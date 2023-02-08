@@ -6,15 +6,15 @@ const VagabondType = builder.prismaNode('Vagabond', {
   id: { field: 'id' },
   fields: (t) => ({
     name: t.exposeString('name'),
-    
+
     species: t.exposeString('species'),
     details: t.exposeString('details'),
     demeanor: t.exposeString('demeanor'),
-    
+
     background_home: t.exposeString('background_home'),
     background_vagabond: t.exposeString('background_vagabond'),
     background_leftBehind: t.exposeString('background_leftBehind'),
-    
+
     value: t.exposeInt('value'),
     carrying: t.exposeInt('carrying'),
     burdened: t.int({ resolve: ({ might }) => might + 4 }),

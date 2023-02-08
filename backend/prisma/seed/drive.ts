@@ -1,11 +1,11 @@
-import { Drive, PrismaClient } from '@prisma/client'
+import { Drive, PrismaClient } from '@prisma/client';
 
-export const driveSeeding = async (prisma: PrismaClient) => {
-  await prisma.drive.deleteMany({})
-  return prisma.drive.createMany({ data: drives })
+export async function driveSeeding(prisma: PrismaClient) {
+  await prisma.drive.deleteMany({});
+  return prisma.drive.createMany({ data: DRIVES });
 }
 
-export const drives: Drive[] = [
+export const DRIVES: Drive[] = [
   {
     id: 'ambition',
     name: 'Ambition',
@@ -14,7 +14,8 @@ export const drives: Drive[] = [
   {
     id: 'clean_paws',
     name: 'Clean Paws',
-    description: 'Advance when you accomplish an illicit, criminal goal while maintaining a believable veneer of innocence.',
+    description:
+      'Advance when you accomplish an illicit, criminal goal while maintaining a believable veneer of innocence.',
   },
   {
     id: 'principles',
@@ -24,7 +25,8 @@ export const drives: Drive[] = [
   {
     id: 'justice',
     name: 'Justice',
-    description: 'Advance when you achieve justice for someone wronged by a powerful, wealthy, or high-status individual.',
+    description:
+      'Advance when you achieve justice for someone wronged by a powerful, wealthy, or high-status individual.',
   },
   {
     id: 'loyalty',
@@ -34,12 +36,14 @@ export const drives: Drive[] = [
   {
     id: 'protection',
     name: 'Protection',
-    description: 'Name your ward. Advance when you protect them from significant danger, or when time passes and your ward is safe.',
+    description:
+      'Name your ward. Advance when you protect them from significant danger, or when time passes and your ward is safe.',
   },
   {
     id: 'crime',
     name: 'Crime',
-    description: 'Advance when you illicitly score a significant prize or pull off an illegal caper against impressive odds.',
+    description:
+      'Advance when you illicitly score a significant prize or pull off an illegal caper against impressive odds.',
   },
   {
     id: 'discovery',
@@ -81,4 +85,4 @@ export const drives: Drive[] = [
     name: 'Greed',
     description: 'Advance when you secure a serious payday or treasure.',
   },
-]
+];

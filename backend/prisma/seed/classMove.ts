@@ -1,11 +1,11 @@
-import { ClassMove, PrismaClient } from '@prisma/client'
+import { ClassMove, PrismaClient } from '@prisma/client';
 
-export const classMoveSeeding = async (prisma: PrismaClient) => {
-  await prisma.classMove.deleteMany({})
-  return prisma.classMove.createMany({ data: classMoves })
+export async function classMoveSeeding(prisma: PrismaClient) {
+  await prisma.classMove.deleteMany({});
+  return prisma.classMove.createMany({ data: CLASS_MOVES });
 }
 
-export const classMoves: ClassMove[] = [
+export const CLASS_MOVES: ClassMove[] = [
   {
     id: 'sterling_reputation',
     name: 'Sterling Reputation',
@@ -333,4 +333,4 @@ export const classMoves: ClassMove[] = [
     name: 'Pocket Sand',
     description: `Take the weapon skill Confuse Senses (it does not count against your limit). When you throw something to confuse an opponent's senses at close or intimate range, roll with Cunning instead of Finesse.`,
   },
-]
+];
