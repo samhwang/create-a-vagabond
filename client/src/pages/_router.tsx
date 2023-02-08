@@ -7,6 +7,7 @@ import { VagabondInfoPage } from './app/vagabond-page';
 import { AuthLayout } from './auth/_layout';
 import { AppRoot } from './app/_layout';
 import { ClerkAuth } from './auth/clerk-auth';
+import { BackgroundStep, ClassStep, StatsStep, VagabondCreatePage } from './app/vagabond-create-page';
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,15 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <IndexPage />,
+      },
+      {
+        path: 'vagabond-create',
+        element: <VagabondCreatePage />,
+        children: [
+          { index: true, element: <ClassStep /> },
+          { path: 'background', element: <BackgroundStep /> },
+          { path: 'stats', element: <StatsStep /> },
+        ]
       },
       {
         path: 'vagabond-list',
