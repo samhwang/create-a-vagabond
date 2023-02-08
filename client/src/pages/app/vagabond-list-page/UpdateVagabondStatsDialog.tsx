@@ -84,7 +84,6 @@ export function UpdateVagabondStatsDialog({ open, onClose, vagabondFragment }: U
   const ableToAddMore = pointLeft > 0;
 
   const onSubmit: SubmitHandler<VagabondUpdateStatsInput> = (data) => {
-    console.log(data);
     updateStats({
       variables: {
         input: data,

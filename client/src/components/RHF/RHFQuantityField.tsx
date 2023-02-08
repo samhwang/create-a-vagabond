@@ -38,7 +38,8 @@ export function RHFQuantityField<T extends FieldValues>({
           defaultValue={formState.defaultValues?.[name]}
           helperText={fieldState.error?.message}
           error={Boolean(fieldState.error)}
-          type="number"
+          // type="number"
+          value={`${field.value >= 0 ? '+' : ''}${field.value}`}
           onChange={(event) => field.onChange(parseInt(event.target.value, 10))}
           disabled
           inputProps={{
