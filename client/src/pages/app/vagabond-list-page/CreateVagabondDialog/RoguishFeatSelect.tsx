@@ -6,12 +6,12 @@ import { VagabondCreateInput } from './__generated__/CreateVagabondDialogMutatio
 import { RoguishFeatSelect_class$key } from './__generated__/RoguishFeatSelect_class.graphql';
 import { RoguishFeatSelect_query$key } from './__generated__/RoguishFeatSelect_query.graphql';
 
-type RoguishFeatSelect = RHFTextFieldProps<VagabondCreateInput> & {
+type RoguishFeatSelectProps = RHFTextFieldProps<VagabondCreateInput> & {
   queryRef: RoguishFeatSelect_query$key;
   vagabondClassRef: RoguishFeatSelect_class$key;
 };
 
-export function RoguishFeatSelect({ queryRef, vagabondClassRef, ...props }: RoguishFeatSelect) {
+export function RoguishFeatSelect({ queryRef, vagabondClassRef, ...props }: RoguishFeatSelectProps) {
   const { roguishFeatConnection } = useFragment(
     graphql`
       fragment RoguishFeatSelect_query on Query {
