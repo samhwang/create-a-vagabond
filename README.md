@@ -19,7 +19,7 @@ Other than that, this project is not in any way, shape or form related to the or
 This repo currently has 3 parts:
 
 - [`client`](./client/README.md) - Frontend React App bootstrapped with Vite.
-- [`backend`](./backend/README.md) - Backend logic: Database stuff and tRPC router creation goes here.
+- [`backend`](./backend/README.md) - Backend logic: GraphQL server goes here.
 - Database: This project's database currently lives in PlanetScale.
   - Or locally, it can also be hosted in Docker.
 
