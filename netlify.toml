@@ -1,6 +1,6 @@
 [build]
   publish = "client/dist/"
-  command = "pnpm run build"
+  command = "npm run build"
 
 [functions]
   directory = "backend/src/functions/"
