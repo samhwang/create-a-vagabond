@@ -120,3 +120,25 @@ other characters
     https://ksr-ugc.imgix.net/assets/035/875/736/b357216d68b6c8a0757a0812ebae0111_original.jpeg?ixlib=rb-4.0.2&w=700&fit=max&v=1639778355&gif-q=50&q=92&s=a555e2445beea21762eed957ec38ff87
   foolhardy foxes
     https://ksr-ugc.imgix.net/assets/035/682/279/5d66abf16b3bef780382aaa6b26e6bc2_original.jpeg?ixlib=rb-4.0.2&w=700&fit=max&v=1637785322&gif-q=50&q=92&s=a8dc03a672379fd87e6ad5bcbd9317c0
+
+page 0
+  class
+
+page 1
+  name
+  species
+  details
+  demeanor
+  background
+
+page 2
+  nature
+  drives
+  stats
+  roguish feats
+  weapon skills
+  class moves
+
+page 3
+  connections
+  reputations
