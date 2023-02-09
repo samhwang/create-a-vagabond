@@ -12,12 +12,18 @@ function react(useSwc: boolean) {
   if (!useSwc) {
     return reactBabel({
       babel: {
-        presets: [],
+        presets: ['jotai/babel/preset'],
       },
     });
   }
 
-  return reactSwc({});
+  return reactSwc({
+    // @ts-ignore
+    plugins: [
+      ['@swc-jotai/debug-label', {}],
+      ['@swc-jotai/react-refresh', {}],
+    ],
+  });
 }
 
 // https://vitejs.dev/config/
