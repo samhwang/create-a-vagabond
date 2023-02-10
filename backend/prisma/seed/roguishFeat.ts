@@ -1,9 +1,9 @@
 import { PrismaClient, RoguishFeat as PrismaRoguishFeat } from '@prisma/client';
 
-export const roguishFeatSeeding = async (prisma: PrismaClient) => {
+export async function roguishFeatSeeding(prisma: PrismaClient) {
   await prisma.roguishFeat.deleteMany({});
   return prisma.roguishFeat.createMany({ data: ROGUISH_FEATS });
-};
+}
 
 type RoguishFeat = Omit<PrismaRoguishFeat, 'risks'> & {
   risks: string[];

@@ -1,9 +1,9 @@
 import { WeaponSkill, PrismaClient } from '@prisma/client';
 
-export const weaponSkillSeeding = async (prisma: PrismaClient) => {
+export async function weaponSkillSeeding(prisma: PrismaClient) {
   await prisma.weaponSkill.deleteMany({});
   return prisma.weaponSkill.createMany({ data: WEAPON_SKILLS });
-};
+}
 
 export const WEAPON_SKILLS: WeaponSkill[] = [
   {
