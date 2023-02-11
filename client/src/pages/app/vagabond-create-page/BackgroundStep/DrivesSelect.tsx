@@ -1,10 +1,11 @@
 import { MenuItem } from '@mui/material';
 import { graphql, useFragment } from 'react-relay';
 import { RHFTextField, RHFTextFieldProps } from '../../../../components/RHF/RHFTextField';
-import { VagabondCreateInput } from './__generated__/CreateVagabondDialogMutation.graphql';
+import { BackgroundStepInput } from '.';
+import { VagabondCreateInput } from '../../vagabond-list-page/CreateVagabondDialog/__generated__/CreateVagabondDialogMutation.graphql';
 import { DrivesSelect_class$key } from './__generated__/DrivesSelect_class.graphql';
 
-type DrivesSelectProps = RHFTextFieldProps<VagabondCreateInput> & {
+type DrivesSelectProps = RHFTextFieldProps<BackgroundStepInput | VagabondCreateInput> & {
   vagabondClassRef: DrivesSelect_class$key;
 };
 export function DrivesSelect({ vagabondClassRef, ...props }: DrivesSelectProps) {

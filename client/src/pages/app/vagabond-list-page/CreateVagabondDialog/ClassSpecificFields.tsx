@@ -9,13 +9,13 @@ import { VagabondCreateInput } from './__generated__/CreateVagabondDialogMutatio
 import { ClassSpecificFields_useDefaultValue_class$key } from './__generated__/ClassSpecificFields_useDefaultValue_class.graphql';
 
 import { RHFStatField } from '../../../../components/RHF/RHFStatField';
-import { useStartingPointLeft } from './useStartingPointLeft';
-import { NatureSelect } from './NatureSelect';
-import { DrivesSelect } from './DrivesSelect';
+import { NatureSelect } from '../../vagabond-create-page/BackgroundStep/NatureSelect';
+import { DrivesSelect } from '../../vagabond-create-page/BackgroundStep/DrivesSelect';
 import { RoguishFeatSelect } from './RoguishFeatSelect';
 import { WeaponSkillSelect } from './WeaponSkillSelect';
 import { RHFTextField } from '../../../../components/RHF/RHFTextField';
 import { ClassMoveSelect } from './ClassMoveSelect';
+import { useStartingPointLeft } from '../../vagabond-create-page/StatsMovesStep/useStartingPointLeft'
 
 type ClassSpecificFieldsProps = {
   queryRef: ClassSpecificFields_query$key;

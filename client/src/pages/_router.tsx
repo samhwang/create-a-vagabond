@@ -7,7 +7,12 @@ import { VagabondInfoPage } from './app/vagabond-page';
 import { AuthLayout } from './auth/_layout';
 import { AppRoot } from './app/_layout';
 import { ClerkAuth } from './auth/clerk-auth';
-import { BackgroundStep, ClassStep, ReviewStep, StatsStep, VagabondCreatePage } from './app/vagabond-create-page';
+
+import { VagabondCreatePage } from './app/vagabond-create-page';
+import { ClassStep } from './app/vagabond-create-page/ClassStep';
+import { BackgroundStep } from './app/vagabond-create-page/BackgroundStep';
+import { StatsMovesStep } from './app/vagabond-create-page/StatsMovesStep';
+import { ConnectionsStep } from './app/vagabond-create-page/ConnectionsStep'
 
 export const router = createBrowserRouter([
   {
@@ -24,8 +29,8 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: <ClassStep /> },
           { path: 'background', element: <BackgroundStep /> },
-          { path: 'stats', element: <StatsStep /> },
-          { path: 'review', element: <ReviewStep /> },
+          { path: 'stats_moves', element: <StatsMovesStep /> },
+          { path: 'connections', element: <ConnectionsStep /> },
         ]
       },
       {

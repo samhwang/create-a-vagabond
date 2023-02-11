@@ -8,6 +8,7 @@ import { RelayProvider } from './providers/relay';
 import './providers/i18n';
 import { router } from './pages/_router';
 import reportWebVitals from './reportWebVitals';
+import { Provider as JotaiProvider } from 'jotai';
 
 async function renderRoot() {
   if (import.meta.env.DEV) {
@@ -20,9 +21,11 @@ async function renderRoot() {
       <ThemeProvider>
         <SnackbarProvider>
           <AuthProvider>
-            <RelayProvider>
-              <RouterProvider router={router} />
-            </RelayProvider>
+            <JotaiProvider>
+              <RelayProvider>
+                <RouterProvider router={router} />
+              </RelayProvider>
+            </JotaiProvider>
           </AuthProvider>
         </SnackbarProvider>
       </ThemeProvider>

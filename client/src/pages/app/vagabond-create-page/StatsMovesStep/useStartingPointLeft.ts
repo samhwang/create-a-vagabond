@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import { graphql, useFragment } from 'react-relay';
-import { VagabondCreateInput } from './__generated__/CreateVagabondDialogMutation.graphql';
+import { StatsMovesStepInput } from '.'
 import { useStartingPointLeft_class$key } from './__generated__/useStartingPointLeft_class.graphql';
 
 const startingPoint = 1;
@@ -20,7 +20,7 @@ export function useStartingPointLeft(vagabondClassRef?: useStartingPointLeft_cla
     vagabondClassRef!
   );
 
-  const { watch } = useFormContext<VagabondCreateInput>();
+  const { watch } = useFormContext<StatsMovesStepInput>();
   const [charm, cunning, finesse, luck, might] = watch(['charm', 'cunning', 'finesse', 'luck', 'might']);
 
   if (!vagabondClass) return 0;

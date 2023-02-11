@@ -19,6 +19,10 @@ export function RHFTextField<T extends FieldValues>({ control, name, ...props }:
           defaultValue={formState.defaultValues?.[name]}
           helperText={fieldState.error?.message}
           error={Boolean(fieldState.error)}
+          InputLabelProps={{
+            ...props.InputLabelProps,
+            shrink: field.value ? true : props.InputLabelProps?.shrink
+          }}
         />
       )}
     />
