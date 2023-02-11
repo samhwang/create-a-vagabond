@@ -7,6 +7,7 @@ import { VagabondList_user$key } from './__generated__/VagabondList_user.graphql
 import { VagabondListItem } from './VagabondListItem';
 import { CreateVagabondDialog } from './CreateVagabondDialog';
 import { VagabondList_query$key } from './__generated__/VagabondList_query.graphql'
+import { Link } from 'react-router-dom'
 
 type VagabondListProps = {
   title?: string;
@@ -49,10 +50,13 @@ export function VagabondList({ title, userRef, queryRef }: VagabondListProps) {
           <ListSubheader sx={{ display: 'flex', p: 2 }}>
             <Typography variant="h6">{title}</Typography>
             <div style={{ flexGrow: 1 }} />
-            <CreateVagabondDialogButton
+            <IconButton component={Link} to='/vagabond-create'>
+              <Add />
+            </IconButton>
+            {/* <CreateVagabondDialogButton
               connectionIds={[data.vagabondConnection.__id]}
               queryRef={query}
-            />
+            /> */}
           </ListSubheader>
         }
       >
