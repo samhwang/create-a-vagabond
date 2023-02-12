@@ -8,6 +8,46 @@ import { StatsMovesStepInput, statsMovesStepInputAtom } from './StatsMovesStep'
 import { ConnectionsStepInput, connectionsStepInputAtom } from './ConnectionsStep'
 import { VagabondCreateInput } from './ReviewAndCreateStep/__generated__/ReviewAndCreateStepMutation.graphql'
 
+export const VagabondCreatePage = () => {
+  const location = useLocation()
+  const [activeStep, setActiveStep] = useState(0)
+  useEffect(() => {
+    const index = [
+      '/vagabond-create',
+      '/vagabond-create/background',
+      '/vagabond-create/stats_moves',
+      '/vagabond-create/connections',
+      '/vagabond-create/review_create',
+    ].indexOf(location.pathname)
+    setActiveStep(index)
+  }, [location.pathname])
+
+  return (
+    <Container maxWidth="lg" sx={{ mt: 4 }}>
+      <Stepper activeStep={activeStep}>
+        <Step>
+          <StepLabel>Choose a class</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Background</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Stats and Moves</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Connections and Reputations</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Reviews and Create</StepLabel>
+        </Step>
+      </Stepper>
+      <Suspense fallback={<CircularProgress />}>
+        <Outlet />
+      </Suspense>
+    </Container>
+  );
+}
+
 export function assertEqualType<T extends never>() {}
 export type TypeEqualityGuard<A,B> = Exclude<A,B> | Exclude<B,A>;
 assertEqualType<TypeEqualityGuard<
@@ -65,43 +105,3 @@ export const vagabondCreateResetAtom = atom(
     })
   }
 )
-
-export const VagabondCreatePage = () => {
-  const location = useLocation()
-  const [activeStep, setActiveStep] = useState(0)
-  useEffect(() => {
-    const index = [
-      '/vagabond-create',
-      '/vagabond-create/background',
-      '/vagabond-create/stats_moves',
-      '/vagabond-create/connections',
-      '/vagabond-create/review_create',
-    ].indexOf(location.pathname)
-    setActiveStep(index)
-  }, [location.pathname])
-
-  return (
-    <Container maxWidth="lg" sx={{ mt: 4 }}>
-      <Stepper activeStep={activeStep}>
-        <Step>
-          <StepLabel>Choose a class</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel>Background</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel>Stats and Moves</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel>Connections and Reputations</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel>Reviews and Create</StepLabel>
-        </Step>
-      </Stepper>
-      <Suspense fallback={<CircularProgress />}>
-        <Outlet />
-      </Suspense>
-    </Container>
-  );
-}

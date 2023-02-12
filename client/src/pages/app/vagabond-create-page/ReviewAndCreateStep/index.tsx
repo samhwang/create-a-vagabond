@@ -1,4 +1,4 @@
-import { Button, Container, Stack, Typography } from '@mui/material'
+import { Box, Button, Container, Paper, Stack, Typography } from '@mui/material'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { useSnackbar } from 'notistack'
 import { graphql, useLazyLoadQuery, useMutation } from 'react-relay'
@@ -73,19 +73,34 @@ export const ReviewAndCreateStep = () => {
     })
   }
 
+  const displayInput = {
+    ...input,
+    class: atob(input.class),
+    nature: atob(input.nature),
+    drives: input.drives.map(atob),
+    roguishFeats: input.roguishFeats.map(atob),
+    classMoves: input.classMoves.map(atob),
+    weaponSkill: atob(input.weaponSkill),
+  }
+
   return (
     <Container maxWidth='md' sx={{ mt: 4, justifyContent: 'center' }}>
-      <Typography>
-        {JSON.stringify(input)}
-      </Typography>
-      <Stack direction='row' justifyContent='flex-end' mt={2}>
+      <Stack direction='row' alignItems='center'>
+        <Typography flexGrow={1}>
+          Here are your current summary. Please review or click "Submit" to create your vagabond
+        </Typography>
         <Button onClick={() => navigate('/vagabond-create/connections')}>
           Back
         </Button>
         <Button variant='contained' onClick={onCreate}>
-          Create
+          Submit
         </Button>
       </Stack>
+      <Paper sx={{ paddingY: 0.01, paddingX: 2, my: 2 }}>
+        <pre>
+          {JSON.stringify(displayInput, null, 2)}
+        </pre>
+      </Paper>
     </Container>
   )
 }
