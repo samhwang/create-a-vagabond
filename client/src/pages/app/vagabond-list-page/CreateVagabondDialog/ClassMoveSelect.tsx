@@ -54,4 +54,4 @@ export function ClassMoveSelect({ vagabondClassRef, ...props }: ClassMoveSelectP
 }
 
 export const tinkerDefaultSkills = ['toolbox', 'repair'];
-export const tinkerDefaultSkillIds = tinkerDefaultSkills.map((skill) => btoa(`ClassMove:${skill}`));
+export const tinkerDefaultSkillIds = tinkerDefaultSkills.map((skill) => window.btoa(`ClassMove:${skill}`));

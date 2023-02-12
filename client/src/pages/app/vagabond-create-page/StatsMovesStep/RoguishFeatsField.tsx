@@ -1,20 +1,20 @@
-import { useAtomValue } from 'jotai'
-import { useEffect } from 'react'
-import { useFormContext } from 'react-hook-form'
-import { graphql, useFragment } from 'react-relay'
-import { StatsMovesStepInput, statsMovesStepInputAtom } from '.'
-import { RHFCheckboxField } from '../../../../components/RHF/RHFCheckboxField'
-import { RHFCheckboxFieldItem } from '../../../../components/RHF/RHFCheckboxFieldItem'
-import { RoguishFeatsField_class$key } from './__generated__/RoguishFeatsField_class.graphql'
-import { RoguishFeatsField_query$key } from './__generated__/RoguishFeatsField_query.graphql'
-import { RoguishFeatsField_useSyncFeats_class$key } from './__generated__/RoguishFeatsField_useSyncFeats_class.graphql'
+import { useAtomValue } from 'jotai';
+import { useEffect } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { graphql, useFragment } from 'react-relay';
+import { StatsMovesStepInput, statsMovesStepInputAtom } from '.';
+import { RHFCheckboxField } from '../../../../components/RHF/RHFCheckboxField';
+import { RHFCheckboxFieldItem } from '../../../../components/RHF/RHFCheckboxFieldItem';
+import { RoguishFeatsField_class$key } from './__generated__/RoguishFeatsField_class.graphql';
+import { RoguishFeatsField_query$key } from './__generated__/RoguishFeatsField_query.graphql';
+import { RoguishFeatsField_useSyncFeats_class$key } from './__generated__/RoguishFeatsField_useSyncFeats_class.graphql';
 
 type RoguishFeatsFieldProps = {
-  queryRef: RoguishFeatsField_query$key
-  vagabondClassRef: RoguishFeatsField_class$key
-}
+  queryRef: RoguishFeatsField_query$key;
+  vagabondClassRef: RoguishFeatsField_class$key;
+};
 
-export const RoguishFeatsField = ({ queryRef, vagabondClassRef }: RoguishFeatsFieldProps) => {
+export function RoguishFeatsField({ queryRef, vagabondClassRef }: RoguishFeatsFieldProps) {
   const query = useFragment(
     graphql`
       fragment RoguishFeatsField_query on Query {
@@ -29,7 +29,7 @@ export const RoguishFeatsField = ({ queryRef, vagabondClassRef }: RoguishFeatsFi
       }
     `,
     queryRef
-  )
+  );
 
   const vagabondClass = useFragment(
     graphql`
@@ -38,20 +38,16 @@ export const RoguishFeatsField = ({ queryRef, vagabondClassRef }: RoguishFeatsFi
       }
     `,
     vagabondClassRef
-  )
+  );
 
-  const { control, watch } = useFormContext<StatsMovesStepInput>()
-  const startingFeatIds = useSyncFeats(vagabondClass)
+  const { control, watch } = useFormContext<StatsMovesStepInput>();
+  const startingFeatIds = useSyncFeats(vagabondClass);
   const selectedFeatIds = watch('roguishFeats', []);
 
   return (
-    <RHFCheckboxField
-      control={control}
-      name='roguishFeats'
-      label='Roguish Feats'
-    >
-      {query.roguishFeatConnection.edges.map(edge => {
-        if (!edge?.node) return <></>
+    <RHFCheckboxField control={control} name="roguishFeats" label="Roguish Feats">
+      {query.roguishFeatConnection.edges.map((edge) => {
+        if (!edge?.node) return null;
 
         const disabled = getDisableState(edge.node.id, startingFeatIds, selectedFeatIds);
         return (
@@ -61,19 +57,19 @@ export const RoguishFeatsField = ({ queryRef, vagabondClassRef }: RoguishFeatsFi
             value={edge.node.id}
             control={control}
             disabled={disabled}
-            name='roguishFeats'
+            name="roguishFeats"
           />
-        )
+        );
       })}
     </RHFCheckboxField>
-  )
+  );
 }
 
-const useSyncFeats = (vagabondClassRef: RoguishFeatsField_useSyncFeats_class$key) => {
-  const { setValue } = useFormContext<StatsMovesStepInput>()
+function useSyncFeats(vagabondClassRef: RoguishFeatsField_useSyncFeats_class$key) {
+  const { setValue } = useFormContext<StatsMovesStepInput>();
 
-  const { roguishFeats } = useAtomValue(statsMovesStepInputAtom)
-  
+  const { roguishFeats } = useAtomValue(statsMovesStepInputAtom);
+
   const vagabondClass = useFragment(
     graphql`
       fragment RoguishFeatsField_useSyncFeats_class on VagabondClass {
@@ -87,19 +83,16 @@ const useSyncFeats = (vagabondClassRef: RoguishFeatsField_useSyncFeats_class$key
       }
     `,
     vagabondClassRef
-  )
+  );
   const startingFeatsIds = vagabondClass.roguishFeatConnection.edges
     .filter((edge) => Boolean(edge?.node))
     .map((edge) => edge!.node.id);
 
   useEffect(() => {
-    setValue(
-      'roguishFeats',
-      roguishFeats.length ? roguishFeats : startingFeatsIds
-    )
-  }, [...startingFeatsIds, ...roguishFeats])
+    setValue('roguishFeats', roguishFeats.length ? roguishFeats : startingFeatsIds);
+  }, [roguishFeats, setValue, startingFeatsIds]);
 
-  return startingFeatsIds
+  return startingFeatsIds;
 }
 
 const availableSelection = 1;

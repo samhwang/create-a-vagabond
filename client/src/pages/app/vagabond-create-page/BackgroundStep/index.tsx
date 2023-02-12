@@ -1,42 +1,39 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, CircularProgress, Container, Stack } from '@mui/material'
-import { useAtom, useAtomValue } from 'jotai'
-import { atomWithStorage } from 'jotai/utils'
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import { graphql, useLazyLoadQuery } from 'react-relay'
-import { useNavigate } from 'react-router-dom'
-import { z } from 'zod'
-import { vagabondCreateInputAtom } from '..'
-import { RHFTextField, RHFTextFieldProps } from '../../../../components/RHF/RHFTextField'
-import { useSyncDefaultInput } from '../../hooks/useSyncDetaulInput'
-import { DrivesSelect } from './DrivesSelect'
-import { NatureSelect } from './NatureSelect'
-import { SpeciesSelect } from './SpeciesSelect'
-import { BackgroundStepQuery } from './__generated__/BackgroundStepQuery.graphql'
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Button, CircularProgress, Container, Stack } from '@mui/material';
+import { useAtom, useAtomValue } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { graphql, useLazyLoadQuery } from 'react-relay';
+import { useNavigate } from 'react-router-dom';
+import { z } from 'zod';
+import { vagabondCreateInputAtom } from '..';
+import { RHFTextField, RHFTextFieldProps } from '../../../../components/RHF/RHFTextField';
+import { useSyncDefaultInput } from '../../hooks/useSyncDetaulInput';
+import { DrivesSelect } from './DrivesSelect';
+import { NatureSelect } from './NatureSelect';
+import { SpeciesSelect } from './SpeciesSelect';
+import { BackgroundStepQuery } from './__generated__/BackgroundStepQuery.graphql';
 
 export type BackgroundStepInput = {
-  species: string
-  details: string
-  demeanor: string
-  background_home: string
-  background_leftBehind: string
-  background_vagabond: string
-  nature: string
-  drives: ReadonlyArray<string>
-}
-export const backgroundStepInputAtom = atomWithStorage<BackgroundStepInput>(
-  'backgroundStep',
-  {
-    species: '',
-    details: '',
-    demeanor: '',
-    background_home: '',
-    background_leftBehind: '',
-    background_vagabond: '',
-    nature: '',
-    drives: [],
-  }
-)
+  species: string;
+  details: string;
+  demeanor: string;
+  background_home: string;
+  background_leftBehind: string;
+  background_vagabond: string;
+  nature: string;
+  drives: ReadonlyArray<string>;
+};
+export const backgroundStepInputAtom = atomWithStorage<BackgroundStepInput>('backgroundStep', {
+  species: '',
+  details: '',
+  demeanor: '',
+  background_home: '',
+  background_leftBehind: '',
+  background_vagabond: '',
+  nature: '',
+  drives: [],
+});
 
 const BackgroundStepInputSchema: z.ZodType<BackgroundStepInput> = z.object({
   species: z.string().min(1),
@@ -47,10 +44,10 @@ const BackgroundStepInputSchema: z.ZodType<BackgroundStepInput> = z.object({
   background_leftBehind: z.string().min(1),
   nature: z.string(),
   drives: z.array(z.string()),
-})
+});
 
-export const BackgroundStep = () => {
-  const inputData = useAtomValue(vagabondCreateInputAtom)
+export function BackgroundStep() {
+  const inputData = useAtomValue(vagabondCreateInputAtom);
   const data = useLazyLoadQuery<BackgroundStepQuery>(
     graphql`
       query BackgroundStepQuery($id: ID!) {
@@ -63,75 +60,55 @@ export const BackgroundStep = () => {
       }
     `,
     { id: inputData.class }
-  )
-  
-  const navigate = useNavigate()
-  const [input, setInput] = useAtom(backgroundStepInputAtom)
+  );
+
+  const navigate = useNavigate();
+  const [input, setInput] = useAtom(backgroundStepInputAtom);
   const { control, handleSubmit, setValue } = useForm<BackgroundStepInput>({
     defaultValues: input,
-    resolver: zodResolver(BackgroundStepInputSchema)
-  })
-  useSyncDefaultInput(
-    input,
-    (key, value) => setValue(key, value)
-  )
+    resolver: zodResolver(BackgroundStepInputSchema),
+  });
+  useSyncDefaultInput(input, (key, value) => setValue(key, value));
 
-  const onSubmit: SubmitHandler<BackgroundStepInput> = data => {
-    setInput(data)
-    navigate('/vagabond-create/stats_moves')
-  }
+  const onSubmit: SubmitHandler<BackgroundStepInput> = (data) => {
+    setInput(data);
+    navigate('/vagabond-create/stats_moves');
+  };
 
-  if (!inputData.class || !data.node) return <CircularProgress />
+  if (!inputData.class || !data.node) return <CircularProgress />;
 
   return (
-    <Container maxWidth='md' sx={{ mt: 4, justifyContent: 'center' }}>
+    <Container maxWidth="md" sx={{ mt: 4, justifyContent: 'center' }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2}>
-          <Stack direction='row' spacing={2}>
-            <SpeciesSelect
-              control={control}
-              name='species'
-              label='Species'
-              fullWidth
-            />
-            <NatureSelect
-              control={control}
-              name="nature"
-              label="Nature"
-              vagabondClassRef={data.node}
-              fullWidth
-            />
-            <DrivesSelect
-              control={control}
-              name="drives"
-              label="Drives"
-              vagabondClassRef={data.node}
-              fullWidth
-            />
+          <Stack direction="row" spacing={2}>
+            <SpeciesSelect control={control} name="species" label="Species" fullWidth />
+            <NatureSelect control={control} name="nature" label="Nature" vagabondClassRef={data.node} fullWidth />
+            <DrivesSelect control={control} name="drives" label="Drives" vagabondClassRef={data.node} fullWidth />
           </Stack>
-          <Stack direction='row' spacing={2}>
+          <Stack direction="row" spacing={2}>
             <RHFBackGroundTextAreaField
               control={control}
-              name='demeanor'
-              label='Demeanor'
+              name="demeanor"
+              label="Demeanor"
               placeholder="intimidating, honest, brusque, open"
               rows={4}
               maxRows={4}
             />
             <RHFBackGroundTextAreaField
               control={control}
-              name='details'
-              label='Details'
+              name="details"
+              label="Details"
               placeholder={detailPlaceholder}
               rows={4}
               maxRows={4}
             />
           </Stack>
-          <Stack direction='row' spacing={2}>
+          <Stack direction="row" spacing={2}>
             <RHFBackGroundTextAreaField
               control={control}
-              name='background_home'
-              label='Where do you call home?'
+              name="background_home"
+              label="Where do you call home?"
               placeholder={homeBackgroundPlaceholder}
             />
             <RHFBackGroundTextAreaField
@@ -147,18 +124,16 @@ export const BackgroundStep = () => {
               placeholder={leftBehindBackgroundPlaceholder}
             />
           </Stack>
-          <Stack direction='row' justifyContent='flex-end'>
-            <Button onClick={() => navigate('/vagabond-create')}>
-              Back
-            </Button>
-            <Button type='submit' variant='contained'>
+          <Stack direction="row" justifyContent="flex-end">
+            <Button onClick={() => navigate('/vagabond-create')}>Back</Button>
+            <Button type="submit" variant="contained">
               Next
             </Button>
           </Stack>
         </Stack>
       </form>
     </Container>
-  )
+  );
 }
 
 function RHFBackGroundTextAreaField<T extends FieldValues>(props: RHFTextFieldProps<T>) {

@@ -28,14 +28,14 @@ export function NatureSelect({ vagabondClassRef, ...props }: NatureSelectProps) 
 
   return (
     <RHFTextField {...props} select>
-      {natureConnection.edges.map(edge => {
-        if (!edge?.node) return null
+      {natureConnection.edges.map((edge) => {
+        if (!edge?.node) return null;
 
         return (
           <MenuItem key={edge?.node.id} value={edge?.node.id}>
             {edge?.node.name}
           </MenuItem>
-        )
+        );
       })}
     </RHFTextField>
   );

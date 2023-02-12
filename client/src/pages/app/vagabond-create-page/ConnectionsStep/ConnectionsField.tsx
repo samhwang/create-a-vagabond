@@ -1,20 +1,20 @@
-import { Add, Cancel } from '@mui/icons-material'
-import { Box, IconButton, Stack, Typography } from '@mui/material'
-import { useAtomValue } from 'jotai'
-import { useEffect } from 'react'
-import { useFieldArray, useFormContext } from 'react-hook-form'
-import { ConnectionsStepInput, connectionsStepInputAtom } from '.'
-import { RHFTextField } from '../../../../components/RHF/RHFTextField'
+import { Add, Cancel } from '@mui/icons-material';
+import { Box, IconButton, Stack, Typography } from '@mui/material';
+import { useAtomValue } from 'jotai';
+import { useEffect } from 'react';
+import { useFieldArray, useFormContext } from 'react-hook-form';
+import { ConnectionsStepInput, connectionsStepInputAtom } from '.';
+import { RHFTextField } from '../../../../components/RHF/RHFTextField';
 
-export const ConnectionsField = () => {
+export function ConnectionsField() {
   const { control } = useFormContext<ConnectionsStepInput>();
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'connections',
   });
 
-  useSyncStoreData()
-  
+  useSyncStoreData();
+
   useEffect(() => {
     append({ type: '', to: '', notes: '' });
 
@@ -47,10 +47,10 @@ export const ConnectionsField = () => {
   );
 }
 
-const useSyncStoreData = () => {
+function useSyncStoreData() {
   const { setValue } = useFormContext<ConnectionsStepInput>();
-  const { connections } = useAtomValue(connectionsStepInputAtom)
+  const { connections } = useAtomValue(connectionsStepInputAtom);
   useEffect(() => {
-    setValue('connections', connections)
-  }, [connections])
+    setValue('connections', connections);
+  }, [connections, setValue]);
 }

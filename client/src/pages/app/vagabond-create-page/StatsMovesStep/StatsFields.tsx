@@ -1,20 +1,20 @@
-import { Stack, TextField, Typography } from '@mui/material'
-import { useAtomValue } from 'jotai'
-import { useEffect } from 'react'
-import { useFormContext } from "react-hook-form";
-import { graphql, useFragment } from 'react-relay'
-import { StatsMovesStepInput, statsMovesStepInputAtom } from ".";
-import { RHFStatField } from "../../../../components/RHF/RHFStatField";
-import { RHFTextField } from '../../../../components/RHF/RHFTextField'
-import { useStartingPointLeft } from './useStartingPointLeft'
-import { StatsFields_class$key } from './__generated__/StatsFields_class.graphql'
-import { StatsFields_useSyncStats_class$key } from './__generated__/StatsFields_useSyncStats_class.graphql'
+import { Stack, TextField, Typography } from '@mui/material';
+import { useAtomValue } from 'jotai';
+import { useEffect } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { graphql, useFragment } from 'react-relay';
+import { StatsMovesStepInput, statsMovesStepInputAtom } from '.';
+import { RHFStatField } from '../../../../components/RHF/RHFStatField';
+import { RHFTextField } from '../../../../components/RHF/RHFTextField';
+import { useStartingPointLeft } from './useStartingPointLeft';
+import { StatsFields_class$key } from './__generated__/StatsFields_class.graphql';
+import { StatsFields_useSyncStats_class$key } from './__generated__/StatsFields_useSyncStats_class.graphql';
 
 type StatsFieldsProps = {
-  vagabondClassRef: StatsFields_class$key
-}
+  vagabondClassRef: StatsFields_class$key;
+};
 
-export const StatsFields = ({ vagabondClassRef }: StatsFieldsProps) => {
+export function StatsFields({ vagabondClassRef }: StatsFieldsProps) {
   const vagabondClass = useFragment(
     graphql`
       fragment StatsFields_class on VagabondClass {
@@ -28,11 +28,11 @@ export const StatsFields = ({ vagabondClassRef }: StatsFieldsProps) => {
       }
     `,
     vagabondClassRef
-  )
-  const { control } = useFormContext<StatsMovesStepInput>()
-  
-  const pointLeft = useStartingPointLeft(vagabondClass)
-  useSyncStats(vagabondClass)
+  );
+  const { control } = useFormContext<StatsMovesStepInput>();
+
+  const pointLeft = useStartingPointLeft(vagabondClass);
+  useSyncStats(vagabondClass);
 
   return (
     <>
@@ -84,20 +84,13 @@ export const StatsFields = ({ vagabondClassRef }: StatsFieldsProps) => {
         <MaxInfoField />
       </Stack>
     </>
-  )
+  );
 }
 
-const useSyncStats = (vagabondClassRef: StatsFields_useSyncStats_class$key) => {
-  const { setValue } = useFormContext<StatsMovesStepInput>()
+function useSyncStats(vagabondClassRef: StatsFields_useSyncStats_class$key) {
+  const { setValue } = useFormContext<StatsMovesStepInput>();
 
-  const {
-    startingCharm,
-    startingCunning,
-    startingFinesse,
-    startingLuck,
-    startingMight,
-    startingValue,
-  } = useFragment(
+  const { startingCharm, startingCunning, startingFinesse, startingLuck, startingMight, startingValue } = useFragment(
     graphql`
       fragment StatsFields_useSyncStats_class on VagabondClass {
         startingCharm
@@ -109,33 +102,33 @@ const useSyncStats = (vagabondClassRef: StatsFields_useSyncStats_class$key) => {
       }
     `,
     vagabondClassRef
-  )
+  );
 
-  const { charm, cunning, finesse, luck, might, value } = useAtomValue(statsMovesStepInputAtom)
-
-  useEffect(() => {
-    setValue('charm', charm || startingCharm || 0)
-  }, [charm, startingCharm])
+  const { charm, cunning, finesse, luck, might, value } = useAtomValue(statsMovesStepInputAtom);
 
   useEffect(() => {
-    setValue('cunning', cunning || startingCunning || 0)
-  }, [cunning, startingCunning])
+    setValue('charm', charm || startingCharm || 0);
+  }, [charm, startingCharm, setValue]);
 
   useEffect(() => {
-    setValue('finesse', finesse || startingFinesse || 0)
-  }, [finesse, startingFinesse])
+    setValue('cunning', cunning || startingCunning || 0);
+  }, [cunning, startingCunning, setValue]);
 
   useEffect(() => {
-    setValue('luck', luck || startingLuck || 0)
-  }, [luck, startingLuck])
+    setValue('finesse', finesse || startingFinesse || 0);
+  }, [finesse, startingFinesse, setValue]);
 
   useEffect(() => {
-    setValue('might', might || startingMight || 0)
-  }, [might, startingMight])
+    setValue('luck', luck || startingLuck || 0);
+  }, [luck, startingLuck, setValue]);
 
   useEffect(() => {
-    setValue('value', value || startingValue || 0)
-  }, [value, startingValue])
+    setValue('might', might || startingMight || 0);
+  }, [might, startingMight, setValue]);
+
+  useEffect(() => {
+    setValue('value', value || startingValue || 0);
+  }, [value, startingValue, setValue]);
 }
 
 function BurdenedInfoField() {

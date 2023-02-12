@@ -1,16 +1,16 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, CircularProgress, Container, Stack, Typography } from '@mui/material'
+import { Button, CircularProgress, Container, Stack } from '@mui/material';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { graphql, useLazyLoadQuery } from 'react-relay';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import { vagabondCreateInputAtom } from '..';
-import { ClassMovesField } from './ClassMovesField'
-import { RoguishFeatsField } from './RoguishFeatsField'
-import { StatsFields } from './StatsFields'
-import { WeaponSkillField } from './WeaponSkillField'
+import { ClassMovesField } from './ClassMovesField';
+import { RoguishFeatsField } from './RoguishFeatsField';
+import { StatsFields } from './StatsFields';
+import { WeaponSkillField } from './WeaponSkillField';
 import { StatsMovesStepQuery } from './__generated__/StatsMovesStepQuery.graphql';
 
 export type StatsMovesStepInput = {
@@ -24,22 +24,19 @@ export type StatsMovesStepInput = {
   roguishFeats: ReadonlyArray<string>;
   classMoves: ReadonlyArray<string>;
   weaponSkill: string;
-}
+};
 
-export const statsMovesStepInputAtom = atomWithStorage<StatsMovesStepInput>(
-  'statsMovesStep',
-  {
-    charm: 0,
-    cunning: 0,
-    finesse: 0,
-    luck: 0,
-    might: 0,
-    value: 0,
-    roguishFeats: [],
-    classMoves: [],
-    weaponSkill: '',
-  }
-)
+export const statsMovesStepInputAtom = atomWithStorage<StatsMovesStepInput>('statsMovesStep', {
+  charm: 0,
+  cunning: 0,
+  finesse: 0,
+  luck: 0,
+  might: 0,
+  value: 0,
+  roguishFeats: [],
+  classMoves: [],
+  weaponSkill: '',
+});
 
 const StatsMovesStepInputSchema: z.ZodType<StatsMovesStepInput> = z.object({
   charm: z.number(),
@@ -51,11 +48,11 @@ const StatsMovesStepInputSchema: z.ZodType<StatsMovesStepInput> = z.object({
   roguishFeats: z.array(z.string()),
   classMoves: z.array(z.string()).length(3),
   weaponSkill: z.string(),
-})
+});
 
-export const StatsMovesStep = () => {
-  const navigate = useNavigate()
-  const inputData = useAtomValue(vagabondCreateInputAtom)
+export function StatsMovesStep() {
+  const navigate = useNavigate();
+  const inputData = useAtomValue(vagabondCreateInputAtom);
   const data = useLazyLoadQuery<StatsMovesStepQuery>(
     graphql`
       query StatsMovesStepQuery($id: ID!) {
@@ -71,46 +68,41 @@ export const StatsMovesStep = () => {
       }
     `,
     { id: inputData.class }
-  )
-  
+  );
+
   const methods = useForm<StatsMovesStepInput>({
-    resolver: zodResolver(StatsMovesStepInputSchema)
-  })
+    resolver: zodResolver(StatsMovesStepInputSchema),
+  });
 
-  const setInput = useSetAtom(statsMovesStepInputAtom)
-  const onSubmit: SubmitHandler<StatsMovesStepInput> = data => {
-    setInput(data)
-    console.log(data)
-    navigate('/vagabond-create/connections')
-  }
+  const setInput = useSetAtom(statsMovesStepInputAtom);
+  const onSubmit: SubmitHandler<StatsMovesStepInput> = (data) => {
+    setInput(data);
+    console.log(data);
+    navigate('/vagabond-create/connections');
+  };
 
-  if (!inputData.class || !data.node) return <CircularProgress />
+  if (!inputData.class || !data.node) return <CircularProgress />;
 
   return (
-    <Container maxWidth='md' sx={{ mt: 4, justifyContent: 'center' }}>
+    <Container maxWidth="md" sx={{ mt: 4, justifyContent: 'center' }}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Stack direction="row" spacing={2}>
-            <RoguishFeatsField
-              queryRef={data}
-              vagabondClassRef={data.node}
-            />
+            <RoguishFeatsField queryRef={data} vagabondClassRef={data.node} />
             <ClassMovesField vagabondClassRef={data.node} />
             <WeaponSkillField vagabondClassRef={data.node} />
             <Stack direction="column" spacing={2} maxWidth={250}>
               <StatsFields vagabondClassRef={data.node} />
             </Stack>
           </Stack>
-          <Stack direction='row' justifyContent='flex-end' mt={2}>
-            <Button onClick={() => navigate('/vagabond-create/background')}>
-              Back
-            </Button>
-            <Button type='submit' variant='contained'>
+          <Stack direction="row" justifyContent="flex-end" mt={2}>
+            <Button onClick={() => navigate('/vagabond-create/background')}>Back</Button>
+            <Button type="submit" variant="contained">
               Next
             </Button>
           </Stack>
         </form>
       </FormProvider>
     </Container>
-  )
+  );
 }

@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import { graphql, useFragment } from 'react-relay';
-import { StatsMovesStepInput } from '.'
+import { StatsMovesStepInput } from '.';
 import { useStartingPointLeft_class$key } from './__generated__/useStartingPointLeft_class.graphql';
 
 const startingPoint = 1;

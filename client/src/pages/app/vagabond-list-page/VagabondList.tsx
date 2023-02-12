@@ -2,17 +2,17 @@ import { useState } from 'react';
 import { graphql, useFragment, usePaginationFragment } from 'react-relay';
 import { IconButton, List, ListSubheader, Paper, Typography } from '@mui/material';
 import { Add } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 import { VagabondListPaginationQuery } from './__generated__/VagabondListPaginationQuery.graphql';
 import { VagabondList_user$key } from './__generated__/VagabondList_user.graphql';
 import { VagabondListItem } from './VagabondListItem';
 import { CreateVagabondDialog } from './CreateVagabondDialog';
-import { VagabondList_query$key } from './__generated__/VagabondList_query.graphql'
-import { Link } from 'react-router-dom'
+import { VagabondList_query$key } from './__generated__/VagabondList_query.graphql';
 
 type VagabondListProps = {
   title?: string;
   userRef: VagabondList_user$key;
-  queryRef: VagabondList_query$key
+  queryRef: VagabondList_query$key;
 };
 
 export function VagabondList({ title, userRef, queryRef }: VagabondListProps) {
@@ -23,7 +23,7 @@ export function VagabondList({ title, userRef, queryRef }: VagabondListProps) {
       }
     `,
     queryRef
-  )
+  );
 
   const { data } = usePaginationFragment<VagabondListPaginationQuery, VagabondList_user$key>(
     graphql`
@@ -42,7 +42,7 @@ export function VagabondList({ title, userRef, queryRef }: VagabondListProps) {
     `,
     userRef
   );
-  console.log(data.vagabondConnection.__id)
+  console.log(data.vagabondConnection.__id);
 
   return (
     <Paper elevation={5}>
@@ -51,7 +51,7 @@ export function VagabondList({ title, userRef, queryRef }: VagabondListProps) {
           <ListSubheader sx={{ display: 'flex', p: 2 }}>
             <Typography variant="h6">{title}</Typography>
             <div style={{ flexGrow: 1 }} />
-            <IconButton component={Link} to='/vagabond-create'>
+            <IconButton component={Link} to="/vagabond-create">
               <Add />
             </IconButton>
             {/* <CreateVagabondDialogButton
@@ -71,9 +71,9 @@ export function VagabondList({ title, userRef, queryRef }: VagabondListProps) {
 }
 
 type CreateVagabondDialogButtonProps = {
-  connectionIds: string[]
-  queryRef: any
-}
+  connectionIds: string[];
+  queryRef: any;
+};
 
 function CreateVagabondDialogButton({ connectionIds, queryRef }: CreateVagabondDialogButtonProps) {
   const [open, setOpen] = useState(false);

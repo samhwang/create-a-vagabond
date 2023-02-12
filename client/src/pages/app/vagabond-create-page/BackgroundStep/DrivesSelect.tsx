@@ -27,14 +27,14 @@ export function DrivesSelect({ vagabondClassRef, ...props }: DrivesSelectProps) 
 
   return (
     <RHFTextField {...props} select SelectProps={{ multiple: true }}>
-      {driveConnection.edges.map(edge => {
-        if (!edge?.node) return null
+      {driveConnection.edges.map((edge) => {
+        if (!edge?.node) return null;
 
         return (
           <MenuItem key={edge.node.id} value={edge.node.id}>
             {edge.node.name}
           </MenuItem>
-        )
+        );
       })}
     </RHFTextField>
   );

@@ -21,7 +21,7 @@ export function RHFTextField<T extends FieldValues>({ control, name, ...props }:
           error={Boolean(fieldState.error)}
           InputLabelProps={{
             ...props.InputLabelProps,
-            shrink: field.value ? true : props.InputLabelProps?.shrink
+            shrink: field.value ? true : props.InputLabelProps?.shrink,
           }}
         />
       )}

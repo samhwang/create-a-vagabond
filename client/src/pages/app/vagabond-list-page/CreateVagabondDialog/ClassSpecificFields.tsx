@@ -15,7 +15,7 @@ import { RoguishFeatSelect } from './RoguishFeatSelect';
 import { WeaponSkillSelect } from './WeaponSkillSelect';
 import { RHFTextField } from '../../../../components/RHF/RHFTextField';
 import { ClassMoveSelect } from './ClassMoveSelect';
-import { useStartingPointLeft } from '../../vagabond-create-page/StatsMovesStep/useStartingPointLeft'
+import { useStartingPointLeft } from '../../vagabond-create-page/StatsMovesStep/useStartingPointLeft';
 
 type ClassSpecificFieldsProps = {
   queryRef: ClassSpecificFields_query$key;
