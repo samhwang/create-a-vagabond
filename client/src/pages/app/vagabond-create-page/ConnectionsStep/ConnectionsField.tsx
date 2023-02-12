@@ -14,7 +14,7 @@ export const ConnectionsField = () => {
   });
 
   useSyncStoreData()
-
+  
   useEffect(() => {
     append({ type: '', to: '', notes: '' });
 
