@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6b658269f799a0e9fd5d42ab9096e33d>>
+ * @generated SignedSource<<d71be631ab464c8f91d7c9826cb941ea>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -37,11 +37,11 @@ export type VagabondCreateConnectionCreateInput = {
   to: string;
   type: string;
 };
-export type vagabondCreatePageMutation$variables = {
+export type ReviewAndCreateStepMutation$variables = {
   connections: ReadonlyArray<string>;
   input: VagabondCreateInput;
 };
-export type vagabondCreatePageMutation$data = {
+export type ReviewAndCreateStepMutation$data = {
   readonly vagabondCreate: {
     readonly __typename: "Error";
     readonly message: string;
@@ -59,9 +59,9 @@ export type vagabondCreatePageMutation$data = {
     readonly __typename: "%other";
   };
 };
-export type vagabondCreatePageMutation = {
-  response: vagabondCreatePageMutation$data;
-  variables: vagabondCreatePageMutation$variables;
+export type ReviewAndCreateStepMutation = {
+  response: ReviewAndCreateStepMutation$data;
+  variables: ReviewAndCreateStepMutation$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -117,7 +117,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "vagabondCreatePageMutation",
+    "name": "ReviewAndCreateStepMutation",
     "selections": [
       {
         "alias": null,
@@ -175,7 +175,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "vagabondCreatePageMutation",
+    "name": "ReviewAndCreateStepMutation",
     "selections": [
       {
         "alias": null,
@@ -293,16 +293,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "f0c89425026c047783bc411990c065b3",
+    "cacheID": "8d36edef0e0bf0913898bc96efca2fa7",
     "id": null,
     "metadata": {},
-    "name": "vagabondCreatePageMutation",
+    "name": "ReviewAndCreateStepMutation",
     "operationKind": "mutation",
-    "text": "mutation vagabondCreatePageMutation(\n  $input: VagabondCreateInput!\n) {\n  vagabondCreate(input: $input) {\n    __typename\n    ... on Error {\n      message\n    }\n    ... on MutationVagabondCreateSuccess {\n      data {\n        vagabond {\n          name\n          ...VagabondListItem_vagabond\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment UpdateVagabondStatsDialog_vagabond on Vagabond {\n  id\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n  ...UpdateVagabondStatsDialog_vagabond\n}\n"
+    "text": "mutation ReviewAndCreateStepMutation(\n  $input: VagabondCreateInput!\n) {\n  vagabondCreate(input: $input) {\n    __typename\n    ... on Error {\n      message\n    }\n    ... on MutationVagabondCreateSuccess {\n      data {\n        vagabond {\n          name\n          ...VagabondListItem_vagabond\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment UpdateVagabondStatsDialog_vagabond on Vagabond {\n  id\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n  ...UpdateVagabondStatsDialog_vagabond\n}\n"
   }
 };
 })();
 
-(node as any).hash = "9bade060434d23150cd08e0d8ee5374d";
+(node as any).hash = "aed02a19b93861d043a3058cd32d771e";
 
 export default node;

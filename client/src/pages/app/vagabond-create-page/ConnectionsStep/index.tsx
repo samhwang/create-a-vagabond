@@ -5,7 +5,7 @@ import { atomWithStorage } from 'jotai/utils'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
-import { VagabondCreateConnectionCreateInput } from '../__generated__/vagabondCreatePageMutation.graphql'
+import { VagabondCreateConnectionCreateInput } from '../ReviewAndCreateStep/__generated__/ReviewAndCreateStepMutation.graphql'
 import { ConnectionsField } from './ConnectionsField'
 
 export type ConnectionsStepInput = {
@@ -36,8 +36,7 @@ export const ConnectionsStep = () => {
   const setInput = useSetAtom(connectionsStepInputAtom)
   const onSubmit: SubmitHandler<ConnectionsStepInput> = data => {
     setInput(data)
-    console.log(data)
-    // navigate('/vagabond-create/connections')
+    navigate('/vagabond-create/review_create')
   }
 
   return (

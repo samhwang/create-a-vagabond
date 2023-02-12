@@ -1,13 +1,12 @@
 import { CircularProgress, Container, Step, StepLabel, Stepper } from '@mui/material';
-import { atom, useAtomValue } from 'jotai';
+import { atom } from 'jotai';
 import { Suspense, useEffect, useState } from 'react';
-import { graphql, useMutation } from 'react-relay'
 import { Outlet, useLocation } from 'react-router-dom';
 import { ClassStepInput, classStepInputAtom } from './ClassStep';
 import { BackgroundStepInput, backgroundStepInputAtom } from './BackgroundStep';
-import { VagabondCreateInput } from './__generated__/vagabondCreatePageMutation.graphql';
 import { StatsMovesStepInput, statsMovesStepInputAtom } from './StatsMovesStep'
-import { ConnectionsStepInput } from './ConnectionsStep'
+import { ConnectionsStepInput, connectionsStepInputAtom } from './ConnectionsStep'
+import { VagabondCreateInput } from './ReviewAndCreateStep/__generated__/ReviewAndCreateStepMutation.graphql'
 
 export function assertEqualType<T extends never>() {}
 export type TypeEqualityGuard<A,B> = Exclude<A,B> | Exclude<B,A>;
@@ -24,11 +23,13 @@ export const vagabondCreateInputAtom = atom(
     const classStepData = get(classStepInputAtom)
     const backgroundStepData = get(backgroundStepInputAtom)
     const statsMovesStepData = get(statsMovesStepInputAtom)
+    const connectionsStepData = get(connectionsStepInputAtom)
 
     return {
       ...classStepData,
       ...backgroundStepData,
       ...statsMovesStepData,
+      ...connectionsStepData,
     }
   }
 )
@@ -59,6 +60,9 @@ export const vagabondCreateResetAtom = atom(
       classMoves: [],
       weaponSkill: '',
     })
+    set(connectionsStepInputAtom, {
+      connections: [],
+    })
   }
 )
 
@@ -71,33 +75,10 @@ export const VagabondCreatePage = () => {
       '/vagabond-create/background',
       '/vagabond-create/stats_moves',
       '/vagabond-create/connections',
+      '/vagabond-create/review_create',
     ].indexOf(location.pathname)
     setActiveStep(index)
   }, [location.pathname])
-
-  const input = useAtomValue(vagabondCreateInputAtom)
-  // console.log(input)
-  const [createVagabond] = useMutation(graphql`
-    mutation vagabondCreatePageMutation($connections: [ID!]!, $input: VagabondCreateInput!) {
-      vagabondCreate(input: $input) {
-        __typename
-        ... on Error {
-          message
-        }
-        ... on MutationVagabondCreateSuccess {
-          data {
-            vagabond @appendNode(
-              connections: $connections
-              edgeTypeName: "UserVagabondConnectionEdge"
-            ) {
-              name
-              ...VagabondListItem_vagabond
-            }
-          }
-        }
-      }
-    }
-  `) 
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4 }}>
@@ -113,6 +94,9 @@ export const VagabondCreatePage = () => {
         </Step>
         <Step>
           <StepLabel>Connections and Reputations</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Reviews and Create</StepLabel>
         </Step>
       </Stepper>
       <Suspense fallback={<CircularProgress />}>
