@@ -29,7 +29,7 @@ There are ${seededClassSkills.count} class skills created.`);
   console.log(`There are ${seededVagabondClasses.length} classes created.`);
 
   const seededVagabonds = await vagabondSeeding(prisma);
-  console.log(`There are ${seededVagabonds.count} vagabonds created.`);
+  console.log(`There are ${seededVagabonds.length} vagabonds created.`);
 }
 
 seedData();

@@ -4,37 +4,48 @@ import { CLASSES } from './class';
 
 const BASE_MIGHT = 4;
 
-type DefaultVagabond = Omit<Vagabond, 'id'>;
-
-const DEFAULT_VAGABONDS: DefaultVagabond[] = CLASSES.map((vagabondClass) => {
-  return {
-    userId: faker.datatype.uuid(),
-    vagabondClassId: vagabondClass.id,
-    name: faker.name.firstName(),
-    species: faker.animal.type(),
-    details: faker.random.words(10),
-    demeanor: faker.random.word(),
-    background_home: faker.random.words(10),
-    background_vagabond: faker.random.words(10),
-    background_leftBehind: faker.random.words(10),
-    value: vagabondClass.startingValue,
-    charm: vagabondClass.startingCharm,
-    carrying: vagabondClass.startingMight * 2 + BASE_MIGHT,
-    might: vagabondClass.startingMight,
-    cunning: vagabondClass.startingCunning,
-    finesse: vagabondClass.startingFinesse,
-    luck: vagabondClass.startingLuck,
-    availablePoints: 1,
-    natureId: vagabondClass.natures[0],
-  };
-});
-
 export async function vagabondSeeding(prisma: PrismaClient) {
   await Promise.all([prisma.reputation.deleteMany(), prisma.vagabond.deleteMany()]);
 
-  const vagabondIds = await prisma.vagabond.createMany({
-    data: DEFAULT_VAGABONDS,
+  const promises = CLASSES.map((vagabondClass) => {
+    const data = {
+      userId: faker.datatype.uuid(),
+      vagabondClassId: vagabondClass.id,
+      name: faker.name.firstName(),
+      species: faker.animal.type(),
+      details: faker.random.words(10),
+      demeanor: faker.random.word(),
+      background_home: faker.random.words(10),
+      background_vagabond: faker.random.words(10),
+      background_leftBehind: faker.random.words(10),
+      value: vagabondClass.startingValue,
+      charm: vagabondClass.startingCharm,
+      carrying: vagabondClass.startingMight * 2 + BASE_MIGHT,
+      might: vagabondClass.startingMight,
+      cunning: vagabondClass.startingCunning,
+      finesse: vagabondClass.startingFinesse,
+      luck: vagabondClass.startingLuck,
+      availablePoints: 1,
+      natureId: vagabondClass.natures[0],
+      roguishFeats: {
+        connect: vagabondClass.roguishFeats.map((id) => ({ id })),
+      },
+      weaponSkills: {
+        connect: vagabondClass.weaponSkills.map((id) => ({ id })),
+      },
+      classMoves: {
+        connect: vagabondClass.classMoves.map((id) => ({ id })),
+      },
+      drives: {
+        connect: vagabondClass.drives.slice(0, 2).map((id) => ({ id })),
+      },
+      reputations: {
+        connect: [],
+      },
+    };
+
+    return prisma.vagabond.create({ data });
   });
 
-  return vagabondIds;
+  return Promise.all(promises);
 }
