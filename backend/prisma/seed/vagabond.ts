@@ -7,7 +7,7 @@ const BASE_MIGHT = 4;
 export async function vagabondSeeding(prisma: PrismaClient) {
   await Promise.all([prisma.reputation.deleteMany(), prisma.vagabond.deleteMany()]);
 
-  const promises = CLASSES.map((vagabondClass) => {
+  const promises = CLASSES.map(async (vagabondClass) => {
     const data = {
       userId: faker.datatype.uuid(),
       vagabondClassId: vagabondClass.id,
@@ -39,12 +39,15 @@ export async function vagabondSeeding(prisma: PrismaClient) {
       drives: {
         connect: vagabondClass.drives.slice(0, 2).map((id) => ({ id })),
       },
-      reputations: {
-        connect: [],
-      },
     };
 
-    return prisma.vagabond.create({ data });
+    const { id: vagabondId } = await prisma.vagabond.create({ data });
+
+    await prisma.reputation.create({
+      data: { vagabondId },
+    });
+
+    return vagabondId;
   });
 
   return Promise.all(promises);
