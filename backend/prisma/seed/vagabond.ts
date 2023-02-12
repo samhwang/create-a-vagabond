@@ -1,8 +1,6 @@
-import { Vagabond, PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { faker } from '@faker-js/faker';
 import { CLASSES } from './class';
-
-const BASE_MIGHT = 4;
 
 export async function vagabondSeeding(prisma: PrismaClient) {
   await Promise.all([prisma.reputation.deleteMany(), prisma.vagabond.deleteMany()]);
@@ -20,7 +18,7 @@ export async function vagabondSeeding(prisma: PrismaClient) {
       background_leftBehind: faker.random.words(10),
       value: vagabondClass.startingValue,
       charm: vagabondClass.startingCharm,
-      carrying: vagabondClass.startingMight * 2 + BASE_MIGHT,
+      carrying: 0,
       might: vagabondClass.startingMight,
       cunning: vagabondClass.startingCunning,
       finesse: vagabondClass.startingFinesse,
