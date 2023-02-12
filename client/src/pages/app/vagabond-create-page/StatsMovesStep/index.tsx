@@ -77,7 +77,6 @@ export function StatsMovesStep() {
   const setInput = useSetAtom(statsMovesStepInputAtom);
   const onSubmit: SubmitHandler<StatsMovesStepInput> = (data) => {
     setInput(data);
-    console.log(data);
     navigate('/vagabond-create/connections');
   };
 

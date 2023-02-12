@@ -42,7 +42,6 @@ export function VagabondList({ title, userRef, queryRef }: VagabondListProps) {
     `,
     userRef
   );
-  console.log(data.vagabondConnection.__id);
 
   return (
     <Paper elevation={5}>
