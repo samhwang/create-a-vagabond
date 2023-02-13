@@ -90,7 +90,7 @@ function useSyncFeats(vagabondClassRef: RoguishFeatsField_useSyncFeats_class$key
 
   useEffect(() => {
     setValue('roguishFeats', roguishFeats.length ? roguishFeats : startingFeatsIds);
-  }, [roguishFeats, setValue, startingFeatsIds]);
+  }, [...roguishFeats, ...startingFeatsIds]);
 
   return startingFeatsIds;
 }
