@@ -17,7 +17,7 @@ function Hello() {
   const { user } = useUser();
 
   return (
-    <div className="App-header">
+    <div>
       <UserButton />
       {user ? <h1>Hello, {user.firstName}!</h1> : null}
     </div>
