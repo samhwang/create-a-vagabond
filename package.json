@@ -9,7 +9,6 @@
     "backend"
   ],
   "scripts": {
-    "init:client": "cd client && npx msw init public",
     "test": "turbo run test",
     "lint": "turbo run lint",
     "format": "turbo run format",

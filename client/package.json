@@ -7,7 +7,7 @@
   },
   "relay": {
     "src": "./src",
-    "schema": "./data/schema.graphql",
+    "schema": "../backend/schema.graphql",
     "language": "typescript",
     "eagerEsModules": true,
     "exclude": [
@@ -38,7 +38,6 @@
     "lint:fix": "npm run lint --fix",
     "prettier": "prettier --cache --write .",
     "format": "npm run lint:fix && npm run prettier",
-    "schema": "npx get-graphql-schema http://localhost:8788/.netlify/functions/graphql > ./data/schema.graphql",
     "relay": "relay-compiler"
   },
   "dependencies": {
@@ -79,7 +78,6 @@
     "@vitejs/plugin-react": "^3.1.0",
     "@vitejs/plugin-react-swc": "^3.1.0",
     "babel-plugin-relay": "^14.1.0",
-    "get-graphql-schema": "^2.1.2",
     "jotai-devtools": "^0.2.0",
     "jsdom": "^21.1.0",
     "relay-compiler": "^14.1.0",
