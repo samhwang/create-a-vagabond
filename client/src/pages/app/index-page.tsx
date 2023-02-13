@@ -1,4 +1,5 @@
-import { Container, Typography } from '@mui/material';
+import { Container } from '@mui/material';
+import { UserProfile } from '@clerk/clerk-react';
 import { graphql, useLazyLoadQuery } from 'react-relay';
 import { indexPageQuery } from './__generated__/indexPageQuery.graphql';
 
@@ -17,7 +18,7 @@ function IndexPage() {
 
   return (
     <Container>
-      <Typography>{data.me.email}</Typography>
+      <UserProfile />
     </Container>
   );
 }
