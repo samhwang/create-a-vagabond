@@ -25,17 +25,14 @@
   "type": "module",
   "scripts": {
     "msw:init": "msw init public",
-    "dev": "npm run msw:init && vite",
-    "prebuild": "rimraf dist",
-    "build": "rimraf dist && vite build",
+    "dev": "vite",
+    "build": "vite build",
     "preview": "vite preview",
-    "pretest": "rimraf coverage",
     "typecheck": "tsc",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "test:CI": "npm run test && npm run typecheck",
     "lint": "eslint --cache .",
-    "lint:fix": "npm run lint --fix",
+    "lint:fix": "npm run lint -- --fix",
     "prettier": "prettier --cache --write .",
     "format": "npm run lint:fix && npm run prettier",
     "relay": "relay-compiler"
@@ -81,6 +78,7 @@
     "jotai-devtools": "^0.2.0",
     "jsdom": "^21.1.0",
     "relay-compiler": "^14.1.0",
+    "vagabond-app-backend": "*",
     "vite": "^4.1.1",
     "vite-plugin-relay": "^2.0.0"
   }

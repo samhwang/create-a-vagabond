@@ -6,5 +6,4 @@ node_modules
 
 # Ignoring generated files
 public/mockServiceWorker.js
-data/schema.graphql
-src/pages/**/__generated__
+src/**/__generated__

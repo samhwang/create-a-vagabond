@@ -1,32 +1,49 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
+  "$schema": "https://turbo.build/schema.json",
   "pipeline": {
     "test": {
-      "dependsOn": [],
-      "outputs": []
+      "outputs": ["coverage/**"]
     },
-    "lint": {
-      "outputs": []
-    },
+    "lint": {},
     "format": {
-      "outputs": []
+      "dependsOn": ["lint"]
     },
-    "typecheck": {
-      "outputs": []
+    "typecheck": {},
+    "vagabond-app-backend#prisma:generate": {
+      "outputs": ["../node_modules/@prisma/client/**", "../node_modules/@pothos/plugin-prisma/generated.ts"],
+      "inputs": ["prisma/schema.prisma"]
     },
-    "dev": {
-      "outputs": []
+    "vagabond-app-backend#prisma:migrate": {
+      "outputs": ["../node_modules/@prisma/client/**", "../node_modules/@pothos/plugin-prisma/generated.ts"],
+      "inputs": ["prisma/schema.prisma"]
+    },
+    "vagabond-app-backend#generate-schema": {
+      "inputs": ["prisma/schema.prisma", "bin/generate-schema.ts", "src/builder.ts", "src/schema.ts", "src/types/**"],
+      "outputs": ["schema.graphql"],
+      "dependsOn": ["prisma:generate"]
     },
     "vagabond-app-backend#dev": {
-      "outputs": [],
-      "dependsOn": ["vagabond-app-client#build"]
+      "dependsOn": ["vagabond-app-client#build", "prisma:migrate", "generate-schema"],
+      "cache": false,
+      "persistent": true
     },
-    "vagabond-app-backend#prisma:migrate:deploy": {
-      "outputs": []
+    "vagabond-app-client#msw-init": {
+      "outputs": ["public/mockServiceWorker.js"]
+    },
+    "vagabond-app-client#relay": {
+      "dependsOn": ["^generate-schema"],
+      "inputs": ["src/**/*.tsx"],
+      "outputs": ["src/**/__generated__/**"]
+    },
+    "vagabond-app-client#dev": {
+      "dependsOn": ["msw-init", "relay"],
+      "cache": false,
+      "persistent": true
     },
     "vagabond-app-client#build": {
-      "outputs": ["dist/**"],
-      "dependsOn": ["vagabond-app-backend#prisma:migrate:deploy"]
+      "dependsOn": ["msw-init", "relay"],
+      "inputs": ["vite.config.ts", "src/**", "public/**"],
+      "outputs": ["dist/**"]
     }
   }
 }

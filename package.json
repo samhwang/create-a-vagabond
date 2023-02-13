@@ -14,7 +14,9 @@
     "format": "turbo run format",
     "typecheck": "turbo run typecheck",
     "build": "turbo run build",
-    "dev": "turbo run dev"
+    "dev": "turbo run dev",
+    "dev:backend": "turbo run dev --filter=vagabond-app-backend",
+    "dev:client": "turbo run dev --filter=vagabond-app-client"
   },
   "dependencies": {
     "react": "^18.2.0",
