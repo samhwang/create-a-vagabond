@@ -5,24 +5,13 @@ import { Link } from 'react-router-dom';
 import { VagabondListPaginationQuery } from './__generated__/VagabondListPaginationQuery.graphql';
 import { VagabondList_user$key } from './__generated__/VagabondList_user.graphql';
 import { VagabondListItem } from './VagabondListItem';
-import { VagabondList_query$key } from './__generated__/VagabondList_query.graphql'
 
 type VagabondListProps = {
   title?: string;
   userRef: VagabondList_user$key;
-  queryRef: VagabondList_query$key;
 };
 
-export function VagabondList({ title, userRef, queryRef }: VagabondListProps) {
-  const query = useFragment(
-    graphql`
-      fragment VagabondList_query on Query {
-        me { id }
-      }
-    `,
-    queryRef
-  );
-
+export function VagabondList({ title, userRef }: VagabondListProps) {
   const { data } = usePaginationFragment<VagabondListPaginationQuery, VagabondList_user$key>(
     graphql`
       fragment VagabondList_user on User

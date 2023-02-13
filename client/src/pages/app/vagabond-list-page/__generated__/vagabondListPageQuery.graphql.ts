@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2f65c63235aa72de373d9380aeeaac9e>>
+ * @generated SignedSource<<942646f131ff4622a7e3d9c8f5e83467>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,7 +16,6 @@ export type vagabondListPageQuery$data = {
     readonly id: string;
     readonly " $fragmentSpreads": FragmentRefs<"VagabondList_user">;
   };
-  readonly " $fragmentSpreads": FragmentRefs<"VagabondList_query">;
 };
 export type vagabondListPageQuery = {
   response: vagabondListPageQuery$data;
@@ -68,11 +67,6 @@ return {
           }
         ],
         "storageKey": null
-      },
-      {
-        "args": null,
-        "kind": "FragmentSpread",
-        "name": "VagabondList_query"
       }
     ],
     "type": "Query",
@@ -249,16 +243,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "f03ba5d0a8d54a59d47eeead40c3fbe0",
+    "cacheID": "22b6d94a4dd16326af4a062fd8f27efc",
     "id": null,
     "metadata": {},
     "name": "vagabondListPageQuery",
     "operationKind": "query",
-    "text": "query vagabondListPageQuery {\n  me {\n    id\n    ...VagabondList_user\n  }\n  ...VagabondList_query\n}\n\nfragment UpdateVagabondStatsDialog_vagabond on Vagabond {\n  id\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  class {\n    name\n    id\n  }\n  availablePoints\n  ...UpdateVagabondStatsDialog_vagabond\n}\n\nfragment VagabondList_query on Query {\n  me {\n    id\n  }\n}\n\nfragment VagabondList_user on User {\n  vagabondConnection(first: 10) {\n    edges {\n      node {\n        ...VagabondListItem_vagabond\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n"
+    "text": "query vagabondListPageQuery {\n  me {\n    id\n    ...VagabondList_user\n  }\n}\n\nfragment UpdateVagabondStatsDialog_vagabond on Vagabond {\n  id\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  class {\n    name\n    id\n  }\n  availablePoints\n  ...UpdateVagabondStatsDialog_vagabond\n}\n\nfragment VagabondList_user on User {\n  vagabondConnection(first: 10) {\n    edges {\n      node {\n        ...VagabondListItem_vagabond\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n"
   }
 };
 })();
 
-(node as any).hash = "d25416a6080312a8ce988dcae4ea3252";
+(node as any).hash = "af6901245936a42fa0dd1e8d88ce529b";
 
 export default node;

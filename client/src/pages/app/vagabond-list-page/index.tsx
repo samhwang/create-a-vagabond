@@ -11,7 +11,6 @@ export function VagabondListPage() {
           id
           ...VagabondList_user
         }
-        ...VagabondList_query
       }
     `,
     {}
@@ -19,7 +18,7 @@ export function VagabondListPage() {
 
   return (
     <Container maxWidth="xs" sx={{ mt: 2 }}>
-      <VagabondList title="Your vagabonds" userRef={data.me} queryRef={data} />
+      <VagabondList title="Your vagabonds" userRef={data.me} />
     </Container>
   );
 }
