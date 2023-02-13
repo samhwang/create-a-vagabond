@@ -15,7 +15,7 @@
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
     "prisma:format": "prisma format",
-    "seed": "tsx ./prisma/seed.ts"
+    "seed": "tsx ./bin/seed.ts"
   },
   "devDependencies": {
     "prisma": "^4.10.1"
