@@ -3,8 +3,8 @@
 ## Scripts
 
 ```shell
-pnpm run dev
-pnpm run test
-pnpm run format
-pnpm run build
+npm run dev
+npm run test
+npm run format
+npm run build
 ```

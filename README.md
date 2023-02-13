@@ -21,7 +21,8 @@ This repo currently has 3 parts:
 - [`client`](./client/README.md) - Frontend React App bootstrapped with Vite.
 - [`backend`](./backend/README.md) - Backend logic: GraphQL server goes here.
 - Database: This project's database currently lives in PlanetScale.
-  - Or locally, it can also be hosted in Docker.
+  - Locally, it can also be hosted in Docker using a MySQL Container, or use the `pscale` command
+  to connect to a branch on PlanetScale.
 
 ---
 
@@ -31,8 +32,9 @@ This repo currently has 3 parts:
 
 - Node v16
   - PNPM v7
-- Docker
+- Docker (optional)
 - Netlify CLI
+- PlanetScale CLI (optional)
 
 ### Accounts
 
@@ -56,11 +58,22 @@ This repo currently has 3 parts:
 
 - `DATABASE_URL` is `mysql://root:root@localhost:3306/db`.
 
-### Install Scripts
+### Starting the services
 
 ```shell
-npm install
-npm run init:client
+cp .env.sample .env
+
+# Start the local database with Docker
+# If you want to, replace this step with the `pscale` CLI.
 docker compose up -d db
-pnpm run dev
+
+# Install Dependencies
+npm install
+
+# Start the services
+npm run dev
+
+# Or run these 2 scripts in 2 different terminals to start each service separately
+npm run dev:backend
+npm run dev:client
 ```
