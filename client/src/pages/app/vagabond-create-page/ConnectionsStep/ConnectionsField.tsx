@@ -52,5 +52,5 @@ function useSyncStoreData() {
   const { connections } = useAtomValue(connectionsStepInputAtom);
   useEffect(() => {
     setValue('connections', connections);
-  }, [connections, setValue]);
+  }, [connections]);
 }

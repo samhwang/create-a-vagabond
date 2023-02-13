@@ -34,7 +34,7 @@ export function ClassMovesField({ vagabondClassRef }: ClassMovesFieldProps) {
   const { classMoves } = useAtomValue(statsMovesStepInputAtom);
   useEffect(() => {
     if (classMoves.length) setValue('classMoves', classMoves);
-  }, [classMoves, setValue]);
+  }, [classMoves]);
 
   return (
     <RHFCheckboxField control={control} name="classMoves" label="Class Moves">
@@ -64,7 +64,7 @@ function useTinkerDefaultSkills(name: string) {
     if (name === 'tinker') {
       setValue('classMoves', tinkerDefaultSkillIds);
     }
-  }, [name, setValue]);
+  }, [name]);
 
   return tinkerDefaultSkillIds;
 }

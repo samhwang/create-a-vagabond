@@ -33,7 +33,7 @@ export function ClassMoveSelect({ vagabondClassRef, ...props }: ClassMoveSelectP
     if (name === 'tinker') {
       setValue('classMoves', tinkerDefaultSkillIds);
     }
-  }, [name, setValue]);
+  }, [name]);
 
   return (
     <RHFTextField {...props} select SelectProps={{ multiple: true }}>

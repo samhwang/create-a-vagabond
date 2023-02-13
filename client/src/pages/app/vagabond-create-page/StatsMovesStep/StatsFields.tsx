@@ -108,27 +108,27 @@ function useSyncStats(vagabondClassRef: StatsFields_useSyncStats_class$key) {
 
   useEffect(() => {
     setValue('charm', charm || startingCharm || 0);
-  }, [charm, startingCharm, setValue]);
+  }, [charm, startingCharm]);
 
   useEffect(() => {
     setValue('cunning', cunning || startingCunning || 0);
-  }, [cunning, startingCunning, setValue]);
+  }, [cunning, startingCunning]);
 
   useEffect(() => {
     setValue('finesse', finesse || startingFinesse || 0);
-  }, [finesse, startingFinesse, setValue]);
+  }, [finesse, startingFinesse]);
 
   useEffect(() => {
     setValue('luck', luck || startingLuck || 0);
-  }, [luck, startingLuck, setValue]);
+  }, [luck, startingLuck]);
 
   useEffect(() => {
     setValue('might', might || startingMight || 0);
-  }, [might, startingMight, setValue]);
+  }, [might, startingMight]);
 
   useEffect(() => {
     setValue('value', value || startingValue || 0);
-  }, [value, startingValue, setValue]);
+  }, [value, startingValue]);
 }
 
 function BurdenedInfoField() {

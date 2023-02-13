@@ -7,5 +7,5 @@ export function useSyncDefaultInput(input: any, onValue: (key: any, value: any) 
     Object.entries(input).forEach(([key, value]) => {
       onValue(key as any, value);
     });
-  }, [input, onValue]);
+  }, [...Object.keys(input)]);
 }

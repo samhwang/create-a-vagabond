@@ -33,7 +33,7 @@ export function WeaponSkillField({ vagabondClassRef }: WeaponSkillFieldProps) {
   const { weaponSkill } = useAtomValue(statsMovesStepInputAtom);
   useEffect(() => {
     if (weaponSkill) setValue('weaponSkill', weaponSkill);
-  }, [weaponSkill, setValue]);
+  }, [weaponSkill]);
 
   return (
     <RHFRadioGroupField control={control} name="weaponSkill" label="Weapon Skill">
