@@ -10,7 +10,7 @@
     "typecheck": "tsc",
     "netlify:dev": "cd .. && netlify functions:serve",
     "dev": "npm run netlify:dev",
-    "prisma:migrate": "prisma db push",
+    "prisma:migrate": "prisma db push --skip-generate",
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
     "prisma:format": "prisma format",
