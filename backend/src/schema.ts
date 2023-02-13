@@ -15,6 +15,7 @@ import './types/Vagabond';
 import './types/VagabondClass';
 import './types/Nature';
 import './types/Drive';
+import './types/Reputation';
 import './types/RoguishFeat';
 import './types/WeaponSkill';
 import './types/ClassMove';

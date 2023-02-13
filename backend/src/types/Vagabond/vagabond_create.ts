@@ -8,6 +8,15 @@ const VagabondCreateConnectionCreateInput = builder.inputType('VagabondCreateCon
   }),
 });
 
+const VagabondCreateReputationCreateInput = builder.inputType('VagabondCreateReputationCreateInput', {
+  fields: (t) => ({
+    faction: t.string({ required: true }),
+    score: t.int({ required: true }),
+    prestige: t.int({ required: true }),
+    notoriety: t.int({ required: true }),
+  }),
+});
+
 builder.relayMutationField(
   'vagabondCreate',
   {
@@ -23,6 +32,9 @@ builder.relayMutationField(
       background_leftBehind: t.string({ required: true }),
       connections: t.field({
         type: [VagabondCreateConnectionCreateInput],
+      }),
+      reputations: t.field({
+        type: [VagabondCreateReputationCreateInput],
       }),
 
       value: t.int({ required: true }),
@@ -100,6 +112,14 @@ builder.relayMutationField(
             ? {
                 createMany: {
                   data: input.connections,
+                  skipDuplicates: true,
+                },
+              }
+            : undefined,
+          reputations: input.reputations
+            ? {
+                createMany: {
+                  data: input.reputations,
                   skipDuplicates: true,
                 },
               }

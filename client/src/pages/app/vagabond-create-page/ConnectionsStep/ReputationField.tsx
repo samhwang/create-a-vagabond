@@ -6,17 +6,22 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 import { ConnectionsStepInput, connectionsStepInputAtom } from '.';
 import { RHFTextField } from '../../../../components/RHF/RHFTextField';
 
-export function ConnectionsField() {
+export function ReputationsField() {
   const { control } = useFormContext<ConnectionsStepInput>();
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'connections',
+    name: 'reputations',
   });
 
   useSyncStoreData();
 
   useEffect(() => {
-    append({ type: '', to: '', notes: '' });
+    append({
+      faction: 'Denizens',
+      score: 0,
+      prestige: 0,
+      notoriety: 0,
+    });
 
     return () => {
       remove(0);
@@ -27,17 +32,18 @@ export function ConnectionsField() {
     <>
       <Box display="flex">
         <Typography variant="h6" flexGrow={1}>
-          Connections
+          Reputations
         </Typography>
-        <IconButton onClick={() => append({ type: '', to: '', notes: '' })}>
+        <IconButton onClick={() => append({ faction: '', score: 0, prestige: 0, notoriety: 0 })}>
           <Add />
         </IconButton>
       </Box>
       {fields.map((field, index) => (
         <Stack key={field.id} direction="row" spacing={2}>
-          <RHFTextField control={control} name={`connections.${index}.type`} label="Connection Type" />
-          <RHFTextField control={control} name={`connections.${index}.to`} label="Connection To" />
-          <RHFTextField control={control} name={`connections.${index}.notes`} label="Connection Notes" />
+          <RHFTextField control={control} name={`reputations.${index}.faction`} label="Faction" />
+          <RHFTextField control={control} name={`reputations.${index}.score`} label="Score" />
+          <RHFTextField control={control} name={`reputations.${index}.prestige`} label="Prestige" />
+          <RHFTextField control={control} name={`reputations.${index}.notoriety`} label="Notoriety" />
           {index > 0 && (
             <IconButton onClick={() => remove(index)}>
               <Cancel />
@@ -51,8 +57,8 @@ export function ConnectionsField() {
 
 function useSyncStoreData() {
   const { setValue } = useFormContext<ConnectionsStepInput>();
-  const { connections } = useAtomValue(connectionsStepInputAtom);
+  const { reputations } = useAtomValue(connectionsStepInputAtom);
   useEffect(() => {
-    setValue('connections', connections);
-  }, [connections]);
+    setValue('reputations', reputations);
+  }, [reputations]);
 }

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6d3995fc23b56c1ca489a2532f9a93f2>>
+ * @generated SignedSource<<39859d6b5a1a065f98c11837abcfbc9b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -27,6 +27,7 @@ export type VagabondCreateInput = {
   might: number;
   name: string;
   nature: string;
+  reputations?: ReadonlyArray<VagabondCreateReputationCreateInput> | null;
   roguishFeats: ReadonlyArray<string>;
   species: string;
   value: number;
@@ -36,6 +37,12 @@ export type VagabondCreateConnectionCreateInput = {
   notes: string;
   to: string;
   type: string;
+};
+export type VagabondCreateReputationCreateInput = {
+  faction: string;
+  notoriety: number;
+  prestige: number;
+  score: number;
 };
 export type ReviewAndCreateStepMutation$variables = {
   connections: ReadonlyArray<string>;

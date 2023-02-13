@@ -5,16 +5,21 @@ import { atomWithStorage } from 'jotai/utils';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
-import { VagabondCreateConnectionCreateInput } from '../ReviewAndCreateStep/__generated__/ReviewAndCreateStepMutation.graphql';
+import {
+  VagabondCreateConnectionCreateInput,
+  VagabondCreateReputationCreateInput,
+} from '../ReviewAndCreateStep/__generated__/ReviewAndCreateStepMutation.graphql';
 import { ConnectionsField } from './ConnectionsField';
+import { ReputationsField } from './ReputationField';
 
 export type ConnectionsStepInput = {
   connections?: readonly VagabondCreateConnectionCreateInput[] | null | undefined;
-  // reputations
+  reputations?: readonly VagabondCreateReputationCreateInput[] | null | undefined;
 };
 
 export const connectionsStepInputAtom = atomWithStorage<ConnectionsStepInput>('connectionsStep', {
   connections: [],
+  reputations: [],
 });
 
 const ConnectionsStepInputSchema: z.ZodType<ConnectionsStepInput> = z.object({
@@ -23,6 +28,14 @@ const ConnectionsStepInputSchema: z.ZodType<ConnectionsStepInput> = z.object({
       type: z.string(),
       to: z.string(),
       notes: z.string(),
+    })
+  ),
+  reputations: z.array(
+    z.object({
+      faction: z.string(),
+      score: z.number(),
+      prestige: z.number(),
+      notoriety: z.number(),
     })
   ),
 });
@@ -46,7 +59,9 @@ export function ConnectionsStep() {
             <Stack spacing={2}>
               <ConnectionsField />
             </Stack>
-            <Typography variant="h6">Reputations</Typography>
+            <Stack spacing={2}>
+              <ReputationsField />
+            </Stack>
           </Stack>
           <Stack direction="row" justifyContent="flex-end" mt={2}>
             <Button onClick={() => navigate('/vagabond-create/stats_moves')}>Back</Button>

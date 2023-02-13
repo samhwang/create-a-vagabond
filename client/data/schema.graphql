@@ -82,6 +82,14 @@ type QueryVagabondClassConnectionEdge {
   node: VagabondClass!
 }
 
+type Reputation implements Node {
+  faction: String!
+  id: ID!
+  notoriety: Int!
+  prestige: Int!
+  score: Int!
+}
+
 type RoguishFeat implements Node {
   description: String!
   id: ID!
@@ -131,6 +139,7 @@ type Vagabond implements Node {
   might: Int!
   name: String!
   nature: Nature!
+  reputation(after: String, before: String, first: Int, last: Int): VagabondReputationConnection!
   roguishFeatConnection(after: String, before: String, first: Int, last: Int): VagabondRoguishFeatConnection!
   species: String!
   user: User!
@@ -254,6 +263,7 @@ input VagabondCreateInput {
   might: Int!
   name: String!
   nature: ID!
+  reputations: [VagabondCreateReputationCreateInput!]
   roguishFeats: [ID!]!
   species: String!
   value: Int!
@@ -264,6 +274,13 @@ type VagabondCreatePayload {
   vagabond: Vagabond!
 }
 
+input VagabondCreateReputationCreateInput {
+  faction: String!
+  notoriety: Int!
+  prestige: Int!
+  score: Int!
+}
+
 type VagabondDriveConnection {
   edges: [VagabondDriveConnectionEdge]!
   pageInfo: PageInfo!
@@ -272,6 +289,16 @@ type VagabondDriveConnection {
 type VagabondDriveConnectionEdge {
   cursor: String!
   node: Drive!
+}
+
+type VagabondReputationConnection {
+  edges: [VagabondReputationConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondReputationConnectionEdge {
+  cursor: String!
+  node: Reputation!
 }
 
 type VagabondRoguishFeatConnection {
