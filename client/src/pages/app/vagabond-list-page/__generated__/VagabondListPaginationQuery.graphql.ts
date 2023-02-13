@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5810f9400ec0ce156b9afb6bb1463000>>
+ * @generated SignedSource<<1fe2a6cabc2a8d6798b77fd6644995c1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -75,7 +75,14 @@ v4 = [
     "name": "first",
     "variableName": "count"
   }
-];
+],
+v5 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
+  "storageKey": null
+};
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
@@ -158,11 +165,25 @@ return {
                         "plural": false,
                         "selections": [
                           (v3/*: any*/),
+                          (v5/*: any*/),
+                          {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "VagabondClass",
+                            "kind": "LinkedField",
+                            "name": "class",
+                            "plural": false,
+                            "selections": [
+                              (v5/*: any*/),
+                              (v3/*: any*/)
+                            ],
+                            "storageKey": null
+                          },
                           {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
-                            "name": "name",
+                            "name": "availablePoints",
                             "storageKey": null
                           },
                           {
@@ -198,13 +219,6 @@ return {
                             "args": null,
                             "kind": "ScalarField",
                             "name": "might",
-                            "storageKey": null
-                          },
-                          {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "availablePoints",
                             "storageKey": null
                           },
                           (v2/*: any*/)
@@ -280,12 +294,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "5c4053d14f9969b8b05cf6bb43aa971a",
+    "cacheID": "bb4dd54e1022d88934a5099ec481cd13",
     "id": null,
     "metadata": {},
     "name": "VagabondListPaginationQuery",
     "operationKind": "query",
-    "text": "query VagabondListPaginationQuery(\n  $count: Int = 10\n  $cursor: String\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...VagabondList_user_1G22uz\n    id\n  }\n}\n\nfragment UpdateVagabondStatsDialog_vagabond on Vagabond {\n  id\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n  ...UpdateVagabondStatsDialog_vagabond\n}\n\nfragment VagabondList_user_1G22uz on User {\n  vagabondConnection(first: $count, after: $cursor) {\n    edges {\n      node {\n        ...VagabondListItem_vagabond\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n"
+    "text": "query VagabondListPaginationQuery(\n  $count: Int = 10\n  $cursor: String\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...VagabondList_user_1G22uz\n    id\n  }\n}\n\nfragment UpdateVagabondStatsDialog_vagabond on Vagabond {\n  id\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  class {\n    name\n    id\n  }\n  availablePoints\n  ...UpdateVagabondStatsDialog_vagabond\n}\n\nfragment VagabondList_user_1G22uz on User {\n  vagabondConnection(first: $count, after: $cursor) {\n    edges {\n      node {\n        ...VagabondListItem_vagabond\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n"
   }
 };
 })();

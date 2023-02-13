@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { graphql, useFragment, usePaginationFragment } from 'react-relay';
 import { IconButton, List, ListSubheader, Paper, Typography } from '@mui/material';
 import { Add } from '@mui/icons-material';
@@ -6,8 +5,7 @@ import { Link } from 'react-router-dom';
 import { VagabondListPaginationQuery } from './__generated__/VagabondListPaginationQuery.graphql';
 import { VagabondList_user$key } from './__generated__/VagabondList_user.graphql';
 import { VagabondListItem } from './VagabondListItem';
-import { CreateVagabondDialog } from './CreateVagabondDialog';
-import { VagabondList_query$key } from './__generated__/VagabondList_query.graphql';
+import { VagabondList_query$key } from './__generated__/VagabondList_query.graphql'
 
 type VagabondListProps = {
   title?: string;
@@ -19,7 +17,7 @@ export function VagabondList({ title, userRef, queryRef }: VagabondListProps) {
   const query = useFragment(
     graphql`
       fragment VagabondList_query on Query {
-        ...CreateVagabondDialog_query
+        me { id }
       }
     `,
     queryRef
@@ -53,10 +51,6 @@ export function VagabondList({ title, userRef, queryRef }: VagabondListProps) {
             <IconButton component={Link} to="/vagabond-create">
               <Add />
             </IconButton>
-            {/* <CreateVagabondDialogButton
-              connectionIds={[data.vagabondConnection.__id]}
-              queryRef={query}
-            /> */}
           </ListSubheader>
         }
       >
@@ -66,27 +60,5 @@ export function VagabondList({ title, userRef, queryRef }: VagabondListProps) {
         })}
       </List>
     </Paper>
-  );
-}
-
-type CreateVagabondDialogButtonProps = {
-  connectionIds: string[];
-  queryRef: any;
-};
-
-function CreateVagabondDialogButton({ connectionIds, queryRef }: CreateVagabondDialogButtonProps) {
-  const [open, setOpen] = useState(false);
-  return (
-    <>
-      <IconButton onClick={() => setOpen(true)}>
-        <Add />
-      </IconButton>
-      <CreateVagabondDialog
-        open={open}
-        onClose={() => setOpen(false)}
-        connectionIds={connectionIds}
-        queryRef={queryRef}
-      />
-    </>
   );
 }

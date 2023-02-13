@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d71be631ab464c8f91d7c9826cb941ea>>
+ * @generated SignedSource<<6d3995fc23b56c1ca489a2532f9a93f2>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -111,6 +111,13 @@ v4 = {
   "kind": "ScalarField",
   "name": "name",
   "storageKey": null
+},
+v5 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
 };
 return {
   "fragment": {
@@ -207,11 +214,25 @@ return {
                     "plural": false,
                     "selections": [
                       (v4/*: any*/),
+                      (v5/*: any*/),
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "VagabondClass",
+                        "kind": "LinkedField",
+                        "name": "class",
+                        "plural": false,
+                        "selections": [
+                          (v4/*: any*/),
+                          (v5/*: any*/)
+                        ],
+                        "storageKey": null
+                      },
                       {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "id",
+                        "name": "availablePoints",
                         "storageKey": null
                       },
                       {
@@ -247,13 +268,6 @@ return {
                         "args": null,
                         "kind": "ScalarField",
                         "name": "might",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "availablePoints",
                         "storageKey": null
                       }
                     ],
@@ -293,12 +307,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "8d36edef0e0bf0913898bc96efca2fa7",
+    "cacheID": "117f14548804638b7476a34292212fba",
     "id": null,
     "metadata": {},
     "name": "ReviewAndCreateStepMutation",
     "operationKind": "mutation",
-    "text": "mutation ReviewAndCreateStepMutation(\n  $input: VagabondCreateInput!\n) {\n  vagabondCreate(input: $input) {\n    __typename\n    ... on Error {\n      message\n    }\n    ... on MutationVagabondCreateSuccess {\n      data {\n        vagabond {\n          name\n          ...VagabondListItem_vagabond\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment UpdateVagabondStatsDialog_vagabond on Vagabond {\n  id\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n  ...UpdateVagabondStatsDialog_vagabond\n}\n"
+    "text": "mutation ReviewAndCreateStepMutation(\n  $input: VagabondCreateInput!\n) {\n  vagabondCreate(input: $input) {\n    __typename\n    ... on Error {\n      message\n    }\n    ... on MutationVagabondCreateSuccess {\n      data {\n        vagabond {\n          name\n          ...VagabondListItem_vagabond\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment UpdateVagabondStatsDialog_vagabond on Vagabond {\n  id\n  charm\n  cunning\n  finesse\n  luck\n  might\n  availablePoints\n}\n\nfragment VagabondListItem_vagabond on Vagabond {\n  id\n  name\n  class {\n    name\n    id\n  }\n  availablePoints\n  ...UpdateVagabondStatsDialog_vagabond\n}\n"
   }
 };
 })();

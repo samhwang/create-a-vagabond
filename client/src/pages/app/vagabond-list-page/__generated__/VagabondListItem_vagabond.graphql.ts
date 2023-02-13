@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<cb302fe14428e1ac965d0e91a0136405>>
+ * @generated SignedSource<<8c9fe140083624ae51854c5d7f77883f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,12 +12,10 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type VagabondListItem_vagabond$data = {
   readonly availablePoints: number;
-  readonly charm: number;
-  readonly cunning: number;
-  readonly finesse: number;
+  readonly class: {
+    readonly name: string;
+  };
   readonly id: string;
-  readonly luck: number;
-  readonly might: number;
   readonly name: string;
   readonly " $fragmentSpreads": FragmentRefs<"UpdateVagabondStatsDialog_vagabond">;
   readonly " $fragmentType": "VagabondListItem_vagabond";
@@ -27,7 +25,15 @@ export type VagabondListItem_vagabond$key = {
   readonly " $fragmentSpreads": FragmentRefs<"VagabondListItem_vagabond">;
 };
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
+  "storageKey": null
+};
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -40,46 +46,17 @@ const node: ReaderFragment = {
       "name": "id",
       "storageKey": null
     },
+    (v0/*: any*/),
     {
       "alias": null,
       "args": null,
-      "kind": "ScalarField",
-      "name": "name",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "charm",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "cunning",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "finesse",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "luck",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "might",
+      "concreteType": "VagabondClass",
+      "kind": "LinkedField",
+      "name": "class",
+      "plural": false,
+      "selections": [
+        (v0/*: any*/)
+      ],
       "storageKey": null
     },
     {
@@ -98,7 +75,8 @@ const node: ReaderFragment = {
   "type": "Vagabond",
   "abstractKey": null
 };
+})();
 
-(node as any).hash = "f21fcc6dd9b6339772267972ed0eba1f";
+(node as any).hash = "bf6193f46416e8cc89d462df7e5a001b";
 
 export default node;

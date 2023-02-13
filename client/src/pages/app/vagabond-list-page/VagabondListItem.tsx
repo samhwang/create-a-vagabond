@@ -18,26 +18,16 @@ export function VagabondListItem({ vagabondFragment }: VagabondListItemProps) {
       fragment VagabondListItem_vagabond on Vagabond {
         id
         name
+        class {
+          name
+        }
 
-        charm
-        cunning
-        finesse
-        luck
-        might
         availablePoints
         ...UpdateVagabondStatsDialog_vagabond
       }
     `,
     vagabondFragment
   );
-
-  const currentStats = [
-    `CHA ${vagabond.charm}`,
-    `CUN ${vagabond.cunning}`,
-    `FIN ${vagabond.finesse}`,
-    `LUC ${vagabond.luck}`,
-    `MIG ${vagabond.might}`,
-  ].join(' ');
 
   return (
     <>
@@ -49,7 +39,7 @@ export function VagabondListItem({ vagabondFragment }: VagabondListItemProps) {
               <UpdateStatsChip points={vagabond.availablePoints} vagabondFragment={vagabond} />
             </Stack>
           }
-          secondary={currentStats}
+          secondary={vagabond.class.name}
         />
         <ListItemSecondaryAction>
           <IconButton onClick={() => navigate(vagabond.id)}>

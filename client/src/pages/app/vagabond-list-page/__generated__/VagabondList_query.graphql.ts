@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<523fd31100d5ef4bea1f8056fb1e9a49>>
+ * @generated SignedSource<<b4debed5f75b811d3cc8816f3a5f365c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,9 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type VagabondList_query$data = {
-  readonly " $fragmentSpreads": FragmentRefs<"CreateVagabondDialog_query">;
+  readonly me: {
+    readonly id: string;
+  };
   readonly " $fragmentType": "VagabondList_query";
 };
 export type VagabondList_query$key = {
@@ -26,15 +28,28 @@ const node: ReaderFragment = {
   "name": "VagabondList_query",
   "selections": [
     {
+      "alias": null,
       "args": null,
-      "kind": "FragmentSpread",
-      "name": "CreateVagabondDialog_query"
+      "concreteType": "User",
+      "kind": "LinkedField",
+      "name": "me",
+      "plural": false,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "id",
+          "storageKey": null
+        }
+      ],
+      "storageKey": null
     }
   ],
   "type": "Query",
   "abstractKey": null
 };
 
-(node as any).hash = "fa3989c5c91dfe7d5b8d8153b293c949";
+(node as any).hash = "f4b82e166a9f3c218ca5cfb5fdb3668d";
 
 export default node;
