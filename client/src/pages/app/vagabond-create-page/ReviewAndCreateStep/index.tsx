@@ -70,12 +70,12 @@ export function ReviewAndCreateStep() {
 
   const displayInput = {
     ...input,
-    class: atob(input.class),
-    nature: atob(input.nature),
-    drives: input.drives.map(atob),
-    roguishFeats: input.roguishFeats.map(atob),
-    classMoves: input.classMoves.map(atob),
-    weaponSkill: atob(input.weaponSkill),
+    class: window.atob(input.class),
+    nature: window.atob(input.nature),
+    drives: input.drives.map(window.atob),
+    roguishFeats: input.roguishFeats.map(window.atob),
+    classMoves: input.classMoves.map(window.atob),
+    weaponSkill: window.atob(input.weaponSkill),
   };
 
   return (
