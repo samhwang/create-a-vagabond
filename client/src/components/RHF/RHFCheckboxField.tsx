@@ -9,6 +9,7 @@ import {
   FormLabelProps,
 } from '@mui/material';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
+import { ReactNode } from 'react';
 
 export type RHFCheckboxFieldProps<T extends FieldValues> = {
   name: Path<T>;
@@ -20,7 +21,7 @@ export type RHFCheckboxFieldProps<T extends FieldValues> = {
   FormGroupProps?: FormGroupProps;
   FormHelperTextProps?: FormHelperTextProps;
 
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 export function RHFCheckboxField<T extends FieldValues>({

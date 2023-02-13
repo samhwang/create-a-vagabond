@@ -8,6 +8,7 @@ import {
   RadioGroup,
 } from '@mui/material';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
+import { ReactNode } from 'react';
 
 export type RHFCheckboxFieldProps<T extends FieldValues> = {
   name: Path<T>;
@@ -18,7 +19,7 @@ export type RHFCheckboxFieldProps<T extends FieldValues> = {
   FormLabelProps?: FormLabelProps;
   FormHelperTextProps?: FormHelperTextProps;
 
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 export function RHFRadioGroupField<T extends FieldValues>({
