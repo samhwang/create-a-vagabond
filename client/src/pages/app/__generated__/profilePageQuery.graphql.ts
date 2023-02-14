@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0d242d028768ce327de712357e2e294b>>
+ * @generated SignedSource<<bdd05108c663dc81cd8585a16566ad70>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,16 +9,16 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
-export type indexPageQuery$variables = {};
-export type indexPageQuery$data = {
+export type profilePageQuery$variables = {};
+export type profilePageQuery$data = {
   readonly me: {
     readonly email: string;
     readonly id: string;
   };
 };
-export type indexPageQuery = {
-  response: indexPageQuery$data;
-  variables: indexPageQuery$variables;
+export type profilePageQuery = {
+  response: profilePageQuery$data;
+  variables: profilePageQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -54,7 +54,7 @@ return {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "indexPageQuery",
+    "name": "profilePageQuery",
     "selections": (v0/*: any*/),
     "type": "Query",
     "abstractKey": null
@@ -63,20 +63,20 @@ return {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "indexPageQuery",
+    "name": "profilePageQuery",
     "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "0687e004dd773e14fcfb7c3fc6a65adf",
+    "cacheID": "cef2787d323dfaba43fa53196a133e7b",
     "id": null,
     "metadata": {},
-    "name": "indexPageQuery",
+    "name": "profilePageQuery",
     "operationKind": "query",
-    "text": "query indexPageQuery {\n  me {\n    id\n    email\n  }\n}\n"
+    "text": "query profilePageQuery {\n  me {\n    id\n    email\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "6444907175497abba26c2232e2c59b04";
+(node as any).hash = "3426288e32297bc7b3b5cd8d20454e9a";
 
 export default node;

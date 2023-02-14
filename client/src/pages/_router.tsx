@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import IndexPage from './app/index-page';
+import ProfilePage from './app/profile-page';
 import { VagabondListPage } from './app/vagabond-list-page';
 import { VagabondInfoPage } from './app/vagabond-page';
 
@@ -21,8 +21,8 @@ export const router = createBrowserRouter([
     element: <AppRoot />,
     children: [
       {
-        index: true,
-        element: <IndexPage />,
+        path: 'profile',
+        element: <ProfilePage />,
       },
       {
         path: 'vagabond-create',
