@@ -1,5 +1,5 @@
 import { useAtomValue } from 'jotai';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { graphql, useFragment } from 'react-relay';
 import { StatsMovesStepInput, statsMovesStepInputAtom } from '.';
@@ -28,7 +28,7 @@ export function ClassMovesField({ vagabondClassRef }: ClassMovesFieldProps) {
     `,
     vagabondClassRef
   );
-  const tinkerDefaultSkillIds = useTinkerDefaultSkills(vagabondClass.name);
+  const tinkerDefaultSkillIds = useTinkerDefaultMoves(vagabondClass.name);
 
   const { control, setValue } = useFormContext<StatsMovesStepInput>();
   const { classMoves } = useAtomValue(statsMovesStepInputAtom);
@@ -56,15 +56,15 @@ export function ClassMovesField({ vagabondClassRef }: ClassMovesFieldProps) {
   );
 }
 
-export const tinkerDefaultSkills = ['toolbox', 'repair'];
-export const tinkerDefaultSkillIds = tinkerDefaultSkills.map((skill) => window.btoa(`ClassMove:${skill}`));
-function useTinkerDefaultSkills(name: string) {
+export const tinkerDefaultMoves = ['toolbox', 'repair'];
+export const tinkerDefaultMovesIds = tinkerDefaultMoves.map((skill) => window.btoa(`ClassMove:${skill}`));
+function useTinkerDefaultMoves(name: string) {
   const { setValue } = useFormContext<{ classMoves: ReadonlyArray<string> }>();
   useEffect(() => {
     if (name === 'tinker') {
-      setValue('classMoves', tinkerDefaultSkillIds);
+      setValue('classMoves', tinkerDefaultMovesIds);
     }
   }, [name]);
 
-  return tinkerDefaultSkillIds;
+  return tinkerDefaultMovesIds;
 }
