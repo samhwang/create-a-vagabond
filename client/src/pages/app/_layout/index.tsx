@@ -35,7 +35,7 @@ export function AppRoot() {
           >
             Home
           </Typography>
-          <UserMenuButton avatar={data.me.profileImage} />
+          <UserMenuButton avatar={data?.me?.profileImage || undefined} />
         </Toolbar>
       </AppBar>
       <Suspense fallback={<CircularProgress />}>

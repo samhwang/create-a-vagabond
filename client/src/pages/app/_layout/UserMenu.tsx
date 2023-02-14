@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@clerk/clerk-react';
 
 type UserMenuButtonProps = {
-  avatar: string | null;
+  avatar?: string;
 };
 
 export function UserMenuButton({ avatar }: UserMenuButtonProps) {
@@ -23,7 +23,7 @@ export function UserMenuButton({ avatar }: UserMenuButtonProps) {
 }
 
 type UserMenuProps = {
-  anchorEl: null | HTMLElement;
+  anchorEl: HTMLElement | null;
   onClose: () => void;
 };
 
