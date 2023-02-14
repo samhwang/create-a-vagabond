@@ -10,34 +10,42 @@ const yoga = createYoga({
 });
 
 export const handler: Handler = async (event, context) => {
-  const { session_id: sessionId, authorization } = event.headers;
-  const clientToken = authorization?.replace('Bearer ', '');
-  const session = await getClerkSession(sessionId, clientToken);
+  try {
+    const { session_id: sessionId, authorization } = event.headers;
+    const clientToken = authorization?.replace('Bearer ', '');
+    const session = await getClerkSession(sessionId, clientToken);
 
-  const response = await yoga.fetch(
-    event.rawUrl,
-    {
-      method: event.httpMethod,
-      headers: event.headers,
-      body: event.body,
-    },
-    // Third parameter becomes your server context
-    {
-      ...context,
-      session,
-    }
-  );
+    const response = await yoga.fetch(
+      event.rawUrl,
+      {
+        method: event.httpMethod,
+        headers: event.headers,
+        body: event.body,
+      },
+      // Third parameter becomes your server context
+      {
+        ...context,
+        session,
+      }
+    );
 
-  const headersObj: Record<string, string> = {};
-  response.headers.forEach((value, key) => {
-    headersObj[key] = value;
-  });
+    const headersObj: Record<string, string> = {};
+    response.headers.forEach((value, key) => {
+      headersObj[key] = value;
+    });
 
-  return {
-    statusCode: response.status,
-    body: await response.text(),
-    headers: headersObj,
-  };
+    return {
+      statusCode: response.status,
+      body: await response.text(),
+      headers: headersObj,
+    };
+  } catch (error: any) {
+    return {
+      statusCode: 500,
+      body: error.toString(),
+      headers: {},
+    };
+  }
 };
 
 async function getClerkSession(sessionId?: string, clientToken?: string) {

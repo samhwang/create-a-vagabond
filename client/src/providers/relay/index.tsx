@@ -10,11 +10,10 @@ RelayFeatureFlags.ENABLE_RELAY_RESOLVERS = true;
 const clerkPublicKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 const clerk = new Clerk(clerkPublicKey);
 
-const fetchQuery: FetchFunction = async (operation, variables, cacheConfig, uploadables) => {
+const fetchQuery: FetchFunction = async (operation, variables) => {
   await clerk.load();
   if (!clerk.session) {
-    clerk.openSignIn();
-    return;
+    return {};
   }
 
   const sessionId = clerk.session.id;
