@@ -22,9 +22,9 @@ const ConnectionsStepInputSchema = z.object({
     .array(
       z.object({
         faction: z.string(),
-        score: z.number(),
-        prestige: z.number(),
-        notoriety: z.number(),
+        score: z.number().min(-3).max(3),
+        prestige: z.number().min(0).max(15),
+        notoriety: z.number().min(0).max(9),
       })
     )
     .nullish(),
