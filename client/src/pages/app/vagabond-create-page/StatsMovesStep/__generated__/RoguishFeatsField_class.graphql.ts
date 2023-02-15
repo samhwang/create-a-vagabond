@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<98d80376c1239f612091251e5f05a44a>>
+ * @generated SignedSource<<c7930768607af86a08819ad61b39767f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,6 +11,7 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type RoguishFeatsField_class$data = {
+  readonly name: string;
   readonly " $fragmentSpreads": FragmentRefs<"RoguishFeatsField_useSyncFeats_class">;
   readonly " $fragmentType": "RoguishFeatsField_class";
 };
@@ -26,6 +27,13 @@ const node: ReaderFragment = {
   "name": "RoguishFeatsField_class",
   "selections": [
     {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "name",
+      "storageKey": null
+    },
+    {
       "args": null,
       "kind": "FragmentSpread",
       "name": "RoguishFeatsField_useSyncFeats_class"
@@ -35,6 +43,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "ba9134de5039aa7a84742c05f523bdbc";
+(node as any).hash = "b9c733125c9f6195d875918e885266b8";
 
 export default node;

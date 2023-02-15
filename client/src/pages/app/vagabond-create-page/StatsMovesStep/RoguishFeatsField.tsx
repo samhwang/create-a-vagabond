@@ -1,5 +1,5 @@
 import { useAtomValue } from 'jotai';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { graphql, useFragment } from 'react-relay';
 import { StatsMovesStepInput, statsMovesStepInputAtom } from '.';
@@ -34,6 +34,7 @@ export function RoguishFeatsField({ queryRef, vagabondClassRef }: RoguishFeatsFi
   const vagabondClass = useFragment(
     graphql`
       fragment RoguishFeatsField_class on VagabondClass {
+        name
         ...RoguishFeatsField_useSyncFeats_class
       }
     `,
@@ -43,13 +44,20 @@ export function RoguishFeatsField({ queryRef, vagabondClassRef }: RoguishFeatsFi
   const { control, watch } = useFormContext<StatsMovesStepInput>();
   const startingFeatIds = useSyncFeats(vagabondClass);
   const selectedFeatIds = watch('roguishFeats', []);
+  const availableSelection = useAvailableSelection(vagabondClass.name);
 
   return (
     <RHFCheckboxField control={control} name="roguishFeats" label="Roguish Feats">
       {query.roguishFeatConnection.edges.map((edge) => {
         if (!edge?.node) return null;
 
-        const disabled = getDisableState(edge.node.id, startingFeatIds, selectedFeatIds);
+        const disabled = getDisableState(
+          edge.node.id,
+          startingFeatIds,
+          selectedFeatIds,
+          availableSelection
+        );
+
         return (
           <RHFCheckboxFieldItem
             key={edge.node.id}
@@ -95,8 +103,20 @@ function useSyncFeats(vagabondClassRef: RoguishFeatsField_useSyncFeats_class$key
   return startingFeatsIds;
 }
 
-const availableSelection = 1;
-function getDisableState(featId: string, startingFeatIds: string[], selectedFeatIds: readonly string[]) {
+const useAvailableSelection = (name: string) => {
+  return useMemo(() => {
+    if (name === 'arbiter') return 1
+    if (name === 'thief') return 4
+    return 0
+  }, [name])
+}
+
+function getDisableState(
+  featId: string,
+  startingFeatIds: string[],
+  selectedFeatIds: readonly string[],
+  availableSelection = 0,
+) {
   const ableToSelectMore = selectedFeatIds.length - startingFeatIds.length < availableSelection;
   const isStartingFeat = startingFeatIds.includes(featId);
 
