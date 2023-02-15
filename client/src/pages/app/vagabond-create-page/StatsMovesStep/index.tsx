@@ -97,7 +97,7 @@ export function StatsMovesStep() {
               <WeaponSkillField vagabondClassRef={data.node} />
             </Grid>
             <Grid item xs={12} sm={12}>
-              <Stack direction="column" spacing={2} justifyContent='center'>
+              <Stack direction="column" spacing={2} justifyContent="center">
                 <StatsFields vagabondClassRef={data.node} />
               </Stack>
             </Grid>

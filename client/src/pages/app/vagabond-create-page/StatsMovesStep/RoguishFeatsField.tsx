@@ -51,12 +51,7 @@ export function RoguishFeatsField({ queryRef, vagabondClassRef }: RoguishFeatsFi
       {query.roguishFeatConnection.edges.map((edge) => {
         if (!edge?.node) return null;
 
-        const disabled = getDisableState(
-          edge.node.id,
-          startingFeatIds,
-          selectedFeatIds,
-          availableSelection
-        );
+        const disabled = getDisableState(edge.node.id, startingFeatIds, selectedFeatIds, availableSelection);
 
         return (
           <RHFCheckboxFieldItem
@@ -105,17 +100,17 @@ function useSyncFeats(vagabondClassRef: RoguishFeatsField_useSyncFeats_class$key
 
 const useAvailableSelection = (name: string) => {
   return useMemo(() => {
-    if (name === 'arbiter') return 1
-    if (name === 'thief') return 4
-    return 0
-  }, [name])
-}
+    if (name === 'arbiter') return 1;
+    if (name === 'thief') return 4;
+    return 0;
+  }, [name]);
+};
 
 function getDisableState(
   featId: string,
   startingFeatIds: string[],
   selectedFeatIds: readonly string[],
-  availableSelection = 0,
+  availableSelection = 0
 ) {
   const ableToSelectMore = selectedFeatIds.length - startingFeatIds.length < availableSelection;
   const isStartingFeat = startingFeatIds.includes(featId);

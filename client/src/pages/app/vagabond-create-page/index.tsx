@@ -1,4 +1,14 @@
-import { CircularProgress, Container, MobileStepper, Paper, Step, StepLabel, Stepper, Typography, useMediaQuery } from '@mui/material';
+import {
+  CircularProgress,
+  Container,
+  MobileStepper,
+  Paper,
+  Step,
+  StepLabel,
+  Stepper,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
 import { atom } from 'jotai';
 import { Suspense, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
@@ -14,18 +24,17 @@ const stepPaths = [
   '/vagabond-create/stats_moves',
   '/vagabond-create/connections',
   '/vagabond-create/review_create',
-]
+];
 const stepLabels = [
   'Choose a class',
   'Background',
   'Stats and Moves',
   'Connections and Reputations',
-  'Reviews and Create'
-]
+  'Reviews and Create',
+];
 
 export function VagabondCreatePage() {
-  const matches = useMediaQuery('(min-width:600px)')
-  console.log(matches)
+  const matches = useMediaQuery('(min-width:600px)');
   const location = useLocation();
   const [activeStep, setActiveStep] = useState(0);
   useEffect(() => {
@@ -35,18 +44,17 @@ export function VagabondCreatePage() {
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4 }}>
-      {matches
-        ? (
-          <Stepper activeStep={activeStep}>
-            {stepLabels.map(label => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-        )
-        : <Typography>{stepLabels[activeStep]}</Typography>
-      }
+      {matches ? (
+        <Stepper activeStep={activeStep}>
+          {stepLabels.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      ) : (
+        <Typography>{stepLabels[activeStep]}</Typography>
+      )}
       <Suspense fallback={<CircularProgress />}>
         <Outlet />
       </Suspense>
