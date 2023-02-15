@@ -14,16 +14,19 @@ import { NatureSelect } from './NatureSelect';
 import { SpeciesSelect } from './SpeciesSelect';
 import { BackgroundStepQuery } from './__generated__/BackgroundStepQuery.graphql';
 
-export type BackgroundStepInput = {
-  species: string;
-  details: string;
-  demeanor: string;
-  background_home: string;
-  background_leftBehind: string;
-  background_vagabond: string;
-  nature: string;
-  drives: ReadonlyArray<string>;
-};
+const BackgroundStepInputSchema = z.object({
+  species: z.string().min(1),
+  details: z.string().min(1),
+  demeanor: z.string().min(1),
+  background_home: z.string().min(1),
+  background_vagabond: z.string().min(1),
+  background_leftBehind: z.string().min(1),
+  nature: z.string(),
+  drives: z.array(z.string()),
+});
+
+export type BackgroundStepInput = z.infer<typeof BackgroundStepInputSchema>;
+
 export const backgroundStepInputAtom = atomWithStorage<BackgroundStepInput>('backgroundStep', {
   species: '',
   details: '',
@@ -33,17 +36,6 @@ export const backgroundStepInputAtom = atomWithStorage<BackgroundStepInput>('bac
   background_vagabond: '',
   nature: '',
   drives: [],
-});
-
-const BackgroundStepInputSchema: z.ZodType<BackgroundStepInput> = z.object({
-  species: z.string().min(1),
-  details: z.string().min(1),
-  demeanor: z.string().min(1),
-  background_home: z.string().min(1),
-  background_vagabond: z.string().min(1),
-  background_leftBehind: z.string().min(1),
-  nature: z.string(),
-  drives: z.array(z.string()),
 });
 
 export function BackgroundStep() {

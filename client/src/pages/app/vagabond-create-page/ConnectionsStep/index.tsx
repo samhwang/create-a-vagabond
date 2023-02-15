@@ -5,39 +5,36 @@ import { atomWithStorage } from 'jotai/utils';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
-import {
-  VagabondCreateConnectionCreateInput,
-  VagabondCreateReputationCreateInput,
-} from '../ReviewAndCreateStep/__generated__/ReviewAndCreateStepMutation.graphql';
 import { ConnectionsField } from './ConnectionsField';
 import { ReputationsField } from './ReputationField';
 
-export type ConnectionsStepInput = {
-  connections?: readonly VagabondCreateConnectionCreateInput[] | null | undefined;
-  reputations?: readonly VagabondCreateReputationCreateInput[] | null | undefined;
-};
+const ConnectionsStepInputSchema = z.object({
+  connections: z
+    .array(
+      z.object({
+        type: z.string(),
+        to: z.string(),
+        notes: z.string(),
+      })
+    )
+    .nullish(),
+  reputations: z
+    .array(
+      z.object({
+        faction: z.string(),
+        score: z.number(),
+        prestige: z.number(),
+        notoriety: z.number(),
+      })
+    )
+    .nullish(),
+});
+
+export type ConnectionsStepInput = z.infer<typeof ConnectionsStepInputSchema>;
 
 export const connectionsStepInputAtom = atomWithStorage<ConnectionsStepInput>('connectionsStep', {
   connections: [],
   reputations: [],
-});
-
-const ConnectionsStepInputSchema: z.ZodType<ConnectionsStepInput> = z.object({
-  connections: z.array(
-    z.object({
-      type: z.string(),
-      to: z.string(),
-      notes: z.string(),
-    })
-  ),
-  reputations: z.array(
-    z.object({
-      faction: z.string(),
-      score: z.number(),
-      prestige: z.number(),
-      notoriety: z.number(),
-    })
-  ),
 });
 
 export function ConnectionsStep() {

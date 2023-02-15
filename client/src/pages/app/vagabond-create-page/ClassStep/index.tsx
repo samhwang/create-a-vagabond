@@ -13,14 +13,12 @@ import { useSyncDefaultInput } from '../../hooks/useSyncDetaulInput';
 import { ClassSelect } from './ClassSelect';
 import { ClassStepQuery } from './__generated__/ClassStepQuery.graphql';
 
-export type ClassStepInput = {
-  name: string;
-  class: string;
-};
-const ClassStepInputSchema: z.ZodType<ClassStepInput> = z.object({
+const ClassStepInputSchema = z.object({
   name: z.string().min(1),
   class: z.string(),
 });
+
+export type ClassStepInput = z.infer<typeof ClassStepInputSchema>;
 
 export const classStepInputAtom = atomWithStorage<ClassStepInput>('classStep', {
   name: '',

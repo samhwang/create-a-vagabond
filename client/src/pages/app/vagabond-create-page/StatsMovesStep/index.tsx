@@ -13,18 +13,19 @@ import { StatsFields } from './StatsFields';
 import { WeaponSkillField } from './WeaponSkillField';
 import { StatsMovesStepQuery } from './__generated__/StatsMovesStepQuery.graphql';
 
-export type StatsMovesStepInput = {
-  charm: number;
-  cunning: number;
-  finesse: number;
-  luck: number;
-  might: number;
-  value: number;
+const StatsMovesStepInputSchema = z.object({
+  charm: z.number(),
+  cunning: z.number(),
+  finesse: z.number(),
+  luck: z.number(),
+  might: z.number(),
+  value: z.number(),
+  roguishFeats: z.array(z.string()),
+  classMoves: z.array(z.string()).length(3),
+  weaponSkill: z.string(),
+});
 
-  roguishFeats: ReadonlyArray<string>;
-  classMoves: ReadonlyArray<string>;
-  weaponSkill: string;
-};
+export type StatsMovesStepInput = z.infer<typeof StatsMovesStepInputSchema>;
 
 export const statsMovesStepInputAtom = atomWithStorage<StatsMovesStepInput>('statsMovesStep', {
   charm: 0,
@@ -36,18 +37,6 @@ export const statsMovesStepInputAtom = atomWithStorage<StatsMovesStepInput>('sta
   roguishFeats: [],
   classMoves: [],
   weaponSkill: '',
-});
-
-const StatsMovesStepInputSchema: z.ZodType<StatsMovesStepInput> = z.object({
-  charm: z.number(),
-  cunning: z.number(),
-  finesse: z.number(),
-  luck: z.number(),
-  might: z.number(),
-  value: z.number(),
-  roguishFeats: z.array(z.string()),
-  classMoves: z.array(z.string()).length(3),
-  weaponSkill: z.string(),
 });
 
 export function StatsMovesStep() {
