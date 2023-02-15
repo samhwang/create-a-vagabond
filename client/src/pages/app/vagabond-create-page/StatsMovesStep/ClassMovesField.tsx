@@ -30,11 +30,13 @@ export function ClassMovesField({ vagabondClassRef }: ClassMovesFieldProps) {
   );
   const tinkerDefaultSkillIds = useTinkerDefaultMoves(vagabondClass.name);
 
-  const { control, setValue } = useFormContext<StatsMovesStepInput>();
+  const { control, setValue, watch } = useFormContext<StatsMovesStepInput>();
   const { classMoves } = useAtomValue(statsMovesStepInputAtom);
   useEffect(() => {
     if (classMoves.length) setValue('classMoves', classMoves);
   }, [classMoves]);
+
+  const selectedClassMoves = watch('classMoves', [])
 
   return (
     <RHFCheckboxField control={control} name="classMoves" label="Class Moves">
@@ -48,12 +50,21 @@ export function ClassMovesField({ vagabondClassRef }: ClassMovesFieldProps) {
             name="classMoves"
             label={edge.node.name}
             value={edge.node.id}
-            disabled={tinkerDefaultSkillIds.includes(edge.node.id)}
+            disabled={getItemDisabled(selectedClassMoves, edge.node.id)}
           />
         );
       })}
     </RHFCheckboxField>
   );
+}
+
+const getItemDisabled = (selectedClassMoveIds: readonly string[], moveId: string) => {
+  const isTinkerDefaultMove = tinkerDefaultMovesIds.includes(moveId)
+  if (isTinkerDefaultMove) return true
+
+  if (selectedClassMoveIds.length === 3) {
+    return !selectedClassMoveIds.includes(moveId)
+  }
 }
 
 export const tinkerDefaultMoves = ['toolbox', 'repair'];
