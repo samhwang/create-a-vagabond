@@ -1,4 +1,4 @@
-import { CircularProgress, Container, Step, StepLabel, Stepper } from '@mui/material';
+import { CircularProgress, Container, MobileStepper, Paper, Step, StepLabel, Stepper, Typography, useMediaQuery } from '@mui/material';
 import { atom } from 'jotai';
 import { Suspense, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
@@ -8,39 +8,45 @@ import { StatsMovesStepInput, statsMovesStepInputAtom } from './StatsMovesStep';
 import { ConnectionsStepInput, connectionsStepInputAtom } from './ConnectionsStep';
 import { VagabondCreateInput } from './ReviewAndCreateStep/__generated__/ReviewAndCreateStepMutation.graphql';
 
+const stepPaths = [
+  '/vagabond-create',
+  '/vagabond-create/background',
+  '/vagabond-create/stats_moves',
+  '/vagabond-create/connections',
+  '/vagabond-create/review_create',
+]
+const stepLabels = [
+  'Choose a class',
+  'Background',
+  'Stats and Moves',
+  'Connections and Reputations',
+  'Reviews and Create'
+]
+
 export function VagabondCreatePage() {
+  const matches = useMediaQuery('(min-width:600px)')
+  console.log(matches)
   const location = useLocation();
   const [activeStep, setActiveStep] = useState(0);
   useEffect(() => {
-    const index = [
-      '/vagabond-create',
-      '/vagabond-create/background',
-      '/vagabond-create/stats_moves',
-      '/vagabond-create/connections',
-      '/vagabond-create/review_create',
-    ].indexOf(location.pathname);
+    const index = stepPaths.indexOf(location.pathname);
     setActiveStep(index);
   }, [location.pathname]);
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4 }}>
-      <Stepper activeStep={activeStep}>
-        <Step>
-          <StepLabel>Choose a class</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel>Background</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel>Stats and Moves</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel>Connections and Reputations</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel>Reviews and Create</StepLabel>
-        </Step>
-      </Stepper>
+      {matches
+        ? (
+          <Stepper activeStep={activeStep}>
+            {stepLabels.map(label => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+        )
+        : <Typography>{stepLabels[activeStep]}</Typography>
+      }
       <Suspense fallback={<CircularProgress />}>
         <Outlet />
       </Suspense>

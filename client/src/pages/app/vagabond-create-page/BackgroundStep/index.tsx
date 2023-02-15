@@ -81,49 +81,43 @@ export function BackgroundStep() {
     <Container maxWidth="md" sx={{ mt: 4, justifyContent: 'center' }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2}>
-          <Stack direction="row" spacing={2}>
-            <SpeciesSelect control={control} name="species" label="Species" fullWidth />
-            <NatureSelect control={control} name="nature" label="Nature" vagabondClassRef={data.node} fullWidth />
-            <DrivesSelect control={control} name="drives" label="Drives" vagabondClassRef={data.node} fullWidth />
-          </Stack>
-          <Stack direction="row" spacing={2}>
-            <RHFBackGroundTextAreaField
-              control={control}
-              name="demeanor"
-              label="Demeanor"
-              placeholder="intimidating, honest, brusque, open"
-              rows={4}
-              maxRows={4}
-            />
-            <RHFBackGroundTextAreaField
-              control={control}
-              name="details"
-              label="Details"
-              placeholder={detailPlaceholder}
-              rows={4}
-              maxRows={4}
-            />
-          </Stack>
-          <Stack direction="row" spacing={2}>
-            <RHFBackGroundTextAreaField
-              control={control}
-              name="background_home"
-              label="Where do you call home?"
-              placeholder={homeBackgroundPlaceholder}
-            />
-            <RHFBackGroundTextAreaField
-              control={control}
-              name="background_vagabond"
-              label="Why are you a vagabond?"
-              placeholder={vagabondBackgroundPlaceholder}
-            />
-            <RHFBackGroundTextAreaField
-              control={control}
-              name="background_leftBehind"
-              label="Whom have you left behind?"
-              placeholder={leftBehindBackgroundPlaceholder}
-            />
-          </Stack>
+          <SpeciesSelect control={control} name="species" label="Species" fullWidth />
+          <NatureSelect control={control} name="nature" label="Nature" vagabondClassRef={data.node} fullWidth />
+          <DrivesSelect control={control} name="drives" label="Drives" vagabondClassRef={data.node} fullWidth />
+          <RHFBackGroundTextAreaField
+            control={control}
+            name="demeanor"
+            label="Demeanor"
+            placeholder="intimidating, honest, brusque, open"
+            rows={4}
+            maxRows={4}
+          />
+          <RHFBackGroundTextAreaField
+            control={control}
+            name="details"
+            label="Details"
+            placeholder={detailPlaceholder}
+            rows={4}
+            maxRows={4}
+          />
+          <RHFBackGroundTextAreaField
+            control={control}
+            name="background_home"
+            label="Where do you call home?"
+            placeholder={homeBackgroundPlaceholder}
+          />
+          <RHFBackGroundTextAreaField
+            control={control}
+            name="background_vagabond"
+            label="Why are you a vagabond?"
+            placeholder={vagabondBackgroundPlaceholder}
+          />
+          <RHFBackGroundTextAreaField
+            control={control}
+            name="background_leftBehind"
+            label="Whom have you left behind?"
+            placeholder={leftBehindBackgroundPlaceholder}
+          />
           <Stack direction="row" justifyContent="flex-end">
             <Button onClick={() => navigate('/vagabond-create')}>Back</Button>
             <Button type="submit" variant="contained">

@@ -83,16 +83,14 @@ export function StatsMovesStep() {
   if (!inputData.class || !data.node) return <CircularProgress />;
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4, justifyContent: 'center' }}>
+    <Container maxWidth="xs" sx={{ mt: 4, justifyContent: 'center' }}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <Stack direction="row" spacing={2}>
+          <Stack direction="column" spacing={2} maxWidth={250} justifyContent='center'>
             <RoguishFeatsField queryRef={data} vagabondClassRef={data.node} />
             <ClassMovesField vagabondClassRef={data.node} />
             <WeaponSkillField vagabondClassRef={data.node} />
-            <Stack direction="column" spacing={2} maxWidth={250}>
-              <StatsFields vagabondClassRef={data.node} />
-            </Stack>
+            <StatsFields vagabondClassRef={data.node} />
           </Stack>
           <Stack direction="row" justifyContent="flex-end" mt={2}>
             <Button onClick={() => navigate('/vagabond-create/background')}>Back</Button>

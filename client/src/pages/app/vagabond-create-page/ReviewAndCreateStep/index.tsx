@@ -90,7 +90,9 @@ export function ReviewAndCreateStep() {
         </Button>
       </Stack>
       <Paper sx={{ paddingY: 0.01, paddingX: 2, my: 2 }}>
-        <pre>{JSON.stringify(displayInput, null, 2)}</pre>
+        <pre style={{ whiteSpace: 'pre-wrap' }}>
+          {JSON.stringify(displayInput, null, 2)}
+        </pre>
       </Paper>
     </Container>
   );
