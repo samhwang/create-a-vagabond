@@ -44,6 +44,9 @@ export function UserMenu({ anchorEl, onClose }: UserMenuProps) {
       open={Boolean(anchorEl)}
       onClose={onClose}
     >
+      <MenuItem onClick={onClose} component={Link} to="profile">
+        Profile
+      </MenuItem>
       <MenuItem onClick={onClose} component={Link} to="vagabond-list">
         Your Vagabonds
       </MenuItem>
