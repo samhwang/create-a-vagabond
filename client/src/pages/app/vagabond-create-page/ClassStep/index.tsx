@@ -57,7 +57,7 @@ export function ClassStep() {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 4, justifyContent: 'center' }}>
+    <Container maxWidth="xs" sx={{ mt: 4, justifyContent: 'center' }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2}>
           <ClassSelect control={control} name="class" label="Class" queryRef={data} />

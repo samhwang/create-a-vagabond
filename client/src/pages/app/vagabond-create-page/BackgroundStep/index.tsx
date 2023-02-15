@@ -78,7 +78,7 @@ export function BackgroundStep() {
   if (!inputData.class || !data.node) return <CircularProgress />;
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4, justifyContent: 'center' }}>
+    <Container maxWidth="xs" sx={{ mt: 4, justifyContent: 'center' }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2}>
           <SpeciesSelect control={control} name="species" label="Species" fullWidth />

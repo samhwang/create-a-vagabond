@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, CircularProgress, Container, Stack } from '@mui/material';
+import { Button, CircularProgress, Container, Grid, Stack } from '@mui/material';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
@@ -83,15 +83,25 @@ export function StatsMovesStep() {
   if (!inputData.class || !data.node) return <CircularProgress />;
 
   return (
-    <Container maxWidth="xs" sx={{ mt: 4, justifyContent: 'center' }}>
+    <Container maxWidth="sm" sx={{ mt: 4, justifyContent: 'center' }}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <Stack direction="column" spacing={2} maxWidth={250} justifyContent='center'>
-            <RoguishFeatsField queryRef={data} vagabondClassRef={data.node} />
-            <ClassMovesField vagabondClassRef={data.node} />
-            <WeaponSkillField vagabondClassRef={data.node} />
-            <StatsFields vagabondClassRef={data.node} />
-          </Stack>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={4}>
+              <RoguishFeatsField queryRef={data} vagabondClassRef={data.node} />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <ClassMovesField vagabondClassRef={data.node} />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <WeaponSkillField vagabondClassRef={data.node} />
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <Stack direction="column" spacing={2} justifyContent='center'>
+                <StatsFields vagabondClassRef={data.node} />
+              </Stack>
+            </Grid>
+          </Grid>
           <Stack direction="row" justifyContent="flex-end" mt={2}>
             <Button onClick={() => navigate('/vagabond-create/background')}>Back</Button>
             <Button type="submit" variant="contained">
