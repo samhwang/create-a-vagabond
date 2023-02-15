@@ -21,6 +21,7 @@ export function ClassMovesField({ vagabondClassRef }: ClassMovesFieldProps) {
             node {
               id
               name
+              description
             }
           }
         }
@@ -28,8 +29,7 @@ export function ClassMovesField({ vagabondClassRef }: ClassMovesFieldProps) {
     `,
     vagabondClassRef
   );
-  const tinkerDefaultSkillIds = useTinkerDefaultMoves(vagabondClass.name);
-
+  useTinkerDefaultMoves(vagabondClass.name);
   const { control, setValue, watch } = useFormContext<StatsMovesStepInput>();
   const { classMoves } = useAtomValue(statsMovesStepInputAtom);
   useEffect(() => {
@@ -76,6 +76,4 @@ function useTinkerDefaultMoves(name: string) {
       setValue('classMoves', tinkerDefaultMovesIds);
     }
   }, [name]);
-
-  return tinkerDefaultMovesIds;
 }
