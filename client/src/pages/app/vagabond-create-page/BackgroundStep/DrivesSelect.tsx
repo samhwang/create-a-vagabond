@@ -2,7 +2,7 @@ import { MenuItem } from '@mui/material';
 import { graphql, useFragment } from 'react-relay';
 import { RHFTextField, RHFTextFieldProps } from '../../../../components/RHF/RHFTextField';
 import { BackgroundStepInput } from '.';
-import { VagabondCreateInput } from '../../vagabond-list-page/CreateVagabondDialog/__generated__/CreateVagabondDialogMutation.graphql';
+import { VagabondCreateInput } from '../ReviewAndCreateStep/__generated__/ReviewAndCreateStepMutation.graphql';
 import { DrivesSelect_class$key } from './__generated__/DrivesSelect_class.graphql';
 
 type DrivesSelectProps = RHFTextFieldProps<BackgroundStepInput | VagabondCreateInput> & {
