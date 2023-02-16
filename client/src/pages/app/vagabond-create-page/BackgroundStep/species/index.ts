@@ -1,11 +1,11 @@
 import bird from './bird.png';
-import bunny from './bunny.png';
+import rabbit from './rabbit.png';
 import fox from './fox.png';
 import mouse from './mouse.png';
 
 export const species: Record<string, string> = {
   bird,
-  bunny,
+  rabbit,
   fox,
   mouse,
 };
