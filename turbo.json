@@ -24,7 +24,7 @@
       "cache": false,
       "persistent": true
     },
-    "vagabond-app-client#msw-init": {
+    "vagabond-app-client#msw:init": {
       "outputs": ["public/mockServiceWorker.js"]
     },
     "vagabond-app-client#relay": {
@@ -32,12 +32,12 @@
       "cache": false
     },
     "vagabond-app-client#dev": {
-      "dependsOn": ["msw-init", "relay"],
+      "dependsOn": ["msw:init", "relay"],
       "cache": false,
       "persistent": true
     },
     "vagabond-app-client#build": {
-      "dependsOn": ["msw-init", "relay"],
+      "dependsOn": ["msw:init", "relay"],
       "inputs": ["vite.config.ts", "src/**", "public/**"],
       "outputs": ["dist/**"]
     }
