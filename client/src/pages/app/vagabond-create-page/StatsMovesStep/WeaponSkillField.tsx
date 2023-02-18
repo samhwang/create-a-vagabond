@@ -1,4 +1,4 @@
-import { FormControlLabel, Radio } from '@mui/material';
+import { FormControlLabel, Radio, Typography } from '@mui/material';
 import { useAtomValue } from 'jotai';
 import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -20,6 +20,7 @@ export function WeaponSkillField({ vagabondClassRef }: WeaponSkillFieldProps) {
             node {
               id
               name
+              description
             }
           }
         }
@@ -40,7 +41,23 @@ export function WeaponSkillField({ vagabondClassRef }: WeaponSkillFieldProps) {
       {vagabondClass.weaponSkillConnection.edges.map((edge) => {
         if (!edge?.node) return null;
 
-        return <FormControlLabel key={edge.node.id} label={edge.node.name} value={edge.node.id} control={<Radio />} />;
+        return (
+          <>
+            <FormControlLabel
+              key={edge.node.id}
+              label={edge.node.name}
+              value={edge.node.id}
+              control={<Radio />}
+            />
+            <Typography
+              ml={4}
+              variant='subtitle2'
+              color='GrayText'
+            >
+              {edge.node.description}
+            </Typography>
+          </>
+        );
       })}
     </RHFRadioGroupField>
   );

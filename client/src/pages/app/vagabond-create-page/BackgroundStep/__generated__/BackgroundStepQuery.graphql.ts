@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<506f68a40e61c6d8ac303fadadbc8390>>
+ * @generated SignedSource<<137a02f3781a365c135aa3c98bfea334>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -59,6 +59,13 @@ v4 = [
     "args": null,
     "kind": "ScalarField",
     "name": "name",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "description",
     "storageKey": null
   }
 ];
@@ -200,12 +207,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "ecf521b1cade1a43d9be31e45c4a8c7f",
+    "cacheID": "9501ecec981bf44fb7f4e2d083b7fdaf",
     "id": null,
     "metadata": {},
     "name": "BackgroundStepQuery",
     "operationKind": "query",
-    "text": "query BackgroundStepQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on VagabondClass {\n      ...NatureSelect_class\n      ...DrivesSelect_class\n    }\n    id\n  }\n}\n\nfragment DrivesSelect_class on VagabondClass {\n  driveConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment NatureSelect_class on VagabondClass {\n  natureConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n"
+    "text": "query BackgroundStepQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on VagabondClass {\n      ...NatureSelect_class\n      ...DrivesSelect_class\n    }\n    id\n  }\n}\n\nfragment DrivesSelect_class on VagabondClass {\n  driveConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n        description\n      }\n    }\n  }\n}\n\nfragment NatureSelect_class on VagabondClass {\n  natureConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n        description\n      }\n    }\n  }\n}\n"
   }
 };
 })();

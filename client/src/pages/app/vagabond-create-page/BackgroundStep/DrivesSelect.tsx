@@ -1,11 +1,11 @@
-import { MenuItem } from '@mui/material';
+import { Typography } from '@mui/material';
 import { graphql, useFragment } from 'react-relay';
-import { RHFTextField, RHFTextFieldProps } from '../../../../components/RHF/RHFTextField';
 import { BackgroundStepInput } from '.';
-import { VagabondCreateInput } from '../ReviewAndCreateStep/__generated__/ReviewAndCreateStepMutation.graphql';
 import { DrivesSelect_class$key } from './__generated__/DrivesSelect_class.graphql';
+import { RHFCheckboxField, RHFCheckboxFieldProps } from "../../../../components/RHF/RHFCheckboxField";
+import { RHFCheckboxFieldItem } from "../../../../components/RHF/RHFCheckboxFieldItem";
 
-type DrivesSelectProps = RHFTextFieldProps<BackgroundStepInput | VagabondCreateInput> & {
+type DrivesSelectProps = RHFCheckboxFieldProps<BackgroundStepInput> & {
   vagabondClassRef: DrivesSelect_class$key;
 };
 export function DrivesSelect({ vagabondClassRef, ...props }: DrivesSelectProps) {
@@ -17,6 +17,7 @@ export function DrivesSelect({ vagabondClassRef, ...props }: DrivesSelectProps) 
             node {
               id
               name
+              description
             }
           }
         }
@@ -26,16 +27,22 @@ export function DrivesSelect({ vagabondClassRef, ...props }: DrivesSelectProps) 
   );
 
   return (
-    <RHFTextField {...props} select SelectProps={{ multiple: true }}>
+    <RHFCheckboxField {...props}>
       {driveConnection.edges.map((edge) => {
         if (!edge?.node) return null;
 
         return (
-          <MenuItem key={edge.node.id} value={edge.node.id}>
-            {edge.node.name}
-          </MenuItem>
-        );
+          <RHFCheckboxFieldItem
+            key={edge.node.id}
+            control={props.control}
+            name={props.name}
+            label={edge.node.name}
+            value={edge.node.id}
+            helperText={edge.node.description}
+            max={2}
+          />
+        )
       })}
-    </RHFTextField>
+    </RHFCheckboxField>
   );
 }

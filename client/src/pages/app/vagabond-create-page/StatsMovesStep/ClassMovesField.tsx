@@ -51,6 +51,7 @@ export function ClassMovesField({ vagabondClassRef }: ClassMovesFieldProps) {
             label={edge.node.name}
             value={edge.node.id}
             disabled={getItemDisabled(selectedClassMoves, edge.node.id)}
+            helperText={edge.node.description}
           />
         );
       })}

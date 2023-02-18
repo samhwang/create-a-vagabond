@@ -23,6 +23,7 @@ export function RoguishFeatsField({ queryRef, vagabondClassRef }: RoguishFeatsFi
             node {
               id
               name
+              description
             }
           }
         }
@@ -56,11 +57,15 @@ export function RoguishFeatsField({ queryRef, vagabondClassRef }: RoguishFeatsFi
         return (
           <RHFCheckboxFieldItem
             key={edge.node.id}
+            
+            control={control}
+            name="roguishFeats"
+
             label={edge.node.name}
             value={edge.node.id}
-            control={control}
+            helperText={edge.node.description}
+            
             disabled={disabled}
-            name="roguishFeats"
           />
         );
       })}

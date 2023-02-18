@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c56ea51475a1a349c1ce4e6c766bdb81>>
+ * @generated SignedSource<<3d64cc64052b09406ff985f0965decb4>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -62,7 +62,14 @@ v4 = {
 },
 v5 = [
   (v3/*: any*/),
-  (v4/*: any*/)
+  (v4/*: any*/),
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "description",
+    "storageKey": null
+  }
 ];
 return {
   "fragment": {
@@ -274,17 +281,7 @@ return {
                         "kind": "LinkedField",
                         "name": "node",
                         "plural": false,
-                        "selections": [
-                          (v3/*: any*/),
-                          (v4/*: any*/),
-                          {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "description",
-                            "storageKey": null
-                          }
-                        ],
+                        "selections": (v5/*: any*/),
                         "storageKey": null
                       }
                     ],
@@ -336,12 +333,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "c54569bf4de66d928b9ea48b869f2b1a",
+    "cacheID": "8fa2bfb464ce76e5e0c6f9df2c23092a",
     "id": null,
     "metadata": {},
     "name": "StatsMovesStepQuery",
     "operationKind": "query",
-    "text": "query StatsMovesStepQuery(\n  $id: ID!\n) {\n  ...RoguishFeatsField_query\n  node(id: $id) {\n    __typename\n    ... on VagabondClass {\n      ...StatsFields_class\n      ...RoguishFeatsField_class\n      ...ClassMovesField_class\n      ...WeaponSkillField_class\n    }\n    id\n  }\n}\n\nfragment ClassMovesField_class on VagabondClass {\n  name\n  classMoveConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n        description\n      }\n    }\n  }\n}\n\nfragment RoguishFeatsField_class on VagabondClass {\n  name\n  ...RoguishFeatsField_useSyncFeats_class\n}\n\nfragment RoguishFeatsField_query on Query {\n  roguishFeatConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment RoguishFeatsField_useSyncFeats_class on VagabondClass {\n  roguishFeatConnection(first: 50) {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n}\n\nfragment StatsFields_class on VagabondClass {\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n  ...useStartingPointLeft_class\n  ...StatsFields_useSyncStats_class\n}\n\nfragment StatsFields_useSyncStats_class on VagabondClass {\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n  startingValue\n}\n\nfragment WeaponSkillField_class on VagabondClass {\n  weaponSkillConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment useStartingPointLeft_class on VagabondClass {\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n}\n"
+    "text": "query StatsMovesStepQuery(\n  $id: ID!\n) {\n  ...RoguishFeatsField_query\n  node(id: $id) {\n    __typename\n    ... on VagabondClass {\n      ...StatsFields_class\n      ...RoguishFeatsField_class\n      ...ClassMovesField_class\n      ...WeaponSkillField_class\n    }\n    id\n  }\n}\n\nfragment ClassMovesField_class on VagabondClass {\n  name\n  classMoveConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n        description\n      }\n    }\n  }\n}\n\nfragment RoguishFeatsField_class on VagabondClass {\n  name\n  ...RoguishFeatsField_useSyncFeats_class\n}\n\nfragment RoguishFeatsField_query on Query {\n  roguishFeatConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n        description\n      }\n    }\n  }\n}\n\nfragment RoguishFeatsField_useSyncFeats_class on VagabondClass {\n  roguishFeatConnection(first: 50) {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n}\n\nfragment StatsFields_class on VagabondClass {\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n  ...useStartingPointLeft_class\n  ...StatsFields_useSyncStats_class\n}\n\nfragment StatsFields_useSyncStats_class on VagabondClass {\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n  startingValue\n}\n\nfragment WeaponSkillField_class on VagabondClass {\n  weaponSkillConnection(first: 50) {\n    edges {\n      node {\n        id\n        name\n        description\n      }\n    }\n  }\n}\n\nfragment useStartingPointLeft_class on VagabondClass {\n  startingCharm\n  startingCunning\n  startingFinesse\n  startingLuck\n  startingMight\n}\n"
   }
 };
 })();

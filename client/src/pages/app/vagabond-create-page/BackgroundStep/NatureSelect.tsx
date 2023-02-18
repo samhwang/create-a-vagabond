@@ -1,11 +1,11 @@
-import { MenuItem } from '@mui/material';
+import { MenuItem, Typography } from '@mui/material';
 import { graphql, useFragment } from 'react-relay';
-import { RHFTextField, RHFTextFieldProps } from '../../../../components/RHF/RHFTextField';
 import { BackgroundStepInput } from '.';
-import { VagabondCreateInput } from '../ReviewAndCreateStep/__generated__/ReviewAndCreateStepMutation.graphql';
 import { NatureSelect_class$key } from './__generated__/NatureSelect_class.graphql';
+import { RHFCheckboxField, RHFCheckboxFieldProps } from "../../../../components/RHF/RHFCheckboxField";
+import { RHFCheckboxFieldItem } from "../../../../components/RHF/RHFCheckboxFieldItem";
 
-type NatureSelectProps = RHFTextFieldProps<BackgroundStepInput | VagabondCreateInput> & {
+type NatureSelectProps = RHFCheckboxFieldProps<BackgroundStepInput> & {
   vagabondClassRef: NatureSelect_class$key;
 };
 
@@ -18,6 +18,7 @@ export function NatureSelect({ vagabondClassRef, ...props }: NatureSelectProps) 
             node {
               id
               name
+              description
             }
           }
         }
@@ -27,16 +28,21 @@ export function NatureSelect({ vagabondClassRef, ...props }: NatureSelectProps) 
   );
 
   return (
-    <RHFTextField {...props} select>
+    <RHFCheckboxField {...props}>
       {natureConnection.edges.map((edge) => {
         if (!edge?.node) return null;
 
         return (
-          <MenuItem key={edge?.node.id} value={edge?.node.id}>
-            {edge?.node.name}
-          </MenuItem>
+          <RHFCheckboxFieldItem
+            key={edge.node.id}
+            control={props.control}
+            name={props.name}
+            label={edge.node.name}
+            value={edge.node.id}
+            helperText={edge.node.description}
+          />
         );
       })}
-    </RHFTextField>
+    </RHFCheckboxField>
   );
 }

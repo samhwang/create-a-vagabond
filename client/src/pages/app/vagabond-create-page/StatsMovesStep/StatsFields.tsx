@@ -29,10 +29,14 @@ export function StatsFields({ vagabondClassRef }: StatsFieldsProps) {
     `,
     vagabondClassRef
   );
-  const { control } = useFormContext<StatsMovesStepInput>();
+  const { control, setValue } = useFormContext<StatsMovesStepInput>();
 
   const pointLeft = useStartingPointLeft(vagabondClass);
   useSyncStats(vagabondClass);
+
+  useEffect(() => {
+    setValue('availablePoints', pointLeft)
+  }, [pointLeft])
 
   return (
     <>
@@ -75,10 +79,21 @@ export function StatsFields({ vagabondClassRef }: StatsFieldsProps) {
       <Stack direction="row" spacing={2}>
         <RHFTextField
           control={control}
+          name='availablePoints'
+          label='Available Points'
+          type='number'
+          disabled
+          inputProps={{ sx: { textAlign: 'center' } }}
+          fullWidth
+        />
+        <RHFTextField
+          control={control}
           name="value"
           label="Value"
           disabled
           inputProps={{ sx: { textAlign: 'center' } }}
+          fullWidth
+
         />
         <BurdenedInfoField />
         <MaxInfoField />
@@ -136,7 +151,7 @@ function BurdenedInfoField() {
   const might = watch('might');
   const burdened = might + 4;
 
-  return <TextField label="Burdened" disabled value={burdened} inputProps={{ sx: { textAlign: 'center' } }} />;
+  return <TextField label="Burdened" disabled value={burdened} inputProps={{ sx: { textAlign: 'center' } }} fullWidth />;
 }
 
 function MaxInfoField() {
@@ -144,5 +159,5 @@ function MaxInfoField() {
   const might = watch('might');
   const max = (might + 4) * 2;
 
-  return <TextField label="Max" disabled value={max} inputProps={{ sx: { textAlign: 'center' } }} />;
+  return <TextField label="Max" disabled value={max} inputProps={{ sx: { textAlign: 'center' } }} fullWidth />;
 }

@@ -4,6 +4,7 @@ import { TextField, TextFieldProps } from '@mui/material';
 export type RHFTextFieldProps<T extends FieldValues> = Omit<TextFieldProps, 'name' | 'helperText' | 'error'> & {
   name: Path<T>;
   control: Control<T>;
+  // rules?: ControllerProps<T>['rules']
 };
 
 export function RHFTextField<T extends FieldValues>({ control, name, ...props }: RHFTextFieldProps<T>) {
@@ -25,6 +26,7 @@ export function RHFTextField<T extends FieldValues>({ control, name, ...props }:
           }}
         />
       )}
+      // rules={rules}
     />
   );
 }

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f0af0d61b5ab4790991fcf2d7e272708>>
+ * @generated SignedSource<<8cc6bed155bfd79bcfd1170704ebbfb5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,6 +14,7 @@ export type WeaponSkillField_class$data = {
   readonly weaponSkillConnection: {
     readonly edges: ReadonlyArray<{
       readonly node: {
+        readonly description: string;
         readonly id: string;
         readonly name: string;
       };
@@ -75,6 +76,13 @@ const node: ReaderFragment = {
                   "kind": "ScalarField",
                   "name": "name",
                   "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "description",
+                  "storageKey": null
                 }
               ],
               "storageKey": null
@@ -90,6 +98,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "635ac446a2ec289c82a5fd3f7afb7b2d";
+(node as any).hash = "9c7f10a47a06cf0c2d24febc4a0d0d5a";
 
 export default node;

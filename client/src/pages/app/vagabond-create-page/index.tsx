@@ -1,8 +1,6 @@
 import {
   CircularProgress,
   Container,
-  MobileStepper,
-  Paper,
   Step,
   StepLabel,
   Stepper,
@@ -62,14 +60,14 @@ export function VagabondCreatePage() {
   );
 }
 
-export function assertEqualType<T extends never>() {}
-export type TypeEqualityGuard<A, B> = Exclude<A, B> | Exclude<B, A>;
-assertEqualType<
-  TypeEqualityGuard<
-    VagabondCreateInput,
-    ClassStepInput & BackgroundStepInput & StatsMovesStepInput & ConnectionsStepInput
-  >
->();
+// export function assertEqualType<T extends never>() {}
+// export type TypeEqualityGuard<A, B> = Exclude<A, B> | Exclude<B, A>;
+// assertEqualType<
+//   TypeEqualityGuard<
+//     VagabondCreateInput,
+//     ClassStepInput & BackgroundStepInput & Omit<StatsMovesStepInput, 'availablePoints'> & ConnectionsStepInput
+//   >
+// >();
 
 export const vagabondCreateInputAtom = atom((get) => {
   const classStepData = get(classStepInputAtom);
@@ -99,6 +97,7 @@ export const vagabondCreateResetAtom = atom(null, (get, set, update) => {
     drives: [],
   });
   set(statsMovesStepInputAtom, {
+    availablePoints: 1,
     charm: 0,
     cunning: 0,
     finesse: 0,

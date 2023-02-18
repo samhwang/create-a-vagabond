@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<68b8ddb5ac16fef7c21d3ed6e15f2527>>
+ * @generated SignedSource<<68ed07e86fbc598c620617238a6fa47e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,6 +14,7 @@ export type RoguishFeatsField_query$data = {
   readonly roguishFeatConnection: {
     readonly edges: ReadonlyArray<{
       readonly node: {
+        readonly description: string;
         readonly id: string;
         readonly name: string;
       };
@@ -75,6 +76,13 @@ const node: ReaderFragment = {
                   "kind": "ScalarField",
                   "name": "name",
                   "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "description",
+                  "storageKey": null
                 }
               ],
               "storageKey": null
@@ -90,6 +98,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "bf070b01ef2f8c5b950b86bb3f85ecda";
+(node as any).hash = "31d742da900277cff26b404b77b67ded";
 
 export default node;

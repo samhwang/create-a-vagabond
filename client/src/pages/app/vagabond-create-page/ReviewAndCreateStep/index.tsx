@@ -38,7 +38,7 @@ export function ReviewAndCreateStep() {
     }
   `);
 
-  const input = useAtomValue(vagabondCreateInputAtom);
+  const { availablePoints, ...input } = useAtomValue(vagabondCreateInputAtom);
   const reset = useSetAtom(vagabondCreateResetAtom);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();

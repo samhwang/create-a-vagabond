@@ -14,6 +14,7 @@ import { WeaponSkillField } from './WeaponSkillField';
 import { StatsMovesStepQuery } from './__generated__/StatsMovesStepQuery.graphql';
 
 const StatsMovesStepInputSchema = z.object({
+  availablePoints: z.number().max(0, 'must use your points'),
   charm: z.number(),
   cunning: z.number(),
   finesse: z.number(),
@@ -22,12 +23,13 @@ const StatsMovesStepInputSchema = z.object({
   value: z.number(),
   roguishFeats: z.array(z.string()),
   classMoves: z.array(z.string()).length(3),
-  weaponSkill: z.string(),
+  weaponSkill: z.string().min(1),
 });
 
 export type StatsMovesStepInput = z.infer<typeof StatsMovesStepInputSchema>;
 
 export const statsMovesStepInputAtom = atomWithStorage<StatsMovesStepInput>('statsMovesStep', {
+  availablePoints: 1,
   charm: 0,
   cunning: 0,
   finesse: 0,
@@ -60,6 +62,7 @@ export function StatsMovesStep() {
   );
 
   const methods = useForm<StatsMovesStepInput>({
+    defaultValues: inputData,
     resolver: zodResolver(StatsMovesStepInputSchema),
   });
 
@@ -72,23 +75,33 @@ export function StatsMovesStep() {
   if (!inputData.class || !data.node) return <CircularProgress />;
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 4, justifyContent: 'center' }}>
+    <Container maxWidth="lg" sx={{ mt: 4, justifyContent: 'center' }}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} lg={4}>
               <RoguishFeatsField queryRef={data} vagabondClassRef={data.node} />
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} lg={4}>
               <ClassMovesField vagabondClassRef={data.node} />
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} lg={4}>
               <WeaponSkillField vagabondClassRef={data.node} />
             </Grid>
-            <Grid item xs={12} sm={12}>
-              <Stack direction="column" spacing={2} justifyContent="center">
-                <StatsFields vagabondClassRef={data.node} />
-              </Stack>
+            <Grid item xs={12}>
+              <Container
+                maxWidth='xs'
+                sx={{
+                  ml: {
+                    xs: 'unset',
+                    lg: 'auto',
+                  }
+                }}
+              >
+                <Stack direction="column" spacing={2}>
+                  <StatsFields vagabondClassRef={data.node} />
+                </Stack>
+              </Container>
             </Grid>
           </Grid>
           <Stack direction="row" justifyContent="flex-end" mt={2}>

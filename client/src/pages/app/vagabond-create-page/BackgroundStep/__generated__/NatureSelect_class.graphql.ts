@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<047ea98367c612897e149d7e527e28dd>>
+ * @generated SignedSource<<07c4b2c25addd658a3e026946206e59f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,6 +14,7 @@ export type NatureSelect_class$data = {
   readonly natureConnection: {
     readonly edges: ReadonlyArray<{
       readonly node: {
+        readonly description: string;
         readonly id: string;
         readonly name: string;
       };
@@ -75,6 +76,13 @@ const node: ReaderFragment = {
                   "kind": "ScalarField",
                   "name": "name",
                   "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "description",
+                  "storageKey": null
                 }
               ],
               "storageKey": null
@@ -90,6 +98,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "6e0b906e7fac1c08e4f37d167e2c8f42";
+(node as any).hash = "0118ddc1d2d67efcf12aea5500179b49";
 
 export default node;

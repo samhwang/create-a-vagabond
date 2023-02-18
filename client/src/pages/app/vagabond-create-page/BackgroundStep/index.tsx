@@ -22,7 +22,7 @@ const BackgroundStepInputSchema = z.object({
   background_vagabond: z.string().min(1),
   background_leftBehind: z.string().min(1),
   nature: z.string(),
-  drives: z.array(z.string()),
+  drives: z.array(z.string()).length(2),
 });
 
 export type BackgroundStepInput = z.infer<typeof BackgroundStepInputSchema>;
@@ -74,8 +74,8 @@ export function BackgroundStep() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2}>
           <SpeciesSelect control={control} name="species" label="Species" fullWidth />
-          <NatureSelect control={control} name="nature" label="Nature" vagabondClassRef={data.node} fullWidth />
-          <DrivesSelect control={control} name="drives" label="Drives" vagabondClassRef={data.node} fullWidth />
+          <NatureSelect control={control} name="nature" label="Nature" vagabondClassRef={data.node} />
+          <DrivesSelect control={control} name="drives" label="Drives" vagabondClassRef={data.node} />
           <RHFBackGroundTextAreaField
             control={control}
             name="demeanor"

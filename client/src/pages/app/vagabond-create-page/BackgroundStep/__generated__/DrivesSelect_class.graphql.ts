@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<25c95c8d326e6ce00fa30b6f23ef4f04>>
+ * @generated SignedSource<<c0a62263464604485aadcfe1178d366a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,6 +14,7 @@ export type DrivesSelect_class$data = {
   readonly driveConnection: {
     readonly edges: ReadonlyArray<{
       readonly node: {
+        readonly description: string;
         readonly id: string;
         readonly name: string;
       };
@@ -75,6 +76,13 @@ const node: ReaderFragment = {
                   "kind": "ScalarField",
                   "name": "name",
                   "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "description",
+                  "storageKey": null
                 }
               ],
               "storageKey": null
@@ -90,6 +98,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "6f741653cdb3eb88ada60f122baa6900";
+(node as any).hash = "f8433bace6a177b260f93a5c349cebec";
 
 export default node;
