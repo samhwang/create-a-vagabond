@@ -16,13 +16,13 @@ export function SpeciesSelect<T extends FieldValues>(props: SpeciesSelectProps<T
             display: 'flex',
           },
         },
+        MenuProps: {
+          sx: { maxHeight: 300 }
+        }
       }}
     >
-      {Object.entries(species).map(([name, image]) => (
+      {species.map(name => (
         <MenuItem key={name} value={name}>
-          <ListItemAvatar>
-            <Avatar src={image} alt={name} />
-          </ListItemAvatar>
           <ListItemText primary={name} />
         </MenuItem>
       ))}
