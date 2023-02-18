@@ -68,11 +68,19 @@ function ReputationRow({ index, onClick }: ReputationRowProps) {
       <RHFTextField control={control} name={`reputations.${index}.faction`} label="Faction" />
       <RHFReputationValueField
         control={control}
-        name={`reputations.${index}.score`}
+        name={`reputations.${index}.notoriety`}
         startingPoint={0}
-        maxPoint={3}
-        minPoint={-3}
+        maxPoint={0}
+        minPoint={-9}
+        label="Notoriety"
+        upHide
+      />
+      <RHFTextField
+        control={control}
+        name={`reputations.${index}.score`}
         label="Score"
+        disabled
+        inputProps={{ sx: { textAlign: 'center' } }}
       />
       <RHFReputationValueField
         control={control}
@@ -81,14 +89,7 @@ function ReputationRow({ index, onClick }: ReputationRowProps) {
         maxPoint={15}
         minPoint={0}
         label="Prestige"
-      />
-      <RHFReputationValueField
-        control={control}
-        name={`reputations.${index}.notoriety`}
-        startingPoint={0}
-        maxPoint={0}
-        minPoint={-9}
-        label="Notoriety"
+        downHide
       />
       {index > 0 && (
         <IconButton onClick={onClick}>
