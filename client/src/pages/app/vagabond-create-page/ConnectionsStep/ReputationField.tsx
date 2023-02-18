@@ -2,11 +2,10 @@ import { Add, Cancel } from '@mui/icons-material';
 import { Box, IconButton, Stack, Typography } from '@mui/material';
 import { useAtomValue } from 'jotai';
 import { useEffect } from 'react';
-import { useFieldArray, useFormContext, Control, useFormState } from 'react-hook-form';
+import { useFieldArray, useFormContext } from 'react-hook-form';
 import { ConnectionsStepInput, connectionsStepInputAtom } from '.';
 import { RHFTextField } from '../../../../components/RHF/RHFTextField';
 import { RHFReputationValueField } from '../../../../components/RHF/RHFReputationValueField';
-import { VagabondCreateReputationCreateInput } from '../ReviewAndCreateStep/__generated__/ReviewAndCreateStepMutation.graphql';
 
 export function ReputationsField() {
   const { control } = useFormContext<ConnectionsStepInput>();
@@ -107,50 +106,41 @@ function useSyncReputationScore(index: number) {
     `reputations.${index}.prestige`,
     `reputations.${index}.notoriety`,
   ]);
-  console.log([score, prestige, notoriety]);
   useEffect(() => {
-    switch (prestige) {
-      case 5:
-        if (score < 1) {
-          setValue(`reputations.${index}.score`, score + 1);
-          resetField(`reputations.${index}.prestige`);
-        }
-        break;
-      case 10:
-        if (score < 2) {
-          setValue(`reputations.${index}.score`, score + 1);
-          resetField(`reputations.${index}.prestige`);
-        }
-        break;
-      case 15:
-        if (score < 3) {
-          setValue(`reputations.${index}.score`, score + 1);
-          resetField(`reputations.${index}.prestige`);
-        }
-        break;
+    if (prestige === 5 && score < 1) {
+      setValue(`reputations.${index}.score`, score + 1);
+      resetField(`reputations.${index}.prestige`);
+      return;
+    }
+
+    if (prestige === 10 && score < 2) {
+      setValue(`reputations.${index}.score`, score + 1);
+      resetField(`reputations.${index}.prestige`);
+      return;
+    }
+
+    if (prestige === 15 && score < 3) {
+      setValue(`reputations.${index}.score`, score + 1);
+      resetField(`reputations.${index}.prestige`);
     }
   }, [score, prestige]);
 
   useEffect(() => {
-    switch (notoriety) {
-      case -3:
-        if (score > -1) {
-          setValue(`reputations.${index}.score`, score - 1);
-          resetField(`reputations.${index}.notoriety`);
-        }
-        break;
-      case -6:
-        if (score > -2) {
-          setValue(`reputations.${index}.score`, score - 1);
-          resetField(`reputations.${index}.notoriety`);
-        }
-        break;
-      case -9:
-        if (score > -3) {
-          setValue(`reputations.${index}.score`, score - 1);
-          resetField(`reputations.${index}.notoriety`);
-        }
-        break;
+    if (notoriety === -3 && score > -1) {
+      setValue(`reputations.${index}.score`, score - 1);
+      resetField(`reputations.${index}.notoriety`);
+      return;
+    }
+
+    if (notoriety === -6 && score > -2) {
+      setValue(`reputations.${index}.score`, score - 1);
+      resetField(`reputations.${index}.notoriety`);
+      return;
+    }
+
+    if (notoriety === -9 && score > -3) {
+      setValue(`reputations.${index}.score`, score - 1);
+      resetField(`reputations.${index}.notoriety`);
     }
   }, [score, notoriety]);
 }
