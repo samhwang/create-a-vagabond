@@ -61,7 +61,7 @@ export function ReputationsField() {
                 <Divider sx={{ mb: 4 }} />
                 <AccordionDetails>
                   <Stack spacing={2}>
-                    <ReputationRow key={field.id} index={index} onClick={() => remove(index)} />
+                    <ReputationRow index={index} />
                   </Stack>
                 </AccordionDetails>
               </Accordion>
@@ -91,10 +91,9 @@ const useReputationChangeLength = (onChange: (panel: number) => void) => {
 
 type ReputationRowProps = {
   index: number;
-  onClick: () => void;
 };
 
-function ReputationRow({ index, onClick }: ReputationRowProps) {
+function ReputationRow({ index }: ReputationRowProps) {
   const { control } = useFormContext<ConnectionsStepInput>();
   useSyncReputationScore(index);
 
@@ -144,38 +143,38 @@ function useSyncReputationScore(index: number) {
   useEffect(() => {
     if (prestige === 5 && score < 1) {
       setValue(`reputations.${index}.score`, score + 1);
-      resetField(`reputations.${index}.prestige`);
+      resetField(`reputations.${index}.prestige`, { defaultValue: 0 });
       return;
     }
 
     if (prestige === 10 && score < 2) {
       setValue(`reputations.${index}.score`, score + 1);
-      resetField(`reputations.${index}.prestige`);
+      resetField(`reputations.${index}.prestige`, { defaultValue: 0 });
       return;
     }
 
     if (prestige === 15 && score < 3) {
       setValue(`reputations.${index}.score`, score + 1);
-      resetField(`reputations.${index}.prestige`);
+      resetField(`reputations.${index}.prestige`, { defaultValue: 0 });
     }
   }, [score, prestige]);
 
   useEffect(() => {
     if (notoriety === -3 && score > -1) {
       setValue(`reputations.${index}.score`, score - 1);
-      resetField(`reputations.${index}.notoriety`);
+      resetField(`reputations.${index}.notoriety`, { defaultValue: 0 });
       return;
     }
 
     if (notoriety === -6 && score > -2) {
       setValue(`reputations.${index}.score`, score - 1);
-      resetField(`reputations.${index}.notoriety`);
+      resetField(`reputations.${index}.notoriety`, { defaultValue: 0 });
       return;
     }
 
     if (notoriety === -9 && score > -3) {
       setValue(`reputations.${index}.score`, score - 1);
-      resetField(`reputations.${index}.notoriety`);
+      resetField(`reputations.${index}.notoriety`, { defaultValue: 0 });
     }
   }, [score, notoriety]);
 }
