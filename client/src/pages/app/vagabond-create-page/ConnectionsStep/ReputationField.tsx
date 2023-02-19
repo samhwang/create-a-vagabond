@@ -9,7 +9,6 @@ import { RHFTextField } from '../../../../components/RHF/RHFTextField';
 import { RHFReputationValueField } from '../../../../components/RHF/RHFReputationValueField';
 import { useAccordion } from "./useAccordion";
 import { AccordionTitle } from "./AccordionTitle";
-import { Container } from "@mui/system";
 import { calculateReputation } from "./calculateReputation";
 
 export function ReputationsField() {
@@ -46,6 +45,9 @@ export function ReputationsField() {
       <Grid container spacing={2}>
         {fields.map((field, index) => {
           const reputation = reputations?.[index]
+          const subtitle = reputation
+            ? `${reputation.notoriety}/${reputation.score}/${reputation.prestige}`
+            : undefined
           return (
             <Grid xs={12} md={6}>
               <Accordion
@@ -55,7 +57,7 @@ export function ReputationsField() {
               >
                 <AccordionTitle
                   title={reputation?.faction}
-                  subtitle={reputation?.score ? `Score ${reputation.score}` : undefined}
+                  subtitle={subtitle}
                   expanded={expanded === index}
                   onDelete={() => remove(index)}
                 />
@@ -141,10 +143,9 @@ function useSyncReputationScore(index: number) {
     `reputations.${index}.prestige`,
     `reputations.${index}.notoriety`,
   ]);
-  
+
   useEffect(() => {
     const newReputation = calculateReputation({ score, prestige, notoriety })[0]
-    console.log(newReputation)
     setValue(`reputations.${index}.score`, newReputation.score)
     setValue(`reputations.${index}.prestige`, newReputation.prestige)
     setValue(`reputations.${index}.notoriety`, newReputation.notoriety)
