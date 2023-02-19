@@ -10,6 +10,7 @@ import { RHFReputationValueField } from '../../../../components/RHF/RHFReputatio
 import { useAccordion } from "./useAccordion";
 import { AccordionTitle } from "./AccordionTitle";
 import { Container } from "@mui/system";
+import { calculateReputation } from "./calculateReputation";
 
 export function ReputationsField() {
   const { control, watch } = useFormContext<ConnectionsStepInput>();
@@ -134,47 +135,18 @@ function ReputationRow({ index }: ReputationRowProps) {
 }
 
 function useSyncReputationScore(index: number) {
-  const { watch, setValue, resetField } = useFormContext<ConnectionsStepInput>();
+  const { watch, setValue } = useFormContext<ConnectionsStepInput>();
   const [score, prestige, notoriety] = watch([
     `reputations.${index}.score`,
     `reputations.${index}.prestige`,
     `reputations.${index}.notoriety`,
   ]);
+  
   useEffect(() => {
-    if (prestige === 5 && score < 1) {
-      setValue(`reputations.${index}.score`, score + 1);
-      resetField(`reputations.${index}.prestige`, { defaultValue: 0 });
-      return;
-    }
-
-    if (prestige === 10 && score < 2) {
-      setValue(`reputations.${index}.score`, score + 1);
-      resetField(`reputations.${index}.prestige`, { defaultValue: 0 });
-      return;
-    }
-
-    if (prestige === 15 && score < 3) {
-      setValue(`reputations.${index}.score`, score + 1);
-      resetField(`reputations.${index}.prestige`, { defaultValue: 0 });
-    }
-  }, [score, prestige]);
-
-  useEffect(() => {
-    if (notoriety === -3 && score > -1) {
-      setValue(`reputations.${index}.score`, score - 1);
-      resetField(`reputations.${index}.notoriety`, { defaultValue: 0 });
-      return;
-    }
-
-    if (notoriety === -6 && score > -2) {
-      setValue(`reputations.${index}.score`, score - 1);
-      resetField(`reputations.${index}.notoriety`, { defaultValue: 0 });
-      return;
-    }
-
-    if (notoriety === -9 && score > -3) {
-      setValue(`reputations.${index}.score`, score - 1);
-      resetField(`reputations.${index}.notoriety`, { defaultValue: 0 });
-    }
-  }, [score, notoriety]);
+    const newReputation = calculateReputation({ score, prestige, notoriety })[0]
+    console.log(newReputation)
+    setValue(`reputations.${index}.score`, newReputation.score)
+    setValue(`reputations.${index}.prestige`, newReputation.prestige)
+    setValue(`reputations.${index}.notoriety`, newReputation.notoriety)
+  }, [score, prestige, notoriety])
 }
