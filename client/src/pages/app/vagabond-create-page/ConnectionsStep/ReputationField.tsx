@@ -1,20 +1,27 @@
-import { Add, Cancel } from '@mui/icons-material';
-import { Box, IconButton, Stack, Typography } from '@mui/material';
+import { Add } from '@mui/icons-material';
+import { Accordion, AccordionDetails, Box, Divider, IconButton, Stack, Typography } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2'
 import { useAtomValue } from 'jotai';
 import { useEffect } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { ConnectionsStepInput, connectionsStepInputAtom } from '.';
 import { RHFTextField } from '../../../../components/RHF/RHFTextField';
 import { RHFReputationValueField } from '../../../../components/RHF/RHFReputationValueField';
+import { useAccordion } from "./useAccordion";
+import { AccordionTitle } from "./AccordionTitle";
+import { Container } from "@mui/system";
 
 export function ReputationsField() {
-  const { control } = useFormContext<ConnectionsStepInput>();
+  const { control, watch } = useFormContext<ConnectionsStepInput>();
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'reputations',
   });
-
   useSyncStoreData();
+  const reputations = watch('reputations')
+
+  const [expanded, handleChange] = useAccordion()
+  useReputationChangeLength(panel => handleChange(panel)({} as any, true))
 
   useEffect(() => {
     append({
@@ -23,11 +30,7 @@ export function ReputationsField() {
       prestige: 0,
       notoriety: 0,
     });
-
-    return () => {
-      remove(0);
-    };
-  }, [append, remove]);
+  }, []);
 
   return (
     <>
@@ -39,9 +42,33 @@ export function ReputationsField() {
           <Add />
         </IconButton>
       </Box>
-      {fields.map((field, index) => {
-        return <ReputationRow key={field.id} index={index} onClick={() => remove(index)} />;
-      })}
+      <Grid container spacing={2}>
+        {fields.map((field, index) => {
+          const reputation = reputations?.[index]
+          return (
+            <Grid xs={12} md={6}>
+              <Accordion
+                key={field.id}
+                expanded={expanded === index}
+                onChange={handleChange(index)}
+              >
+                <AccordionTitle
+                  title={reputation?.faction}
+                  subtitle={reputation?.score ? `Score ${reputation.score}` : undefined}
+                  expanded={expanded === index}
+                  onDelete={() => remove(index)}
+                />
+                <Divider sx={{ mb: 4 }} />
+                <AccordionDetails>
+                  <Stack spacing={2}>
+                    <ReputationRow key={field.id} index={index} onClick={() => remove(index)} />
+                  </Stack>
+                </AccordionDetails>
+              </Accordion>
+            </Grid>
+          );
+        })}
+      </Grid>
     </>
   );
 }
@@ -54,6 +81,14 @@ function useSyncStoreData() {
   }, [reputations]);
 }
 
+const useReputationChangeLength = (onChange: (panel: number) => void) => {
+  const { watch } = useFormContext<ConnectionsStepInput>();
+  const reputations = watch('reputations')
+  useEffect(() => {
+    onChange(reputations ? reputations.length - 1 : 0)
+  }, [reputations?.length])
+}
+
 type ReputationRowProps = {
   index: number;
   onClick: () => void;
@@ -64,39 +99,38 @@ function ReputationRow({ index, onClick }: ReputationRowProps) {
   useSyncReputationScore(index);
 
   return (
-    <Stack direction="row" spacing={2}>
+    <>
       <RHFTextField control={control} name={`reputations.${index}.faction`} label="Faction" />
-      <RHFReputationValueField
-        control={control}
-        name={`reputations.${index}.notoriety`}
-        startingPoint={0}
-        maxPoint={0}
-        minPoint={-9}
-        label="Notoriety"
-        upHide
-      />
-      <RHFTextField
-        control={control}
-        name={`reputations.${index}.score`}
-        label="Score"
-        disabled
-        inputProps={{ sx: { textAlign: 'center' } }}
-      />
-      <RHFReputationValueField
-        control={control}
-        name={`reputations.${index}.prestige`}
-        startingPoint={0}
-        maxPoint={15}
-        minPoint={0}
-        label="Prestige"
-        downHide
-      />
-      {index > 0 && (
-        <IconButton onClick={onClick}>
-          <Cancel />
-        </IconButton>
-      )}
-    </Stack>
+      <Stack direction='row'>
+        <RHFReputationValueField
+          control={control}
+          name={`reputations.${index}.notoriety`}
+          startingPoint={0}
+          maxPoint={0}
+          minPoint={-9}
+          label="Notoriety"
+          upHide
+          fullWidth
+        />
+        <RHFTextField
+          control={control}
+          name={`reputations.${index}.score`}
+          label="Score"
+          disabled
+          inputProps={{ sx: { textAlign: 'center' } }}
+        />
+        <RHFReputationValueField
+          control={control}
+          name={`reputations.${index}.prestige`}
+          startingPoint={0}
+          maxPoint={15}
+          minPoint={0}
+          label="Prestige"
+          downHide
+          fullWidth
+        />
+      </Stack>
+    </>
   );
 }
 

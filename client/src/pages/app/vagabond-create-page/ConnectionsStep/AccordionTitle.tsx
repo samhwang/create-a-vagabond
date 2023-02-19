@@ -16,7 +16,7 @@ export const AccordionTitle = ({ title, subtitle, expanded, onDelete, AccordionS
       {...AccordionSummaryProps}
     >
       <Stack direction="row" flexGrow={1} alignItems='center'>
-        {(!title || !subtitle) && (
+        {(!title && !subtitle) && (
           <Typography sx={{ width: '33%', flexShrink: 0 }}>
             Fill the value to continues
           </Typography>
@@ -27,7 +27,7 @@ export const AccordionTitle = ({ title, subtitle, expanded, onDelete, AccordionS
           </Typography>
         )}
         {subtitle && (
-          <Typography sx={{ color: 'text.secondary' }}>
+          <Typography sx={{ color: 'text.secondary' }} ml={2}>
             {subtitle}
           </Typography>
         )}
