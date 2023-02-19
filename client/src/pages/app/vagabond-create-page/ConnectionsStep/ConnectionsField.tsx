@@ -1,5 +1,5 @@
 import { Add, Cancel, ExpandLess, ExpandMore } from '@mui/icons-material';
-import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, AccordionSummaryProps, Box, Grid, IconButton, Stack, Typography } from '@mui/material';
+import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, AccordionSummaryProps, Box, Divider, Grid, IconButton, Stack, Typography } from '@mui/material';
 import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
@@ -54,6 +54,7 @@ export function ConnectionsField() {
               expanded={expanded === index}
               onDelete={() => remove(index)}
             />
+            <Divider sx={{ mb: 4 }} />
             <AccordionDetailsLayout
               left={
                 <>
