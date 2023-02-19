@@ -12,9 +12,9 @@ const ConnectionsStepInputSchema = z.object({
   connections: z
     .array(
       z.object({
-        type: z.string(),
-        to: z.string(),
-        notes: z.string(),
+        type: z.string().min(1, 'Please pick one!'),
+        to: z.string().min(1, 'Who is this connection?'),
+        notes: z.string().min(1, 'Some notes to describe this relationship'),
       })
     )
     .nullish(),
