@@ -90,12 +90,12 @@ export function StatsMovesStep() {
             </Grid>
             <Grid item xs={12}>
               <Container
-                maxWidth='xs'
+                maxWidth="xs"
                 sx={{
                   ml: {
                     xs: 'unset',
                     lg: 'auto',
-                  }
+                  },
                 }}
               >
                 <Stack direction="column" spacing={2}>

@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useState, SyntheticEvent } from 'react';
 
-export const useAccordion = () => {
-  const [expanded, setExpanded] = useState<number | false>(false)
-  const handleChange = (panel: number) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-    setExpanded(isExpanded ? panel : false)
-  }
-  return [expanded, handleChange] as const
+export function useAccordion() {
+  const [expanded, setExpanded] = useState<number | false>(false);
+  const handleChange = (panel: number) => (event: SyntheticEvent, isExpanded: boolean) => {
+    setExpanded(isExpanded ? panel : false);
+  };
+  return [expanded, handleChange] as const;
 }

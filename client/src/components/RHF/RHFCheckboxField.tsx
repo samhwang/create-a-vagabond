@@ -37,24 +37,10 @@ export function RHFCheckboxField<T extends FieldValues>({
   const { fieldState } = useController({ control, name });
 
   return (
-    <FormControl
-      variant="standard"
-      error={Boolean(fieldState.error)}
-      {...FormControlProps}
-    >
-      {label && (
-        <FormLabel {...FormLabelProps}>
-          {label}
-        </FormLabel>
-      )}
-      <FormGroup {...FormGroupProps}>
-        {children}
-      </FormGroup>
-      {fieldState.error && (
-        <FormHelperText {...FormHelperTextProps}>
-          {fieldState.error.message}
-        </FormHelperText>
-      )}
+    <FormControl variant="standard" error={Boolean(fieldState.error)} {...FormControlProps}>
+      {label && <FormLabel {...FormLabelProps}>{label}</FormLabel>}
+      <FormGroup {...FormGroupProps}>{children}</FormGroup>
+      {fieldState.error && <FormHelperText {...FormHelperTextProps}>{fieldState.error.message}</FormHelperText>}
     </FormControl>
   );
 }

@@ -5,8 +5,8 @@ export type RHFCheckboxFieldItemProps<T extends FieldValues> = Omit<FormControlL
   name: Path<T>;
   control: Control<T>;
   value: string;
-  max?: number
-  helperText: string
+  max?: number;
+  helperText: string;
   // HelperTextProps: TypographyProps
 };
 
@@ -21,14 +21,8 @@ export function RHFCheckboxFieldItem<T extends FieldValues>({
 }: RHFCheckboxFieldItemProps<T>) {
   const { field } = useController({ control, name });
 
-  let disabled = useCheckBoxItemDisabled(
-    control,
-    name,
-    value,
-    max,
-    props.disabled
-  )
-  
+  const disabled = useCheckBoxItemDisabled(control, name, value, max, props.disabled);
+
   return (
     <>
       <FormControlLabel
@@ -41,12 +35,11 @@ export function RHFCheckboxFieldItem<T extends FieldValues>({
             ref={field.ref}
             checked={field.value?.includes(value) || false}
             onChange={({ target: { name, checked } }) => {
-              const isMultiple = Array.isArray(field.value)
+              const isMultiple = Array.isArray(field.value);
               if (isMultiple) {
                 if (checked) return field.onChange([...(field.value || []), name]);
                 field.onChange(field.value.filter((n: unknown) => n !== name));
-              }
-              else field.onChange(name)
+              } else field.onChange(name);
             }}
           />
         }
@@ -54,8 +47,8 @@ export function RHFCheckboxFieldItem<T extends FieldValues>({
       {helperText && (
         <Typography
           ml={4}
-          variant='subtitle2'
-          color='GrayText'
+          variant="subtitle2"
+          color="GrayText"
           // {...HelperTextProps}
         >
           {helperText}
@@ -65,21 +58,21 @@ export function RHFCheckboxFieldItem<T extends FieldValues>({
   );
 }
 
-const useCheckBoxItemDisabled = <T extends FieldValues>(
+function useCheckBoxItemDisabled<T extends FieldValues>(
   control: Control<T>,
   name: Path<T>,
   value: string,
   max: number = Number.MAX_SAFE_INTEGER,
-  disabled: boolean = false,
-) => {
+  disabled: boolean = false
+) {
   const { field } = useController({ control, name });
 
-  if (disabled) return disabled
+  if (disabled) return disabled;
 
-  const isMultiple = Array.isArray(field.value)
-  if (!isMultiple) return disabled
+  const isMultiple = Array.isArray(field.value);
+  if (!isMultiple) return disabled;
 
-  const isSelected = field.value?.includes(value)
-  const isEnough = field.value?.length === max
-  return isEnough && !isSelected
+  const isSelected = field.value?.includes(value);
+  const isEnough = field.value?.length === max;
+  return isEnough && !isSelected;
 }

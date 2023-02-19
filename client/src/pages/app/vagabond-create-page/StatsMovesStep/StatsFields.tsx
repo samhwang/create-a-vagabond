@@ -35,8 +35,8 @@ export function StatsFields({ vagabondClassRef }: StatsFieldsProps) {
   useSyncStats(vagabondClass);
 
   useEffect(() => {
-    setValue('availablePoints', pointLeft)
-  }, [pointLeft])
+    setValue('availablePoints', pointLeft);
+  }, [pointLeft]);
 
   return (
     <>
@@ -79,9 +79,9 @@ export function StatsFields({ vagabondClassRef }: StatsFieldsProps) {
       <Stack direction="row" spacing={2}>
         <RHFTextField
           control={control}
-          name='availablePoints'
-          label='Available Points'
-          type='number'
+          name="availablePoints"
+          label="Available Points"
+          type="number"
           disabled
           inputProps={{ sx: { textAlign: 'center' } }}
           fullWidth
@@ -93,7 +93,6 @@ export function StatsFields({ vagabondClassRef }: StatsFieldsProps) {
           disabled
           inputProps={{ sx: { textAlign: 'center' } }}
           fullWidth
-
         />
         <BurdenedInfoField />
         <MaxInfoField />
@@ -151,7 +150,9 @@ function BurdenedInfoField() {
   const might = watch('might');
   const burdened = might + 4;
 
-  return <TextField label="Burdened" disabled value={burdened} inputProps={{ sx: { textAlign: 'center' } }} fullWidth />;
+  return (
+    <TextField label="Burdened" disabled value={burdened} inputProps={{ sx: { textAlign: 'center' } }} fullWidth />
+  );
 }
 
 function MaxInfoField() {

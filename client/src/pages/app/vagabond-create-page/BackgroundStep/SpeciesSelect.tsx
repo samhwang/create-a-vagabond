@@ -17,11 +17,11 @@ export function SpeciesSelect<T extends FieldValues>(props: SpeciesSelectProps<T
           },
         },
         MenuProps: {
-          sx: { maxHeight: 300 }
-        }
+          sx: { maxHeight: 300 },
+        },
       }}
     >
-      {species.map(name => (
+      {species.map((name) => (
         <MenuItem key={name} value={name}>
           <ListItemText primary={name} />
         </MenuItem>

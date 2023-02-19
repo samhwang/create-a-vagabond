@@ -5,10 +5,10 @@ import { useEffect, useState } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { ConnectionsStepInput, connectionsStepInputAtom } from '.';
 import { RHFTextField } from '../../../../components/RHF/RHFTextField';
-import { AccordionDetailsLayout } from "./AccordionDetailsLayout";
-import { AccordionTitle } from "./AccordionTitle";
-import { ConnectionTypeCheckboxField } from "./ConnectionTypeCheckbox";
-import { useAccordion } from "./useAccordion";
+import { AccordionDetailsLayout } from './AccordionDetailsLayout';
+import { AccordionTitle } from './AccordionTitle';
+import { ConnectionTypeCheckboxField } from './ConnectionTypeCheckbox';
+import { useAccordion } from './useAccordion';
 
 export function ConnectionsField() {
   const { control, watch } = useFormContext<ConnectionsStepInput>();
@@ -17,13 +17,13 @@ export function ConnectionsField() {
     name: 'connections',
   });
   useSyncStoreData();
-  const connections = watch('connections')
+  const connections = watch('connections');
 
-  const [expanded, handleChange] = useAccordion()
-  useConnectionChangeLength(panel => handleChange(panel)({} as any, true))
+  const [expanded, handleChange] = useAccordion();
+  useConnectionChangeLength((panel) => handleChange(panel)({} as any, true));
 
   useEffect(() => {
-    append({ type: '', to: '', notes: '' })
+    append({ type: '', to: '', notes: '' });
   }, []);
 
   return (
@@ -37,13 +37,9 @@ export function ConnectionsField() {
         </IconButton>
       </Box>
       {fields.map((field, index) => {
-        const connection = connections?.[index]
+        const connection = connections?.[index];
         return (
-          <Accordion
-            key={field.id}
-            expanded={expanded === index}
-            onChange={handleChange(index)}
-          >
+          <Accordion key={field.id} expanded={expanded === index} onChange={handleChange(index)}>
             <AccordionTitle
               title={connection?.to}
               subtitle={connection?.type}
@@ -54,11 +50,7 @@ export function ConnectionsField() {
             <AccordionDetailsLayout
               left={
                 <>
-                  <RHFTextField
-                    control={control}
-                    name={`connections.${index}.to`}
-                    label="Connection To"
-                  />
+                  <RHFTextField control={control} name={`connections.${index}.to`} label="Connection To" />
                   <RHFTextField
                     control={control}
                     name={`connections.${index}.notes`}
@@ -77,7 +69,7 @@ export function ConnectionsField() {
               }
             />
           </Accordion>
-        )
+        );
       })}
     </>
   );
@@ -91,10 +83,10 @@ function useSyncStoreData() {
   }, [connections]);
 }
 
-const useConnectionChangeLength = (onChange: (panel: number) => void) => {
+function useConnectionChangeLength(onChange: (panel: number) => void) {
   const { watch } = useFormContext<ConnectionsStepInput>();
-  const connections = watch('connections')
+  const connections = watch('connections');
   useEffect(() => {
-    onChange(connections ? connections.length - 1 : 0)
-  }, [connections?.length])
+    onChange(connections ? connections.length - 1 : 0);
+  }, [connections?.length]);
 }

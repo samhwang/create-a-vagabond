@@ -1,15 +1,15 @@
 import { Add } from '@mui/icons-material';
 import { Accordion, AccordionDetails, Box, Divider, IconButton, Stack, Typography } from '@mui/material';
-import Grid from '@mui/material/Unstable_Grid2'
+import Grid from '@mui/material/Unstable_Grid2';
 import { useAtomValue } from 'jotai';
 import { useEffect } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { ConnectionsStepInput, connectionsStepInputAtom } from '.';
 import { RHFTextField } from '../../../../components/RHF/RHFTextField';
 import { RHFReputationValueField } from '../../../../components/RHF/RHFReputationValueField';
-import { useAccordion } from "./useAccordion";
-import { AccordionTitle } from "./AccordionTitle";
-import { calculateReputation } from "./calculateReputation";
+import { useAccordion } from './useAccordion';
+import { AccordionTitle } from './AccordionTitle';
+import { calculateReputation } from './calculateReputation';
 
 export function ReputationsField() {
   const { control, watch } = useFormContext<ConnectionsStepInput>();
@@ -18,10 +18,10 @@ export function ReputationsField() {
     name: 'reputations',
   });
   useSyncStoreData();
-  const reputations = watch('reputations')
+  const reputations = watch('reputations');
 
-  const [expanded, handleChange] = useAccordion()
-  useReputationChangeLength(panel => handleChange(panel)({} as any, true))
+  const [expanded, handleChange] = useAccordion();
+  useReputationChangeLength((panel) => handleChange(panel)({} as any, true));
 
   useEffect(() => {
     append({
@@ -44,17 +44,13 @@ export function ReputationsField() {
       </Box>
       <Grid container spacing={2}>
         {fields.map((field, index) => {
-          const reputation = reputations?.[index]
+          const reputation = reputations?.[index];
           const subtitle = reputation
             ? `${reputation.notoriety}/${reputation.score}/${reputation.prestige}`
-            : undefined
+            : undefined;
           return (
             <Grid xs={12} md={6}>
-              <Accordion
-                key={field.id}
-                expanded={expanded === index}
-                onChange={handleChange(index)}
-              >
+              <Accordion key={field.id} expanded={expanded === index} onChange={handleChange(index)}>
                 <AccordionTitle
                   title={reputation?.faction}
                   subtitle={subtitle}
@@ -84,12 +80,12 @@ function useSyncStoreData() {
   }, [reputations]);
 }
 
-const useReputationChangeLength = (onChange: (panel: number) => void) => {
+function useReputationChangeLength(onChange: (panel: number) => void) {
   const { watch } = useFormContext<ConnectionsStepInput>();
-  const reputations = watch('reputations')
+  const reputations = watch('reputations');
   useEffect(() => {
-    onChange(reputations ? reputations.length - 1 : 0)
-  }, [reputations?.length])
+    onChange(reputations ? reputations.length - 1 : 0);
+  }, [reputations?.length]);
 }
 
 type ReputationRowProps = {
@@ -103,7 +99,7 @@ function ReputationRow({ index }: ReputationRowProps) {
   return (
     <>
       <RHFTextField control={control} name={`reputations.${index}.faction`} label="Faction" />
-      <Stack direction='row'>
+      <Stack direction="row">
         <RHFReputationValueField
           control={control}
           name={`reputations.${index}.notoriety`}
@@ -145,9 +141,9 @@ function useSyncReputationScore(index: number) {
   ]);
 
   useEffect(() => {
-    const newReputation = calculateReputation({ score, prestige, notoriety })[0]
-    setValue(`reputations.${index}.score`, newReputation.score)
-    setValue(`reputations.${index}.prestige`, newReputation.prestige)
-    setValue(`reputations.${index}.notoriety`, newReputation.notoriety)
-  }, [score, prestige, notoriety])
+    const newReputation = calculateReputation({ score, prestige, notoriety })[0];
+    setValue(`reputations.${index}.score`, newReputation.score);
+    setValue(`reputations.${index}.prestige`, newReputation.prestige);
+    setValue(`reputations.${index}.notoriety`, newReputation.notoriety);
+  }, [score, prestige, notoriety]);
 }

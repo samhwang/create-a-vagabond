@@ -2,8 +2,8 @@ import { MenuItem, Typography } from '@mui/material';
 import { graphql, useFragment } from 'react-relay';
 import { BackgroundStepInput } from '.';
 import { NatureSelect_class$key } from './__generated__/NatureSelect_class.graphql';
-import { RHFCheckboxField, RHFCheckboxFieldProps } from "../../../../components/RHF/RHFCheckboxField";
-import { RHFCheckboxFieldItem } from "../../../../components/RHF/RHFCheckboxFieldItem";
+import { RHFCheckboxField, RHFCheckboxFieldProps } from '../../../../components/RHF/RHFCheckboxField';
+import { RHFCheckboxFieldItem } from '../../../../components/RHF/RHFCheckboxFieldItem';
 
 type NatureSelectProps = RHFCheckboxFieldProps<BackgroundStepInput> & {
   vagabondClassRef: NatureSelect_class$key;

@@ -57,14 +57,11 @@ export function RoguishFeatsField({ queryRef, vagabondClassRef }: RoguishFeatsFi
         return (
           <RHFCheckboxFieldItem
             key={edge.node.id}
-            
             control={control}
             name="roguishFeats"
-
             label={edge.node.name}
             value={edge.node.id}
             helperText={edge.node.description}
-            
             disabled={disabled}
           />
         );
@@ -103,13 +100,13 @@ function useSyncFeats(vagabondClassRef: RoguishFeatsField_useSyncFeats_class$key
   return startingFeatsIds;
 }
 
-const useAvailableSelection = (name: string) => {
+function useAvailableSelection(name: string) {
   return useMemo(() => {
     if (name === 'arbiter') return 1;
     if (name === 'thief') return 4;
     return 0;
   }, [name]);
-};
+}
 
 function getDisableState(
   featId: string,

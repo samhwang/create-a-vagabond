@@ -2,8 +2,8 @@ import { Typography } from '@mui/material';
 import { graphql, useFragment } from 'react-relay';
 import { BackgroundStepInput } from '.';
 import { DrivesSelect_class$key } from './__generated__/DrivesSelect_class.graphql';
-import { RHFCheckboxField, RHFCheckboxFieldProps } from "../../../../components/RHF/RHFCheckboxField";
-import { RHFCheckboxFieldItem } from "../../../../components/RHF/RHFCheckboxFieldItem";
+import { RHFCheckboxField, RHFCheckboxFieldProps } from '../../../../components/RHF/RHFCheckboxField';
+import { RHFCheckboxFieldItem } from '../../../../components/RHF/RHFCheckboxFieldItem';
 
 type DrivesSelectProps = RHFCheckboxFieldProps<BackgroundStepInput> & {
   vagabondClassRef: DrivesSelect_class$key;
@@ -41,7 +41,7 @@ export function DrivesSelect({ vagabondClassRef, ...props }: DrivesSelectProps) 
             helperText={edge.node.description}
             max={2}
           />
-        )
+        );
       })}
     </RHFCheckboxField>
   );

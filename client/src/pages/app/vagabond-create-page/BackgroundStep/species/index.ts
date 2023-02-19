@@ -10,4 +10,20 @@
 //   mouse,
 // };
 
-export const species = ['badger', 'beaver', 'bluejay', 'cat', 'fox', 'hawk', 'lizard', 'mouse', 'opossum', 'otter', 'owl', 'raccoon', 'rabbit', 'squirrel', 'wolf']
+export const species = [
+  'badger',
+  'beaver',
+  'bluejay',
+  'cat',
+  'fox',
+  'hawk',
+  'lizard',
+  'mouse',
+  'opossum',
+  'otter',
+  'owl',
+  'raccoon',
+  'rabbit',
+  'squirrel',
+  'wolf',
+];

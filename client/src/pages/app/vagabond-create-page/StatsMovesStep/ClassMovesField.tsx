@@ -59,14 +59,14 @@ export function ClassMovesField({ vagabondClassRef }: ClassMovesFieldProps) {
   );
 }
 
-const getItemDisabled = (selectedClassMoveIds: readonly string[], moveId: string) => {
+function getItemDisabled(selectedClassMoveIds: readonly string[], moveId: string) {
   const isTinkerDefaultMove = tinkerDefaultMovesIds.includes(moveId);
   if (isTinkerDefaultMove) return true;
 
   if (selectedClassMoveIds.length === 3) {
     return !selectedClassMoveIds.includes(moveId);
   }
-};
+}
 
 export const tinkerDefaultMoves = ['toolbox', 'repair'];
 export const tinkerDefaultMovesIds = tinkerDefaultMoves.map((skill) => window.btoa(`ClassMove:${skill}`));

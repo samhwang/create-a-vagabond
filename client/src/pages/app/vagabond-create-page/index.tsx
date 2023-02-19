@@ -1,20 +1,11 @@
-import {
-  CircularProgress,
-  Container,
-  Step,
-  StepLabel,
-  Stepper,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
+import { CircularProgress, Container, Step, StepLabel, Stepper, Typography, useMediaQuery } from '@mui/material';
 import { atom } from 'jotai';
 import { Suspense, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { ClassStepInput, classStepInputAtom } from './ClassStep';
-import { BackgroundStepInput, backgroundStepInputAtom } from './BackgroundStep';
-import { StatsMovesStepInput, statsMovesStepInputAtom } from './StatsMovesStep';
-import { ConnectionsStepInput, connectionsStepInputAtom } from './ConnectionsStep';
-import { VagabondCreateInput } from './ReviewAndCreateStep/__generated__/ReviewAndCreateStepMutation.graphql';
+import { classStepInputAtom } from './ClassStep';
+import { backgroundStepInputAtom } from './BackgroundStep';
+import { statsMovesStepInputAtom } from './StatsMovesStep';
+import { connectionsStepInputAtom } from './ConnectionsStep';
 
 const stepPaths = [
   '/vagabond-create',
@@ -60,15 +51,6 @@ export function VagabondCreatePage() {
   );
 }
 
-// export function assertEqualType<T extends never>() {}
-// export type TypeEqualityGuard<A, B> = Exclude<A, B> | Exclude<B, A>;
-// assertEqualType<
-//   TypeEqualityGuard<
-//     VagabondCreateInput,
-//     ClassStepInput & BackgroundStepInput & Omit<StatsMovesStepInput, 'availablePoints'> & ConnectionsStepInput
-//   >
-// >();
-
 export const vagabondCreateInputAtom = atom((get) => {
   const classStepData = get(classStepInputAtom);
   const backgroundStepData = get(backgroundStepInputAtom);
@@ -83,7 +65,7 @@ export const vagabondCreateInputAtom = atom((get) => {
   };
 });
 
-export const vagabondCreateResetAtom = atom(null, (get, set, update) => {
+export const vagabondCreateResetAtom = atom(null, (get, set) => {
   const classData = get(classStepInputAtom);
   set(classStepInputAtom, { name: '', class: classData.class });
   set(backgroundStepInputAtom, {

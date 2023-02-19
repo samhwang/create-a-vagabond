@@ -43,17 +43,8 @@ export function WeaponSkillField({ vagabondClassRef }: WeaponSkillFieldProps) {
 
         return (
           <>
-            <FormControlLabel
-              key={edge.node.id}
-              label={edge.node.name}
-              value={edge.node.id}
-              control={<Radio />}
-            />
-            <Typography
-              ml={4}
-              variant='subtitle2'
-              color='GrayText'
-            >
+            <FormControlLabel key={edge.node.id} label={edge.node.name} value={edge.node.id} control={<Radio />} />
+            <Typography ml={4} variant="subtitle2" color="GrayText">
               {edge.node.description}
             </Typography>
           </>
