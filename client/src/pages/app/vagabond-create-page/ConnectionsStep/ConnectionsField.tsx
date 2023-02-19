@@ -1,5 +1,5 @@
 import { Add, Cancel, ExpandLess, ExpandMore } from '@mui/icons-material';
-import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, AccordionSummaryProps, Box, Divider, Grid, IconButton, Stack, Typography } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, AccordionSummaryProps, Box, Divider, Grid, IconButton, Stack, Typography } from '@mui/material';
 import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
@@ -13,22 +13,22 @@ export function ConnectionsField() {
     control,
     name: 'connections',
   });
-
   useSyncStoreData();
-
-  useEffect(() => {
-    append({ type: '', to: '', notes: '' });
-
-    return () => {
-      remove(0);
-    };
-  }, [append, remove]);
 
   const [expanded, setExpanded] = useState<number | false>(false)
   const handleChange = (panel: number) => (event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpanded(isExpanded ? panel : false)
   }
+
   const connections = watch('connections')
+  useEffect(() => {
+    const panel = connections ? connections.length - 1 : 0
+    handleChange(panel)({} as any, true)
+  }, [connections?.length])
+
+  useEffect(() => {
+    append({ type: '', to: '', notes: '' })
+  }, []);
 
   return (
     <>
@@ -111,7 +111,7 @@ const AccordionTitle = ({ title, subtitle, expanded, onDelete, AccordionSummaryP
       <Stack direction="row" flexGrow={1} alignItems='center'>
         {(!title || !subtitle) && (
           <Typography sx={{ width: '33%', flexShrink: 0 }}>
-            Editing...
+            Fill the value to continues
           </Typography>
         )}
         {title && (
