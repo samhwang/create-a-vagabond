@@ -65,6 +65,8 @@ model Vagabond {
   weaponSkills WeaponSkill[]
   classMoves   ClassMove[]
 
+  equipment VagabondEquipment[]
+
   @@index([userId])
   @@index([natureId])
   @@index([vagabondClassId])
@@ -130,6 +132,7 @@ model WeaponSkill {
   description   String          @db.MediumText
   vagabondClass VagabondClass[]
   vagabond      Vagabond[]
+  equipment     Equipment[]
 }
 
 model ClassMove {
@@ -138,4 +141,41 @@ model ClassMove {
   description   String          @db.Text
   vagabondClass VagabondClass[]
   vagabond      Vagabond[]
+}
+
+enum EquipmentTagType {
+  POSITIVE
+  NEGATIVE
+}
+
+model EquipmentTag {
+  id          String           @id
+  name        String
+  description String
+  type        EquipmentTagType
+  equipment   Equipment[]
+}
+
+model Equipment {
+  id                String              @id
+  name              String
+  description       String
+  range             Json //string[]
+  maxWear           Int                 @default(4)
+  value             Int                 @default(0)
+  load              Int                 @default(0)
+  tags              EquipmentTag[]
+  weaponMoveTags    WeaponSkill[]
+  VagabondEquipment VagabondEquipment[]
+}
+
+model VagabondEquipment {
+  id          String    @id @default(cuid())
+  vagabondId  String
+  vagabond    Vagabond  @relation(fields: [vagabondId], references: [id], onDelete: Cascade)
+  equipmentId String
+  equipment   Equipment @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+
+  @@index([vagabondId])
+  @@index([equipmentId])
 }
