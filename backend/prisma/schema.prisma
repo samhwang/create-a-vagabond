@@ -126,13 +126,15 @@ enum WeaponSkillType {
 }
 
 model WeaponSkill {
-  id            String          @id
-  name          String
-  type          WeaponSkillType @default(NORMAL)
-  description   String          @db.MediumText
-  vagabondClass VagabondClass[]
-  vagabond      Vagabond[]
-  equipment     Equipment[]
+  id          String          @id
+  name        String
+  type        WeaponSkillType @default(NORMAL)
+  description String          @db.MediumText
+
+  vagabondClass     VagabondClass[]
+  vagabond          Vagabond[]
+  equipment         Equipment[]
+  VagabondEquipment VagabondEquipment[]
 }
 
 model ClassMove {
@@ -153,28 +155,33 @@ model EquipmentTag {
   name        String
   description String
   type        EquipmentTagType
-  equipment   Equipment[]
+
+  equipment         Equipment[]
+  VagabondEquipment VagabondEquipment[]
 }
 
 model Equipment {
-  id                String              @id
-  name              String
-  description       String
-  range             Json //string[]
-  maxWear           Int                 @default(4)
-  value             Int                 @default(0)
-  load              Int                 @default(0)
+  id      String @id
+  name    String
+  range   Json //string[]
+  maxWear Int    @default(4)
+  value   Int    @default(0)
+  load    Int    @default(0)
+
   tags              EquipmentTag[]
   weaponMoveTags    WeaponSkill[]
   VagabondEquipment VagabondEquipment[]
 }
 
 model VagabondEquipment {
-  id          String    @id @default(cuid())
-  vagabondId  String
-  vagabond    Vagabond  @relation(fields: [vagabondId], references: [id], onDelete: Cascade)
-  equipmentId String
-  equipment   Equipment @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+  id             String         @id @default(cuid())
+  vagabondId     String
+  vagabond       Vagabond       @relation(fields: [vagabondId], references: [id], onDelete: Cascade)
+  equipmentId    String
+  equipment      Equipment      @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+  wear           Int
+  tags           EquipmentTag[]
+  weaponMoveTags WeaponSkill[]
 
   @@index([vagabondId])
   @@index([equipmentId])
