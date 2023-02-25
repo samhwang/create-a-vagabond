@@ -5,8 +5,10 @@ export async function equipmentSeeding(prisma: PrismaClient) {
   return prisma.equipment.createMany({ data: EQUIPMENTS });
 }
 
+type WeaponRange = 'intimate' | 'close' | 'far';
+
 type Equipment = Omit<PrismaEquipmentType, 'range'> & {
-  range: string[];
+  range: WeaponRange[];
   tags?: EquipmentTag['id'][];
   weaponMoveTags?: WeaponSkill['id'][];
 };
@@ -23,7 +25,15 @@ const EQUIPMENTS: Equipment[] = [
     weaponMoveTags: ['parry, vicious_strike'],
   },
   {
-    id: 'mousefolkd_short_sword',
+    id: 'greatsword',
+    name: 'Greatsword',
+    maxWear: 2,
+    value: 6,
+    load: 2,
+    range: ['close'],
+  },
+  {
+    id: 'mousefolk_short_sword',
     name: 'Mousefolk Short Sword',
     maxWear: 3,
     value: 6,
@@ -33,20 +43,14 @@ const EQUIPMENTS: Equipment[] = [
     weaponMoveTags: ['parry', 'disarm'],
   },
   {
-    id: '',
-    name: '',
-    maxWear: 1,
-    value: 1,
-    load: 0,
-    range: [],
-  },
-  {
-    id: '',
-    name: '',
-    maxWear: 1,
-    value: 1,
-    load: 0,
-    range: [],
+    id: 'foxfolk_short_sword',
+    name: 'Foxfolk Short Sword',
+    maxWear: 2,
+    value: 5,
+    load: 1,
+    range: ['close'],
+    tags: ['foxfolk_steel'],
+    weaponMoveTags: ['disarm', 'vicious_strike'],
   },
   {
     id: '',
