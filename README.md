@@ -18,8 +18,8 @@ Other than that, this project is not in any way, shape or form related to the or
 
 This repo currently has 3 parts:
 
-- [`client`](./client/README.md) - Frontend React App bootstrapped with Vite.
-- [`backend`](./backend/README.md) - Backend logic: GraphQL server goes here.
+- [`client`](./workspaces/client/README.md) - Frontend React App bootstrapped with Vite.
+- [`backend`](./workspaces/backend/README.md) - Backend logic: GraphQL server goes here.
 - Database: This project's database currently lives in PlanetScale.
   - Locally, it can also be hosted in Docker using a MySQL Container, or use the `pscale` command
   to connect to a branch on PlanetScale.
@@ -40,6 +40,7 @@ This repo currently has 3 parts:
 
 - [Netlify](https://app.netlify.com) - For hosting the site
 - [PlanetScale](https://app.planetscale.com) - Serverless MySQL
+- [Cler](https://clerk.dev) - For User authentication
 
 ---
 
@@ -56,7 +57,7 @@ This repo currently has 3 parts:
 
 #### Running with Docker
 
-- `DATABASE_URL` is `mysql://root:root@localhost:3306/db`.
+- `DATABASE_URL` is `mysql://root:root@localhost:3306/createvagabondapp`.
 
 ### Starting the services
 

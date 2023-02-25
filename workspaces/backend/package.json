@@ -8,7 +8,7 @@
     "prettier": "prettier --cache --write .",
     "format": "npm run lint:fix && npm run prettier && npm run prisma:format",
     "typecheck": "tsc",
-    "netlify:dev": "cd .. && netlify functions:serve",
+    "netlify:dev": "cd ../.. && netlify functions:serve",
     "dev": "npm run netlify:dev",
     "prisma:migrate": "prisma db push --skip-generate",
     "prisma:generate": "prisma generate",

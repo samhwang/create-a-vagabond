@@ -5,10 +5,7 @@
   "description": "Create a Vagabond App",
   "license": "ISC",
   "packageManager": "npm@8.19.3",
-  "workspaces": [
-    "client",
-    "backend"
-  ],
+  "workspaces": ["./workspaces/*"],
   "scripts": {
     "test": "turbo run test",
     "lint": "turbo run lint",

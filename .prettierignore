@@ -1,5 +1,2 @@
 package.json
-pnpm-lock.yaml
-**/dist
-**/coverage
-*.d.ts
+package-lock.json

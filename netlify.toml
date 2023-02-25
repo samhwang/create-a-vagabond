@@ -1,9 +1,9 @@
 [build]
-  publish = "client/dist/"
+  publish = "workspaces/client/dist/"
   command = "npm run build"
 
 [functions]
-  directory = "backend/src/functions/"
+  directory = "workspaces/backend/src/functions/"
 
 [[redirects]]
   from = "/*"

@@ -1,13 +1,9 @@
 package.json
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
 dist
 coverage
 *.d.ts
 
 # Ignoring generated files
 public/mockServiceWorker.js
-data/schema.graphql
 src/providers/relay/__generated__
 src/pages/**/__generated__
