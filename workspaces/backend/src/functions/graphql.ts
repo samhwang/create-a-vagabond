@@ -41,7 +41,9 @@ export const handler: Handler = async (event, context) => {
 };
 
 async function getClerkSession(sessionId?: string, clientToken?: string) {
-  if (!sessionId || !clientToken) return undefined;
+  if (!sessionId || !clientToken) {
+    return undefined;
+  }
 
   const session = await sessions.verifySession(sessionId, clientToken).catch((error) => {
     console.log(error);

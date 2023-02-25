@@ -153,7 +153,7 @@ enum EquipmentTagType {
 model EquipmentTag {
   id          String           @id
   name        String
-  description String
+  description String           @db.Text
   type        EquipmentTagType
 
   equipment         Equipment[]
@@ -163,7 +163,7 @@ model EquipmentTag {
 model Equipment {
   id      String @id
   name    String
-  range   Json //string[]
+  range   Json? //string[]
   maxWear Int    @default(4)
   value   Int    @default(0)
   load    Int    @default(0)
@@ -179,6 +179,7 @@ model VagabondEquipment {
   vagabond       Vagabond       @relation(fields: [vagabondId], references: [id], onDelete: Cascade)
   equipmentId    String
   equipment      Equipment      @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+  name           String
   wear           Int
   tags           EquipmentTag[]
   weaponMoveTags WeaponSkill[]

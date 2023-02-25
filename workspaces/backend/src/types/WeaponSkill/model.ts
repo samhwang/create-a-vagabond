@@ -21,3 +21,11 @@ builder.prismaObjectField('VagabondClass', 'weaponSkillConnection', (t) =>
 builder.prismaObjectField('Vagabond', 'weaponSkillConnection', (t) =>
   t.relatedConnection('weaponSkills', { cursor: 'id' })
 );
+
+builder.prismaObjectField('Equipment', 'weaponSkillConnection', (t) =>
+  t.relatedConnection('weaponMoveTags', { cursor: 'id' })
+);
+
+builder.prismaObjectField('VagabondEquipment', 'weaponSkillConnection', (t) =>
+  t.relatedConnection('weaponMoveTags', { cursor: 'id' })
+);
