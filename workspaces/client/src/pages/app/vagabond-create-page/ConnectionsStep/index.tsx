@@ -45,7 +45,7 @@ export function ConnectionsStep() {
   const setInput = useSetAtom(connectionsStepInputAtom);
   const onSubmit: SubmitHandler<ConnectionsStepInput> = (data) => {
     setInput(data);
-    navigate('/vagabond-create/review_create');
+    navigate('/vagabond-create/buy_items');
   };
 
   return (

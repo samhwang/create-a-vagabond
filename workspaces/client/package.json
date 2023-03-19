@@ -7,7 +7,7 @@
   },
   "relay": {
     "src": "./src",
-    "schema": "../backend/schema.graphql",
+    "schema": "./schema.graphql",
     "language": "typescript",
     "eagerEsModules": true,
     "exclude": [

@@ -6,12 +6,14 @@ import { classStepInputAtom } from './ClassStep';
 import { backgroundStepInputAtom } from './BackgroundStep';
 import { statsMovesStepInputAtom } from './StatsMovesStep';
 import { connectionsStepInputAtom } from './ConnectionsStep';
+import { buyItemStepInputAtom } from './BuyItemStep';
 
 const stepPaths = [
   '/vagabond-create',
   '/vagabond-create/background',
   '/vagabond-create/stats_moves',
   '/vagabond-create/connections',
+  '/vagabond-create/buy_items',
   '/vagabond-create/review_create',
 ];
 const stepLabels = [
@@ -19,6 +21,7 @@ const stepLabels = [
   'Background',
   'Stats and Moves',
   'Connections and Reputations',
+  'Buy Items',
   'Reviews and Create',
 ];
 
@@ -55,12 +58,14 @@ export const vagabondCreateInputAtom = atom((get) => {
   const classStepData = get(classStepInputAtom);
   const backgroundStepData = get(backgroundStepInputAtom);
   const statsMovesStepData = get(statsMovesStepInputAtom);
+  const buyItemStepData = get(buyItemStepInputAtom);
   const connectionsStepData = get(connectionsStepInputAtom);
 
   return {
     ...classStepData,
     ...backgroundStepData,
     ...statsMovesStepData,
+    ...buyItemStepData,
     ...connectionsStepData,
   };
 });
@@ -85,11 +90,14 @@ export const vagabondCreateResetAtom = atom(null, (get, set) => {
     finesse: 0,
     luck: 0,
     might: 0,
-    value: 0,
     roguishFeats: [],
     classMoves: [],
     weaponSkill: '',
   });
+  set(buyItemStepInputAtom, {
+    value: 0,
+    carrying: 0,
+  })
   set(connectionsStepInputAtom, {
     connections: [],
   });

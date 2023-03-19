@@ -1,4 +1,4 @@
-import { Box, Button, Container, Paper, Stack, Typography } from '@mui/material';
+import { Button, Container, Paper, Stack, Typography } from '@mui/material';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useSnackbar } from 'notistack';
 import { graphql, useLazyLoadQuery, useMutation } from 'react-relay';
@@ -61,7 +61,7 @@ export function ReviewAndCreateStep() {
 
         if (response.vagabondCreate.__typename === 'MutationVagabondCreateSuccess') {
           enqueueSnackbar(`${response.vagabondCreate.data.vagabond.name} is created`, { variant: 'success' });
-          reset({});
+          reset();
           navigate('/vagabond-list');
         }
       },
@@ -84,7 +84,7 @@ export function ReviewAndCreateStep() {
         <Typography flexGrow={1}>
           Here are your current summary. Please review or click <b>Submit</b> to create your vagabond
         </Typography>
-        <Button onClick={() => navigate('/vagabond-create/connections')}>Back</Button>
+        <Button onClick={() => navigate('/vagabond-create/buy_items')}>Back</Button>
         <Button variant="contained" onClick={onCreate}>
           Submit
         </Button>
