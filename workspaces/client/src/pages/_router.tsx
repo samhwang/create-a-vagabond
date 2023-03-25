@@ -15,6 +15,7 @@ import { StatsMovesStep } from './app/vagabond-create-page/StatsMovesStep';
 import { ConnectionsStep } from './app/vagabond-create-page/ConnectionsStep';
 import { BuyItemStep } from './app/vagabond-create-page/BuyItemStep';
 import { ReviewAndCreateStep } from './app/vagabond-create-page/ReviewAndCreateStep';
+import { VerifyPage } from "./auth/verify";
 
 export const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
         index: true,
         element: <ClerkAuth />,
       },
+      {
+        path: 'verify',
+        element: <VerifyPage />,
+      }
     ],
   },
 ]);
