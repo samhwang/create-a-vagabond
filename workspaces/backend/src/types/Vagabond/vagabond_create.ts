@@ -17,6 +17,14 @@ const VagabondCreateReputationCreateInput = builder.inputType('VagabondCreateRep
   }),
 });
 
+const VagabondCreateEquipmentCreateInput = builder.inputType('VagabondCreateEquipmentCreateInput', {
+  fields: t => ({
+    equipmentId: t.string({ required: true }),
+    name: t.string({ required: true }),
+    wear: t.int({ required: true }),
+  })
+})
+
 builder.relayMutationField(
   'vagabondCreate',
   {
@@ -37,7 +45,6 @@ builder.relayMutationField(
         type: [VagabondCreateReputationCreateInput],
       }),
 
-      value: t.int({ required: true }),
       nature: t.globalID({ required: true }),
       drives: t.globalIDList({ required: true }),
       classMoves: t.globalIDList({ required: true }),
@@ -49,6 +56,12 @@ builder.relayMutationField(
       finesse: t.int({ required: true }),
       luck: t.int({ required: true }),
       might: t.int({ required: true }),
+
+      value: t.int({ required: true }),
+      carrying: t.int({ required: true }),
+      equipments: t.field({
+        type: [VagabondCreateEquipmentCreateInput]
+      })
     }),
   },
   {
@@ -96,12 +109,14 @@ builder.relayMutationField(
           background_vagabond: input.background_vagabond,
           background_leftBehind: input.background_leftBehind,
 
-          value: input.value,
           charm: input.charm,
           cunning: input.cunning,
           finesse: input.finesse,
           luck: input.luck,
           might: input.might,
+
+          value: input.value,
+          carrying: input.carrying,
 
           natureId: input.nature.id,
           drives: { connect: input.drives.map(({ id }) => ({ id })) },
@@ -124,6 +139,15 @@ builder.relayMutationField(
                 },
               }
             : undefined,
+
+          equipment: input.equipments
+            ? {
+              createMany: {
+                data: input.equipments,
+                skipDuplicates: false,
+              }
+            }
+            : undefined
         },
       });
 

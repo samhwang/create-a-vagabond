@@ -13,6 +13,10 @@ builder.prismaNode('Equipment', {
   }),
 });
 
+builder.prismaObjectField('Vagabond', 'equipmentConnection', t =>
+  t.relatedConnection('equipment', { cursor: 'id' })
+)
+
 builder.prismaObjectField('EquipmentTag', 'equipmentConnection', (t) =>
   t.relatedConnection('equipment', { cursor: 'id' })
 );

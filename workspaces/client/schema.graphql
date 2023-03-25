@@ -1,0 +1,475 @@
+type ClassMove implements Node {
+  description: String!
+  id: ID!
+  name: String!
+}
+
+type Drive implements Node {
+  description: String!
+  id: ID!
+  name: String!
+}
+
+type Equipment implements Node {
+  equipmentConnection(after: String, before: String, first: Int, last: Int): EquipmentEquipmentConnection!
+  id: ID!
+  load: Int!
+  maxWear: Int!
+  name: String!
+  range: [String!]!
+  value: Int!
+  weaponSkillConnection(after: String, before: String, first: Int, last: Int): EquipmentWeaponSkillConnection!
+}
+
+type EquipmentEquipmentConnection {
+  edges: [EquipmentEquipmentConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type EquipmentEquipmentConnectionEdge {
+  cursor: String!
+  node: EquipmentTag!
+}
+
+type EquipmentTag implements Node {
+  description: String!
+  equipmentConnection(after: String, before: String, first: Int, last: Int): EquipmentTagEquipmentConnection!
+  id: ID!
+  name: String!
+  type: EquipmentTagType!
+  vagabondEquipmentConnection(after: String, before: String, first: Int, last: Int): EquipmentTagVagabondEquipmentConnection!
+}
+
+type EquipmentTagEquipmentConnection {
+  edges: [EquipmentTagEquipmentConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type EquipmentTagEquipmentConnectionEdge {
+  cursor: String!
+  node: Equipment!
+}
+
+enum EquipmentTagType {
+  NEGATIVE
+  POSITIVE
+}
+
+type EquipmentTagVagabondEquipmentConnection {
+  edges: [EquipmentTagVagabondEquipmentConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type EquipmentTagVagabondEquipmentConnectionEdge {
+  cursor: String!
+  node: Equipment!
+}
+
+type EquipmentWeaponSkillConnection {
+  edges: [EquipmentWeaponSkillConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type EquipmentWeaponSkillConnectionEdge {
+  cursor: String!
+  node: WeaponSkill!
+}
+
+type Error {
+  message: String!
+}
+
+type Mutation {
+  vagabondCreate(input: VagabondCreateInput!): MutationVagabondCreateResult!
+  vagabondUpdateStats(input: VagabondUpdateStatsInput!): MutationVagabondUpdateStatsResult!
+}
+
+union MutationVagabondCreateResult = Error | MutationVagabondCreateSuccess
+
+type MutationVagabondCreateSuccess {
+  data: VagabondCreatePayload!
+}
+
+union MutationVagabondUpdateStatsResult = Error | MutationVagabondUpdateStatsSuccess
+
+type MutationVagabondUpdateStatsSuccess {
+  data: VagabondUpdateStatsPayload!
+}
+
+type Nature implements Node {
+  description: String!
+  id: ID!
+  name: String!
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+type Query {
+  equipmentConnection(after: String, before: String, first: Int, last: Int): QueryEquipmentConnection!
+  me: User!
+  node(id: ID!): Node
+  nodes(ids: [ID!]!): [Node]!
+  roguishFeatConnection(after: String, before: String, first: Int, last: Int): QueryRoguishFeatConnection!
+  vagabondClassConnection(after: String, before: String, first: Int, last: Int): QueryVagabondClassConnection!
+}
+
+type QueryEquipmentConnection {
+  edges: [QueryEquipmentConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryEquipmentConnectionEdge {
+  cursor: String!
+  node: Equipment!
+}
+
+type QueryRoguishFeatConnection {
+  edges: [QueryRoguishFeatConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryRoguishFeatConnectionEdge {
+  cursor: String!
+  node: RoguishFeat!
+}
+
+type QueryVagabondClassConnection {
+  edges: [QueryVagabondClassConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryVagabondClassConnectionEdge {
+  cursor: String!
+  node: VagabondClass!
+}
+
+type Reputation implements Node {
+  faction: String!
+  id: ID!
+  notoriety: Int!
+  prestige: Int!
+  score: Int!
+}
+
+type RoguishFeat implements Node {
+  description: String!
+  id: ID!
+  name: String!
+  risks: [String!]!
+}
+
+type User implements Node {
+  email: String!
+  firstName: String
+  id: ID!
+  lastName: String
+  profileImage: String!
+  username: String
+  vagabondConnection(after: String, before: String, first: Int, last: Int): UserVagabondConnection!
+}
+
+type UserVagabondConnection {
+  edges: [UserVagabondConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type UserVagabondConnectionEdge {
+  cursor: String!
+  node: Vagabond!
+}
+
+type Vagabond implements Node {
+  availablePoints: Int!
+  background_home: String!
+  background_leftBehind: String!
+  background_vagabond: String!
+  burdened: Int!
+  carrying: Int!
+  charm: Int!
+  class: VagabondClass!
+  classMoveConnection(after: String, before: String, first: Int, last: Int): VagabondClassMoveConnection!
+  connectionConnection(after: String, before: String, first: Int, last: Int): VagabondConnectionConnection!
+  cunning: Int!
+  demeanor: String!
+  details: String!
+  driveConnection(after: String, before: String, first: Int, last: Int): VagabondDriveConnection!
+  finesse: Int!
+  id: ID!
+  luck: Int!
+  max: Int!
+  might: Int!
+  name: String!
+  nature: Nature!
+  reputation(after: String, before: String, first: Int, last: Int): VagabondReputationConnection!
+  roguishFeatConnection(after: String, before: String, first: Int, last: Int): VagabondRoguishFeatConnection!
+  species: String!
+  user: User!
+  value: Int!
+  weaponSkillConnection(after: String, before: String, first: Int, last: Int): VagabondWeaponSkillConnection!
+}
+
+type VagabondClass implements Node {
+  classMoveConnection(after: String, before: String, first: Int, last: Int): VagabondClassClassMoveConnection!
+  driveConnection(after: String, before: String, first: Int, last: Int): VagabondClassDriveConnection!
+  id: ID!
+  name: String!
+  natureConnection(after: String, before: String, first: Int, last: Int): VagabondClassNatureConnection!
+  roguishFeatConnection(after: String, before: String, first: Int, last: Int): VagabondClassRoguishFeatConnection!
+  startingCharm: Int!
+  startingCunning: Int!
+  startingFinesse: Int!
+  startingLuck: Int!
+  startingMight: Int!
+  startingValue: Int!
+  weaponSkillConnection(after: String, before: String, first: Int, last: Int): VagabondClassWeaponSkillConnection!
+}
+
+type VagabondClassClassMoveConnection {
+  edges: [VagabondClassClassMoveConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondClassClassMoveConnectionEdge {
+  cursor: String!
+  node: ClassMove!
+}
+
+type VagabondClassDriveConnection {
+  edges: [VagabondClassDriveConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondClassDriveConnectionEdge {
+  cursor: String!
+  node: Drive!
+}
+
+type VagabondClassMoveConnection {
+  edges: [VagabondClassMoveConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondClassMoveConnectionEdge {
+  cursor: String!
+  node: ClassMove!
+}
+
+type VagabondClassNatureConnection {
+  edges: [VagabondClassNatureConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondClassNatureConnectionEdge {
+  cursor: String!
+  node: Nature!
+}
+
+type VagabondClassRoguishFeatConnection {
+  edges: [VagabondClassRoguishFeatConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondClassRoguishFeatConnectionEdge {
+  cursor: String!
+  node: RoguishFeat!
+}
+
+type VagabondClassWeaponSkillConnection {
+  edges: [VagabondClassWeaponSkillConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondClassWeaponSkillConnectionEdge {
+  cursor: String!
+  node: WeaponSkill!
+}
+
+type VagabondConnection implements Node {
+  id: ID!
+  notes: String!
+  to: String!
+  type: String!
+}
+
+type VagabondConnectionConnection {
+  edges: [VagabondConnectionConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondConnectionConnectionEdge {
+  cursor: String!
+  node: VagabondConnection!
+}
+
+input VagabondCreateConnectionCreateInput {
+  notes: String!
+  to: String!
+  type: String!
+}
+
+input VagabondCreateEquipmentCreateInput {
+  equipmentId: String!
+  name: String!
+  wear: Int!
+}
+
+input VagabondCreateInput {
+  background_home: String!
+  background_leftBehind: String!
+  background_vagabond: String!
+  carrying: Int!
+  charm: Int!
+  class: ID!
+  classMoves: [ID!]!
+  connections: [VagabondCreateConnectionCreateInput!]
+  cunning: Int!
+  demeanor: String!
+  details: String!
+  drives: [ID!]!
+  equipments: [VagabondCreateEquipmentCreateInput!]
+  finesse: Int!
+  luck: Int!
+  might: Int!
+  name: String!
+  nature: ID!
+  reputations: [VagabondCreateReputationCreateInput!]
+  roguishFeats: [ID!]!
+  species: String!
+  value: Int!
+  weaponSkill: ID!
+}
+
+type VagabondCreatePayload {
+  vagabond: Vagabond!
+}
+
+input VagabondCreateReputationCreateInput {
+  faction: String!
+  notoriety: Int!
+  prestige: Int!
+  score: Int!
+}
+
+type VagabondDriveConnection {
+  edges: [VagabondDriveConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondDriveConnectionEdge {
+  cursor: String!
+  node: Drive!
+}
+
+type VagabondEquipment implements Node {
+  equipmentConnection(after: String, before: String, first: Int, last: Int): VagabondEquipmentEquipmentConnection!
+  id: ID!
+  name: String!
+  weaponSkillConnection(after: String, before: String, first: Int, last: Int): VagabondEquipmentWeaponSkillConnection!
+  wear: Int!
+}
+
+type VagabondEquipmentEquipmentConnection {
+  edges: [VagabondEquipmentEquipmentConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondEquipmentEquipmentConnectionEdge {
+  cursor: String!
+  node: EquipmentTag!
+}
+
+type VagabondEquipmentWeaponSkillConnection {
+  edges: [VagabondEquipmentWeaponSkillConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondEquipmentWeaponSkillConnectionEdge {
+  cursor: String!
+  node: WeaponSkill!
+}
+
+type VagabondReputationConnection {
+  edges: [VagabondReputationConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondReputationConnectionEdge {
+  cursor: String!
+  node: Reputation!
+}
+
+type VagabondRoguishFeatConnection {
+  edges: [VagabondRoguishFeatConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondRoguishFeatConnectionEdge {
+  cursor: String!
+  node: RoguishFeat!
+}
+
+input VagabondUpdateStatsInput {
+  charm: Int = 0
+  cunning: Int = 0
+  finesse: Int = 0
+  luck: Int = 0
+  might: Int = 0
+  vagabondId: ID!
+}
+
+type VagabondUpdateStatsPayload {
+  vagabond: Vagabond!
+}
+
+type VagabondWeaponSkillConnection {
+  edges: [VagabondWeaponSkillConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type VagabondWeaponSkillConnectionEdge {
+  cursor: String!
+  node: WeaponSkill!
+}
+
+type WeaponSkill implements Node {
+  description: String!
+  equipmentConnection(after: String, before: String, first: Int, last: Int): WeaponSkillEquipmentConnection!
+  id: ID!
+  name: String!
+  type: WeaponSkillType!
+  vagabondEquipmentConnection(after: String, before: String, first: Int, last: Int): WeaponSkillVagabondEquipmentConnection!
+}
+
+type WeaponSkillEquipmentConnection {
+  edges: [WeaponSkillEquipmentConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type WeaponSkillEquipmentConnectionEdge {
+  cursor: String!
+  node: Equipment!
+}
+
+enum WeaponSkillType {
+  NORMAL
+  SPECIAL
+}
+
+type WeaponSkillVagabondEquipmentConnection {
+  edges: [WeaponSkillVagabondEquipmentConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type WeaponSkillVagabondEquipmentConnectionEdge {
+  cursor: String!
+  node: VagabondEquipment!
+}

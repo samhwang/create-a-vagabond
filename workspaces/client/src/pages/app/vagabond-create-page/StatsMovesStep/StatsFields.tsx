@@ -86,14 +86,6 @@ export function StatsFields({ vagabondClassRef }: StatsFieldsProps) {
           inputProps={{ sx: { textAlign: 'center' } }}
           fullWidth
         />
-        <RHFTextField
-          control={control}
-          name="value"
-          label="Value"
-          disabled
-          inputProps={{ sx: { textAlign: 'center' } }}
-          fullWidth
-        />
         <BurdenedInfoField />
         <MaxInfoField />
       </Stack>
@@ -104,7 +96,7 @@ export function StatsFields({ vagabondClassRef }: StatsFieldsProps) {
 function useSyncStats(vagabondClassRef: StatsFields_useSyncStats_class$key) {
   const { setValue } = useFormContext<StatsMovesStepInput>();
 
-  const { startingCharm, startingCunning, startingFinesse, startingLuck, startingMight, startingValue } = useFragment(
+  const { startingCharm, startingCunning, startingFinesse, startingLuck, startingMight } = useFragment(
     graphql`
       fragment StatsFields_useSyncStats_class on VagabondClass {
         startingCharm
@@ -112,13 +104,12 @@ function useSyncStats(vagabondClassRef: StatsFields_useSyncStats_class$key) {
         startingFinesse
         startingLuck
         startingMight
-        startingValue
       }
     `,
     vagabondClassRef
   );
 
-  const { charm, cunning, finesse, luck, might, value } = useAtomValue(statsMovesStepInputAtom);
+  const { charm, cunning, finesse, luck, might } = useAtomValue(statsMovesStepInputAtom);
 
   useEffect(() => {
     setValue('charm', charm || startingCharm || 0);
@@ -139,10 +130,6 @@ function useSyncStats(vagabondClassRef: StatsFields_useSyncStats_class$key) {
   useEffect(() => {
     setValue('might', might || startingMight || 0);
   }, [might, startingMight]);
-
-  useEffect(() => {
-    setValue('value', value || startingValue || 0);
-  }, [value, startingValue]);
 }
 
 function BurdenedInfoField() {

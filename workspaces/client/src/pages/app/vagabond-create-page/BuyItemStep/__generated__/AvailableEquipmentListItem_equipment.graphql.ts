@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<973ac95888ab4bc8200f11126cbdba9d>>
+ * @generated SignedSource<<d54aada5bd49e8bd3cf0a6e7e229295b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,65 +10,65 @@
 
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type StatsFields_useSyncStats_class$data = {
-  readonly startingCharm: number;
-  readonly startingCunning: number;
-  readonly startingFinesse: number;
-  readonly startingLuck: number;
-  readonly startingMight: number;
-  readonly " $fragmentType": "StatsFields_useSyncStats_class";
+export type AvailableEquipmentListItem_equipment$data = {
+  readonly id: string;
+  readonly load: number;
+  readonly maxWear: number;
+  readonly name: string;
+  readonly value: number;
+  readonly " $fragmentType": "AvailableEquipmentListItem_equipment";
 };
-export type StatsFields_useSyncStats_class$key = {
-  readonly " $data"?: StatsFields_useSyncStats_class$data;
-  readonly " $fragmentSpreads": FragmentRefs<"StatsFields_useSyncStats_class">;
+export type AvailableEquipmentListItem_equipment$key = {
+  readonly " $data"?: AvailableEquipmentListItem_equipment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"AvailableEquipmentListItem_equipment">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "StatsFields_useSyncStats_class",
+  "name": "AvailableEquipmentListItem_equipment",
   "selections": [
     {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "startingCharm",
+      "name": "id",
       "storageKey": null
     },
     {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "startingCunning",
+      "name": "name",
       "storageKey": null
     },
     {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "startingFinesse",
+      "name": "load",
       "storageKey": null
     },
     {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "startingLuck",
+      "name": "value",
       "storageKey": null
     },
     {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "startingMight",
+      "name": "maxWear",
       "storageKey": null
     }
   ],
-  "type": "VagabondClass",
+  "type": "Equipment",
   "abstractKey": null
 };
 
-(node as any).hash = "7866f9486a79395383e405701e5d8b35";
+(node as any).hash = "bcb530782a9dfabeabcf6b026e29a700";
 
 export default node;

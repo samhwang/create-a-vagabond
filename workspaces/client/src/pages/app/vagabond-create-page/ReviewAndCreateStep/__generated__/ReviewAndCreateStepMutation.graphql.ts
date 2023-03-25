@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<39859d6b5a1a065f98c11837abcfbc9b>>
+ * @generated SignedSource<<61d13d4dde18138dfc5054f9d80e81d5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,6 +14,7 @@ export type VagabondCreateInput = {
   background_home: string;
   background_leftBehind: string;
   background_vagabond: string;
+  carrying: number;
   charm: number;
   class: string;
   classMoves: ReadonlyArray<string>;
@@ -22,6 +23,7 @@ export type VagabondCreateInput = {
   demeanor: string;
   details: string;
   drives: ReadonlyArray<string>;
+  equipments?: ReadonlyArray<VagabondCreateEquipmentCreateInput> | null;
   finesse: number;
   luck: number;
   might: number;
@@ -37,6 +39,11 @@ export type VagabondCreateConnectionCreateInput = {
   notes: string;
   to: string;
   type: string;
+};
+export type VagabondCreateEquipmentCreateInput = {
+  equipmentId: string;
+  name: string;
+  wear: number;
 };
 export type VagabondCreateReputationCreateInput = {
   faction: string;

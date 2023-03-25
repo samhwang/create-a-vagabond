@@ -13,6 +13,7 @@ import { ClassStep } from './app/vagabond-create-page/ClassStep';
 import { BackgroundStep } from './app/vagabond-create-page/BackgroundStep';
 import { StatsMovesStep } from './app/vagabond-create-page/StatsMovesStep';
 import { ConnectionsStep } from './app/vagabond-create-page/ConnectionsStep';
+import { BuyItemStep } from './app/vagabond-create-page/BuyItemStep';
 import { ReviewAndCreateStep } from './app/vagabond-create-page/ReviewAndCreateStep';
 
 export const router = createBrowserRouter([
@@ -32,6 +33,7 @@ export const router = createBrowserRouter([
           { path: 'background', element: <BackgroundStep /> },
           { path: 'stats_moves', element: <StatsMovesStep /> },
           { path: 'connections', element: <ConnectionsStep /> },
+          { path: 'buy_items', element: <BuyItemStep /> },
           { path: 'review_create', element: <ReviewAndCreateStep /> },
         ],
       },
