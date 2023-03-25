@@ -5,6 +5,9 @@
 
 pscale connect createvagabondapp dev-sam --port 3309
 
+clerk mail 2FA redirect
+  login 2FA --> email --> redirect back to /auth/verify
+
 character creation
   [X] Name
 
