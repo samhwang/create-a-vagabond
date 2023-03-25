@@ -15,7 +15,7 @@
     "prisma:studio": "prisma studio",
     "prisma:format": "prisma format",
     "seed": "tsx ./bin/seed.ts",
-    "generate-schema": "tsx ./bin/generate-schema.ts"
+    "generate-schema": "npx tsx ./bin/generate-schema.ts"
   },
   "dependencies": {
     "@clerk/clerk-sdk-node": "^4.7.5",

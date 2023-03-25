@@ -76,6 +76,10 @@ export function ReviewAndCreateStep() {
     roguishFeats: input.roguishFeats.map(window.atob),
     classMoves: input.classMoves.map(window.atob),
     weaponSkill: window.atob(input.weaponSkill),
+    equipments: input.equipments.map(equipment => ({
+      ...equipment,
+      equipmentId: window.atob(equipment.equipmentId)
+    }))
   };
 
   return (

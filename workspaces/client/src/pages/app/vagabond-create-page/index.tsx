@@ -58,8 +58,15 @@ export const vagabondCreateInputAtom = atom((get) => {
   const classStepData = get(classStepInputAtom);
   const backgroundStepData = get(backgroundStepInputAtom);
   const statsMovesStepData = get(statsMovesStepInputAtom);
-  const buyItemStepData = get(buyItemStepInputAtom);
   const connectionsStepData = get(connectionsStepInputAtom);
+  const buyItemStepData = {
+    ...get(buyItemStepInputAtom),
+    equipments: get(buyItemStepInputAtom).equipments.map(({ equipmentId, name, wear }) => ({
+      equipmentId,
+      name,
+      wear,
+    }))
+  };
 
   return {
     ...classStepData,
@@ -97,6 +104,7 @@ export const vagabondCreateResetAtom = atom(null, (get, set) => {
   set(buyItemStepInputAtom, {
     value: 0,
     carrying: 0,
+    equipments: [],
   })
   set(connectionsStepInputAtom, {
     connections: [],

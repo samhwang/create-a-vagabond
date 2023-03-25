@@ -57,7 +57,6 @@ export const BuyItemStep = () => {
           ... on VagabondClass {
             name
             startingValue
-
           }
         }
       }
