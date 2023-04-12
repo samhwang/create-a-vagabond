@@ -65,7 +65,7 @@ character creation
   [X] Connections
     connectionConnection
   [ ] Reputation
-    5 x faction with value [-3, 3] and ticks (in sheet)  
+    5 x faction with value [-3, 3] and ticks (in sheet)
 
 ///
 [ ] Equipment
@@ -145,3 +145,38 @@ page 2
 page 3
   connections
   reputations
+
+------
+
+# TODO:
+
+- Vagabond Info Page
+- Edit Vagabond
+  - Create a link in the Vagabond Info page for this.
+  - Can be used for advancements?
+  - This could just be opening the create page, but prefill with existing info of that vagabond.
+- Advancement page
+  - Can be combined with above?
+  - See note for advancements below.
+- Add a home page
+  - Detach the "layout" Relay fetch function hook from this.
+- Create some private routes for logged-in users only (like vagabonds-related page).
+  - Only allow access if there's an active Clerk session
+  - If not, redirect to Home or Login page.
+- Rework the Clerk functionalities in the Layout hook.
+  - if clerk session is not active => throw an error
+- Find out if there are any other paths needed by Clerk and fill this in.
+
+# Advancements
+
+- Advancement can be declared by fulfilling a drive.
+- When declared, pick an action from the list.
+  - Take +1 to a stat (max is still +2)
+  - Take a new move from the current vagabond class' playbook (max 5 moves from the current class playbook, include starting 3.)
+  - Take a new move from another vagabond class' playbook (max 2 moves from other playbooks)
+  - Take up to 2 new weapon skills (max 7 weapon skills)
+    - max 7 include the starting weapon skills
+    - NOT counting any of the skills learnt via a playbook move or via a weapon skill tag.
+  - Take up to 2 new roguish feats (max 6 roguish feats)
+  - Add 1 box to one harm track (Injury, Exhaustion, Depletion) (max 6 each track)
+  - Make up to 2 new connections (max 6 connections)
