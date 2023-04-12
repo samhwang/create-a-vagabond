@@ -4,7 +4,7 @@
   "private": true,
   "description": "Create a Vagabond App",
   "license": "ISC",
-  "packageManager": "npm@8.19.3",
+  "packageManager": "npm@9.5.0",
   "workspaces": [
     "./workspaces/*"
   ],
