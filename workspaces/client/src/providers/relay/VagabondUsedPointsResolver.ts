@@ -3,10 +3,7 @@ import { readFragment } from 'relay-runtime/lib/store/ResolverFragments';
 import type { VagabondUsedPointsResolver$key } from './__generated__/VagabondUsedPointsResolver.graphql';
 
 /**
- * @RelayResolver
- *
- * @onType Vagabond
- * @fieldName usedPoints
+ * @RelayResolver Vagabond.usedPoints: RelayResolverValue
  * @rootFragment VagabondUsedPointsResolver
  *
  * usedPoints is sum of vagabond stats
