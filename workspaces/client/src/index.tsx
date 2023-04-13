@@ -11,10 +11,10 @@ import { router } from './pages/_router';
 import reportWebVitals from './reportWebVitals';
 
 async function renderRoot() {
-  if (import.meta.env.DEV) {
-    const { worker } = await import('./__mocks__/msw/browser');
-    await worker.start();
-  }
+  // if (import.meta.env.DEV) {
+  //   const { worker } = await import('./__mocks__/msw/browser');
+  //   await worker.start();
+  // }
 
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
