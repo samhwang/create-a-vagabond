@@ -30,9 +30,9 @@ type UserMenuProps = {
 export function UserMenu({ anchorEl, onClose }: UserMenuProps) {
   const { signOut } = useAuth();
   const navigate = useNavigate();
-  const onSignout = () => {
+  const onSignOut = () => {
     signOut(() => {
-      navigate('/auth');
+      navigate('/');
     });
   };
 
@@ -44,13 +44,13 @@ export function UserMenu({ anchorEl, onClose }: UserMenuProps) {
       open={Boolean(anchorEl)}
       onClose={onClose}
     >
-      <MenuItem onClick={onClose} component={Link} to="profile">
+      <MenuItem onClick={onClose} component={Link} to="/app/profile">
         Profile
       </MenuItem>
-      <MenuItem onClick={onClose} component={Link} to="vagabond-list">
+      <MenuItem onClick={onClose} component={Link} to="/app/vagabond-list">
         Your Vagabonds
       </MenuItem>
-      <MenuItem onClick={onSignout}>Log Out</MenuItem>
+      <MenuItem onClick={onSignOut}>Log Out</MenuItem>
     </Menu>
   );
 }

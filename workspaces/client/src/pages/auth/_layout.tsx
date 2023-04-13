@@ -7,7 +7,7 @@ export function AuthLayout() {
 
   if (!isLoaded) return <CircularProgress />;
 
-  if (isSignedIn) return <Navigate to="/" />;
+  if (isSignedIn) return <Navigate to="/app" />;
 
   return (
     <Container

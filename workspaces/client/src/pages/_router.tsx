@@ -1,13 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import ProfilePage from './app/profile-page';
+import { HomePage } from './home';
+
+import { AppRoot } from './app/_layout';
+import { OverviewPage } from './app/overview';
+import { ProfilePage } from './app/profile-page';
 import { VagabondListPage } from './app/vagabond-list-page';
 import { VagabondInfoPage } from './app/vagabond-page';
-
-import { AuthLayout } from './auth/_layout';
-import { AppRoot } from './app/_layout';
-import { ClerkAuth } from './auth/clerk-auth';
-
 import { VagabondCreatePage } from './app/vagabond-create-page';
 import { ClassStep } from './app/vagabond-create-page/ClassStep';
 import { BackgroundStep } from './app/vagabond-create-page/BackgroundStep';
@@ -15,13 +14,24 @@ import { StatsMovesStep } from './app/vagabond-create-page/StatsMovesStep';
 import { ConnectionsStep } from './app/vagabond-create-page/ConnectionsStep';
 import { BuyItemStep } from './app/vagabond-create-page/BuyItemStep';
 import { ReviewAndCreateStep } from './app/vagabond-create-page/ReviewAndCreateStep';
-import { VerifyPage } from "./auth/verify";
+
+import { AuthLayout } from './auth/_layout';
+import { ClerkAuth } from './auth/clerk-auth';
+import { VerifyPage } from './auth/verify';
 
 export const router = createBrowserRouter([
   {
     path: '/',
+    element: <HomePage />,
+  },
+  {
+    path: '/app',
     element: <AppRoot />,
     children: [
+      {
+        index: true,
+        element: <OverviewPage />,
+      },
       {
         path: 'profile',
         element: <ProfilePage />,
@@ -59,7 +69,7 @@ export const router = createBrowserRouter([
       {
         path: 'verify',
         element: <VerifyPage />,
-      }
+      },
     ],
   },
 ]);

@@ -1,4 +1,4 @@
-import { useUser, UserButton, SignedIn, SignedOut, RedirectToSignIn, useAuth } from '@clerk/clerk-react';
+import { useUser, UserButton, SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
 
 export function ClerkAuth() {
   return (
