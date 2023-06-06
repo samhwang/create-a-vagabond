@@ -79,7 +79,7 @@
     "jsdom": "^21.1.1",
     "relay-compiler": "^15.0.0",
     "vagabond-app-backend": "*",
-    "vite": "^4.2.1",
+    "vite": "^4.2.3",
     "vite-plugin-relay": "^2.0.0"
   }
 }
