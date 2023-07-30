@@ -19,11 +19,6 @@
       "dependsOn": ["prisma:generate"],
       "cache": false
     },
-    "vagabond-app-backend#dev": {
-      "dependsOn": ["vagabond-app-client#build", "prisma:migrate", "prisma:generate", "generate-schema"],
-      "cache": false,
-      "persistent": true
-    },
     "vagabond-app-client#msw:init": {
       "outputs": ["public/mockServiceWorker.js"]
     },
@@ -32,7 +27,7 @@
       "cache": false
     },
     "vagabond-app-client#dev": {
-      "dependsOn": ["msw:init", "relay"],
+      "dependsOn": ["msw:init", "relay", "vagabond-app-backend#prisma:migrate", "vagabond-app-backend#prisma:generate", "vagabond-app-backend#generate-schema"],
       "cache": false,
       "persistent": true
     },
