@@ -10,11 +10,7 @@
     "schema": "./schema.graphql",
     "language": "typescript",
     "eagerEsModules": true,
-    "exclude": [
-      "**/node_modules/**",
-      "**/__mocks__/**",
-      "**/__generated__/**"
-    ],
+    "exclude": ["**/node_modules/**", "**/__mocks__/**", "**/__generated__/**"],
     "featureFlags": {
       "enable_relay_resolver_transform": true,
       "enable_client_edges": {
@@ -58,8 +54,7 @@
     "react-i18next": "^13.0.2",
     "react-relay": "^15.0.0",
     "react-router-dom": "^6.14.2",
-    "relay-runtime": "^15.0.0",
-    "web-vitals": "^3.4.0"
+    "relay-runtime": "^15.0.0"
   },
   "devDependencies": {
     "@swc-jotai/debug-label": "^0.0.10",

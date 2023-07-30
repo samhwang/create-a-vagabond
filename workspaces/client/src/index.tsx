@@ -8,7 +8,6 @@ import { AuthProvider } from './providers/auth';
 import { RelayProvider } from './providers/relay';
 import './providers/i18n';
 import { router } from './pages/_router';
-import reportWebVitals from './reportWebVitals';
 
 async function renderRoot() {
   // if (import.meta.env.DEV) {
@@ -38,5 +37,3 @@ async function renderRoot() {
 }
 
 renderRoot();
-
-reportWebVitals();
