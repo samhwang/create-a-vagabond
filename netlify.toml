@@ -1,2 +1,15 @@
 [build]
-  base = "workspaces/client/"
+  publish = "workspaces/client/dist/"
+  command = "npm run build"
+
+[functions]
+  directory = "workspaces/backend/src/functions/"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  autoLaunch = true
+  functionsPort = 8788

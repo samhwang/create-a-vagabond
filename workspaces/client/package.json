@@ -21,9 +21,7 @@
   "type": "module",
   "scripts": {
     "msw:init": "msw init public",
-    "dev:vite": "vite",
-    "dev:netlify": "netlify dev",
-    "dev": "pnpm run dev:netlify",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc",
