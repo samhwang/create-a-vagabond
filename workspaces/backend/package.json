@@ -20,18 +20,18 @@
     "generate-schema": "npx tsx ./bin/generate-schema.ts"
   },
   "dependencies": {
-    "@clerk/clerk-sdk-node": "^4.8.3",
-    "@devoxa/prisma-relay-cursor-connection": "^2.2.2",
-    "@netlify/functions": "^1.4.0",
-    "@pothos/core": "^3.29.0",
-    "@pothos/plugin-errors": "^3.11.0",
-    "@pothos/plugin-prisma": "^3.47.2",
-    "@pothos/plugin-relay": "^3.39.0",
-    "@pothos/plugin-simple-objects": "^3.6.7",
-    "@prisma/client": "^4.12.0",
-    "graphql-yoga": "^3.8.0"
+    "@clerk/clerk-sdk-node": "^4.12.1",
+    "@devoxa/prisma-relay-cursor-connection": "^3.0.0",
+    "@netlify/functions": "^1.6.0",
+    "@pothos/core": "^3.32.1",
+    "@pothos/plugin-errors": "^3.11.1",
+    "@pothos/plugin-prisma": "^3.53.0",
+    "@pothos/plugin-relay": "^3.43.0",
+    "@pothos/plugin-simple-objects": "^3.7.0",
+    "@prisma/client": "^5.0.0",
+    "graphql-yoga": "^4.0.3"
   },
   "devDependencies": {
-    "prisma": "^4.12.0"
+    "prisma": "^5.0.0"
   }
 }
