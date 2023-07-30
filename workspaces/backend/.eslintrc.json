@@ -1,8 +1,0 @@
-{
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
-  "rules": {
-    "import/first": "off"
-  }
-}

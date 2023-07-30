@@ -16,7 +16,7 @@ async function renderRoot() {
   //   await worker.start();
   // }
 
-  createRoot(document.getElementById('root')!).render(
+  const RootComponent = (
     <StrictMode>
       <ThemeProvider>
         <SnackbarProvider>
@@ -31,6 +31,10 @@ async function renderRoot() {
       </ThemeProvider>
     </StrictMode>
   );
+
+  const rootElement = document.getElementById('root') as HTMLElement;
+  const root = createRoot(rootElement);
+  root.render(RootComponent);
 }
 
 renderRoot();

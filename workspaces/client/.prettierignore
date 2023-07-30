@@ -1,9 +1,0 @@
-package.json
-dist
-coverage
-*.d.ts
-
-# Ignoring generated files
-public/mockServiceWorker.js
-src/providers/relay/__generated__
-src/pages/**/__generated__
