@@ -8,5 +8,11 @@
   "testing.automaticallyOpenPeekView": "never",
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
   }
 }

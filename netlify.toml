@@ -1,15 +1,19 @@
 [build]
-  publish = "workspaces/client/dist/"
-  command = "npm run build"
+framework = "vite"
+publish = "client/dist/"
+command = "./bin/prod.sh"
 
 [functions]
-  directory = "workspaces/backend/src/functions/"
+directory = "backend/src/functions/"
+external_node_modules = ["@whatwg-node/fetch"]
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+from = "/*"
+to = "/index.html"
+status = 200
 
 [dev]
-  autoLaunch = true
-  functionsPort = 8788
+autoLaunch = false
+targetPort = 5173
+framework = "vite"
+command = "./bin/dev.sh"
