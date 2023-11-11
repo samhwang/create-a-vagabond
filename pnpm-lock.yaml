@@ -1385,7 +1385,7 @@ packages:
       '@opentelemetry/sdk-metrics': 1.15.1(@opentelemetry/api@1.4.1)
       '@opentelemetry/sdk-node': 0.36.1(@opentelemetry/api@1.4.1)(supports-color@9.4.0)
       '@opentelemetry/sdk-trace-base': 1.15.1(@opentelemetry/api@1.4.1)
-      axios: 1.4.0(debug@4.3.4)
+      axios: 1.6.1(debug@4.3.4)
     transitivePeerDependencies:
       - debug
       - supports-color
@@ -4466,8 +4466,8 @@ packages:
       - supports-color
     dev: true
 
-  /axios@1.4.0(debug@4.3.4):
-    resolution: {integrity: sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==}
+  /axios@1.6.1(debug@4.3.4):
+    resolution: {integrity: sha512-vfBmhDpKafglh0EldBEbVuoe7DyAavGSLWhuSm5ZSEKQnHhBf0xAAwybbNH1IkrJNGnS/VG4I5yxig1pCEXE4g==}
     dependencies:
       follow-redirects: 1.15.2(debug@4.3.4)
       form-data: 4.0.0
@@ -8030,6 +8030,7 @@ packages:
       chalk: 2.4.2
       diff-match-patch: 1.0.5
     dev: true
+    bundledDependencies: []
 
   /jsonpointer@5.0.1:
     resolution: {integrity: sha512-p/nXbhSEcu3pZRdkW1OfJhpsVtW1gd4Wa1fnQc9YLiTfAjn0312eMKimbdIQzuZl9aa9xUGaRlP9T/CJE/ditQ==}
